@@ -22,6 +22,9 @@ Wenn git command nicht erkannt wird -> PC neu starten wegen PATH!
 ### Code zum laufen bringen
 - Alle sollten das gleiche JDK verwenden. Projekt läuft mit JDK 22, weil JDK 24 Warnings schmeißt. Kann ez mit IntelliJ installiert werden.
 - JavaFX installieren und zu Liberies hinzufügen: https://www.youtube.com/watch?v=cyHeYdydbJQ
+- Language Level auf 22 stellen: File -> Project Structure -> Modules -> Sources -> Language Level
+- Byte Code auf 22 stellen: File -> Settings -> Java Compliler -> Module -> Multimedia Gruppe -> Bytecode von 8 auf 22 stellen
+- Beispielprogramm sollte laufen
 
 ### Eigene Branch
 - Erstelle deine eigene Branche im VSC Menü von Intellij mit **new Branch**
