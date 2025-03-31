@@ -19,9 +19,13 @@ git status
 Eventuell Einstellungen wie Name und Email konfigurieren, einfach Terminalbefehle folgen.  
 Wenn git command nicht erkannt wird -> PC neu starten wegen PATH!
 
+### Code zum laufen bringen
+- Alle sollten das gleiche JDK verwenden. Projekt läuft mit JDK 22, weil JDK 24 Warnings schmeißt. Kann ez mit IntelliJ installiert werden.
+- JavaFX installieren und zu Liberies hinzufügen: https://www.youtube.com/watch?v=cyHeYdydbJQ
+
 ### Eigene Branch
 - Erstelle deine eigene Branche im VSC Menü von Intellij mit **new Branch**
-- Schreib deinen Namen in das print bei **stage.setTitle("<name> Branch!");**
+- Schreib deinen Namen in das print bei **stage.setTitle("Name Branch!");**
 - Push deine Änderungen auf Git mit den Befehlen:
 ```bash
 git add .
