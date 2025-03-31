@@ -16,15 +16,17 @@ oder
 ```bash
 git status
 ```
+Eventuell Einstellungen wie Name und Email konfigurieren, einfach Terminalbefehle folgen.  
 Wenn git command nicht erkannt wird -> PC neu starten wegen PATH!
 
-
-- Erstelle deine eigene Branche mit dem Terminal Befehl **git checkout -b "dein Name"**
-- Schreib deinen Namen in das print
+### Eigene Branch
+- Erstelle deine eigene Branche im VSC Menü von Intellij mit **new Branch**
+- Schreib deinen Namen in das print bei **stage.setTitle("<name> Branch!");**
 - Push deine Änderungen auf Git mit den Befehlen:
 ```bash
 git add .
-git commit -m "Login-Funktion implementiert"
-git push origin "dein Name"
+git commit -m "Meine Branch implementiert"
+git push origin DeineBranchName
 ```
+Upstream setten: Gegebenen Terminal Befehl ausführen
 
