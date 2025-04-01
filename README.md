@@ -37,3 +37,26 @@ git push origin DeineBranchName
 ```
 Upstream setten: Gegebenen Terminal Befehl ausführen
 
+### Neue Änderungen von der Main Branch pullen (Am besten immer vor der Coding Session ausführen)
+```bash
+git checkout DeineBranch # Wechselt auf deine Branch
+git fetch origin      # Holt die neuesten Änderungen von GitHub auf deine lokale main
+git merge origin/main # Merged main in deine Branch
+```
+Bei Merge Konflikte -> weinen gehen bzw. manuell lösen und danach:
+```bash
+git add .   
+git commit 
+```
+
+### Deine Änderungen auf Main pushen
+- Als erstes sicher stellen das man die neueste main in der eigenen Branch hat, eventuell vorherigen Schritt wiederholen  
+- Code umbedingt nochmal testen falls es eine neue main gibt  
+Danach:
+```bash
+git checkout main 
+git merge DeineBranch
+git push origin main
+```
+Bei Merge Konflikten wieder manuell lösen
+
