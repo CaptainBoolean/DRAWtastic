@@ -1,4 +1,4 @@
-# Multimeda-Paint-Project
+# DRAWtastic
 ## Git Setup Test
 ### Resourcen
 JavaFX: https://gluonhq.com/products/javafx/  
