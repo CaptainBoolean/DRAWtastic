@@ -1,9 +1,9 @@
-package org.example.multimediagroupproject;
+package org.example.paint.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class PaintController {
     @FXML
     private Label welcomeText;
 
