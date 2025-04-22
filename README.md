@@ -23,16 +23,16 @@ Wenn git command nicht erkannt wird -> PC neu starten wegen PATH!
 - Byte Code auf 22 stellen: File -> Settings -> Java Compliler -> Module -> Multimedia Gruppe -> Bytecode von 8 auf 22 stellen
 - Code sollte laufen
 
-### Vor deiner Coding Session
-# Neue Änderungen von der Main Branch pullen
+## Vor deiner Coding Session
+### Neue Änderungen von der Main Branch pullen
 ```bash
 git checkout DeineBranch # Wechselt auf deine Branch
 git fetch origin      # Holt die neuesten Änderungen von GitHub auf deine lokale main
 git merge origin main # Merged main in deine Branch
 ```
 
-### Nach deiner Coding Session
-# Push die Änderungen DEINER BRANCH auf deine Git Branch mit den Befehlen:
+## Nach deiner Coding Session
+### Push die Änderungen DEINER BRANCH auf deine Git Branch mit den Befehlen:
 ```bash
 git checkout DeineBranch # Wechselt auf deine Branch
 git add . # Gibt deine Änderungen in eine "Mappe"
@@ -40,9 +40,9 @@ git commit -m "Was auch immer du implementiert hast" # Beschriftet die Mappe
 git push # Gibt die Mappe ab
 ```
 - Diesen Schritt kann man nicht oft genug machen, lieber einmal zuviel pushen als zuwenig
-- ACHTUNG! Nicht die Main checkouten bevor man nicht auf seine eigene Branch gepushed hat. DEIN CODE WIRD SONST RESETTED!
+- **ACHTUNG! Nicht die Main checkouten bevor man nicht auf seine eigene Branch gepushed hat. DEIN CODE WIRD SONST RESETTED!**
 - 
-# Merge deine Änderungen auf die Main 
+### Merge deine Änderungen auf die Main 
 - Als erstes sicher stellen das man die neueste main in der eigenen Branch hat, eventuell vorherigen Schritt wiederholen  
 - Code umbedingt nochmal testen, Main muss clean bleiben!
 ```bash
