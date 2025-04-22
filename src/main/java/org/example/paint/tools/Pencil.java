@@ -15,6 +15,6 @@ public class Pencil implements Tool {
     @Override
     public void onDrag(GraphicsContext g, MouseEvent e, double size) {
         g.setFill(color);
-        g.fillRect(e.getX(), e.getY(), size, size);
+        g.fillOval(e.getX(), e.getY(), size, size);
     }
 }
