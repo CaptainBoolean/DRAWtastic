@@ -19,12 +19,22 @@
             </MenuBar>
 
             <ToolBar>
-                <HBox alignment="CENTER" spacing="5">
-                    <TextField fx:id="brushSize" text="11" />
-                    <ColorPicker fx:id="colorPicker" />
-                    <Button fx:id="eraserButton" text="Eraser" />
-                </HBox>
+                <VBox spacing="5">
+                    <HBox spacing="5" alignment="CENTER">
+                        <TextField fx:id="brushSize" text="11" prefWidth="40" />
+                        <ColorPicker fx:id="colorPicker" />
+                        <Button fx:id="pencilButton" text="Pencil" />
+                        <Button fx:id="eraserButton" text="Eraser" />
+                    </HBox>
+
+                    <HBox spacing="5" alignment="CENTER">
+                        <Button text="Line Tool" />
+                        <Button text="Rectangle Tool" />
+                        <Button text="Circle Tool" />
+                    </HBox>
+                </VBox>
             </ToolBar>
+
         </VBox>
     </top>
 

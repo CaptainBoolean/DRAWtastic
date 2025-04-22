@@ -21,6 +21,9 @@ public class DrawtasticController {
     private ColorPicker colorPicker;
 
     @FXML
+    private Button pencilButton;
+
+    @FXML
     private TextField brushSize;
 
     @FXML
@@ -36,6 +39,10 @@ public class DrawtasticController {
         currentTool = new Pencil(colorPicker.getValue());
 
         colorPicker.setOnAction(e -> {
+            currentTool = new Pencil(colorPicker.getValue());
+        });
+
+        pencilButton.setOnAction(e -> {
             currentTool = new Pencil(colorPicker.getValue());
         });
 
