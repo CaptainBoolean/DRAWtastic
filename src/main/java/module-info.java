@@ -4,6 +4,8 @@ module org.example.multimediagroupproject {
 
     requires com.dlsc.formsfx;
 
-    opens org.example.multimediagroupproject to javafx.fxml;
-    exports org.example.multimediagroupproject;
+    opens org.example.paint to javafx.fxml;
+    exports org.example.paint;
+    exports org.example.paint.controller;
+    opens org.example.paint.controller to javafx.fxml;
 }
