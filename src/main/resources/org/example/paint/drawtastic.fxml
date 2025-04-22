@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.canvas.Canvas?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.paint.controller.DrawtasticController"
+            prefHeight="600.0" prefWidth="600.0">
+
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="File">
+                    <MenuItem text="Save" onAction="#onSave" />
+                    <MenuItem text="Exit" onAction="#onExit" />
+                </Menu>
+            </MenuBar>
+
+            <ToolBar>
+                <VBox spacing="5">
+                    <HBox spacing="5" alignment="CENTER">
+                        <TextField fx:id="brushSize" text="11" prefWidth="40" />
+                        <ColorPicker fx:id="colorPicker" />
+                        <Button fx:id="pencilButton" text="Pencil" />
+                        <Button fx:id="eraserButton" text="Eraser" />
+                    </HBox>
+
+                    <HBox spacing="5" alignment="CENTER">
+                        <Button text="Line Tool" />
+                        <Button text="Rectangle Tool" />
+                        <Button text="Circle Tool" />
+                    </HBox>
+                </VBox>
+            </ToolBar>
+
+        </VBox>
+    </top>
+
+    <center>
+        <Canvas fx:id="canvas" width="6000" height="6000" />
+    </center>
+
+</BorderPane>
