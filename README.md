@@ -26,8 +26,9 @@ Wenn git command nicht erkannt wird -> PC neu starten wegen PATH!
 ## Vor deiner Coding Session
 ### Neue Änderungen von der Main Branch pullen
 ```bash
-git checkout DeineBranch # Wechselt auf deine Branch
-git fetch origin      # Holt die neuesten Änderungen von GitHub auf deine lokale main
+git checkout main # Wechselt auf die main branch
+git pull     # Holt die neuesten Änderungen von GitHub auf deine lokale main
+git checkout deineBranch # Wechselt auf deine Branch
 git merge origin main # Merged main in deine Branch
 ```  
 
