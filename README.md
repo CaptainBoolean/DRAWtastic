@@ -21,8 +21,8 @@ Wenn git command nicht erkannt wird -> PC neu starten wegen PATH!
 - JavaFX sollte durch Maven bereits im Project vorhanden sein. Gegebenenfalls bei Project Structure -> Modules -> Dependencies -> alle Maven JavaFX Module anhaken.
 - Language Level auf 22 stellen: File -> Project Structure -> Modules -> Sources -> Language Level
 - Byte Code auf 22 stellen: File -> Settings -> Java Compliler -> Module -> Multimedia Gruppe -> Bytecode von 8 auf 22 stellen
-- Code sollte laufen  
-
+- Code sollte laufen
+  
 ## Vor deiner Coding Session
 ### Neue Änderungen von der Main Branch pullen
 ```bash
@@ -30,6 +30,10 @@ git checkout DeineBranch # Wechselt auf deine Branch
 git fetch origin      # Holt die neuesten Änderungen von GitHub auf deine lokale main
 git merge origin main # Merged main in deine Branch
 ```  
+
+
+
+
 
 ## Nach deiner Coding Session
 ### Push die Änderungen DEINER BRANCH auf deine Git Branch mit den Befehlen:
