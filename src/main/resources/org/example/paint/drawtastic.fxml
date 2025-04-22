@@ -29,7 +29,7 @@
 
                     <HBox spacing="5" alignment="CENTER">
                         <Button text="Line Tool" />
-                        <Button text="Rectangle Tool" />
+                        <Button fx:id="rectangleButton" text="Rectangle" />
                         <Button text="Circle Tool" />
                     </HBox>
                 </VBox>
