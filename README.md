@@ -31,10 +31,6 @@ git fetch origin      # Holt die neuesten Änderungen von GitHub auf deine lokal
 git merge origin main # Merged main in deine Branch
 ```  
 
-
-
-
-
 ## Nach deiner Coding Session
 ### Push die Änderungen DEINER BRANCH auf deine Git Branch mit den Befehlen:
 ```bash
