@@ -12,7 +12,6 @@ public class PaintBrush extends Pen{
   private double avSpeed = 2;
   private double avSize;
 
-  //TODO fix jagged line in the beginning dist is often 1px in beginning?
   @Override
   protected void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity) {
     final double minSize = size/2;
@@ -23,7 +22,7 @@ public class PaintBrush extends Pen{
 
 
 
-    if (timeElapsed > 100000) {
+    if (timeElapsed > 500000) {
       if (lastX != -1 && lastY != -1) {
         double dx = x - lastX;
         double dy = y - lastY;
