@@ -13,6 +13,7 @@ import org.example.paint.tools.pens.*;
 import org.example.paint.tools.Shapes.Rectangle;
 import org.example.paint.tools.Tool;
 
+import java.awt.event.MouseEvent;
 import java.io.File;
 
 public class DrawtasticController {
@@ -40,6 +41,9 @@ public class DrawtasticController {
 
   @FXML
   private Button blurButton;
+
+  @FXML
+  private Button paintBrushButton;
 
   @FXML
   private Button eraserButton;
@@ -79,6 +83,10 @@ public class DrawtasticController {
 
     blurButton.setOnAction(e -> {
       currentTool = new Blur();
+    });
+
+    paintBrushButton.setOnAction(e -> {
+      currentTool = new PaintBrush();
     });
 
     rectangleButton.setOnAction(e -> {

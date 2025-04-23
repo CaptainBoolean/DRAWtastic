@@ -9,7 +9,7 @@ public class RoundEraser extends Pen {
   @Override
   protected void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity) {
     double radius = size / 2;
-    double step = 1.0; // Resolution of the "pixel" erasure
+    double step = 1.0;
 
     for (double dx = -radius; dx <= radius; dx += step) {
       for (double dy = -radius; dy <= radius; dy += step) {
