@@ -8,8 +8,16 @@ public class RoundEraser extends Pen {
 
   @Override
   protected void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity) {
-    //TODO find method to clear oval
-    g.clearRect(x, y, size, size);
+    double radius = size / 2;
+    double step = 1.0; // Resolution of the "pixel" erasure
+
+    for (double dx = -radius; dx <= radius; dx += step) {
+      for (double dy = -radius; dy <= radius; dy += step) {
+        if (dx * dx + dy * dy <= radius * radius) {
+          g.clearRect(x + dx, y + dy, step, step);
+        }
+      }
+    }
   }
 
   @Override
