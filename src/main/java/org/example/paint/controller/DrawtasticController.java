@@ -47,9 +47,7 @@ public class DrawtasticController {
 
         currentTool = new RoundPen(colorPicker.getValue());
 
-        colorPicker.setOnAction(e -> {
-            currentTool = new RoundPen(colorPicker.getValue());
-        });
+
 
         pencilButton.setOnAction(e -> {
             currentTool = new RoundPen(colorPicker.getValue());
