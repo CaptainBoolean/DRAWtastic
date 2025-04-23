@@ -61,6 +61,11 @@ public class DrawtasticController {
 
     currentTool = new RoundPen();
 
+    //necessary to remove residual overlays
+    canvas.setOnMouseEntered(e ->{
+      og.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    });
+
     canvas.setOnMouseMoved(e -> {
       currentTool.drawPreviewAt(og, e, Double.parseDouble(brushSize.getText()));
     });
@@ -82,11 +87,11 @@ public class DrawtasticController {
     });
 
     blurButton.setOnAction(e -> {
-      currentTool = new Blur();
+      currentTool = SizeOpacityAdjust(new Blur());
     });
 
     paintBrushButton.setOnAction(e -> {
-      currentTool = new PaintBrush();
+      currentTool = SizeOpacityAdjust(new PaintBrush());
     });
 
     rectangleButton.setOnAction(e -> {

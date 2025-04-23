@@ -60,8 +60,6 @@ public abstract class Pen implements Tool {
             og.clearRect(clearX - 1, clearY - 1, size + 2, size + 2);
         }
 
-        og.setStroke(Color.BLUE);
-        og.setLineWidth(1);
         drawPreviewAt(og, x, y, size);
 
         lastPreviewX = x;

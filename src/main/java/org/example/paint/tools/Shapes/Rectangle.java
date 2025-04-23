@@ -35,7 +35,7 @@ public class Rectangle implements Tool {
 
     @Override
     public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
-        //TODO implement
+        //TODO implement (for inspiration see e.g. Pen)
     }
 
 
