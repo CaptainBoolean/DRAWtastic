@@ -7,6 +7,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import org.example.paint.tools.pens.Marker;
 import org.example.paint.tools.pens.SquareEraser;
 import org.example.paint.tools.pens.Shapes.Rectangle;
 import org.example.paint.tools.Tool;
@@ -24,10 +25,10 @@ public class DrawtasticController {
     private Button pencilButton;
 
     @FXML
-    private Button markerButton;
+    private Slider opacitySlider;
 
     @FXML
-    private Slider opacitySlider;
+    private Button markerButton;
 
     @FXML
     private TextField brushSize;
@@ -45,12 +46,11 @@ public class DrawtasticController {
 
         colorPicker.setValue(Color.BLACK);
 
-        currentTool = new RoundPen(colorPicker.getValue());
-
-
+        currentTool = new RoundPen();
 
         pencilButton.setOnAction(e -> {
-            currentTool = new RoundPen(colorPicker.getValue());
+            currentTool = new RoundPen();
+            opacitySlider.setValue(opacitySlider.getMax());
         });
 
         eraserButton.setOnAction(e -> {
@@ -59,19 +59,27 @@ public class DrawtasticController {
 
         rectangleButton.setOnAction(e -> {
             currentTool = new Rectangle(colorPicker.getValue());
+            opacitySlider.setValue(opacitySlider.getMax());
         });
+
+        markerButton.setOnAction(e -> {
+            currentTool = new Marker();
+        });
+
 
         canvas.setOnMouseDragged(e -> {
             try {
                 double size = Double.parseDouble(brushSize.getText());
-                currentTool.onDrag(g, e, size);
+                Color color = colorPicker.getValue();
+                double opacity = opacitySlider.getValue();
+                currentTool.onDrag(g, e, size, color, opacity);
             } catch (NumberFormatException ex) {
                 System.out.println("Ungültige Pinselgröße!");
             }
         });
 
         canvas.setOnMouseReleased(e -> {
-            // TODO fix unnecessary variables
+            // TODO fix unnecessary variables (comment in Tool specifies the default method like that
             currentTool.onRelease(g, e, Double.parseDouble(brushSize.getText()));
         });
 
