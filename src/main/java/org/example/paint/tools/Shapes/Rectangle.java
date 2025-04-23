@@ -32,4 +32,9 @@ public class Rectangle implements Tool {
         drawShape.setLineWidth(size);
         drawShape.strokeRect(Math.min(startX, endX), Math.min(startY, endY), Math.abs(endX - startX), Math.abs(endY - startY));
     }
+
+    @Override
+    public void drawPreview() {
+        //TODO implement
+    }
 }

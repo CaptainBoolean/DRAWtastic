@@ -43,6 +43,9 @@
 
     <center>
         <Canvas fx:id="canvas" width="6000" height="6000" />
+        <Canvas fx:id="overlayCanvas" width="600" height="400" pickOnBounds="false" mouseTransparent="true" />
     </center>
+
+
 
 </BorderPane>

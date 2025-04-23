@@ -47,5 +47,7 @@ public abstract class Pen implements Tool {
 
     protected abstract void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity);
 
+    @Override
+    public abstract void drawPreview();
 }
 

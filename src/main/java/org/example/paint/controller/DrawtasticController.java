@@ -19,6 +19,9 @@ public class DrawtasticController {
     private Canvas canvas;
 
     @FXML
+    private Canvas overlayCanvas;
+
+    @FXML
     private ColorPicker colorPicker;
 
     @FXML
@@ -43,10 +46,19 @@ public class DrawtasticController {
 
     public void initialize() {
         GraphicsContext g = canvas.getGraphicsContext2D();
+        GraphicsContext og = overlayCanvas.getGraphicsContext2D();
 
         colorPicker.setValue(Color.BLACK);
 
         currentTool = new RoundPen();
+
+        canvas.setOnMouseMoved(e -> {
+            currentTool.drawPreview();
+        });
+
+        canvas.setOnMouseDragged(e -> {
+            currentTool.drawPreview();
+        });
 
         pencilButton.setOnAction(e -> {
             currentTool = SizeOpacityAdjust(new RoundPen());
