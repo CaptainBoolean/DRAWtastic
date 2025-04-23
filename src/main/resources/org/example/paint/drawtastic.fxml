@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.canvas.Canvas?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.paint.controller.DrawtasticController"
+            prefHeight="600.0" prefWidth="600.0">
+
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="File">
+                    <MenuItem text="Save" onAction="#onSave" />
+                    <MenuItem text="Exit" onAction="#onExit" />
+                </Menu>
+            </MenuBar>
+
+            <ToolBar>
+                <VBox spacing="5">
+                    <HBox spacing="10" alignment="CENTER">
+                        <TextField fx:id="brushSize" text="6" prefWidth="40" />
+                        <ColorPicker fx:id="colorPicker" />
+                        <Button fx:id="pencilButton" text="Pencil" />
+                        <Button fx:id="eraserButton" text="Eraser" />
+                        <Button fx:id="markerButton" text="Marker" />
+                        <Label text="Opacity" layoutX="20" layoutY="250"/>
+                        <Slider fx:id="opacitySlider" min="0.0" max="1.0" value="0.5"  showTickLabels="true" showTickMarks="true" />
+                    </HBox>
+
+                    <HBox spacing="10" alignment="CENTER">
+                        <Button text="Line Tool" />
+                        <Button fx:id="rectangleButton" text="Rectangle" />
+                        <Button text="Circle Tool" />
+                    </HBox>
+                </VBox>
+            </ToolBar>
+
+        </VBox>
+    </top>
+
+    <center>
+        <StackPane>
+            <Canvas fx:id="canvas" width="6000" height="6000" />
+            <Canvas fx:id="overlayCanvas" width="6000" height="6000" pickOnBounds="false" mouseTransparent="true" />
+        </StackPane>
+    </center>
+
+
+</BorderPane>
