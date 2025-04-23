@@ -8,8 +8,7 @@ public class SquareEraser extends Pen {
 
     @Override
     protected void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity) {
-        //TODO center erasor
-        g.clearRect(x, y, size, size);
+        g.clearRect(x - size / 2, y - size / 2, size, size);
     }
 
     @Override
