@@ -1,14 +1,15 @@
-package org.example.paint.tools;
+package org.example.paint.tools.pens;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import org.example.paint.tools.Tool;
 
-public class Pencil implements Tool {
+public class Pen implements Tool {
 
     private Color color;
 
-    public Pencil(Color color) {
+    public Pen(Color color) {
         this.color = color;
     }
 
@@ -17,4 +18,6 @@ public class Pencil implements Tool {
         g.setFill(color);
         g.fillOval(e.getX(), e.getY(), size, size);
     }
+
+
 }

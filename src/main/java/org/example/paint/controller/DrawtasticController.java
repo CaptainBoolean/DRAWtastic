@@ -6,9 +6,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import org.example.paint.tools.Pencil;
+import org.example.paint.tools.pens.Pen;
 import org.example.paint.tools.Eraser;
 import org.example.paint.tools.Rectangle;
 import org.example.paint.tools.Tool;
@@ -40,14 +39,14 @@ public class DrawtasticController {
 
         colorPicker.setValue(Color.BLACK);
 
-        currentTool = new Pencil(colorPicker.getValue());
+        currentTool = new Pen(colorPicker.getValue());
 
         colorPicker.setOnAction(e -> {
-            currentTool = new Pencil(colorPicker.getValue());
+            currentTool = new Pen(colorPicker.getValue());
         });
 
         pencilButton.setOnAction(e -> {
-            currentTool = new Pencil(colorPicker.getValue());
+            currentTool = new Pen(colorPicker.getValue());
         });
 
         eraserButton.setOnAction(e -> {
