@@ -1,6 +1,7 @@
 package org.example.paint.tools.pens;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 public class RoundPen extends Pen{
@@ -11,15 +12,15 @@ public class RoundPen extends Pen{
   }
 
   @Override
-  public void drawPreview() {
-    double x =
+  public void drawPreview(GraphicsContext og, MouseEvent e, double size) {
+    double x = e.getX();
+    double y = e.getY();
 
-    double size = getBrushSize();
-    overlayGC.clearRect(0, 0, overlayCanvas.getWidth(), overlayCanvas.getHeight());
+    og.clearRect(0, 0, og.getCanvas().getWidth(), og.getCanvas().getHeight());
 
-    overlayGC.setStroke(Color.GRAY);
-    overlayGC.setLineWidth(1);
-    overlayGC.strokeOval(x - size / 2, y - size / 2, size, size);
+    og.setStroke(Color.GRAY);
+    og.setLineWidth(1);
+    og.strokeOval(x - size / 2, y - size / 2, size, size);
   }
 
 }

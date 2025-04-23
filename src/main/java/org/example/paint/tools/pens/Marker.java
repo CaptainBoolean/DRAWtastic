@@ -1,6 +1,7 @@
 package org.example.paint.tools.pens;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 public class Marker extends Pen {
@@ -11,6 +12,10 @@ public class Marker extends Pen {
     g.fillOval(x - size / 2, y - size / 2, size, size);
   }
 
+  @Override
+  public void drawPreview(GraphicsContext og, MouseEvent e, double size) {
+
+  }
 
 
 }

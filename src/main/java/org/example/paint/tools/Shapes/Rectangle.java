@@ -34,7 +34,9 @@ public class Rectangle implements Tool {
     }
 
     @Override
-    public void drawPreview() {
+    public void drawPreview(GraphicsContext og, MouseEvent e, double size) {
         //TODO implement
     }
+
+
 }

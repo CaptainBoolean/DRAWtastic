@@ -53,11 +53,11 @@ public class DrawtasticController {
         currentTool = new RoundPen();
 
         canvas.setOnMouseMoved(e -> {
-            currentTool.drawPreview();
+            currentTool.drawPreview(og, e, Double.parseDouble(brushSize.getText()));
         });
 
         canvas.setOnMouseDragged(e -> {
-            currentTool.drawPreview();
+            currentTool.drawPreview(og, e, Double.parseDouble(brushSize.getText()));
         });
 
         pencilButton.setOnAction(e -> {

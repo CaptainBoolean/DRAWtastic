@@ -1,6 +1,7 @@
 package org.example.paint.tools.pens;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 public class SquareEraser extends Pen {
@@ -8,5 +9,10 @@ public class SquareEraser extends Pen {
     @Override
     protected void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity) {
         g.clearRect(x, y, size, size);
+    }
+
+    @Override
+    public void drawPreview(GraphicsContext og, MouseEvent e, double size) {
+
     }
 }
