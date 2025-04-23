@@ -7,10 +7,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import org.example.paint.tools.pens.Pen;
-import org.example.paint.tools.Eraser;
+import org.example.paint.tools.pens.SquareEraser;
 import org.example.paint.tools.Rectangle;
 import org.example.paint.tools.Tool;
+import org.example.paint.tools.pens.RoundPen;
 
 public class DrawtasticController {
 
@@ -39,18 +39,18 @@ public class DrawtasticController {
 
         colorPicker.setValue(Color.BLACK);
 
-        currentTool = new Pen(colorPicker.getValue());
+        currentTool = new RoundPen(colorPicker.getValue());
 
         colorPicker.setOnAction(e -> {
-            currentTool = new Pen(colorPicker.getValue());
+            currentTool = new RoundPen(colorPicker.getValue());
         });
 
         pencilButton.setOnAction(e -> {
-            currentTool = new Pen(colorPicker.getValue());
+            currentTool = new RoundPen(colorPicker.getValue());
         });
 
         eraserButton.setOnAction(e -> {
-            currentTool = new Eraser();
+            currentTool = new SquareEraser();
         });
 
         rectangleButton.setOnAction(e -> {
@@ -64,6 +64,11 @@ public class DrawtasticController {
             } catch (NumberFormatException ex) {
                 System.out.println("Ungültige Pinselgröße!");
             }
+        });
+
+        canvas.setOnMouseReleased(e -> {
+            // TODO fix unnecessary variables
+            currentTool.onRelease(g, e, Double.parseDouble(brushSize.getText()));
         });
 
         canvas.setOnMousePressed(e -> {

@@ -5,19 +5,49 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import org.example.paint.tools.Tool;
 
-public class Pen implements Tool {
+public abstract class Pen implements Tool {
 
-    private Color color;
+    protected double lastX = -1;
+    protected double lastY = -1;
+    protected Color color;
 
     public Pen(Color color) {
         this.color = color;
     }
 
-    @Override
     public void onDrag(GraphicsContext g, MouseEvent e, double size) {
+        double x = e.getX();
+        double y = e.getY();
+
         g.setFill(color);
-        g.fillOval(e.getX(), e.getY(), size, size);
+
+        if (lastX != -1 && lastY != -1) {
+            double dx = x - lastX;
+            double dy = y - lastY;
+            double distance = Math.hypot(dx, dy);
+            int steps = (int) distance;
+
+            for (int i = 0; i <= steps; i++) {
+                double t = (double) i / steps;
+                double interpX = lastX + t * dx;
+                double interpY = lastY + t * dy;
+                drawAt(g, interpX, interpY, size);
+            }
+        } else {
+            drawAt(g, x, y, size);
+        }
+
+        lastX = x;
+        lastY = y;
     }
 
+    @Override
+    public void onRelease(GraphicsContext g, MouseEvent e, double size) {
+        lastX = -1;
+        lastY = -1;
+    }
+
+    protected abstract void drawAt(GraphicsContext g, double x, double y, double size);
 
 }
+
