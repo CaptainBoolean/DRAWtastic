@@ -49,23 +49,20 @@ public class DrawtasticController {
         currentTool = new RoundPen();
 
         pencilButton.setOnAction(e -> {
-            currentTool = new RoundPen();
-            opacitySlider.setValue(opacitySlider.getMax());
-        });
-
-        eraserButton.setOnAction(e -> {
-            currentTool = new SquareEraser();
-        });
-
-        rectangleButton.setOnAction(e -> {
-            currentTool = new Rectangle(colorPicker.getValue());
-            opacitySlider.setValue(opacitySlider.getMax());
+            currentTool = SizeOpacityAdjust(new RoundPen());
         });
 
         markerButton.setOnAction(e -> {
-            currentTool = new Marker();
+            currentTool = SizeOpacityAdjust(new Marker());
         });
 
+        eraserButton.setOnAction(e -> {
+            currentTool = SizeOpacityAdjust(new SquareEraser());
+        });
+
+        rectangleButton.setOnAction(e -> {
+            currentTool = SizeOpacityAdjust(new Rectangle(colorPicker.getValue()));
+        });
 
         canvas.setOnMouseDragged(e -> {
             try {
@@ -91,6 +88,20 @@ public class DrawtasticController {
             double size = Double.parseDouble(brushSize.getText());
             currentTool.onRelease(g, e, size);
         });
+    }
+
+    private Tool SizeOpacityAdjust(Tool tool) {
+        double markerSizeRatio = 2;
+        double opacityRatio = 0.2;
+        if(currentTool instanceof Marker && !(tool instanceof Marker)) {
+            brushSize.setText("" + Double.parseDouble(brushSize.getText()) / markerSizeRatio);
+            opacitySlider.setValue(opacitySlider.getMax());
+        }
+        if(!(currentTool instanceof Marker) && tool instanceof Marker) {
+            brushSize.setText("" + Double.parseDouble(brushSize.getText()) * markerSizeRatio);
+            opacitySlider.setValue(opacitySlider.getMax()*opacityRatio);
+        }
+        return tool;
     }
 
     public void onSave() {
