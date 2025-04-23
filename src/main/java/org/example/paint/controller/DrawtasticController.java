@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import org.example.paint.tools.pens.Marker;
 import org.example.paint.tools.pens.SquareEraser;
-import org.example.paint.tools.pens.Shapes.Rectangle;
+import org.example.paint.tools.Shapes.Rectangle;
 import org.example.paint.tools.Tool;
 import org.example.paint.tools.pens.RoundPen;
 
@@ -73,11 +73,6 @@ public class DrawtasticController {
             } catch (NumberFormatException ex) {
                 System.out.println("Ungültige Pinselgröße!");
             }
-        });
-
-        canvas.setOnMouseReleased(e -> {
-            // TODO fix unnecessary variables (comment in Tool specifies the default method like that
-            currentTool.onRelease(g, e, Double.parseDouble(brushSize.getText()));
         });
 
         canvas.setOnMousePressed(e -> {

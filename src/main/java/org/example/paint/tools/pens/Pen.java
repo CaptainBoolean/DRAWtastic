@@ -38,6 +38,7 @@ public abstract class Pen implements Tool {
         lastY = y;
     }
 
+    //TODO get rid od the unecessary on release variables
     @Override
     public void onRelease(GraphicsContext g, MouseEvent e, double size) {
         lastX = -1;
