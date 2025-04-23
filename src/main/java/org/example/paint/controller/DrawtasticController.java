@@ -69,7 +69,11 @@ public class DrawtasticController {
         });
 
         eraserButton.setOnAction(e -> {
-            currentTool = SizeOpacityAdjust(new SquareEraser());
+            if (currentTool instanceof RoundEraser) {
+                currentTool = new SquareEraser();
+            } else {
+                currentTool = new RoundEraser();
+            }
         });
 
         rectangleButton.setOnAction(e -> {
