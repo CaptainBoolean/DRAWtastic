@@ -6,12 +6,16 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import org.example.paint.tools.pens.Marker;
 import org.example.paint.tools.pens.SquareEraser;
 import org.example.paint.tools.Shapes.Rectangle;
 import org.example.paint.tools.Tool;
 import org.example.paint.tools.pens.RoundPen;
+
+import java.io.File;
 
 public class DrawtasticController {
 
@@ -110,9 +114,17 @@ public class DrawtasticController {
     }
 
     public void onSave() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save drawing as 'png'");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
+
+        File file = fileChooser.showSaveDialog(overlayCanvas.getScene().getWindow());
         try {
-            Image snapshot = canvas.snapshot(null, null);
-            // Speicherort goes here
+            WritableImage image = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
+            Image snapshot = canvas.snapshot(null, image);
+            // ImageIO.write((RenderedImage) snapshot, "png", file);
+
+
         } catch (Exception e) {
             System.out.println("Failed to save Image: " + e);
         }
