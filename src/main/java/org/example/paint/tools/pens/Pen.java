@@ -69,6 +69,6 @@ public abstract class Pen implements Tool {
     };
 
     //TODO reset preview and fully clear plane
-    protected void drawPreviewAt(GraphicsContext g, double x, double y, double size) {}
+    protected abstract void drawPreviewAt(GraphicsContext g, double x, double y, double size);
 }
 

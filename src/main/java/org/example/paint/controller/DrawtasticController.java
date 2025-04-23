@@ -9,132 +9,137 @@ import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
-import org.example.paint.tools.pens.Marker;
-import org.example.paint.tools.pens.SquareEraser;
+import org.example.paint.tools.pens.*;
 import org.example.paint.tools.Shapes.Rectangle;
 import org.example.paint.tools.Tool;
-import org.example.paint.tools.pens.RoundPen;
 
 import java.io.File;
 
 public class DrawtasticController {
 
-    @FXML
-    private Canvas canvas;
+  @FXML
+  private Canvas canvas;
 
-    @FXML
-    private Canvas overlayCanvas;
+  @FXML
+  private Canvas overlayCanvas;
 
-    @FXML
-    private ColorPicker colorPicker;
+  @FXML
+  private ColorPicker colorPicker;
 
-    @FXML
-    private Button pencilButton;
+  @FXML
+  private Button pencilButton;
 
-    @FXML
-    private Slider opacitySlider;
+  @FXML
+  private Slider opacitySlider;
 
-    @FXML
-    private Button markerButton;
+  @FXML
+  private Button markerButton;
 
-    @FXML
-    private TextField brushSize;
+  @FXML
+  private TextField brushSize;
 
-    @FXML
-    private Button eraserButton;
+  @FXML
+  private Button blurButton;
 
-    @FXML
-    private Button rectangleButton;
+  @FXML
+  private Button eraserButton;
 
-    private Tool currentTool;
+  @FXML
+  private Button rectangleButton;
 
-    public void initialize() {
-        GraphicsContext g = canvas.getGraphicsContext2D();
-        GraphicsContext og = overlayCanvas.getGraphicsContext2D();
+  private Tool currentTool;
 
-        colorPicker.setValue(Color.BLACK);
+  public void initialize() {
+    GraphicsContext g = canvas.getGraphicsContext2D();
+    GraphicsContext og = overlayCanvas.getGraphicsContext2D();
 
-        currentTool = new RoundPen();
+    colorPicker.setValue(Color.BLACK);
 
-        canvas.setOnMouseMoved(e -> {
-            currentTool.drawPreviewAt(og, e, Double.parseDouble(brushSize.getText()));
-        });
+    currentTool = new RoundPen();
 
-        pencilButton.setOnAction(e -> {
-            currentTool = SizeOpacityAdjust(new RoundPen());
-        });
+    canvas.setOnMouseMoved(e -> {
+      currentTool.drawPreviewAt(og, e, Double.parseDouble(brushSize.getText()));
+    });
 
-        markerButton.setOnAction(e -> {
-            currentTool = SizeOpacityAdjust(new Marker());
-        });
+    pencilButton.setOnAction(e -> {
+      currentTool = SizeOpacityAdjust(new RoundPen());
+    });
 
-        eraserButton.setOnAction(e -> {
-            if (currentTool instanceof RoundEraser) {
-                currentTool = new SquareEraser();
-            } else {
-                currentTool = new RoundEraser();
-            }
-        });
+    markerButton.setOnAction(e -> {
+      currentTool = SizeOpacityAdjust(new Marker());
+    });
 
-        rectangleButton.setOnAction(e -> {
-            currentTool = SizeOpacityAdjust(new Rectangle(colorPicker.getValue()));
-        });
+    eraserButton.setOnAction(e -> {
+      if (currentTool instanceof RoundEraser) {
+        currentTool = new SquareEraser();
+      } else {
+        currentTool = new RoundEraser();
+      }
+    });
 
-        canvas.setOnMouseDragged(e -> {
-            try {
-                double size = Double.parseDouble(brushSize.getText());
-                Color color = colorPicker.getValue();
-                double opacity = opacitySlider.getValue();
-                currentTool.onDrag(g, e, size, color, opacity);
-                currentTool.drawPreviewAt(og, e, Double.parseDouble(brushSize.getText()));
-            } catch (NumberFormatException ex) {
-                System.out.println("Ungültige Pinselgröße!");
-            }
-        });
+    blurButton.setOnAction(e -> {
+      currentTool = new Blur();
+    });
 
-        canvas.setOnMousePressed(e -> {
-            currentTool.onPress(canvas.getGraphicsContext2D(), e);
-        });
+    rectangleButton.setOnAction(e -> {
+      currentTool = SizeOpacityAdjust(new Rectangle(colorPicker.getValue()));
+    });
 
-        canvas.setOnMouseReleased(e -> {
-            double size = Double.parseDouble(brushSize.getText());
-            currentTool.onRelease(g, e, size);
-        });
+    canvas.setOnMouseDragged(e -> {
+      try {
+        double size = Double.parseDouble(brushSize.getText());
+        Color color = colorPicker.getValue();
+        double opacity = opacitySlider.getValue();
+        currentTool.onDrag(g, e, size, color, opacity);
+        currentTool.drawPreviewAt(og, e, Double.parseDouble(brushSize.getText()));
+      } catch (NumberFormatException ex) {
+        System.out.println("Ungültige Pinselgröße!");
+      }
+    });
 
+    canvas.setOnMousePressed(e -> {
+      currentTool.onPress(canvas.getGraphicsContext2D(), e);
+    });
+
+    canvas.setOnMouseReleased(e -> {
+      double size = Double.parseDouble(brushSize.getText());
+      currentTool.onRelease(g, e, size);
+    });
+
+  }
+
+  private Tool SizeOpacityAdjust(Tool tool) {
+    double markerSizeRatio = 2;
+    double opacityRatio = 0.2;
+    if(currentTool instanceof Marker && !(tool instanceof Marker)) {
+      brushSize.setText("" + Double.parseDouble(brushSize.getText()) / markerSizeRatio);
+      opacitySlider.setValue(opacitySlider.getMax());
     }
-
-    private Tool SizeOpacityAdjust(Tool tool) {
-        double markerSizeRatio = 2;
-        double opacityRatio = 0.2;
-        if(currentTool instanceof Marker && !(tool instanceof Marker)) {
-            brushSize.setText("" + Double.parseDouble(brushSize.getText()) / markerSizeRatio);
-            opacitySlider.setValue(opacitySlider.getMax());
-        }
-        if(!(currentTool instanceof Marker) && tool instanceof Marker) {
-            brushSize.setText("" + Double.parseDouble(brushSize.getText()) * markerSizeRatio);
-            opacitySlider.setValue(opacitySlider.getMax()*opacityRatio);
-        }
-        return tool;
+    if(!(currentTool instanceof Marker) && tool instanceof Marker) {
+      brushSize.setText("" + Double.parseDouble(brushSize.getText()) * markerSizeRatio);
+      opacitySlider.setValue(opacitySlider.getMax()*opacityRatio);
     }
+    return tool;
+  }
 
-    public void onSave() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save drawing as 'png'");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
+  public void onSave() {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Save drawing as 'png'");
+    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
 
-        File file = fileChooser.showSaveDialog(overlayCanvas.getScene().getWindow());
-        try {
-            WritableImage image = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
-            Image snapshot = canvas.snapshot(null, image);
-            // ImageIO.write((RenderedImage) snapshot, "png", file);
+    File file = fileChooser.showSaveDialog(overlayCanvas.getScene().getWindow());
+    try {
+      WritableImage image = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
+      Image snapshot = canvas.snapshot(null, image);
+      // ImageIO.write((RenderedImage) snapshot, "png", file);
 
 
-        } catch (Exception e) {
-            System.out.println("Failed to save Image: " + e);
-        }
+    } catch (Exception e) {
+      System.out.println("Failed to save Image: " + e);
     }
+  }
 
-    public void onExit() {
-        Platform.exit();
-    }
+  public void onExit() {
+    Platform.exit();
+  }
 }
