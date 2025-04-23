@@ -20,14 +20,17 @@
 
             <ToolBar>
                 <VBox spacing="5">
-                    <HBox spacing="5" alignment="CENTER">
+                    <HBox spacing="10" alignment="CENTER">
                         <TextField fx:id="brushSize" text="11" prefWidth="40" />
                         <ColorPicker fx:id="colorPicker" />
                         <Button fx:id="pencilButton" text="Pencil" />
                         <Button fx:id="eraserButton" text="Eraser" />
+
+                        <Label text="Opacity" layoutX="20" layoutY="250"/>
+                        <Slider fx:id="opacitySlider" min="0.0" max="1.0" value="0.5"  showTickLabels="true" showTickMarks="true" />
                     </HBox>
 
-                    <HBox spacing="5" alignment="CENTER">
+                    <HBox spacing="10" alignment="CENTER">
                         <Button text="Line Tool" />
                         <Button fx:id="rectangleButton" text="Rectangle" />
                         <Button text="Circle Tool" />

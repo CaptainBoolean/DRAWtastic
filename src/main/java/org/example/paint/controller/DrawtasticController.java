@@ -8,7 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import org.example.paint.tools.pens.SquareEraser;
-import org.example.paint.tools.Rectangle;
+import org.example.paint.tools.pens.Shapes.Rectangle;
 import org.example.paint.tools.Tool;
 import org.example.paint.tools.pens.RoundPen;
 
@@ -22,6 +22,12 @@ public class DrawtasticController {
 
     @FXML
     private Button pencilButton;
+
+    @FXML
+    private Button markerButton;
+
+    @FXML
+    private Slider opacitySlider;
 
     @FXML
     private TextField brushSize;

@@ -1,8 +1,9 @@
-package org.example.paint.tools;
+package org.example.paint.tools.pens.Shapes;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import org.example.paint.tools.Tool;
 
 public class Rectangle implements Tool {
     private double startX, startY;
