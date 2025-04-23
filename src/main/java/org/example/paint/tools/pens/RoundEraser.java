@@ -1,15 +1,12 @@
 package org.example.paint.tools.pens;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 public class RoundEraser extends Pen {
 
-  public RoundEraser() {
-    super(null);
-  }
-
   @Override
-  protected void drawAt(GraphicsContext g, double x, double y, double size) {
+  protected void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity) {
     //TODO find method to clear oval
     g.clearRect(x, y, size, size);
   }

@@ -20,7 +20,7 @@ public class Rectangle implements Tool {
     }
 
     @Override
-    public void onDrag(GraphicsContext drawShape, MouseEvent mouse, double size) {
+    public void onDrag(GraphicsContext drawShape, MouseEvent mouse, double size, Color color, double opacity) {
     }
 
     @Override
