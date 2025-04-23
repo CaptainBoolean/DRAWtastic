@@ -56,10 +56,6 @@ public class DrawtasticController {
             currentTool.drawPreviewAt(og, e, Double.parseDouble(brushSize.getText()));
         });
 
-        canvas.setOnMouseDragged(e -> {
-            currentTool.drawPreviewAt(og, e, Double.parseDouble(brushSize.getText()));
-        });
-
         pencilButton.setOnAction(e -> {
             currentTool = SizeOpacityAdjust(new RoundPen());
         });
@@ -82,6 +78,7 @@ public class DrawtasticController {
                 Color color = colorPicker.getValue();
                 double opacity = opacitySlider.getValue();
                 currentTool.onDrag(g, e, size, color, opacity);
+                currentTool.drawPreviewAt(og, e, Double.parseDouble(brushSize.getText()));
             } catch (NumberFormatException ex) {
                 System.out.println("Ungültige Pinselgröße!");
             }
