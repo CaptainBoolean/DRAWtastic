@@ -4,16 +4,18 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
-import org.example.paint.tools.pens.*;
 import org.example.paint.tools.Shapes.Rectangle;
 import org.example.paint.tools.Tool;
+import org.example.paint.tools.pens.*;
 
-import java.awt.event.MouseEvent;
 import java.io.File;
 
 public class DrawtasticController {
@@ -30,6 +32,7 @@ public class DrawtasticController {
   @FXML
   private Button pencilButton;
 
+  //TODO only display when it is logical
   @FXML
   private Slider opacitySlider;
 

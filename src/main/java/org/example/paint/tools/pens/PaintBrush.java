@@ -14,6 +14,7 @@ public class PaintBrush extends Pen{
 
   @Override
   protected void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity) {
+
     final double minSize = size/2;
     final double maxSize = size*4;
 
@@ -31,7 +32,6 @@ public class PaintBrush extends Pen{
         avSpeed = Math.min((avSpeed*9 + distance / (timeElapsed/1000000.0)) / 10, 10);
         avSize = Math.max(minSize, Math.min(maxSize, maxSize / avSpeed));
 
-        System.out.println(String.format("TimeElapsed: %.2f Distance: %.2f AvSpeed: %.2f AvSize: %.2f", timeElapsed / 1000000.0, distance, avSpeed, avSize));
       }
       lastX = x;
       lastY = y;

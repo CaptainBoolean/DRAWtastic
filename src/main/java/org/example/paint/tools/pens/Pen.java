@@ -18,7 +18,7 @@ public abstract class Pen implements Tool {
         double x = e.getX();
         double y = e.getY();
 
-        g.setFill(color);
+        g.setFill(new Color(color.getRed(), color.getGreen(), color.getBlue(), opacity));
 
         if (lastX != -1 && lastY != -1) {
             double dx = x - lastX;
