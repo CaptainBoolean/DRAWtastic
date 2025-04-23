@@ -13,7 +13,9 @@ public class RoundEraser extends Pen {
   }
 
   @Override
-  public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
-
+  public void drawPreviewAt(GraphicsContext og, double x, double y, double size) {
+    og.setStroke(Color.GRAY);
+    og.setLineWidth(1);
+    og.strokeOval(x - size / 2, y - size / 2, size, size);
   }
 }
