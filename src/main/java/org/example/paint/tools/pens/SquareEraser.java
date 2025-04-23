@@ -12,7 +12,7 @@ public class SquareEraser extends Pen {
     }
 
     @Override
-    public void drawPreview(GraphicsContext og, MouseEvent e, double size) {
-
+    public void drawPreviewAt(GraphicsContext og, double x, double y, double size) {
+        og.fillOval(x - size / 2, y - size / 2, size, size);
     }
 }

@@ -13,7 +13,7 @@ public class Marker extends Pen {
   }
 
   @Override
-  public void drawPreview(GraphicsContext og, MouseEvent e, double size) {
+  public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
 
   }
 

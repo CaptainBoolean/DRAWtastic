@@ -12,12 +12,7 @@ public class RoundPen extends Pen{
   }
 
   @Override
-  public void drawPreview(GraphicsContext og, MouseEvent e, double size) {
-    double x = e.getX();
-    double y = e.getY();
-
-    og.clearRect(0, 0, og.getCanvas().getWidth(), og.getCanvas().getHeight());
-
+  public void drawPreviewAt(GraphicsContext og, double x, double y, double size) {
     og.setStroke(Color.GRAY);
     og.setLineWidth(1);
     og.strokeOval(x - size / 2, y - size / 2, size, size);

@@ -9,6 +9,8 @@ public abstract class Pen implements Tool {
 
     protected double lastX = -1;
     protected double lastY = -1;
+    private double lastPreviewX = -1;
+    private double lastPreviewY = -1;
 
     //no constructor necessary because every drag data should be updated
 
@@ -48,6 +50,27 @@ public abstract class Pen implements Tool {
     protected abstract void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity);
 
     @Override
-    public abstract void drawPreview(GraphicsContext og, MouseEvent e, double size);
+    public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
+        double x = e.getX();
+        double y = e.getY();
+
+        // Clear the last preview
+        if (lastPreviewX != -1 && lastPreviewY != -1) {
+            double clearX = lastPreviewX - size / 2;
+            double clearY = lastPreviewY - size / 2;
+            og.clearRect(clearX - 1, clearY - 1, size + 2, size + 2); // Add a 1px margin
+        }
+
+        // Draw the new preview at the current mouse position
+        og.setStroke(Color.BLUE);
+        og.setLineWidth(1);
+        drawPreviewAt(og, x, y, size);
+
+        // Update the preview position to the current mouse position
+        lastPreviewX = x;
+        lastPreviewY = y;
+    };
+
+    protected void drawPreviewAt(GraphicsContext g, double x, double y, double size) {}
 }
 

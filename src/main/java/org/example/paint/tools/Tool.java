@@ -13,6 +13,6 @@ public interface Tool {
 
     default void onRelease(GraphicsContext g, MouseEvent e, double size) {}
 
-    void drawPreview(GraphicsContext og, MouseEvent e, double size);
+    void drawPreviewAt(GraphicsContext og, MouseEvent e, double size);
 
 }
