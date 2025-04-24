@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import org.example.paint.graphics.picture.PictureEditor;
 import org.example.paint.tools.Shapes.Rectangle;
 import org.example.paint.tools.Tool;
 import org.example.paint.tools.pens.*;
@@ -59,6 +60,9 @@ public class DrawtasticController {
 
   @FXML
   private Button rectangleButton;
+
+  @FXML
+  private Button loadPicture;
 
   private Tool currentTool;
 
@@ -114,6 +118,8 @@ public class DrawtasticController {
     rectangleButton.setOnAction(e -> {
       currentTool = SizeOpacityAdjust(new Rectangle(colorPicker.getValue()));
     });
+
+    loadPicture.setOnAction(e -> PictureEditor.loadImage(canvas));
 
     canvas.setOnMouseDragged(e -> {
       try {

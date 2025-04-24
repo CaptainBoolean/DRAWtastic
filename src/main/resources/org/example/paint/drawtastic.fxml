@@ -37,6 +37,7 @@
                         <Button text="Line Tool" />
                         <Button fx:id="rectangleButton" text="Rectangle" />
                         <Button text="Circle Tool" />
+                        <Button fx:id="loadPicture" text="Picture" />
                     </HBox>
                 </VBox>
             </ToolBar>
