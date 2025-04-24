@@ -26,6 +26,8 @@ public class RainbowPen extends Pen {
       Color rainbowColor = Color.hsb(hue, 1.0, 1.0, opacity);
       g.setFill(rainbowColor);
       g.fillOval(x + offsetX, y + offsetY, size / segments+1, size / segments+1);
+
+      System.out.printf("OSX: %f.2 OSY: %f.2\n", offsetX, offsetY);
     }
   }
 
