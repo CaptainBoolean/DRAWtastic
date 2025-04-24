@@ -34,7 +34,6 @@ public class PaintBrush extends Pen{
       lastX = x;
       lastY = y;
     }
-
   }
 
   @Override
