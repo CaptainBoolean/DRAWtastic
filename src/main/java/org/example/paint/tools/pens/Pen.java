@@ -23,6 +23,7 @@ public abstract class Pen implements Tool {
     double x = e.getX();
     double y = e.getY();
 
+    //TODO maybe create temporary canvas to write on and then put that on top to merge colors
     g.setGlobalAlpha(opacity);
     g.setFill(new Color(color.getRed(), color.getGreen(), color.getBlue(), 1));
 
