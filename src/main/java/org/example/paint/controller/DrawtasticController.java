@@ -14,6 +14,8 @@ import org.example.paint.tools.Shapes.Rectangle;
 import org.example.paint.tools.Tool;
 import org.example.paint.tools.pens.*;
 
+import javax.imageio.ImageIO;
+import java.awt.image.RenderedImage;
 import java.io.File;
 
 
@@ -131,7 +133,7 @@ public class DrawtasticController {
       try {
         double size = Double.parseDouble(brushSize.getText());
         Color color = colorPicker.getValue();
-        int opacitySteepness = 3; //for a better smoothness
+        int opacitySteepness = 6; //TODO implement better progression of curve
         double opacity = (Math.exp(opacitySlider.getValue()*opacitySteepness)-1)/(Math.exp(opacitySteepness)-1);
         currentTool.onDrag(g, e, size, color, opacity);
         currentTool.drawPreviewAt(og, e, Double.parseDouble(brushSize.getText()));
@@ -162,7 +164,7 @@ public class DrawtasticController {
       brushSize.setText("" + Double.parseDouble(brushSize.getText()) * markerSizeRatio);
       opacitySlider.setValue(opacitySlider.getMax()*opacityRatio);
     }
-    if (tool instanceof Marker || tool instanceof FountainPen || tool instanceof RainbowPen) {
+    if (tool instanceof Marker || tool instanceof FountainPen || tool instanceof RainbowPen || tool instanceof PaintBrush) {
       opacitySlider.setVisible(true);
       opacityLabel.setVisible(true);
     } else {
@@ -183,7 +185,7 @@ public class DrawtasticController {
             (int)(colorWithOpacity.getRed() * 255) + "," +
             (int)(colorWithOpacity.getGreen() * 255) + "," +
             (int)(colorWithOpacity.getBlue() * 255) + "," +
-            Math.min(colorWithOpacity.getOpacity()*1.5, 1) + ");");
+            Math.min(colorWithOpacity.getOpacity()*1.2, 1) + ");"); //TODO match with implemented curve
   }
 
 
@@ -196,7 +198,7 @@ public class DrawtasticController {
     try {
       WritableImage image = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
       Image snapshot = canvas.snapshot(null, image);
-      // ImageIO.write((RenderedImage) snapshot, "png", file);
+      ImageIO.write((RenderedImage) snapshot, "png", file);
 
 
     } catch (Exception e) {
