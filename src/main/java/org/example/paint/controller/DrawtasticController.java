@@ -4,10 +4,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
@@ -36,6 +33,9 @@ public class DrawtasticController {
   //TODO only display when it is logical
   @FXML
   private Slider opacitySlider;
+
+  @FXML
+  private Label opacityLabel;
 
   @FXML
   private Button markerButton;
@@ -72,7 +72,12 @@ public class DrawtasticController {
 
     colorPicker.setValue(Color.BLACK);
 
-    currentTool = new RoundPen();
+    opacitySlider.setMajorTickUnit(0.1);
+    updateSliderColor();
+    opacitySlider.valueProperty().addListener((observable, oldValue, newValue) -> updateSliderColor());
+    colorPicker.valueProperty().addListener((observable, oldValue, newValue) -> updateSliderColor());
+
+    currentTool = SizeOpacityAdjust(new RoundPen());
 
     //necessary to remove residual overlays
     canvas.setOnMouseEntered(e ->{
@@ -156,8 +161,30 @@ public class DrawtasticController {
       brushSize.setText("" + Double.parseDouble(brushSize.getText()) * markerSizeRatio);
       opacitySlider.setValue(opacitySlider.getMax()*opacityRatio);
     }
+    if (tool instanceof Marker || tool instanceof FountainPen || tool instanceof RainbowPen) {
+      opacitySlider.setVisible(true);
+      opacityLabel.setVisible(true);
+    } else {
+      opacitySlider.setVisible(false);
+      opacityLabel.setVisible(false);
+    }
     return tool;
   }
+
+  private void updateSliderColor() {
+    Color selectedColor = colorPicker.getValue();
+    double opacity = opacitySlider.getValue();
+
+    Color colorWithOpacity = new Color(selectedColor.getRed(), selectedColor.getGreen(),
+            selectedColor.getBlue(), opacity);
+
+    opacitySlider.setStyle("-fx-background-color: rgba(" +
+            (int)(colorWithOpacity.getRed() * 255) + "," +
+            (int)(colorWithOpacity.getGreen() * 255) + "," +
+            (int)(colorWithOpacity.getBlue() * 255) + "," +
+            Math.min(colorWithOpacity.getOpacity()*1.5, 1) + ");");
+  }
+
 
   public void onSave() {
     FileChooser fileChooser = new FileChooser();
