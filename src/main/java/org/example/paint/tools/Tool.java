@@ -13,7 +13,7 @@ public interface Tool {
     //TODO keine wirklisch schöne implementation aber mir fallt auch nichts besseres ein.....
   }
 
-  default void onRelease(GraphicsContext g, MouseEvent e, double size) {}
+  void onRelease(GraphicsContext g, MouseEvent e, double size);
 
   void drawPreviewAt(GraphicsContext og, MouseEvent e, double size);
 
