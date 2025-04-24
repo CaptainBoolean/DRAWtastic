@@ -86,6 +86,7 @@
                             <noManPages>true</noManPages>
                             <stripDebug>true</stripDebug>
                             <noHeaderFiles>true</noHeaderFiles>
+                            <!-- swing config -->
                             <addModules>javafx.controls,javafx.fxml,javafx.swing,java.desktop</addModules>
                         </configuration>
                     </execution>
