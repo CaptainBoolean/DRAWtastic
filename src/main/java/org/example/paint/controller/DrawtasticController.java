@@ -55,6 +55,9 @@ public class DrawtasticController {
   private Button fountainPenButton;
 
   @FXML
+  private Button rainbowPenButton;
+
+  @FXML
   private Button rectangleButton;
 
   private Tool currentTool;
@@ -102,6 +105,10 @@ public class DrawtasticController {
 
     paintBrushButton.setOnAction(e -> {
       currentTool = SizeOpacityAdjust(new PaintBrush());
+    });
+
+    rainbowPenButton.setOnAction(e -> {
+      currentTool = SizeOpacityAdjust(new RainbowPen());
     });
 
     rectangleButton.setOnAction(e -> {

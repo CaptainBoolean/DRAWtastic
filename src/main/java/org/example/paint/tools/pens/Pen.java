@@ -73,7 +73,7 @@ public abstract class Pen implements Tool {
         lastPreviewY = y;
     };
 
-    protected abstract void drawPreviewAt(GraphicsContext g, double x, double y, double size);
+    protected abstract void drawPreviewAt(GraphicsContext og, double x, double y, double size);
 
     protected boolean recalculate() {
         long currentTime = System.nanoTime();
