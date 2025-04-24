@@ -24,7 +24,8 @@ public abstract class Pen implements Tool {
         double x = e.getX();
         double y = e.getY();
 
-        g.setFill(new Color(color.getRed(), color.getGreen(), color.getBlue(), opacity));
+        g.setGlobalAlpha(opacity);
+        g.setFill(new Color(color.getRed(), color.getGreen(), color.getBlue(), 1));
 
         if (lastX != -1 && lastY != -1) {
             double dx = x - lastX;
@@ -44,6 +45,7 @@ public abstract class Pen implements Tool {
 
         lastX = x;
         lastY = y;
+        g.getCanvas().setEffect(null);
     }
 
     //TODO get rid od the unecessary on release variables
