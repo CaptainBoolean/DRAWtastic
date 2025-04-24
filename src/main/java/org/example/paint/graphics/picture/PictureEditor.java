@@ -28,6 +28,9 @@ public class PictureEditor {
             double heightRatio = canvas.getHeight() / image.getHeight();
             double scale = Math.min(widthRatio, heightRatio);
 
+            double drawWidth = image.getWidth() * scale;
+            double drawHeight = image.getHeight() * scale;
+
             gc.drawImage(image, 0, 0);
         }
     }
