@@ -31,7 +31,18 @@ public class SelectAndMove implements Tool{
       width = (int)Math.abs(startX - endX);
       height = (int)Math.abs(startY - endY);
       WritableImage fullCanvasImage = g.getCanvas().snapshot(null, null);
-      movedImage = new WritableImage(fullCanvasImage.getPixelReader(), (int) startX, (int) startY, (int) width, (int) height); //TODO fix remove background
+      movedImage = new WritableImage(fullCanvasImage.getPixelReader(), (int) startX, (int) startY, (int) width, (int) height);
+      PixelWriter pixelWriter = movedImage.getPixelWriter();
+      for (int x = 0; x < width; x++) {
+        for (int y = 0; y < height; y++) {
+          Color color = movedImage.getPixelReader().getColor(x, y);
+          if (!color.equals(Color.TRANSPARENT)) { //TODO somehow implement the background
+            pixelWriter.setColor(x, y, Color.TRANSPARENT);
+          } else {
+            pixelWriter.setColor(x, y, color);
+          }
+        }
+      }
 
       //TODO fix not working to left up
       g.clearRect(startX, startY, endX - startX, endY - startY);
