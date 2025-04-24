@@ -8,22 +8,20 @@ public class PaintBrush extends Pen{
 
   private double lastX = -1;
   private double lastY = -1;
-  private long lastTimestamp = System.nanoTime();
   private double avSpeed = 2;
   private double avSize;
 
   @Override
   protected void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity) {
+    getNewSize(x, y, size);
+    g.fillOval(x - avSize / 2, y - avSize / 2, avSize, avSize);
+  }
 
-    final double minSize = size/2;
-    final double maxSize = size*4;
+  private void getNewSize(double x, double y, double size) {
+    final double minSize = size*minSizeFactor;
+    final double maxSize = size*maxSizeFactor;
 
-    long currentTime = System.nanoTime();
-    long timeElapsed = currentTime - lastTimestamp;
-
-
-
-    if (timeElapsed > 500000) {
+    if (recalculate()) {
       if (lastX != -1 && lastY != -1) {
         double dx = x - lastX;
         double dy = y - lastY;
@@ -35,22 +33,16 @@ public class PaintBrush extends Pen{
       }
       lastX = x;
       lastY = y;
-
-      g.fillOval(x - avSize / 2, y - avSize / 2, avSize, avSize);
-
-    } else {
-      g.fillOval(x - avSize / 2, y - avSize / 2, avSize, avSize);
     }
-    lastTimestamp = currentTime;
+
   }
-
-
 
   @Override
   protected void drawPreviewAt(GraphicsContext og, double x, double y, double size) {
+    getNewSize(x, y, size);
     og.setStroke(Color.GRAY);
     og.setLineWidth(1);
-    og.strokeOval(x - size / 2, y - size / 2, size, size);
+    og.strokeOval(x - avSize / 2, y - avSize / 2, avSize, avSize);
   }
 
 

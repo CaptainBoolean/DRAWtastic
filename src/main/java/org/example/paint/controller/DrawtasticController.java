@@ -52,6 +52,9 @@ public class DrawtasticController {
   private Button eraserButton;
 
   @FXML
+  private Button fountainPenButton;
+
+  @FXML
   private Button rectangleButton;
 
   private Tool currentTool;
@@ -87,6 +90,10 @@ public class DrawtasticController {
       } else {
         currentTool = new RoundEraser();
       }
+    });
+
+    fountainPenButton.setOnAction(e -> {
+      currentTool = SizeOpacityAdjust(new FountainPen());
     });
 
     blurButton.setOnAction(e -> {

@@ -11,6 +11,12 @@ public abstract class Pen implements Tool {
     protected double lastY = -1;
     private double lastPreviewX = -1;
     private double lastPreviewY = -1;
+    protected double minSizeFactor = 0.5;
+    protected double maxSizeFactor = 4;
+    long lastTimestamp = System.nanoTime();
+    int recalculateTime = 5000000;
+    long timeElapsed = 0;
+
 
     //no constructor necessary because every drag data should be updated
 
@@ -57,7 +63,8 @@ public abstract class Pen implements Tool {
         if (lastPreviewX != -1 && lastPreviewY != -1) {
             double clearX = lastPreviewX - size / 2;
             double clearY = lastPreviewY - size / 2;
-            og.clearRect(clearX - 1, clearY - 1, size + 2, size + 2);
+            double saveSize = size*(maxSizeFactor*1.5);
+            og.clearRect(clearX - saveSize/2, clearY - saveSize/2, saveSize, saveSize);
         }
 
         drawPreviewAt(og, x, y, size);
@@ -66,7 +73,17 @@ public abstract class Pen implements Tool {
         lastPreviewY = y;
     };
 
-    //TODO reset preview and fully clear plane
     protected abstract void drawPreviewAt(GraphicsContext g, double x, double y, double size);
+
+    protected boolean recalculate() {
+        long currentTime = System.nanoTime();
+        timeElapsed = currentTime - lastTimestamp;
+        if (timeElapsed > recalculateTime) {
+            lastTimestamp = currentTime;
+            return true;
+        }
+        return false;
+    }
+
 }
 

@@ -27,6 +27,7 @@
                         <Button fx:id="markerButton" text="Marker" />
                         <Button fx:id="blurButton" text="Blur" />
                         <Button fx:id="paintBrushButton" text="Pain Brush" />
+                        <Button fx:id="fountainPenButton" text="Fountain Pen" />
                         <Label text="Opacity" layoutX="20" layoutY="250"/>
                         <Slider fx:id="opacitySlider" min="0.0" max="1.0" value="1"  showTickLabels="true" showTickMarks="true" />
                     </HBox>
