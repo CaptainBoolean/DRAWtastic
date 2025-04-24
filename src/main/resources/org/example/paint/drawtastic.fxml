@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.canvas.Canvas?>
-
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.paint.controller.DrawtasticController"
@@ -29,7 +28,7 @@
                         <Button fx:id="blurButton" text="Blur" />
                         <Button fx:id="paintBrushButton" text="Pain Brush" />
                         <Label text="Opacity" layoutX="20" layoutY="250"/>
-                        <Slider fx:id="opacitySlider" min="0.0" max="1.0" value="0.5"  showTickLabels="true" showTickMarks="true" />
+                        <Slider fx:id="opacitySlider" min="0.0" max="1.0" value="1"  showTickLabels="true" showTickMarks="true" />
                     </HBox>
 
                     <HBox spacing="10" alignment="CENTER">

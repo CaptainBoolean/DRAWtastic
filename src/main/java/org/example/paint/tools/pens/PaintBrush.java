@@ -44,6 +44,8 @@ public class PaintBrush extends Pen{
     lastTimestamp = currentTime;
   }
 
+
+
   @Override
   protected void drawPreviewAt(GraphicsContext og, double x, double y, double size) {
     og.setStroke(Color.GRAY);

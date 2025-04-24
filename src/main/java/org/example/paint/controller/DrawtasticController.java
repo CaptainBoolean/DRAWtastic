@@ -105,7 +105,8 @@ public class DrawtasticController {
       try {
         double size = Double.parseDouble(brushSize.getText());
         Color color = colorPicker.getValue();
-        double opacity = opacitySlider.getValue();
+        int opacitySteepness = 2; //for a better smoothness
+        double opacity = (Math.exp(opacitySlider.getValue()*opacitySteepness)-1)/(Math.exp(opacitySteepness)-1);
         currentTool.onDrag(g, e, size, color, opacity);
         currentTool.drawPreviewAt(og, e, Double.parseDouble(brushSize.getText()));
       } catch (NumberFormatException ex) {
