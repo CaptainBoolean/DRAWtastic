@@ -10,6 +10,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import org.example.paint.graphics.picture.PictureEditor;
+import org.example.paint.tools.SelectAndMove;
 import org.example.paint.tools.Shapes.Rectangle;
 import org.example.paint.tools.Tool;
 import org.example.paint.tools.pens.*;
@@ -29,6 +30,9 @@ public class DrawtasticController {
 
   @FXML
   private ColorPicker colorPicker;
+
+  @FXML
+  private Button selectAndMoveButton;
 
   @FXML
   private Button pencilButton;
@@ -89,6 +93,10 @@ public class DrawtasticController {
 
     canvas.setOnMouseMoved(e -> {
       currentTool.drawPreviewAt(og, e, Double.parseDouble(brushSize.getText()));
+    });
+
+    selectAndMoveButton.setOnAction(e -> {
+      currentTool = SizeOpacityAdjust(new SelectAndMove());
     });
 
     pencilButton.setOnAction(e -> {
