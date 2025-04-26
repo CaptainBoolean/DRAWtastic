@@ -6,85 +6,92 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
-public class SelectAndMove implements Tool{
+public class SelectAndMove implements Tool {
 
-  double startX = -1, startY = -1;
-  double endX = -1, endY = -1;
-  double printX = -1, printY = -1;
-  private double lastPreviewX = -1;
-  private double lastPreviewY = -1;
-  WritableImage movedImage;
-  double height;
-  double width;
+  //TODO proofread and implement real background (also bugtest)
 
+  private enum Mode { IDLE, SELECTING, MOVING }
+  private Mode mode = Mode.IDLE;
+  private boolean switchingToMoving = false;
+
+  private double startX = -1, startY = -1;
+  private double lastX = 0, lastY = 0, lastW = 0, lastH = 0;
+  private WritableImage movedImage;
 
   @Override
   public void onDrag(GraphicsContext g, MouseEvent e, double size, Color color, double opacity) {
-    if(startX == -1 && startY == -1){
+    if (mode == Mode.IDLE) {
       startX = e.getX();
       startY = e.getY();
-    };
+      mode = Mode.SELECTING;
+    }
   }
 
   @Override
   public void onRelease(GraphicsContext g, MouseEvent e, double size) {
-    if(movedImage == null){
-      endX = e.getX();
-      endY = e.getY();
-      width = (int)Math.abs(startX - endX);
-      height = (int)Math.abs(startY - endY);
-      printX = Math.min(startX, endX);
-      printY = Math.min(startY, endY);
-      WritableImage fullCanvasImage = g.getCanvas().snapshot(null, null);
-      movedImage = new WritableImage(fullCanvasImage.getPixelReader(), (int) printX, (int) printY, (int) width, (int) height);
-      PixelWriter pixelWriter = movedImage.getPixelWriter();
-      for (int x = 0; x < width; x++) {
-        for (int y = 0; y < height; y++) {
-          Color color = movedImage.getPixelReader().getColor(x, y);
-          if (color.equals(Color.WHITE) || color.equals(Color.WHITE)) { //TODO somehow implement the background
-            pixelWriter.setColor(x, y, Color.TRANSPARENT);
-          } else {
-            pixelWriter.setColor(x, y, color);
+    if (mode == Mode.SELECTING) {
+      double ex = e.getX(), ey = e.getY();
+      double w = Math.abs(startX - ex), h = Math.abs(startY - ey);
+      if (w > 0 && h > 0) {
+        double x = Math.min(startX, ex), y = Math.min(startY, ey);
+        WritableImage full = g.getCanvas().snapshot(null, null);
+        movedImage = new WritableImage(full.getPixelReader(),
+                (int)x, (int)y,
+                (int)w, (int)h);
+        PixelWriter pw = movedImage.getPixelWriter();
+        for (int ix = 0; ix < w; ix++)
+          for (int iy = 0; iy < h; iy++) {
+            Color c = movedImage.getPixelReader().getColor(ix, iy);
+            pw.setColor(ix, iy, c.equals(Color.WHITE)
+                    ? Color.TRANSPARENT
+                    : c);
           }
-        }
+        g.clearRect(x, y, w, h);
+        mode = Mode.MOVING;
+        switchingToMoving = true;
+      } else {
+        mode = Mode.IDLE;
       }
-
-      g.clearRect(printX, printY, width, height);
-      startX = startY = endX = endY = printX = printY = -1;
-    } else {
-      double insertX = e.getX() - width / 2;
-      double insertY = e.getY() - height / 2;
-      g.drawImage(movedImage, insertX, insertY);
+    }
+    else if (mode == Mode.MOVING && movedImage != null) {
+      double px = e.getX() - movedImage.getWidth()  / 2;
+      double py = e.getY() - movedImage.getHeight() / 2;
+      g.drawImage(movedImage, px, py);
       movedImage = null;
+      mode = Mode.IDLE;
     }
   }
 
-  //TODO when dragged on release WEIRD SHIT happens
   @Override
   public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
-    if(movedImage != null){
-      og.clearRect(lastPreviewX - width / 2, lastPreviewY - height / 2, width, height);
-      og.drawImage(movedImage, e.getX() - movedImage.getWidth() / 2, e.getY() - movedImage.getHeight() / 2);
-      lastPreviewX = e.getX();
-      lastPreviewY = e.getY();
-    } else if (startX != -1 && startY != -1) {
+    if (mode == Mode.SELECTING) {
+      double cx = e.getX(), cy = e.getY();
+      double nx = Math.min(startX, cx), ny = Math.min(startY, cy);
+      double nw = Math.abs(cx - startX), nh = Math.abs(cy - startY);
 
-      og.clearRect(lastPreviewX, lastPreviewY, width, height);
+      double m = 1; // stroke margin
+      og.clearRect(lastX - m, lastY - m, lastW + 2*m, lastH + 2*m);
+      og.setStroke(Color.GRAY);
+      og.strokeRect(nx, ny, nw, nh);
 
-        double currX = e.getX();
-        double currY = e.getY();
-        double previewX = Math.min(startX, currX);
-        double previewY = Math.min(startY, currY);
-        width = Math.abs(currX - startX);
-        height = Math.abs(currY - startY);
-
-        og.setStroke(Color.GRAY);
-        og.strokeRect(previewX, previewY, width, height);
-
-        lastPreviewX = previewX;
-        lastPreviewY = previewY;
-      }
+      lastX = nx; lastY = ny;
+      lastW = nw; lastH = nh;
     }
+    else if (mode == Mode.MOVING && movedImage != null) {
+      if (switchingToMoving) {
+        double m = 1;
+        og.clearRect(lastX - m, lastY - m, lastW + 2*m, lastH + 2*m);
+        switchingToMoving = false;
+      }
+      double cx = e.getX(), cy = e.getY();
+      double iw = movedImage.getWidth(), ih = movedImage.getHeight();
+      double nx = cx - iw/2, ny = cy - ih/2;
 
+      og.clearRect(lastX - iw/2, lastY - ih/2, iw, ih);
+      og.drawImage(movedImage, nx, ny);
+
+      lastX = cx; lastY = cy;
+      lastW = iw; lastH = ih;
+    }
+  }
 }
-
