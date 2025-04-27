@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.paint.controller.DrawtasticController"
+            prefHeight="600.0" prefWidth="600.0">
+
+  <top>
+    <VBox>
+      <MenuBar>
+        <Menu text="File">
+          <MenuItem text="Save" onAction="#onSave" />
+          <MenuItem text="Exit" onAction="#onExit" />
+        </Menu>
+      </MenuBar>
+
+      <ToolBar>
+        <VBox spacing="5">
+          <HBox spacing="10" alignment="CENTER">
+            <TextField fx:id="brushSize" text="6" prefWidth="40" />
+            <ColorPicker fx:id="colorPicker" />
+            <Button fx:id="selectAndMoveButton" text="Select and Move" />
+            <Button fx:id="pencilButton" text="Pencil" />
+            <Button fx:id="eraserButton" text="Eraser" />
+            <Button fx:id="markerButton" text="Marker" />
+            <Button fx:id="blurButton" text="Blur" />
+            <Button fx:id="paintBrushButton" text="Pain Brush" />
+            <Button fx:id="fountainPenButton" text="Fountain Pen" />
+            <Button fx:id="rainbowPenButton" text="Rainbow Pen" />
+            <VBox spacing="10" alignment="CENTER">
+                  <Label fx:id="opacityLabel" text="Opacity" />
+                  <Slider fx:id="opacitySlider" max="1.0" value="1" showTickMarks="true"/>
+            </VBox>
+
+          </HBox>
+
+          <HBox spacing="10" alignment="CENTER">
+            <Button text="Line Tool" />
+            <Button fx:id="rectangleButton" text="Rectangle" />
+            <Button text="Circle Tool" />
+            <Button fx:id="loadPicture" text="Picture" />
+          </HBox>
+        </VBox>
+      </ToolBar>
+
+    </VBox>
+  </top>
+
+  <center>
+    <StackPane>
+      <Canvas fx:id="canvas" width="6000" height="6000" />
+      <Canvas fx:id="overlayCanvas" width="6000" height="6000" pickOnBounds="false" mouseTransparent="true" />
+    </StackPane>
+  </center>
+
+
+</BorderPane>
