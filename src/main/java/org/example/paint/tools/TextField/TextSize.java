@@ -1,4 +1,5 @@
 package org.example.paint.tools.TextField;
 
-public class TextSize {
+public enum TextSize {
+    SMALL, MEDIUM, LARGE
 }
