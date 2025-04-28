@@ -9,8 +9,8 @@ public class Rectangle implements Tool {
     private double startX, startY;
     private final Color color;
 
-    public Rectangle(Color color) {
-        this.color = color;
+    public Rectangle() {
+        this.color = Color.BLACK;
     }
 
     @Override
