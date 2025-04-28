@@ -15,7 +15,7 @@ public class SelectAndMove implements Tool {
   private boolean switchingToMoving = false;
 
   private double startX = -1, startY = -1;
-  private double lastX = 0, lastY = 0, lastW = 0, lastH = 0;
+  private double lastX = 0, lastY = 0, lastWidth = 0, lastHeight = 0;
   private WritableImage movedImage;
 
   @Override
@@ -31,22 +31,21 @@ public class SelectAndMove implements Tool {
   public void onRelease(GraphicsContext g, MouseEvent e, double size) {
     if (mode == Mode.SELECTING) {
       double ex = e.getX(), ey = e.getY();
-      double w = Math.abs(startX - ex), h = Math.abs(startY - ey);
-      if (w > 0 && h > 0) {
-        double x = Math.min(startX, ex), y = Math.min(startY, ey);
+      double cutWidth = Math.abs(startX - ex), cutHeight = Math.abs(startY - ey);
+      if (cutWidth > 0 && cutHeight > 0) {
+        double cutX = Math.min(startX, ex), cutY = Math.min(startY, ey);
         WritableImage full = g.getCanvas().snapshot(null, null);
         movedImage = new WritableImage(full.getPixelReader(),
-                (int)x, (int)y,
-                (int)w, (int)h);
+                (int)cutX, (int)cutY,
+                (int)cutWidth, (int)cutHeight);
         PixelWriter pw = movedImage.getPixelWriter();
-        for (int ix = 0; ix < w; ix++)
-          for (int iy = 0; iy < h; iy++) {
-            Color c = movedImage.getPixelReader().getColor(ix, iy);
-            pw.setColor(ix, iy, c.equals(Color.WHITE)
-                    ? Color.TRANSPARENT
-                    : c);
+        for (int i = 0; i < cutWidth; i++)
+          for (int j = 0; j < cutHeight; j++) {
+            Color color = movedImage.getPixelReader().getColor(i, j);
+            Color background = Color.WHITE; //TODO get real background
+            pw.setColor(i, j, color.equals(background) ? Color.TRANSPARENT : color);
           }
-        g.clearRect(x, y, w, h);
+        g.clearRect(cutX, cutY, cutWidth, cutHeight);
         mode = Mode.MOVING;
         switchingToMoving = true;
       } else {
@@ -54,9 +53,9 @@ public class SelectAndMove implements Tool {
       }
     }
     else if (mode == Mode.MOVING && movedImage != null) {
-      double px = e.getX() - movedImage.getWidth()  / 2;
-      double py = e.getY() - movedImage.getHeight() / 2;
-      g.drawImage(movedImage, px, py);
+      double printX = e.getX() - movedImage.getWidth()  / 2;
+      double printY = e.getY() - movedImage.getHeight() / 2;
+      g.drawImage(movedImage, printX, printY);
       movedImage = null;
       mode = Mode.IDLE;
     }
@@ -65,33 +64,33 @@ public class SelectAndMove implements Tool {
   @Override
   public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
     if (mode == Mode.SELECTING) {
-      double cx = e.getX(), cy = e.getY();
-      double nx = Math.min(startX, cx), ny = Math.min(startY, cy);
-      double nw = Math.abs(cx - startX), nh = Math.abs(cy - startY);
+      double currX = e.getX(), currY = e.getY();
+      double newX = Math.min(startX, currX), newY = Math.min(startY, currY);
+      double newWidth = Math.abs(currX - startX), newHeight = Math.abs(currY - startY);
 
       double m = 1; // stroke margin
-      og.clearRect(lastX - m, lastY - m, lastW + 2*m, lastH + 2*m);
+      og.clearRect(lastX - m, lastY - m, lastWidth + 2*m, lastHeight + 2*m);
       og.setStroke(Color.GRAY);
-      og.strokeRect(nx, ny, nw, nh);
+      og.strokeRect(newX, newY, newWidth, newHeight);
 
-      lastX = nx; lastY = ny;
-      lastW = nw; lastH = nh;
+      lastX = newX; lastY = newY;
+      lastWidth = newWidth; lastHeight = newHeight;
     }
     else if (mode == Mode.MOVING && movedImage != null) {
       if (switchingToMoving) {
         double m = 1;
-        og.clearRect(lastX - m, lastY - m, lastW + 2*m, lastH + 2*m);
+        og.clearRect(lastX - m, lastY - m, lastWidth + 2*m, lastHeight + 2*m);
         switchingToMoving = false;
       }
-      double cx = e.getX(), cy = e.getY();
-      double iw = movedImage.getWidth(), ih = movedImage.getHeight();
-      double nx = cx - iw/2, ny = cy - ih/2;
+      double currX = e.getX(), currY = e.getY();
+      double imageWidth = movedImage.getWidth(), imageHeight = movedImage.getHeight();
+      double newX = currX - imageWidth/2, newY = currY - imageHeight/2;
 
-      og.clearRect(lastX - iw/2, lastY - ih/2, iw, ih);
-      og.drawImage(movedImage, nx, ny);
+      og.clearRect(lastX - imageWidth/2, lastY - imageHeight/2, imageWidth, imageHeight);
+      og.drawImage(movedImage, newX, newY);
 
-      lastX = cx; lastY = cy;
-      lastW = iw; lastH = ih;
+      lastX = currX; lastY = currY;
+      lastWidth = imageWidth; lastHeight = imageHeight;
     }
   }
 }

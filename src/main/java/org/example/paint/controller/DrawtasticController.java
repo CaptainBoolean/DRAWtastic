@@ -5,19 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
-import javafx.stage.FileChooser;
 import org.example.paint.graphics.picture.PictureEditor;
 import org.example.paint.tools.SelectAndMove;
 import org.example.paint.tools.Shapes.Rectangle;
 import org.example.paint.tools.Tool;
 import org.example.paint.tools.pens.*;
-
-import javax.imageio.ImageIO;
-import java.awt.image.RenderedImage;
-import java.io.File;
 
 
 public class DrawtasticController {
@@ -37,7 +30,6 @@ public class DrawtasticController {
   @FXML
   private Button pencilButton;
 
-  //TODO only display when it is logical
   @FXML
   private Slider opacitySlider;
 
@@ -198,21 +190,10 @@ public class DrawtasticController {
 
 
   public void onSave() {
-    FileChooser fileChooser = new FileChooser();
-    fileChooser.setTitle("Save drawing as 'png'");
-    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
-
-    File file = fileChooser.showSaveDialog(overlayCanvas.getScene().getWindow());
-    try {
-      WritableImage image = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
-      Image snapshot = canvas.snapshot(null, image);
-      ImageIO.write((RenderedImage) snapshot, "png", file);
-
-
-    } catch (Exception e) {
-      System.out.println("Failed to save Image: " + e);
-    }
+    FileService.save(canvas);
   }
+
+  //TODO implement possibility to zoom and pan
 
   public void onExit() {
     Platform.exit();
