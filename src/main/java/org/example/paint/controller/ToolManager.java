@@ -52,9 +52,9 @@ public class ToolManager {
     }
 
     if (newTool instanceof RoundEraser && !(currentTool instanceof RoundEraser)) {
-      newTool = new SquareEraser();
-    } else if (newTool instanceof RoundEraser) {
       newTool = new RoundEraser();
+    } else if (newTool instanceof RoundEraser) {
+      newTool = new SquareEraser();
     }
 
     currentTool = newTool;
