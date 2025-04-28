@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 public class SelectAndMove implements Tool {
 
   //TODO proofread and implement real background (also bugtest)
+  //TODO fix occurring blurriness
 
   private enum Mode { IDLE, SELECTING, MOVING }
   private Mode mode = Mode.IDLE;
