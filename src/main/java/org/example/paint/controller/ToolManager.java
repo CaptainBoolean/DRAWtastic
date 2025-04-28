@@ -14,12 +14,12 @@ public class ToolManager {
   private final GraphicsContext g;
   private final Canvas overlayCanvas;
   private final GraphicsContext og;
-  private final DoubleProperty brushSize = new SimpleDoubleProperty(5);
+  private final DoubleProperty brushSize = new SimpleDoubleProperty(8);
   private final DoubleProperty opacity = new SimpleDoubleProperty(1);
   private final BooleanProperty opacitySlider = new SimpleBooleanProperty();
   private final BooleanProperty opacityLabel = new SimpleBooleanProperty();
   private double markerSizeRatio = 2;
-  private double markerOpacity = 0.1;
+  private double markerOpacity = 0.3;
   private final ObjectProperty<Color> color = new SimpleObjectProperty<>(Color.BLACK);
 
 
@@ -32,17 +32,17 @@ public class ToolManager {
   }
 
   public void changeTool(Tool newTool) {
-    double opacityRatio = 0.2;
-
     if(currentTool instanceof Marker && !(newTool instanceof Marker)) {
       brushSize.setValue(brushSize.getValue() / markerSizeRatio);
       opacity.setValue(1);
 
     }
+
     if(!(currentTool instanceof Marker) && newTool instanceof Marker) {
       brushSize.setValue(brushSize.getValue() * markerSizeRatio);
-      opacity.setValue(opacityRatio);
+      opacity.setValue(markerOpacity);
     }
+
     if (newTool instanceof Marker || newTool instanceof FountainPen || newTool instanceof RainbowPen || newTool instanceof PaintBrush) {
       opacitySlider.setValue(true);
       opacityLabel.setValue(true);
@@ -84,24 +84,13 @@ public class ToolManager {
     currentTool.drawPreviewAt(og, e, brushSize.getValue());
   }
 
+  void onEnter(MouseEvent e) {og.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());}
 
 
-  DoubleProperty brushSizeProperty() {
-    return brushSize;
-  }
-  DoubleProperty brushOpacityProperty() {
-    return opacity;
-  }
+  DoubleProperty brushSizeProperty() {return brushSize;}
+  DoubleProperty brushOpacityProperty() {return opacity;}
+  BooleanProperty opacitySliderProperty() {return opacitySlider;}
+  BooleanProperty opacityLabelProperty() {return opacityLabel;}
+  ObjectProperty<Color> colorProperty() {return color;}
 
-  BooleanProperty opacitySliderProperty() {
-    return opacitySlider;
-  }
-
-  BooleanProperty opacityLabelProperty() {
-    return opacityLabel;
-  }
-
-  ObjectProperty<Color> colorProperty() {
-    return color;
-  }
 }

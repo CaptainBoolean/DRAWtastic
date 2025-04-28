@@ -23,7 +23,7 @@
             <TextField fx:id="brushSize" text="6" prefWidth="40" />
             <ColorPicker fx:id="colorPicker" />
             <Button fx:id="selectAndMoveButton" text="Select and Move" />
-            <Button fx:id="pencilButton" text="Pencil" />
+            <Button fx:id="penButton" text="Pencil" />
             <Button fx:id="eraserButton" text="Eraser" />
             <Button fx:id="markerButton" text="Marker" />
             <Button fx:id="blurButton" text="Blur" />
@@ -32,7 +32,7 @@
             <Button fx:id="rainbowPenButton" text="Rainbow Pen" />
             <VBox spacing="10" alignment="CENTER">
                   <Label fx:id="opacityLabel" text="Opacity" />
-                  <Slider fx:id="opacitySlider" max="1.0" value="1" showTickMarks="true"/>
+                  <Slider fx:id="opacitySlider" max="1.0" value="1" />
             </VBox>
 
           </HBox>
