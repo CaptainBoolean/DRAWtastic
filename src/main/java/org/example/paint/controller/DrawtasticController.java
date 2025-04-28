@@ -22,7 +22,7 @@ public class DrawtasticController {
   private Canvas overlayCanvas;
 
   @FXML
-  private ColorPicker colorPicker;
+  ColorPicker colorPicker;
 
   @FXML
   private Button selectAndMoveButton;
@@ -31,7 +31,7 @@ public class DrawtasticController {
   private Button pencilButton;
 
   @FXML
-  private Slider opacitySlider;
+  Slider opacitySlider;
 
   @FXML
   private Label opacityLabel;
@@ -62,13 +62,17 @@ public class DrawtasticController {
 
   @FXML
   private Button loadPicture;
-
+  private ToolManager toolManager;
   private Tool currentTool;
+  private FileService fileService;
 
   public void initialize() {
     GraphicsContext g = canvas.getGraphicsContext2D();
     GraphicsContext og = overlayCanvas.getGraphicsContext2D();
-
+    //toolManager = new ToolManager(canvas, overlayCanvas);
+    //fileService = new FileService(canvas);
+    //brushSize.textProperty().bindBidirectional(toolManager.brushSizeProperty(), new NumberStringConverter());
+    //opacitySlider.accessibleTextProperty().bindBidirectional(opacityLabel.textProperty());
     colorPicker.setValue(Color.BLACK);
 
     opacitySlider.setMajorTickUnit(0.1);
@@ -198,4 +202,14 @@ public class DrawtasticController {
   public void onExit() {
     Platform.exit();
   }
+
+
+  double getOpacity() {return opacitySlider.getValue();}
+  double getOpacityMax() {return opacitySlider.getMax();}
+  void setOpacity(double opacity) {opacitySlider.setValue(opacity);}
+
+
+
 }
+
+
