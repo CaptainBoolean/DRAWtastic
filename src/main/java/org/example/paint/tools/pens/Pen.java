@@ -18,6 +18,9 @@ public abstract class Pen implements Tool {
   long timeElapsed = 0;
 
 
+  public void onPress(GraphicsContext gc, MouseEvent e) {
+
+  }
   //no constructor necessary because every drag data should be updated
   public void onDrag(GraphicsContext g, MouseEvent e, double size, Color color, double opacity) {
     double x = e.getX();
