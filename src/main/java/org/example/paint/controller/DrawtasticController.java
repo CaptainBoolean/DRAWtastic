@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.util.converter.NumberStringConverter;
 import org.example.paint.graphics.picture.PictureEditor;
+import org.example.paint.tools.ConnectedSelectAndMove;
 import org.example.paint.tools.SelectAndMove;
 import org.example.paint.tools.Shapes.Rectangle;
 import org.example.paint.tools.pens.*;
@@ -19,7 +20,7 @@ public class DrawtasticController {
   @FXML private TextField brushSize;
   @FXML private Label opacityLabel;
   @FXML private Slider opacitySlider;
-  @FXML private Button selectAndMoveButton;
+  @FXML private Button selectAndMoveButton, connectedSelectAndMoveButton;
   @FXML private Button eraserButton, penButton, markerButton, blurButton, paintBrushButton, fountainPenButton, rainbowPenButton;
   @FXML private Button rectangleButton;
   @FXML private Button loadPicture;
@@ -73,8 +74,14 @@ public class DrawtasticController {
             Math.min(colorWithOpacity.getOpacity()*1.2, 1) + ");"); //TODO match with implemented curve
   }
 
+  public static Color getBackgroundColor() {
+    //TODO implement background
+    return Color.TRANSPARENT;
+  }
+
   private void initButtons() {
     selectAndMoveButton.setOnAction(e -> {toolManager.changeTool(new SelectAndMove());});
+    connectedSelectAndMoveButton.setOnAction(e -> {toolManager.changeTool(new ConnectedSelectAndMove());});
     penButton.setOnAction(e -> {toolManager.changeTool(new RoundPen());});
     markerButton.setOnAction(e -> {toolManager.changeTool(new Marker());});
     eraserButton.setOnAction(e -> {toolManager.changeTool(new RoundEraser());});

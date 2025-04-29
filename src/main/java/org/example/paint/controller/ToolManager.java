@@ -32,17 +32,25 @@ public class ToolManager {
   }
 
   public void changeTool(Tool newTool) {
+    checkIfMarker(newTool);
+    checkOpacitySliderDisplay(newTool);
+    newTool = checkEraserSwitch(newTool);
+
+    currentTool = newTool;
+  }
+
+  private void checkIfMarker(Tool newTool) {
     if(currentTool instanceof Marker && !(newTool instanceof Marker)) {
       brushSize.setValue(brushSize.getValue() / markerSizeRatio);
       opacity.setValue(1);
-
     }
-
     if(!(currentTool instanceof Marker) && newTool instanceof Marker) {
       brushSize.setValue(brushSize.getValue() * markerSizeRatio);
       opacity.setValue(markerOpacity);
     }
+  }
 
+  private void checkOpacitySliderDisplay(Tool newTool) {
     if (newTool instanceof Marker || newTool instanceof FountainPen || newTool instanceof RainbowPen || newTool instanceof PaintBrush) {
       opacitySlider.setValue(true);
       opacityLabel.setValue(true);
@@ -50,14 +58,15 @@ public class ToolManager {
       opacitySlider.setValue(false);
       opacityLabel.setValue(false);
     }
+  }
 
+  private Tool checkEraserSwitch(Tool newTool) {
     if (newTool instanceof RoundEraser && !(currentTool instanceof RoundEraser)) {
-      newTool = new RoundEraser();
+      return new RoundEraser();
     } else if (newTool instanceof RoundEraser) {
-      newTool = new SquareEraser();
+      return new SquareEraser();
     }
-
-    currentTool = newTool;
+    return newTool;
   }
 
   void onDrag(MouseEvent e) {

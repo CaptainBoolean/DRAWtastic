@@ -10,11 +10,6 @@ import javax.imageio.ImageIO;
 import java.io.File;
 
 public class FileService {
-  private Canvas canvas;
-
-  FileService(Canvas canvas) {
-    this.canvas = canvas;
-  }
 
   static void save(Canvas canvas) {
     FileChooser fileChooser = new FileChooser();

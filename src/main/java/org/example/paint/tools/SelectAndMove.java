@@ -5,10 +5,10 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import org.example.paint.controller.DrawtasticController;
 
 public class SelectAndMove implements Tool {
 
-  //TODO proofread and implement real background (also bugtest)
   //TODO fix occurring blurriness
 
   private enum Mode { IDLE, SELECTING, MOVING }
@@ -43,7 +43,7 @@ public class SelectAndMove implements Tool {
         for (int i = 0; i < cutWidth; i++)
           for (int j = 0; j < cutHeight; j++) {
             Color color = movedImage.getPixelReader().getColor(i, j);
-            Color background = Color.WHITE; //TODO get real background
+            Color background = DrawtasticController.getBackgroundColor();
             pw.setColor(i, j, color.equals(background) ? Color.TRANSPARENT : color);
           }
         g.clearRect(cutX, cutY, cutWidth, cutHeight);

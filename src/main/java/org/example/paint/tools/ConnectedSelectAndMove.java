@@ -4,15 +4,18 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
-public class FreeSelectAndMove implements Tool {
+public class ConnectedSelectAndMove implements Tool {
 
-  //TODO implement
 
 
   @Override
-  public void onDrag(GraphicsContext g, MouseEvent e, double size, Color color, double opacity) {
+  public void onPress(GraphicsContext g, MouseEvent e) {
 
   }
+
+
+  @Override
+
 
   @Override
   public void onRelease(GraphicsContext g, MouseEvent e, double size) {
@@ -24,5 +27,5 @@ public class FreeSelectAndMove implements Tool {
 
   }
 
-
+  public void onDrag(GraphicsContext g, MouseEvent e, double size, Color color, double opacity) {}
 }

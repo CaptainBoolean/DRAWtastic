@@ -22,7 +22,8 @@
           <HBox spacing="10" alignment="CENTER">
             <TextField fx:id="brushSize" text="6" prefWidth="40" />
             <ColorPicker fx:id="colorPicker" />
-            <Button fx:id="selectAndMoveButton" text="Select and Move" />
+            <Button fx:id="selectAndMoveButton" text="Select and sove" />
+            <Button fx:id="connectedSelectAndMoveButton" text="Connected select and sove" />
             <Button fx:id="penButton" text="Pencil" />
             <Button fx:id="eraserButton" text="Eraser" />
             <Button fx:id="markerButton" text="Marker" />
