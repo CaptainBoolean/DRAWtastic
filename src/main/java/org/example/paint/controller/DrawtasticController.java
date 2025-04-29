@@ -75,8 +75,8 @@ public class DrawtasticController {
   }
 
   public static Color getBackgroundColor() {
-    //TODO implement background
-    return Color.TRANSPARENT;
+    //TODO implement background (leave getter as it is!!!!!!! already implemented)
+    return Color.WHITE;
   }
 
   private void initButtons() {

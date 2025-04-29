@@ -11,19 +11,19 @@ public class SelectAndMove implements Tool {
 
   //TODO fix occurring blurriness
 
-  private enum Mode { IDLE, SELECTING, MOVING }
+  private enum Mode {IDLE, SELECTING, MOVING}
   private Mode mode = Mode.IDLE;
   private boolean switchingToMoving = false;
 
-  private double startX = -1, startY = -1;
-  private double lastX = 0, lastY = 0, lastWidth = 0, lastHeight = 0;
+  private int startX = -1, startY = -1;
+  private int lastX = 0, lastY = 0, lastWidth = 0, lastHeight = 0;
   private WritableImage movedImage;
 
   @Override
   public void onDrag(GraphicsContext g, MouseEvent e, double size, Color color, double opacity) {
     if (mode == Mode.IDLE) {
-      startX = e.getX();
-      startY = e.getY();
+      startX = (int)e.getX();
+      startY = (int)e.getY();
       mode = Mode.SELECTING;
     }
   }
@@ -31,7 +31,7 @@ public class SelectAndMove implements Tool {
   @Override
   public void onRelease(GraphicsContext g, MouseEvent e, double size) {
     if (mode == Mode.SELECTING) {
-      double ex = e.getX(), ey = e.getY();
+      int ex = (int)e.getX(), ey = (int)e.getY();
       double cutWidth = Math.abs(startX - ex), cutHeight = Math.abs(startY - ey);
       if (cutWidth > 0 && cutHeight > 0) {
         double cutX = Math.min(startX, ex), cutY = Math.min(startY, ey);
@@ -65,9 +65,9 @@ public class SelectAndMove implements Tool {
   @Override
   public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
     if (mode == Mode.SELECTING) {
-      double currX = e.getX(), currY = e.getY();
-      double newX = Math.min(startX, currX), newY = Math.min(startY, currY);
-      double newWidth = Math.abs(currX - startX), newHeight = Math.abs(currY - startY);
+      int currX = (int)e.getX(), currY = (int)e.getY();
+      int newX = Math.min(startX, currX), newY = Math.min(startY, currY);
+      int newWidth = Math.abs(currX - startX), newHeight = Math.abs(currY - startY);
 
       double m = 1; // stroke margin
       og.clearRect(lastX - m, lastY - m, lastWidth + 2*m, lastHeight + 2*m);
@@ -83,9 +83,9 @@ public class SelectAndMove implements Tool {
         og.clearRect(lastX - m, lastY - m, lastWidth + 2*m, lastHeight + 2*m);
         switchingToMoving = false;
       }
-      double currX = e.getX(), currY = e.getY();
-      double imageWidth = movedImage.getWidth(), imageHeight = movedImage.getHeight();
-      double newX = currX - imageWidth/2, newY = currY - imageHeight/2;
+      int currX = (int)e.getX(), currY = (int)e.getY();
+      int imageWidth = (int)movedImage.getWidth(), imageHeight = (int)movedImage.getHeight();
+      int newX = currX - imageWidth/2, newY = currY - imageHeight/2;
 
       og.clearRect(lastX - imageWidth/2, lastY - imageHeight/2, imageWidth, imageHeight);
       og.drawImage(movedImage, newX, newY);
