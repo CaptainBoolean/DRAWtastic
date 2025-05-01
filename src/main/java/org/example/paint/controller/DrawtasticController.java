@@ -1,6 +1,7 @@
 package org.example.paint.controller;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
@@ -10,13 +11,13 @@ import org.example.paint.tools.generalTools.ConnectedSelectAndMove;
 import org.example.paint.tools.generalTools.DeleteColor;
 import org.example.paint.tools.generalTools.Pipette;
 import org.example.paint.tools.generalTools.SelectAndMove;
-import org.example.paint.tools.pens.*;
 import org.example.paint.tools.picture.PictureInsert;
 import org.example.paint.tools.picture.RemoveRedEye;
 import org.example.paint.tools.shapes.Rectangle;
 
 
 public class DrawtasticController {
+
 
   @FXML private Canvas canvas, overlayCanvas;
   @FXML private ColorPicker colorPicker;
@@ -25,7 +26,8 @@ public class DrawtasticController {
   @FXML private Label opacityLabel;
   @FXML private Slider opacitySlider;
   @FXML private Button selectAndMoveButton, connectedSelectAndMoveButton, pipetteButton, transparentBackgroundButton, deleteColorButton;
-  @FXML private Button eraserButton, penButton, markerButton, blurButton, paintBrushButton, fountainPenButton, rainbowPenButton;
+  @FXML private SplitMenuButton pensButton;
+  @FXML private MenuItem eraserButton, penButton, markerButton, blurButton, paintBrushButton, fountainPenButton, rainbowPenButton;
   @FXML private Button rectangleButton;
   @FXML private Button insertPicture, removeRedEyeButton;
 
@@ -101,10 +103,13 @@ public class DrawtasticController {
       Background.transparentBackground();});
     deleteColorButton.setOnAction(e -> {toolManager.changeTool(new DeleteColor());});
     removeRedEyeButton.setOnAction(e -> toolManager.changeTool(new RemoveRedEye()));
+    pensButton.setOnAction(e -> {toolManager.changeTool(new RoundPen());});
   }
 
 
+  public void handlePenTool(ActionEvent actionEvent) {
 
+  }
 }
 
 

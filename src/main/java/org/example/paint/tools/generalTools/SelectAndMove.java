@@ -12,6 +12,7 @@ public class SelectAndMove implements Tool {
 
   //TODO fix occurring blurriness
   //TODO fix problem when marking out of canvas
+  //TODO implement no copy if totally background
 
   private enum Mode {IDLE, SELECTING, MOVING}
   private Mode mode = Mode.IDLE;
@@ -42,6 +43,7 @@ public class SelectAndMove implements Tool {
                 (int)cutX, (int)cutY,
                 (int)cutWidth, (int)cutHeight);
         PixelWriter pw = movedImage.getPixelWriter();
+
         for (int i = 0; i < cutWidth; i++)
           for (int j = 0; j < cutHeight; j++) {
             Color color = movedImage.getPixelReader().getColor(i, j);

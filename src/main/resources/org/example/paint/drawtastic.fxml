@@ -2,6 +2,7 @@
 
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -21,18 +22,35 @@
         <VBox spacing="5">
           <HBox spacing="10" alignment="CENTER">
             <TextField fx:id="brushSize" text="6" prefWidth="40" />
+
             <ColorPicker fx:id="colorPicker" />
-            <ColorPicker fx:id="backgroundColorPicker" />
+
+            <SplitMenuButton  fx:id="pensButton" text="Pens" >
+              <graphic>
+                <ImageView image = "@/org/example/buttonIcons/chookity.jpg" />
+              </graphic>
+              <items>
+                <MenuItem fx:id="penButton" text="Pencil" />
+                <MenuItem fx:id="markerButton" text="Marker" />
+                <MenuItem fx:id="blurButton" text="Blur" />
+                <MenuItem fx:id="paintBrushButton" text="Pain Brush" />
+                <MenuItem fx:id="fountainPenButton" text="Fountain Pen" />
+                <MenuItem fx:id="rainbowPenButton" text="Rainbow Pen" />
+                <MenuItem fx:id="eraserButton" text="Eraser" />
+              </items>
+            </SplitMenuButton >
+
+
+
             <Button fx:id="transparentBackgroundButton" text="Make Background transparent" />
             <Button fx:id="selectAndMoveButton" text="Select and sove" />
             <Button fx:id="connectedSelectAndMoveButton" text="Connected select and move" />
-            <Button fx:id="penButton" text="Pencil" />
-            <Button fx:id="eraserButton" text="Eraser" />
-            <Button fx:id="markerButton" text="Marker" />
-            <Button fx:id="blurButton" text="Blur" />
-            <Button fx:id="paintBrushButton" text="Pain Brush" />
-            <Button fx:id="fountainPenButton" text="Fountain Pen" />
-            <Button fx:id="rainbowPenButton" text="Rainbow Pen" />
+
+
+
+
+
+
             <Button fx:id="pipetteButton" text="Pipette" />
             <Button fx:id="deleteColorButton" text="Delete Color Pipette" />
             <Button fx:id="removeRedEyeButton" text="Remove red eyes" />
@@ -43,7 +61,10 @@
 
           </HBox>
 
-          <HBox spacing="10" alignment="CENTER">
+          <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Background color:" />
+            <ColorPicker fx:id="backgroundColorPicker" />
+
             <Button text="Line Tool" />
             <Button fx:id="rectangleButton" text="Rectangle" />
             <Button text="Circle Tool" />
@@ -51,6 +72,11 @@
           </HBox>
         </VBox>
       </ToolBar>
+
+
+
+
+
 
     </VBox>
   </top>
