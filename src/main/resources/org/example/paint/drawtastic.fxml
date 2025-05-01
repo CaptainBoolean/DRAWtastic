@@ -2,6 +2,8 @@
 
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -26,9 +28,15 @@
             <Button fx:id="pipetteButton" text="Pipette" />
 
             <SplitMenuButton  fx:id="pensButton" text="Pens" >
-<!--              <graphic>-->
-<!--                <ImageView image = "@org/example/buttonIcons/chookity.jpg" />-->
-<!--              </graphic>-->
+              <tooltip>
+                <Tooltip text="Selection of Pens" />
+              </tooltip>
+
+              <graphic>
+                <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                  <Image url="@buttonIcons/chookity.jpg" />
+                </ImageView>
+              </graphic>
               <items>
                 <MenuItem fx:id="penButton" text="Pencil" />
                 <MenuItem fx:id="markerButton" text="Marker" />
@@ -36,11 +44,11 @@
                 <MenuItem fx:id="paintBrushButton" text="Pain Brush" />
                 <MenuItem fx:id="fountainPenButton" text="Fountain Pen" />
                 <MenuItem fx:id="rainbowPenButton" text="Rainbow Pen" />
-                <MenuItem fx:id="eraserButton" text="Eraser" />
+
               </items>
             </SplitMenuButton >
 
-
+            <Button fx:id="eraserButton" text="Eraser" />
 
 
             <Button fx:id="selectAndMoveButton" text="Select and move" />
@@ -65,23 +73,25 @@
             <Label text="Background color:" />
             <ColorPicker fx:id="backgroundColorPicker" />
             <Button fx:id="transparentBackgroundButton" text="Make Background transparent" />
+          </HBox>
+
+          <HBox>
             <Button text="Line Tool" />
-            <Button fx:id="rectangleButton" text="Rectangle" />
+
             <Button text="Circle Tool" />
+            <Button fx:id="rectangleButton" text="Rectangle" />
+          </HBox>
+
+          <HBox>
             <Button fx:id="insertPicture" text="Picture" />
             <Button fx:id="removeRedEyeButton" text="Remove red eyes" />
-
-
-            <Button fx:id="textFieldButton" text="Textfield" />
-
-
-
           </HBox>
 
           <HBox>
             <ToggleButton fx:id="isBoldButton" text="Bold" />
             <ToggleButton fx:id="isItalicButton" text="Italic" />
             <ToggleButton fx:id="isUnderlineButton" text="Underline" />
+            <Button fx:id="textFieldButton" text="Textfield" />
           </HBox>
         </VBox>
       </ToolBar>

@@ -29,7 +29,8 @@ public class DrawtasticController {
   @FXML private Slider opacitySlider;
   @FXML private Button selectAndMoveButton, connectedSelectAndMoveButton, pipetteButton, transparentBackgroundButton, deleteColorButton;
   @FXML private SplitMenuButton pensButton;
-  @FXML private MenuItem eraserButton, penButton, markerButton, blurButton, paintBrushButton, fountainPenButton, rainbowPenButton;
+  @FXML private Button eraserButton;
+  @FXML private MenuItem penButton, markerButton, blurButton, paintBrushButton, fountainPenButton, rainbowPenButton;
   @FXML private Button rectangleButton;
   @FXML private Button insertPicture, removeRedEyeButton;
   @FXML private Button textFieldButton;
@@ -68,9 +69,9 @@ public class DrawtasticController {
     opacitySlider.visibleProperty().bind(toolManager.opacitySliderProperty());
     opacityLabel.visibleProperty().bind(toolManager.opacityLabelProperty());
     colorPicker.valueProperty().bindBidirectional(toolManager.colorProperty());
-    isBoldButton.selectedProperty().bind(textFormating.getBoldProperty());
-    isItalicButton.selectedProperty().bind(textFormating.getItalicProperty());
-    isUnderlineButton.selectedProperty().bind(textFormating.getUnderlineProperty());
+    isBoldButton.selectedProperty().bindBidirectional(textFormating.getBoldProperty());
+    isItalicButton.selectedProperty().bindBidirectional(textFormating.getItalicProperty());
+    isUnderlineButton.selectedProperty().bindBidirectional(textFormating.getUnderlineProperty());
   }
 
   private void initListeners() {
