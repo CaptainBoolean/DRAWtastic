@@ -1,7 +1,6 @@
 package org.example.paint.controller;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
@@ -15,6 +14,8 @@ import org.example.paint.tools.pens.*;
 import org.example.paint.tools.picture.PictureInsert;
 import org.example.paint.tools.picture.RemoveRedEye;
 import org.example.paint.tools.shapes.Rectangle;
+import org.example.paint.tools.textField.TextFormating;
+import org.example.paint.tools.textField.Textfield;
 
 
 public class DrawtasticController {
@@ -31,13 +32,17 @@ public class DrawtasticController {
   @FXML private MenuItem eraserButton, penButton, markerButton, blurButton, paintBrushButton, fountainPenButton, rainbowPenButton;
   @FXML private Button rectangleButton;
   @FXML private Button insertPicture, removeRedEyeButton;
+  @FXML private Button textFieldButton;
+  @FXML private ToggleButton isBoldButton, isItalicButton, isUnderlineButton;
 
   private ToolManager toolManager;
   private Background background;
+  private TextFormating textFormating;
 
   public void initialize() {
     toolManager = new ToolManager(canvas, overlayCanvas);
     background = new Background(canvas);
+    textFormating = new TextFormating();
     initBinds();
     colorPicker.setValue(Color.BLACK);
     toolManager.changeTool(new RoundPen());
@@ -63,12 +68,16 @@ public class DrawtasticController {
     opacitySlider.visibleProperty().bind(toolManager.opacitySliderProperty());
     opacityLabel.visibleProperty().bind(toolManager.opacityLabelProperty());
     colorPicker.valueProperty().bindBidirectional(toolManager.colorProperty());
+    isBoldButton.selectedProperty().bind(textFormating.getBoldProperty());
+    isItalicButton.selectedProperty().bind(textFormating.getItalicProperty());
+    isUnderlineButton.selectedProperty().bind(textFormating.getUnderlineProperty());
   }
 
   private void initListeners() {
     opacitySlider.valueProperty().addListener((observable, oldValue, newValue) -> updateSliderColor());
     colorPicker.valueProperty().addListener((observable, oldValue, newValue) -> updateSliderColor());
     backgroundColorPicker.valueProperty().addListener((observable, oldValue, newValue) -> Background.changeBackground(newValue));
+
   }
 
   private void updateSliderColor() {
@@ -100,17 +109,13 @@ public class DrawtasticController {
     rectangleButton.setOnAction(e -> {toolManager.changeTool(new Rectangle());});
     insertPicture.setOnAction(e -> toolManager.changeTool(new PictureInsert()));
     pipetteButton.setOnAction(e -> {toolManager.changeTool(new Pipette());});
-    transparentBackgroundButton.setOnAction(e -> {
-      Background.transparentBackground();});
+    transparentBackgroundButton.setOnAction(e -> {Background.transparentBackground();});
     deleteColorButton.setOnAction(e -> {toolManager.changeTool(new DeleteColor());});
     removeRedEyeButton.setOnAction(e -> toolManager.changeTool(new RemoveRedEye()));
     pensButton.setOnAction(e -> {toolManager.changeTool(new RoundPen());});
+    textFieldButton.setOnAction(e -> {toolManager.changeTool(new Textfield());});
   }
 
-
-  public void handlePenTool(ActionEvent actionEvent) {
-
-  }
 }
 
 

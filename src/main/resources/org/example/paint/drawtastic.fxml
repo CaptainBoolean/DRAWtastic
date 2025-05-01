@@ -6,7 +6,7 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.paint.controller.DrawtasticController"
-            prefHeight="600.0" prefWidth="600.0">
+            prefHeight="800.0" prefWidth="800.0">
 
   <top>
     <VBox>
@@ -23,10 +23,11 @@
             <TextField fx:id="brushSize" text="6" prefWidth="40" />
 
             <ColorPicker fx:id="colorPicker" />
+            <Button fx:id="pipetteButton" text="Pipette" />
 
             <SplitMenuButton  fx:id="pensButton" text="Pens" >
 <!--              <graphic>-->
-<!--                <ImageView image = "@/org/example/buttonIcons/chookity.jpg" />-->
+<!--                <ImageView image = "@org/example/buttonIcons/chookity.jpg" />-->
 <!--              </graphic>-->
               <items>
                 <MenuItem fx:id="penButton" text="Pencil" />
@@ -41,8 +42,8 @@
 
 
 
-            <Button fx:id="transparentBackgroundButton" text="Make Background transparent" />
-            <Button fx:id="selectAndMoveButton" text="Select and sove" />
+
+            <Button fx:id="selectAndMoveButton" text="Select and move" />
             <Button fx:id="connectedSelectAndMoveButton" text="Connected select and move" />
 
 
@@ -50,9 +51,9 @@
 
 
 
-            <Button fx:id="pipetteButton" text="Pipette" />
+
             <Button fx:id="deleteColorButton" text="Delete Color Pipette" />
-            <Button fx:id="removeRedEyeButton" text="Remove red eyes" />
+
             <VBox spacing="10" alignment="CENTER">
                   <Label fx:id="opacityLabel" text="Opacity" />
                   <Slider fx:id="opacitySlider" max="1.0" value="1" />
@@ -63,11 +64,24 @@
           <HBox spacing="10" alignment="CENTER_LEFT">
             <Label text="Background color:" />
             <ColorPicker fx:id="backgroundColorPicker" />
-
+            <Button fx:id="transparentBackgroundButton" text="Make Background transparent" />
             <Button text="Line Tool" />
             <Button fx:id="rectangleButton" text="Rectangle" />
             <Button text="Circle Tool" />
             <Button fx:id="insertPicture" text="Picture" />
+            <Button fx:id="removeRedEyeButton" text="Remove red eyes" />
+
+
+            <Button fx:id="textFieldButton" text="Textfield" />
+
+
+
+          </HBox>
+
+          <HBox>
+            <ToggleButton fx:id="isBoldButton" text="Bold" />
+            <ToggleButton fx:id="isItalicButton" text="Italic" />
+            <ToggleButton fx:id="isUnderlineButton" text="Underline" />
           </HBox>
         </VBox>
       </ToolBar>
