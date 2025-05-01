@@ -10,6 +10,7 @@ import org.example.paint.controller.DrawtasticController;
 public class SelectAndMove implements Tool {
 
   //TODO fix occurring blurriness
+  //TODO fix problem when marking out of canvas
 
   private enum Mode {IDLE, SELECTING, MOVING}
   private Mode mode = Mode.IDLE;
