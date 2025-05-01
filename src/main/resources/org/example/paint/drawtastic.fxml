@@ -42,6 +42,10 @@
             <Button text="Line Tool" />
             <Button fx:id="rectangleButton" text="Rectangle" />
             <Button text="Circle Tool" />
+            <Button fx:id="textButton" text="Text" />
+            <Button fx:id="boldButton" text="Bold/Undo" />
+            <Button fx:id="italicButton" text="Italic/Undo" />
+            <Button fx:id="underlineButton" text="Underline/Undo" />
             <Button fx:id="loadPicture" text="Picture" />
           </HBox>
         </VBox>

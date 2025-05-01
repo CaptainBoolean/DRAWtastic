@@ -1,5 +1,17 @@
 package org.example.paint.tools.TextField;
 
-public enum TextColor {
-    BLACK, RED, GREEN, BLUE, YELLOW, ORANGE, PURPLE, WHITE
+import javafx.scene.paint.Color;
+
+public class TextColor {
+    private Color color;
+
+    public TextColor(Color color) {
+        this.color = color;
+    }
+    public Color getColor() {
+        return color;
+    }
+    public void setColor(Color color) {
+        this.color = color;
+    }
 }

@@ -1,5 +1,15 @@
 package org.example.paint.tools.TextField;
 
-public enum TextSize {
-    SMALL, MEDIUM, LARGE
+public class TextSize {
+    int size; //default
+
+    public TextSize(int size) {
+        this.size = size;
+    }
+    public int getSize() {
+        return size;
+    }
+    public void setSize(int size) {
+        this.size = size;
+    }
 }

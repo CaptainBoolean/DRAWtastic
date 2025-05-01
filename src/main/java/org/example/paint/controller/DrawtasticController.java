@@ -10,6 +10,7 @@ import org.example.paint.graphics.picture.PictureEditor;
 import org.example.paint.tools.ConnectedSelectAndMove;
 import org.example.paint.tools.SelectAndMove;
 import org.example.paint.tools.Shapes.Rectangle;
+import org.example.paint.tools.TextField.Textfield;
 import org.example.paint.tools.pens.*;
 
 
@@ -24,6 +25,10 @@ public class DrawtasticController {
   @FXML private Button eraserButton, penButton, markerButton, blurButton, paintBrushButton, fountainPenButton, rainbowPenButton;
   @FXML private Button rectangleButton;
   @FXML private Button loadPicture;
+  @FXML private Button textButton;
+  @FXML private Button boldButton;
+  @FXML private Button italicButton;
+  @FXML private Button underlineButton;
 
   private ToolManager toolManager;
 
@@ -91,10 +96,15 @@ public class DrawtasticController {
     rainbowPenButton.setOnAction(e -> {toolManager.changeTool(new RainbowPen());});
     rectangleButton.setOnAction(e -> {toolManager.changeTool(new Rectangle());});
     loadPicture.setOnAction(e -> PictureEditor.loadImage(canvas));
+
+    //all about textfield here
+    Textfield textTool = new Textfield();
+    textButton.setOnAction(e -> toolManager.changeTool(textTool));
+
+    boldButton.setOnAction(e -> textTool.setBold(!textTool.bold.isToggledOn())); // Toggle bold
+    italicButton.setOnAction(e -> textTool.setItalic(!textTool.italic.isToggledOn())); // Toggle italic
+    underlineButton.setOnAction(e -> textTool.setUnderline(!textTool.underline.isToggledOn()));
   }
-
-
-
 }
 
 
