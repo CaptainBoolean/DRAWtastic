@@ -11,6 +11,7 @@ import org.example.paint.tools.generalTools.ConnectedSelectAndMove;
 import org.example.paint.tools.generalTools.DeleteColor;
 import org.example.paint.tools.generalTools.Pipette;
 import org.example.paint.tools.generalTools.SelectAndMove;
+import org.example.paint.tools.pens.*;
 import org.example.paint.tools.picture.PictureInsert;
 import org.example.paint.tools.picture.RemoveRedEye;
 import org.example.paint.tools.shapes.Rectangle;

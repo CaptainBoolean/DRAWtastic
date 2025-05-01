@@ -2,7 +2,6 @@
 
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -26,9 +25,9 @@
             <ColorPicker fx:id="colorPicker" />
 
             <SplitMenuButton  fx:id="pensButton" text="Pens" >
-              <graphic>
-                <ImageView image = "@/org/example/buttonIcons/chookity.jpg" />
-              </graphic>
+<!--              <graphic>-->
+<!--                <ImageView image = "@/org/example/buttonIcons/chookity.jpg" />-->
+<!--              </graphic>-->
               <items>
                 <MenuItem fx:id="penButton" text="Pencil" />
                 <MenuItem fx:id="markerButton" text="Marker" />
