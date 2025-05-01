@@ -5,6 +5,7 @@ module org.example.multimediagroupproject {
     requires com.dlsc.formsfx;
   requires java.desktop;
   requires javafx.swing;
+  requires javafx.graphics;
 
   opens org.example.paint to javafx.fxml;
     exports org.example.paint;
