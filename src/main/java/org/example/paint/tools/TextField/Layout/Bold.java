@@ -12,4 +12,13 @@ public class Bold implements Layout {
         //turn off by javafx
         state.toggle = false;
     }
+
+    @Override
+    public boolean isToggledOn() {
+        return state.toggle;
+    }
+
+    public void setToggled(boolean toggle) {
+        state.toggle = toggle;
+    }
 }
