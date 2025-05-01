@@ -1,11 +1,12 @@
-package org.example.paint.tools;
+package org.example.paint.tools.GeneralTools;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import org.example.paint.controller.DrawtasticController;
+import org.example.paint.controller.Background;
+import org.example.paint.tools.Tool;
 
 public class SelectAndMove implements Tool {
 
@@ -44,8 +45,13 @@ public class SelectAndMove implements Tool {
         for (int i = 0; i < cutWidth; i++)
           for (int j = 0; j < cutHeight; j++) {
             Color color = movedImage.getPixelReader().getColor(i, j);
-            Color background = DrawtasticController.getBackgroundColor();
-            pw.setColor(i, j, color.equals(background) ? Color.TRANSPARENT : color);
+            Color background = Background.getBackgroundColor();
+            if (color.equals(background)) {
+              color =Color.TRANSPARENT;
+            } else if (background.equals(Color.TRANSPARENT) || color.equals(Color.WHITE)) {
+              color =Color.TRANSPARENT;
+            }
+            pw.setColor(i, j, color);
           }
         g.clearRect(cutX, cutY, cutWidth, cutHeight);
         mode = Mode.MOVING;

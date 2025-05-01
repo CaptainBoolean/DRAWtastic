@@ -1,4 +1,4 @@
-package org.example.paint.tools.pens;
+package org.example.paint.tools.Pens;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;

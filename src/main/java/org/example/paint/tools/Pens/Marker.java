@@ -1,9 +1,9 @@
-package org.example.paint.tools.pens;
+package org.example.paint.tools.Pens;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class RoundPen extends Pen{
+public class Marker extends Pen {
 
   @Override
   protected void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity) {
@@ -16,5 +16,6 @@ public class RoundPen extends Pen{
     og.setLineWidth(1);
     og.strokeOval(x - size / 2, y - size / 2, size, size);
   }
+
 
 }

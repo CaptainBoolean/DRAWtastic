@@ -6,33 +6,39 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.util.converter.NumberStringConverter;
-import org.example.paint.graphics.picture.PictureEditor;
-import org.example.paint.tools.ConnectedSelectAndMove;
-import org.example.paint.tools.SelectAndMove;
+import org.example.paint.tools.GeneralTools.ConnectedSelectAndMove;
+import org.example.paint.tools.GeneralTools.DeleteColor;
+import org.example.paint.tools.GeneralTools.Pipette;
+import org.example.paint.tools.GeneralTools.SelectAndMove;
+import org.example.paint.tools.Pens.*;
+import org.example.paint.tools.Picture.PictureInsert;
+import org.example.paint.tools.Picture.RemoveRedEye;
 import org.example.paint.tools.Shapes.Rectangle;
-import org.example.paint.tools.pens.*;
 
 
 public class DrawtasticController {
 
   @FXML private Canvas canvas, overlayCanvas;
   @FXML private ColorPicker colorPicker;
+  @FXML private ColorPicker backgroundColorPicker;
   @FXML private TextField brushSize;
   @FXML private Label opacityLabel;
   @FXML private Slider opacitySlider;
-  @FXML private Button selectAndMoveButton, connectedSelectAndMoveButton;
+  @FXML private Button selectAndMoveButton, connectedSelectAndMoveButton, pipetteButton, transparentBackgroundButton, deleteColorButton;
   @FXML private Button eraserButton, penButton, markerButton, blurButton, paintBrushButton, fountainPenButton, rainbowPenButton;
   @FXML private Button rectangleButton;
-  @FXML private Button loadPicture;
+  @FXML private Button loadPicture, removeRedEyeButton;
 
   private ToolManager toolManager;
+  private Background background;
 
   public void initialize() {
     toolManager = new ToolManager(canvas, overlayCanvas);
+    background = new Background(canvas);
     initBinds();
     colorPicker.setValue(Color.BLACK);
     toolManager.changeTool(new RoundPen());
-    initOpacitySliderListeners();
+    initListeners();
 
     canvas.setOnMouseEntered(e ->{toolManager.onEnter(e);});
     canvas.setOnMouseMoved(e -> {toolManager.onMove(e);});
@@ -55,9 +61,10 @@ public class DrawtasticController {
     colorPicker.valueProperty().bindBidirectional(toolManager.colorProperty());
   }
 
-  private void initOpacitySliderListeners() {
+  private void initListeners() {
     opacitySlider.valueProperty().addListener((observable, oldValue, newValue) -> updateSliderColor());
     colorPicker.valueProperty().addListener((observable, oldValue, newValue) -> updateSliderColor());
+    backgroundColorPicker.valueProperty().addListener((observable, oldValue, newValue) -> Background.changeBackground(newValue));
   }
 
   private void updateSliderColor() {
@@ -74,10 +81,7 @@ public class DrawtasticController {
             Math.min(colorWithOpacity.getOpacity()*1.2, 1) + ");"); //TODO match with implemented curve
   }
 
-  public static Color getBackgroundColor() {
-    //TODO implement background (leave getter as it is!!!!!!! already implemented)
-    return Color.WHITE;
-  }
+
 
   private void initButtons() {
     selectAndMoveButton.setOnAction(e -> {toolManager.changeTool(new SelectAndMove());});
@@ -90,7 +94,11 @@ public class DrawtasticController {
     paintBrushButton.setOnAction(e -> {toolManager.changeTool(new PaintBrush());});
     rainbowPenButton.setOnAction(e -> {toolManager.changeTool(new RainbowPen());});
     rectangleButton.setOnAction(e -> {toolManager.changeTool(new Rectangle());});
-    loadPicture.setOnAction(e -> PictureEditor.loadImage(canvas));
+    loadPicture.setOnAction(e -> toolManager.changeTool(new PictureInsert()));
+    pipetteButton.setOnAction(e -> {toolManager.changeTool(new Pipette());});
+    transparentBackgroundButton.setOnAction(e -> {Background.transparentBackground();});
+    deleteColorButton.setOnAction(e -> {toolManager.changeTool(new DeleteColor());});
+    removeRedEyeButton.setOnAction(e -> toolManager.changeTool(new RemoveRedEye()));
   }
 
 

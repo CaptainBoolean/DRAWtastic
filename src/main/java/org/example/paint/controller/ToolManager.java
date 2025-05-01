@@ -5,8 +5,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import org.example.paint.tools.GeneralTools.Pipette;
+import org.example.paint.tools.Pens.*;
 import org.example.paint.tools.Tool;
-import org.example.paint.tools.pens.*;
 
 public class ToolManager {
   private Tool currentTool;
@@ -35,6 +36,7 @@ public class ToolManager {
     checkIfMarker(newTool);
     checkOpacitySliderDisplay(newTool);
     newTool = checkEraserSwitch(newTool);
+    newTool = checkPipette(newTool);
 
     currentTool = newTool;
   }
@@ -65,6 +67,13 @@ public class ToolManager {
       return new RoundEraser();
     } else if (newTool instanceof RoundEraser) {
       return new SquareEraser();
+    }
+    return newTool;
+  }
+
+  private Tool checkPipette(Tool newTool) {
+    if (newTool instanceof Pipette) {
+      return new Pipette(color);
     }
     return newTool;
   }

@@ -22,8 +22,10 @@
           <HBox spacing="10" alignment="CENTER">
             <TextField fx:id="brushSize" text="6" prefWidth="40" />
             <ColorPicker fx:id="colorPicker" />
+            <ColorPicker fx:id="backgroundColorPicker" />
+            <Button fx:id="transparentBackgroundButton" text="Make Background transparent" />
             <Button fx:id="selectAndMoveButton" text="Select and sove" />
-            <Button fx:id="connectedSelectAndMoveButton" text="Connected select and sove" />
+            <Button fx:id="connectedSelectAndMoveButton" text="Connected select and move" />
             <Button fx:id="penButton" text="Pencil" />
             <Button fx:id="eraserButton" text="Eraser" />
             <Button fx:id="markerButton" text="Marker" />
@@ -31,6 +33,9 @@
             <Button fx:id="paintBrushButton" text="Pain Brush" />
             <Button fx:id="fountainPenButton" text="Fountain Pen" />
             <Button fx:id="rainbowPenButton" text="Rainbow Pen" />
+            <Button fx:id="pipetteButton" text="Pipette" />
+            <Button fx:id="deleteColorButton" text="Delete Color Pipette" />
+            <Button fx:id="removeRedEyeButton" text="Remove red eyes" />
             <VBox spacing="10" alignment="CENTER">
                   <Label fx:id="opacityLabel" text="Opacity" />
                   <Slider fx:id="opacitySlider" max="1.0" value="1" />
