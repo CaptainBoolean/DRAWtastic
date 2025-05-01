@@ -69,9 +69,7 @@ public class Textfield implements Tool {
 
     @Override
     public void onDrag(GraphicsContext g, MouseEvent e, double size, Color color, double opacity) {
-        // Clear the previous preview
-        g.clearRect(0, 0, g.getCanvas().getWidth(), g.getCanvas().getHeight());
-        drawPreviewAt(g, e, size);
+        //not necessary
     }
 
     @Override
@@ -91,14 +89,6 @@ public class Textfield implements Tool {
 
     @Override
     public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
-        // Set the font and color for the preview
-        og.setFill(textColor.getColor());
-        og.setFont(Font.font(font.getName(),
-                bold.isToggledOn() ? FontWeight.BOLD : FontWeight.NORMAL,
-                italic.isToggledOn() ? FontPosture.ITALIC : FontPosture.REGULAR,
-                textSize.getSize()));
-
-        // Draw the preview text at the current mouse position
-        og.fillText(text, e.getX(), e.getY());
+        //not necessary
     }
 }
