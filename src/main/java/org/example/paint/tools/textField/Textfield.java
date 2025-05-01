@@ -1,4 +1,4 @@
-package org.example.paint.tools.TextField;
+package org.example.paint.tools.textField;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TextInputDialog;
@@ -7,16 +7,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
-import org.example.paint.tools.TextField.Layout.Bold;
-import org.example.paint.tools.TextField.Layout.Italic;
-import org.example.paint.tools.TextField.Layout.Underline;
 import org.example.paint.tools.Tool;
+import org.example.paint.tools.textField.layout.Bold;
+import org.example.paint.tools.textField.layout.Italic;
+import org.example.paint.tools.textField.layout.Underline;
 
 public class Textfield implements Tool {
     private String text = "click to write";
     private TextColor textColor = new TextColor(Color.BLACK);
     private TextSize textSize = new TextSize(12);
-    private MyFont font = new MyFont(); // Assuming MyFont is defined elsewhere
+    private org.example.paint.tools.TextField.MyFont font = new org.example.paint.tools.TextField.MyFont(); // Assuming MyFont is defined elsewhere
     public Bold bold = new Bold();
     public Italic italic = new Italic();
     public Underline underline = new Underline();
