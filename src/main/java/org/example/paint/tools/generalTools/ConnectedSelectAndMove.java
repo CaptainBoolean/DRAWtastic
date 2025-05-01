@@ -1,4 +1,4 @@
-package org.example.paint.tools;
+package org.example.paint.tools.generalTools;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -6,7 +6,8 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import org.example.paint.controller.DrawtasticController;
+import org.example.paint.controller.Background;
+import org.example.paint.tools.Tool;
 
 import java.util.ArrayDeque;
 import java.util.LinkedList;
@@ -28,7 +29,7 @@ public class ConnectedSelectAndMove implements Tool {
     Image image = g.getCanvas().snapshot(null, null);
     PixelReader reader = image.getPixelReader();
     int selectX = (int) e.getX(), selectY = (int) e.getY();
-    if (reader.getColor(selectX, selectY) == DrawtasticController.getBackgroundColor()) {
+    if (reader.getColor(selectX, selectY) == Background.getBackgroundColor()) {
       return;
     }
 

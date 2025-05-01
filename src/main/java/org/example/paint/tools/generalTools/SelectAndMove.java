@@ -1,15 +1,18 @@
-package org.example.paint.tools;
+package org.example.paint.tools.generalTools;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import org.example.paint.controller.DrawtasticController;
+import org.example.paint.controller.Background;
+import org.example.paint.tools.Tool;
 
 public class SelectAndMove implements Tool {
 
   //TODO fix occurring blurriness
+  //TODO fix problem when marking out of canvas
+  //TODO implement no copy if totally background
 
   private enum Mode {IDLE, SELECTING, MOVING}
   private Mode mode = Mode.IDLE;
@@ -40,11 +43,17 @@ public class SelectAndMove implements Tool {
                 (int)cutX, (int)cutY,
                 (int)cutWidth, (int)cutHeight);
         PixelWriter pw = movedImage.getPixelWriter();
+
         for (int i = 0; i < cutWidth; i++)
           for (int j = 0; j < cutHeight; j++) {
             Color color = movedImage.getPixelReader().getColor(i, j);
-            Color background = DrawtasticController.getBackgroundColor();
-            pw.setColor(i, j, color.equals(background) ? Color.TRANSPARENT : color);
+            Color background = Background.getBackgroundColor();
+            if (color.equals(background)) {
+              color =Color.TRANSPARENT;
+            } else if (background.equals(Color.TRANSPARENT) || color.equals(Color.WHITE)) {
+              color =Color.TRANSPARENT;
+            }
+            pw.setColor(i, j, color);
           }
         g.clearRect(cutX, cutY, cutWidth, cutHeight);
         mode = Mode.MOVING;

@@ -1,15 +1,15 @@
-package org.example.paint.tools.TextField.Layout;
+package org.example.paint.tools.textField.layout;
 
-public class Bold implements Layout {
+public class Italic implements Layout {
     @Override
     public void toggleOn() {
-        //turn on by javafx
+        //turn on by java fx
         state.toggle = true;
     }
 
     @Override
     public void toggleOff() {
-        //turn off by javafx
+        //turn off by java fx
         state.toggle = false;
     }
 

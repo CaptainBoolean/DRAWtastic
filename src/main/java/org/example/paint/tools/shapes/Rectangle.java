@@ -1,4 +1,4 @@
-package org.example.paint.tools.Shapes;
+package org.example.paint.tools.shapes;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;

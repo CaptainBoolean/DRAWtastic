@@ -1,15 +1,28 @@
-package org.example.paint.graphics.picture;
+package org.example.paint.tools.picture;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import org.example.paint.tools.Tool;
 
 import java.io.File;
 
-public class PictureEditor {
+public class PictureInsert implements Tool {
 
-    public static void loadImage(Canvas canvas) {
+    //TODO implement a preview with dragging (just an outline - see select and move for inspo)
+    //TODO resize the picture with downscaling and insert in correct format after drag (maybe take y axis from mouse and set x so it is not distorted)
+
+    @Override
+    public void onDrag(GraphicsContext g, MouseEvent e, double size, Color color, double opacity) {
+
+    }
+
+    @Override
+    public void onRelease(GraphicsContext g, MouseEvent e, double size) {
+        Canvas canvas = g.getCanvas();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Bild auswählen");
         fileChooser.getExtensionFilters().addAll(
@@ -35,4 +48,8 @@ public class PictureEditor {
         }
     }
 
+    @Override
+    public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
+
+    }
 }

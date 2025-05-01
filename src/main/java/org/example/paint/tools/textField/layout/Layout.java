@@ -1,4 +1,4 @@
-package org.example.paint.tools.TextField.Layout;
+package org.example.paint.tools.textField.layout;
 
 public interface Layout {
     public State state = new State();

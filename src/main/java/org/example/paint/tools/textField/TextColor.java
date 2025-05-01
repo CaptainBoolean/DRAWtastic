@@ -1,4 +1,4 @@
-package org.example.paint.tools.TextField;
+package org.example.paint.tools.textField;
 
 import javafx.scene.paint.Color;
 
