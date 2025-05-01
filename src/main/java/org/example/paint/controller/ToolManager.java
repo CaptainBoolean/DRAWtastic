@@ -5,9 +5,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import org.example.paint.tools.GeneralTools.Pipette;
-import org.example.paint.tools.Pens.*;
 import org.example.paint.tools.Tool;
+import org.example.paint.tools.generalTools.Pipette;
+import org.example.paint.tools.pens.*;
 
 public class ToolManager {
   private Tool currentTool;

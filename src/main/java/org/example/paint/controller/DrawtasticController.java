@@ -6,14 +6,14 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.util.converter.NumberStringConverter;
-import org.example.paint.tools.GeneralTools.ConnectedSelectAndMove;
-import org.example.paint.tools.GeneralTools.DeleteColor;
-import org.example.paint.tools.GeneralTools.Pipette;
-import org.example.paint.tools.GeneralTools.SelectAndMove;
-import org.example.paint.tools.Pens.*;
-import org.example.paint.tools.Picture.PictureInsert;
-import org.example.paint.tools.Picture.RemoveRedEye;
-import org.example.paint.tools.Shapes.Rectangle;
+import org.example.paint.tools.generalTools.ConnectedSelectAndMove;
+import org.example.paint.tools.generalTools.DeleteColor;
+import org.example.paint.tools.generalTools.Pipette;
+import org.example.paint.tools.generalTools.SelectAndMove;
+import org.example.paint.tools.pens.*;
+import org.example.paint.tools.picture.PictureInsert;
+import org.example.paint.tools.picture.RemoveRedEye;
+import org.example.paint.tools.shapes.Rectangle;
 
 
 public class DrawtasticController {
@@ -27,7 +27,7 @@ public class DrawtasticController {
   @FXML private Button selectAndMoveButton, connectedSelectAndMoveButton, pipetteButton, transparentBackgroundButton, deleteColorButton;
   @FXML private Button eraserButton, penButton, markerButton, blurButton, paintBrushButton, fountainPenButton, rainbowPenButton;
   @FXML private Button rectangleButton;
-  @FXML private Button loadPicture, removeRedEyeButton;
+  @FXML private Button insertPicture, removeRedEyeButton;
 
   private ToolManager toolManager;
   private Background background;
@@ -49,7 +49,8 @@ public class DrawtasticController {
     initButtons();
   }
 
-  public void onSave() {FileService.save(canvas);}
+  public void onSave() {
+    FileService.save(canvas);}
 
   public void onExit() {Platform.exit();}
 
@@ -94,9 +95,10 @@ public class DrawtasticController {
     paintBrushButton.setOnAction(e -> {toolManager.changeTool(new PaintBrush());});
     rainbowPenButton.setOnAction(e -> {toolManager.changeTool(new RainbowPen());});
     rectangleButton.setOnAction(e -> {toolManager.changeTool(new Rectangle());});
-    loadPicture.setOnAction(e -> toolManager.changeTool(new PictureInsert()));
+    insertPicture.setOnAction(e -> toolManager.changeTool(new PictureInsert()));
     pipetteButton.setOnAction(e -> {toolManager.changeTool(new Pipette());});
-    transparentBackgroundButton.setOnAction(e -> {Background.transparentBackground();});
+    transparentBackgroundButton.setOnAction(e -> {
+      Background.transparentBackground();});
     deleteColorButton.setOnAction(e -> {toolManager.changeTool(new DeleteColor());});
     removeRedEyeButton.setOnAction(e -> toolManager.changeTool(new RemoveRedEye()));
   }
