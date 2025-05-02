@@ -32,26 +32,27 @@ public class Textfield implements Tool {
         this.textSize = textSize;
     }
 
+    //TODO: make promptForText work like it should
 
     private String promptForText() {
-        TextInputDialog dialog = new TextInputDialog(text);
-        dialog.setTitle("Input Text");
-        dialog.setHeaderText("Enter the text to display:");
-        dialog.setContentText("Text:");
+        // Create an instance of the custom dialog with the default text
+        CustomDialog dialog = new CustomDialog(text);
 
+        // Show the dialog and wait for the user response
         Optional<String> result = dialog.showAndWait();
-        return result.orElse(text); // Return the input or default text
-        /*TODO: use the custom dialog window
-        Input Text -+
-        ----------
-        Enter the text to display:
-        ----------
-        Text: (text can be entered here)
-        Size: (text size can be changed here)
-        Font: (let choose between different fonts)
-        Color: (let choose between different colors)
-         */
+
+        // If the user pressed OK, set the selected color, font, and size
+        if (result.isPresent()) {
+            // Set the selected color, font, and size
+            textColor = new TextColor(dialog.getSelectedColor());
+            font.setName(dialog.getSelectedFont());
+            textSize.setSize((int) dialog.getSelectedSize());
+            return result.get(); // Return the input text
+        }
+
+        return text; // Return default text if canceled
     }
+
 
     @Override
     public void onRelease(GraphicsContext g, MouseEvent e, double size) {
