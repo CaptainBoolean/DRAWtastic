@@ -14,7 +14,7 @@ public class Textfield implements Tool {
     private String text = "click to write";
     private TextColor textColor = new TextColor(Color.BLACK);
     private TextSize textSize = new TextSize(12);
-    private org.example.paint.tools.TextField.MyFont font = new org.example.paint.tools.TextField.MyFont(); // Assuming MyFont is defined elsewhere
+    private org.example.paint.tools.textField.MyFont font = new org.example.paint.tools.textField.MyFont(); // Assuming MyFont is defined elsewhere
 
 
     public void setString(String text) {
