@@ -34,6 +34,9 @@ public class CustomDialog extends Dialog<String> {
                 "Georgia", "Courier New", "Comic Sans MS", "Impact"
         );
 
+        // Set a default font selection
+        fontComboBox.setValue("Arial"); // Set default font
+
         // Create a grid pane to layout the controls
         GridPane grid = new GridPane();
         grid.setHgap(10);
