@@ -41,6 +41,16 @@ public class Textfield implements Tool {
 
         Optional<String> result = dialog.showAndWait();
         return result.orElse(text); // Return the input or default text
+        /*TODO: use the custom dialog window
+        Input Text -+
+        ----------
+        Enter the text to display:
+        ----------
+        Text: (text can be entered here)
+        Size: (text size can be changed here)
+        Font: (let choose between different fonts)
+        Color: (let choose between different colors)
+         */
     }
 
     @Override
