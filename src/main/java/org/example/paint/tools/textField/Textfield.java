@@ -55,7 +55,6 @@ public class Textfield implements Tool {
                 TextFormating.isBold() ? FontWeight.BOLD : FontWeight.NORMAL,
                 TextFormating.isItalic() ? FontPosture.ITALIC : FontPosture.REGULAR,
                 textSize.getSize()));
-        //g.fillText(text, e.getX(), e.getY());
 
         // Get the position to draw the text
         double x = e.getX();
@@ -64,18 +63,17 @@ public class Textfield implements Tool {
         // Draw the text
         g.fillText(text, x, y);
 
-        // Calculate the width of the text to draw the underline
-        Text textNode = new Text(text);
-        textNode.setFont(g.getFont());
-        double textWidth = textNode.getLayoutBounds().getWidth();
+        if (TextFormating.isUnderline()) {
+            // Calculating the width of the text to draw the underline
+            Text textNode = new Text(text);
+            textNode.setFont(g.getFont());
+            double textWidth = textNode.getLayoutBounds().getWidth();
 
-        // Draw the underline
-        double underlineY = y + 2; // Adjust this value to position the underline correctly
-        g.setStroke(textColor.getColor()); // Set the stroke color to match the text color
-        g.setLineWidth(1); // Set the line width for the underline
-        g.strokeLine(x, underlineY, x + textWidth, underlineY); // Draw the underline
+            // Draw the underline
+            double underlineY = y + 2; // Adjust this value to position the underline correctly
+            g.setStroke(textColor.getColor()); // Set the stroke color to match the text color
+            g.setLineWidth(1); // Set the line width for the underline
+            g.strokeLine(x, underlineY, x + textWidth, underlineY); // Draw the underline
+        }
     }
-
-
-
 }
