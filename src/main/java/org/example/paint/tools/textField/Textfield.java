@@ -24,14 +24,6 @@ public class Textfield implements Tool {
         this.text = text;
     }
 
-    public void setTextColor(TextColor textColor) {
-        this.textColor = textColor;
-    }
-
-    public void setTextSize(TextSize textSize) {
-        this.textSize = textSize;
-    }
-
     //TODO: make promptForText work like it should
 
     private String promptForText() {
