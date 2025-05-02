@@ -1,7 +1,7 @@
 package org.example.paint.tools.textField;
 
 public class TextSize {
-    int size; //default
+    private int size; //default
 
     public TextSize(int size) {
         this.size = size;
