@@ -30,9 +30,8 @@ public class CustomDialog extends Dialog<String> {
 
         // Populate font options
         fontComboBox.getItems().addAll(
-                "Arial", "Verdana", "Times New Roman", "Courier New",
-                "Georgia", "Comic Sans MS", "Impact", "Tahoma",
-                "Trebuchet MS", "Lucida Console"
+                "Arial", "Times New Roman", "Verdana",
+                "Georgia", "Courier New", "Comic Sans MS", "Impact"
         );
 
         // Create a grid pane to layout the controls

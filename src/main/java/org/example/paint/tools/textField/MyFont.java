@@ -1,13 +1,13 @@
 package org.example.paint.tools.textField;
 
 public class MyFont {
-    static final String ARIAL = "Arial";
-    static final String TIMES_NEW_ROMAN = "Times New Roman";
+    private static final String ARIAL = "Arial";
+    /*static final String TIMES_NEW_ROMAN = "Times New Roman";
     static final String VERDANA = "Verdana";
     static final String GEORGIA = "Georgia";
     static final String COURIER_NEW = "Courier New";
     static final String COMIC_SANS_MS = "Comic Sans MS";
-    static final String IMPACT = "Impact";
+    static final String IMPACT = "Impact";*/
 
     private String fontName;
 
