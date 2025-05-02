@@ -10,6 +10,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import org.example.paint.tools.Tool;
 
+import java.util.Optional;
+
 
 public class Textfield implements Tool {
     private String text = "click to write";
@@ -37,8 +39,8 @@ public class Textfield implements Tool {
         dialog.setHeaderText("Enter the text to display:");
         dialog.setContentText("Text:");
 
-        dialog.showAndWait();
-        return dialog.getResult(); // Return the input or default text
+        Optional<String> result = dialog.showAndWait();
+        return result.orElse(text); // Return the input or default text
     }
 
     @Override
