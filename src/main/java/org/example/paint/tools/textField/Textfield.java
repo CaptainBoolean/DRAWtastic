@@ -14,7 +14,7 @@ import java.util.Optional;
 
 
 public class Textfield implements Tool {
-    private String text = "";
+    private String text = "click to write";
     private TextColor textColor = new TextColor(Color.BLACK);
     private TextSize textSize = new TextSize(12);
     private org.example.paint.tools.textField.MyFont font = new org.example.paint.tools.textField.MyFont(); // Assuming MyFont is defined elsewhere
@@ -50,7 +50,7 @@ public class Textfield implements Tool {
             return result.get(); // Return the input text
         }
 
-        return text; // Return default text if canceled
+        return ""; // Return default text if canceled
     }
 
 
