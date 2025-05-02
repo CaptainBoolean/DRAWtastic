@@ -17,7 +17,7 @@ public class Textfield implements Tool {
     private String text = "click to write";
     private TextColor textColor = new TextColor(Color.BLACK);
     private TextSize textSize = new TextSize(12);
-    private org.example.paint.tools.textField.MyFont font = new org.example.paint.tools.textField.MyFont(); // Assuming MyFont is defined elsewhere
+    private MyFont font = new MyFont();
 
 
     public void setString(String text) {
@@ -50,7 +50,7 @@ public class Textfield implements Tool {
             return result.get(); // Return the input text
         }
 
-        return ""; // Return default text if canceled
+        return ""; // Return an empty string if canceled
     }
 
 
