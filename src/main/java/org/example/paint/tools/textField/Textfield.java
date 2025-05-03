@@ -1,7 +1,6 @@
 package org.example.paint.tools.textField;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -14,69 +13,63 @@ import java.util.Optional;
 
 
 public class Textfield implements Tool {
-    private String text = "click to write";
+    private String text = "write here";
     private TextColor textColor = new TextColor(Color.BLACK);
     private TextSize textSize = new TextSize(12);
-    private MyFont font = new MyFont();
-
 
     public void setString(String text) {
         this.text = text;
     }
 
-    //TODO: make promptForText work like it should
-
+    //shows the dialog
     private String promptForText() {
-        // Create an instance of the custom dialog with the default text
+        //create the custom dialog
         CustomDialog dialog = new CustomDialog(text);
 
-        // Show the dialog and wait for the user response
+        //show and wait for user input
         Optional<String> result = dialog.showAndWait();
 
-        // If the user pressed OK, set the selected color, font, and size
-        if (result.isPresent()) {
-            // Set the selected color, font, and size
+        if (result.isPresent()) { //ok: setting selected string, color and size
             textColor = new TextColor(dialog.getSelectedColor());
-            font.setName(dialog.getSelectedFont());
             textSize.setSize((int) dialog.getSelectedSize());
-            return result.get(); // Return the input text
+            return result.get();
         }
 
-        return ""; // Return an empty string if canceled
+        return ""; //canceled: inserts empty string; no text visible
     }
 
 
     @Override
     public void onRelease(GraphicsContext g, MouseEvent e, double size) {
-        // Capture user input
+        //capturing user input
         String userInput = promptForText();
-        setString(userInput); // Set the text to the input
+        setString(userInput); //set text to the input
 
-        // Draw the finalized text at the mouse release position
+        //draw text there where mouse click happened
         g.setFill(textColor.getColor());
-        g.setFont(Font.font(font.getName(),
+        g.setFont(Font.font(Font.getDefault().getFamily(),
                 TextFormating.isBold() ? FontWeight.BOLD : FontWeight.NORMAL,
                 TextFormating.isItalic() ? FontPosture.ITALIC : FontPosture.REGULAR,
                 textSize.getSize()));
 
-        // Get the position to draw the text
+        //get position to place the text
         double x = e.getX();
         double y = e.getY();
 
-        // Draw the text
+        //draw the text there
         g.fillText(text, x, y);
 
-        if (TextFormating.isUnderline()) {
-            // Calculating the width of the text to draw the underline
+        if (TextFormating.isUnderline()) { //in case underline was clicked
+            //calculating width of the text
             Text textNode = new Text(text);
             textNode.setFont(g.getFont());
             double textWidth = textNode.getLayoutBounds().getWidth();
 
-            // Draw the underline
-            double underlineY = y + 2; // Adjust this value to position the underline correctly
-            g.setStroke(textColor.getColor()); // Set the stroke color to match the text color
-            g.setLineWidth(1); // Set the line width for the underline
-            g.strokeLine(x, underlineY, x + textWidth, underlineY); // Draw the underline
+            //drawing the underline
+            double underlineY = y + 2; //value position adjusted
+            g.setStroke(textColor.getColor()); //stroke color is set
+            g.setLineWidth(1); //line width is chosen
+            g.strokeLine(x, underlineY, x + textWidth, underlineY); //draw the underline
         }
     }
 }

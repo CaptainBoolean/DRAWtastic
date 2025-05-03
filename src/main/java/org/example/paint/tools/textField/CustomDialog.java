@@ -10,8 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
-import java.util.Optional;
-
 public class CustomDialog extends Dialog<String> {
     private TextField textField;
     private TextField sizeField;
@@ -22,22 +20,18 @@ public class CustomDialog extends Dialog<String> {
         setTitle("Input Text");
         setHeaderText("Enter the text to display:");
 
-        // Create controls
+        //creating controls
         textField = new TextField(defaultText);
         sizeField = new TextField("12"); // Default size
         colorPicker = new ColorPicker(Color.BLACK);
         fontComboBox = new ComboBox<>();
 
-        // Populate font options
-        fontComboBox.getItems().addAll(
-                "Arial", "Times New Roman", "Verdana",
-                "Georgia", "Courier New", "Comic Sans MS", "Impact"
-        );
+        //only 1 font option
+        fontComboBox.getItems().add("System default");
+        //is the default value
+        fontComboBox.setValue("System default");
 
-        // Set a default font selection
-        fontComboBox.setValue("Arial"); // Set default font
-
-        // Create a grid pane to layout the controls
+        //grid layout
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
@@ -55,10 +49,10 @@ public class CustomDialog extends Dialog<String> {
         getDialogPane().setContent(dialogPane);
         getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
-        // Set the result converter
+        //setting result converter
         setResultConverter(dialogButton -> {
             if (dialogButton == ButtonType.OK) {
-                return textField.getText(); // Return the input text
+                return textField.getText();
             }
             return null;
         });
@@ -68,15 +62,11 @@ public class CustomDialog extends Dialog<String> {
         return colorPicker.getValue();
     }
 
-    public String getSelectedFont() {
-        return fontComboBox.getValue();
-    }
-
     public double getSelectedSize() {
         try {
             return Double.parseDouble(sizeField.getText());
         } catch (NumberFormatException e) {
-            return 12; // Default size if parsing fails
+            return 12; //default size 12 is chosen if parsing fails
         }
     }
 }
