@@ -16,19 +16,20 @@ public class Pipette implements Tool {
     this.color = color;
   }
 
-  //TODO implement - leave constructor and just modify the color.setValue with the color of the onRelease pixel
-  //Done
-
   @Override
   public void onRelease(GraphicsContext g, MouseEvent e, double size) {
     double x = e.getX();
     double y = e.getY();
 
-    WritableImage image = new WritableImage(1,1);
+    //creating WriteableImage with same size as canvas
+    WritableImage image = new WritableImage((int) g.getCanvas().getWidth(), (int) g.getCanvas().getHeight());
+    //capturing current state of canvas
     g.getCanvas().snapshot(null, image);
 
+    //getting pixel color at mouse position
     Color pickedColor = image.getPixelReader().getColor((int) x, (int) y);
 
+    //setting pixel color to the color property
     if (color != null) {
       color.setValue(pickedColor);
     }
