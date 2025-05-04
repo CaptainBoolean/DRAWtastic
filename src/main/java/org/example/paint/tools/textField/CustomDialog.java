@@ -1,12 +1,6 @@
 package org.example.paint.tools.textField;
 
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.DialogPane;
-import javafx.scene.control.Label;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
@@ -23,7 +17,7 @@ public class CustomDialog extends Dialog<String> {
         //creating controls
         textField = new TextField(defaultText);
         sizeField = new TextField("12"); // Default size
-        colorPicker = new ColorPicker(Color.BLACK);
+        colorPicker = new ColorPicker(Color.BLACK); //TODO maybe set to currently selected brush color
         fontComboBox = new ComboBox<>();
 
         //only 1 font option
@@ -58,9 +52,7 @@ public class CustomDialog extends Dialog<String> {
         });
     }
 
-    public Color getSelectedColor() {
-        return colorPicker.getValue();
-    }
+    public Color getSelectedColor() {return colorPicker.getValue();}
 
     public double getSelectedSize() {
         try {
