@@ -49,9 +49,9 @@ public class SelectAndMove implements Tool {
             Color color = movedImage.getPixelReader().getColor(i, j);
             Color background = Background.getBackgroundColor();
             if (color.equals(background)) {
-              color =Color.TRANSPARENT;
+              color = Color.TRANSPARENT;
             } else if (background.equals(Color.TRANSPARENT) || color.equals(Color.WHITE)) {
-              color =Color.TRANSPARENT;
+              color = Color.TRANSPARENT;
             }
             pw.setColor(i, j, color);
           }

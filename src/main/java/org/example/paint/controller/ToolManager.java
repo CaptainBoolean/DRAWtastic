@@ -15,13 +15,13 @@ public class ToolManager {
   private final GraphicsContext g;
   private final Canvas overlayCanvas;
   private final GraphicsContext og;
-  private final DoubleProperty brushSize = new SimpleDoubleProperty(8);
-  private final DoubleProperty opacity = new SimpleDoubleProperty(1);
-  private final BooleanProperty opacitySlider = new SimpleBooleanProperty();
-  private final BooleanProperty opacityLabel = new SimpleBooleanProperty();
-  private double markerSizeRatio = 2;
-  private double markerOpacity = 0.3;
-  private final ObjectProperty<Color> color = new SimpleObjectProperty<>(Color.BLACK);
+  private static final DoubleProperty brushSize = new SimpleDoubleProperty(8);
+  private static final DoubleProperty opacity = new SimpleDoubleProperty(1);
+  private static final BooleanProperty opacitySlider = new SimpleBooleanProperty();
+  private static final BooleanProperty opacityLabel = new SimpleBooleanProperty();
+  private final double markerSizeRatio = 2;
+  private final double markerOpacity = 0.3;
+  private static final ObjectProperty<Color> color = new SimpleObjectProperty<>(Color.BLACK);
 
 
 
@@ -105,10 +105,12 @@ public class ToolManager {
   void onEnter(MouseEvent e) {og.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());}
 
 
-  DoubleProperty brushSizeProperty() {return brushSize;}
-  DoubleProperty brushOpacityProperty() {return opacity;}
-  BooleanProperty opacitySliderProperty() {return opacitySlider;}
-  BooleanProperty opacityLabelProperty() {return opacityLabel;}
-  ObjectProperty<Color> colorProperty() {return color;}
+  static DoubleProperty brushSizeProperty() {return brushSize;}
+  static DoubleProperty brushOpacityProperty() {return opacity;}
+  static BooleanProperty opacitySliderProperty() {return opacitySlider;}
+  static BooleanProperty opacityLabelProperty() {return opacityLabel;}
+  static ObjectProperty<Color> colorProperty() {return color;}
+
+  public static Color getDrawColor() {return colorProperty().getValue();}
 
 }

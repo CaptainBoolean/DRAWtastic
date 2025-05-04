@@ -11,11 +11,14 @@ import org.example.paint.tools.Tool;
 
 import java.util.Optional;
 
-
+//TODO maybe remember the last entered size, bold, italic, underline  for next textfield as long as it is selected
 public class Textfield implements Tool {
     private String text = "write here";
     private TextColor textColor = new TextColor(Color.BLACK);
     private TextSize textSize = new TextSize(12);
+    private boolean bold = false;
+    private boolean italic = false;
+    private boolean underline = false;
 
     public void setString(String text) {
         this.text = text;
@@ -32,6 +35,9 @@ public class Textfield implements Tool {
         if (result.isPresent()) { //ok: setting selected string, color and size
             textColor = new TextColor(dialog.getSelectedColor());
             textSize.setSize((int) dialog.getSelectedSize());
+            bold = dialog.getBold();
+            italic = dialog.getItalic();
+            underline = dialog.getUnderline();
             return result.get();
         }
 
@@ -48,8 +54,8 @@ public class Textfield implements Tool {
         //draw text there where mouse click happened
         g.setFill(textColor.getColor());
         g.setFont(Font.font(Font.getDefault().getFamily(),
-                TextFormating.isBold() ? FontWeight.BOLD : FontWeight.NORMAL,
-                TextFormating.isItalic() ? FontPosture.ITALIC : FontPosture.REGULAR,
+                bold ? FontWeight.BOLD : FontWeight.NORMAL,
+                italic ? FontPosture.ITALIC : FontPosture.REGULAR,
                 textSize.getSize()));
 
         //get position to place the text
@@ -59,7 +65,7 @@ public class Textfield implements Tool {
         //draw the text there
         g.fillText(text, x, y);
 
-        if (TextFormating.isUnderline()) { //in case underline was clicked
+        if (underline) { //in case underline was clicked
             //calculating width of the text
             Text textNode = new Text(text);
             textNode.setFont(g.getFont());

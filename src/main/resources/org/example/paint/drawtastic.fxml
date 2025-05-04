@@ -88,9 +88,6 @@
           </HBox>
 
           <HBox>
-            <ToggleButton fx:id="isBoldButton" text="Bold" />
-            <ToggleButton fx:id="isItalicButton" text="Italic" />
-            <ToggleButton fx:id="isUnderlineButton" text="Underline" />
             <Button fx:id="textFieldButton" text="Textfield" />
           </HBox>
         </VBox>

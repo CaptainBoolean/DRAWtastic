@@ -14,7 +14,6 @@ import org.example.paint.tools.pens.*;
 import org.example.paint.tools.picture.PictureInsert;
 import org.example.paint.tools.picture.RemoveRedEye;
 import org.example.paint.tools.shapes.Rectangle;
-import org.example.paint.tools.textField.TextFormating;
 import org.example.paint.tools.textField.Textfield;
 
 
@@ -38,12 +37,10 @@ public class DrawtasticController {
 
   private ToolManager toolManager;
   private Background background;
-  private TextFormating textFormating;
 
   public void initialize() {
     toolManager = new ToolManager(canvas, overlayCanvas);
     background = new Background(canvas);
-    textFormating = new TextFormating();
     initBinds();
     colorPicker.setValue(Color.BLACK);
     toolManager.changeTool(new RoundPen());
@@ -69,9 +66,6 @@ public class DrawtasticController {
     opacitySlider.visibleProperty().bind(toolManager.opacitySliderProperty());
     opacityLabel.visibleProperty().bind(toolManager.opacityLabelProperty());
     colorPicker.valueProperty().bindBidirectional(toolManager.colorProperty());
-    isBoldButton.selectedProperty().bindBidirectional(textFormating.getBoldProperty());
-    isItalicButton.selectedProperty().bindBidirectional(textFormating.getItalicProperty());
-    isUnderlineButton.selectedProperty().bindBidirectional(textFormating.getUnderlineProperty());
   }
 
   private void initListeners() {

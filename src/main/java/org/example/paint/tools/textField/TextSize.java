@@ -1,5 +1,6 @@
 package org.example.paint.tools.textField;
 
+//TODO why seperate class instead of just a variable?
 public class TextSize {
     private int size; //default
 
