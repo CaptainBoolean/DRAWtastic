@@ -50,7 +50,7 @@ public class SelectAndMove implements Tool {
             Color background = Background.getBackgroundColor();
             if (color.equals(background)) {
               color = Color.TRANSPARENT;
-            } else if (background.equals(Color.TRANSPARENT) || color.equals(Color.WHITE)) {
+            } else if (background.equals(Color.TRANSPARENT) && color.equals(Color.WHITE)) {
               color = Color.TRANSPARENT;
             }
             pw.setColor(i, j, color);
