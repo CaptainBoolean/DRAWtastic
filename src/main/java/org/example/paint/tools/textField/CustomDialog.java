@@ -17,7 +17,7 @@ public class CustomDialog extends Dialog<String> {
         //creating controls
         textField = new TextField(defaultText);
         sizeField = new TextField("12"); // Default size
-        colorPicker = new ColorPicker(Color.BLACK); //TODO maybe set to currently selected brush color
+        colorPicker = new ColorPicker(ToolManager.getDrawColor());
         fontComboBox = new ComboBox<>();
 
         //only 1 font option
