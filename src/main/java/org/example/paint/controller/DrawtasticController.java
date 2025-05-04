@@ -6,10 +6,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.util.converter.NumberStringConverter;
-import org.example.paint.tools.generalTools.ConnectedSelectAndMove;
 import org.example.paint.tools.generalTools.DeleteColor;
 import org.example.paint.tools.generalTools.Pipette;
-import org.example.paint.tools.generalTools.SelectAndMove;
+import org.example.paint.tools.generalTools.selectAndMove.BoxSelectAndMove;
+import org.example.paint.tools.generalTools.selectAndMove.ConnectedSelectAndMove;
 import org.example.paint.tools.pens.*;
 import org.example.paint.tools.picture.PictureInsert;
 import org.example.paint.tools.picture.RemoveRedEye;
@@ -33,7 +33,6 @@ public class DrawtasticController {
   @FXML private Button rectangleButton;
   @FXML private Button insertPicture, removeRedEyeButton;
   @FXML private Button textFieldButton;
-  @FXML private ToggleButton isBoldButton, isItalicButton, isUnderlineButton;
 
   private ToolManager toolManager;
   private Background background;
@@ -66,6 +65,7 @@ public class DrawtasticController {
     opacitySlider.visibleProperty().bind(toolManager.opacitySliderProperty());
     opacityLabel.visibleProperty().bind(toolManager.opacityLabelProperty());
     colorPicker.valueProperty().bindBidirectional(toolManager.colorProperty());
+    backgroundColorPicker.valueProperty().bindBidirectional(background.backgroundColorProperty());
   }
 
   private void initListeners() {
@@ -92,7 +92,7 @@ public class DrawtasticController {
 
 
   private void initButtons() {
-    selectAndMoveButton.setOnAction(e -> {toolManager.changeTool(new SelectAndMove());});
+    selectAndMoveButton.setOnAction(e -> {toolManager.changeTool(new BoxSelectAndMove());});
     connectedSelectAndMoveButton.setOnAction(e -> {toolManager.changeTool(new ConnectedSelectAndMove());});
     penButton.setOnAction(e -> {toolManager.changeTool(new RoundPen());});
     markerButton.setOnAction(e -> {toolManager.changeTool(new Marker());});

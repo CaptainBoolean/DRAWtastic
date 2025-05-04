@@ -12,6 +12,7 @@ import org.example.paint.tools.Tool;
 import java.util.Optional;
 
 //TODO maybe remember the last entered size, bold, italic, underline  for next textfield as long as it is selected
+//TODO also maybe set as lidebar of some sort and allow to paste text as many times as wanted while keeping the settings in the sidebar as long as the tool is selected
 public class Textfield implements Tool {
     private String text = "write here";
     private TextColor textColor = new TextColor(Color.BLACK);

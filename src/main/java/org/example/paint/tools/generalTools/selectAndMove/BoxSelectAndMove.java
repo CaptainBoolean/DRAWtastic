@@ -1,4 +1,4 @@
-package org.example.paint.tools.generalTools;
+package org.example.paint.tools.generalTools.selectAndMove;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelWriter;
@@ -6,21 +6,14 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import org.example.paint.controller.Background;
-import org.example.paint.tools.Tool;
 
-public class SelectAndMove implements Tool {
+public class BoxSelectAndMove extends SelectAndMove {
 
-  //TODO fix occurring blurriness
+  //TODO fix occurring blurriness (maybe int casts?)
   //TODO fix problem when marking out of canvas
   //TODO implement no copy if totally background
 
-  private enum Mode {IDLE, SELECTING, MOVING}
-  private Mode mode = Mode.IDLE;
   private boolean switchingToMoving = false;
-
-  private int startX = -1, startY = -1;
-  private int lastX = 0, lastY = 0, lastWidth = 0, lastHeight = 0;
-  private WritableImage movedImage;
 
   @Override
   public void onDrag(GraphicsContext g, MouseEvent e, double size, Color color, double opacity) {
@@ -55,7 +48,8 @@ public class SelectAndMove implements Tool {
             }
             pw.setColor(i, j, color);
           }
-        g.clearRect(cutX, cutY, cutWidth, cutHeight);
+        g.setFill(Background.getBackgroundColor());
+        g.fillRect(cutX, cutY, cutWidth, cutHeight);
         mode = Mode.MOVING;
         switchingToMoving = true;
       } else {
@@ -63,11 +57,7 @@ public class SelectAndMove implements Tool {
       }
     }
     else if (mode == Mode.MOVING && movedImage != null) {
-      double printX = e.getX() - movedImage.getWidth()  / 2;
-      double printY = e.getY() - movedImage.getHeight() / 2;
-      g.drawImage(movedImage, printX, printY);
-      movedImage = null;
-      mode = Mode.IDLE;
+      super.printHere(g, e);
     }
   }
 
@@ -92,15 +82,7 @@ public class SelectAndMove implements Tool {
         og.clearRect(lastX - m, lastY - m, lastWidth + 2*m, lastHeight + 2*m);
         switchingToMoving = false;
       }
-      int currX = (int)e.getX(), currY = (int)e.getY();
-      int imageWidth = (int)movedImage.getWidth(), imageHeight = (int)movedImage.getHeight();
-      int newX = currX - imageWidth/2, newY = currY - imageHeight/2;
-
-      og.clearRect(lastX - imageWidth/2, lastY - imageHeight/2, imageWidth, imageHeight);
-      og.drawImage(movedImage, newX, newY);
-
-      lastX = currX; lastY = currY;
-      lastWidth = imageWidth; lastHeight = imageHeight;
+      super.drawPreviewAt(og, e, size);
     }
   }
 }

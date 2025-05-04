@@ -1,11 +1,13 @@
 package org.example.paint.controller;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 
 
 public class Background {
-  private static Color backgroundColor = Color.TRANSPARENT;
+  private static final ObjectProperty<Color> backgroundColor = new SimpleObjectProperty<>(Color.TRANSPARENT);
   private static Canvas canvas;
 
   Background(Canvas canvas) {
@@ -15,7 +17,7 @@ public class Background {
 
 
   static void changeBackground(Color newColor) {
-    //TODO implement
+    //TODO implement - listener already calling this method hen color picker is changed
 
   }
 
@@ -24,7 +26,9 @@ public class Background {
   }
 
   public static Color getBackgroundColor() {
-    return backgroundColor;
+    return backgroundColor.get();
   }
+
+  static ObjectProperty<Color> backgroundColorProperty() {return backgroundColor;}
 
 }
