@@ -93,7 +93,10 @@
         </VBox>
       </ToolBar>
 
-
+    <VBox>
+      <Button fx:id="undoButton" text="Undo" />
+      <Button fx:id="redoButton" text="Redo" />
+    </VBox>
 
 
 

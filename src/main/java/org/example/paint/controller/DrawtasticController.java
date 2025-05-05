@@ -26,6 +26,7 @@ public class DrawtasticController {
   @FXML private TextField brushSize;
   @FXML private Label opacityLabel;
   @FXML private Slider opacitySlider;
+  @FXML private Button undoButton, redoButton;
   @FXML private Button selectAndMoveButton, connectedSelectAndMoveButton, pipetteButton, transparentBackgroundButton, deleteColorButton;
   @FXML private SplitMenuButton pensButton;
   @FXML private Button eraserButton;
@@ -36,10 +37,12 @@ public class DrawtasticController {
 
   private ToolManager toolManager;
   private Background background;
+  private UndoRedo undoRedo;
 
   public void initialize() {
     toolManager = new ToolManager(canvas, overlayCanvas);
     background = new Background(canvas);
+    undoRedo = new UndoRedo(canvas);
     initBinds();
     colorPicker.setValue(Color.BLACK);
     toolManager.changeTool(new RoundPen());
@@ -109,6 +112,8 @@ public class DrawtasticController {
     removeRedEyeButton.setOnAction(e -> toolManager.changeTool(new RemoveRedEye()));
     pensButton.setOnAction(e -> {toolManager.changeTool(new RoundPen());});
     textFieldButton.setOnAction(e -> {toolManager.changeTool(new Textfield());});
+    undoButton.setOnAction(e -> undoRedo.undo());
+    redoButton.setOnAction(e -> undoRedo.redo());
   }
 
 }

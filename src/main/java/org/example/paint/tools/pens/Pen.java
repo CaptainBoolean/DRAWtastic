@@ -27,6 +27,7 @@ public abstract class Pen implements Tool {
     double y = e.getY();
 
     //TODO maybe create temporary canvas to write on and then put that on top to merge colors
+    //TODO maybe make it so the line on the temp canvas gets deleted when pen is held at the end and straight line is drawn
     g.setGlobalAlpha(opacity);
     g.setFill(new Color(color.getRed(), color.getGreen(), color.getBlue(), 1));
 
