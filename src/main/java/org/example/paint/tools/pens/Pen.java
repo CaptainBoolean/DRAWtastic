@@ -5,6 +5,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import org.example.paint.tools.Tool;
 
+/**
+This is the abstract form of a Pen providing all necessary common fields, managing the position of drawing, preview and recalculation time to preserve performance.
+ */
 public abstract class Pen implements Tool {
 
   protected double lastX = -1;
@@ -17,11 +20,17 @@ public abstract class Pen implements Tool {
   int recalculateTime = 5000000;
   long timeElapsed = 0;
 
-
-  public void onPress(GraphicsContext gc, MouseEvent e) {
-
-  }
   //no constructor necessary because every drag data should be updated
+
+  /**
+   * Draws the sepcific kind of shape when dragging over the canvas.
+   * Between the registered points interpolation happens to allow pens to draw one continuos line.
+   * @param g The GraphicsContect to draw on.
+   * @param e The MouseEvent necessary to grab the location of drawing.
+   * @param size The size that the pen should use for it's shape.
+   * @param color The color that the pen should draw in if it has changable colors.
+   * @param opacity The opacity that the line should be.
+   */
   public void onDrag(GraphicsContext g, MouseEvent e, double size, Color color, double opacity) {
     double x = e.getX();
     double y = e.getY();
@@ -52,15 +61,35 @@ public abstract class Pen implements Tool {
     g.getCanvas().setEffect(null);
   }
 
-  //TODO get rid od the unecessary on release variables
+  /**
+   * Resets the parameters necessary for interpolation.
+   * @param g -
+   * @param e -
+   * @param size -
+   */
   @Override
   public void onRelease(GraphicsContext g, MouseEvent e, double size) {
     lastX = -1;
     lastY = -1;
   }
 
+  /**
+   * Draws at the provided coordinated with the specified characteristics
+   * @param g GraphicsContext to draw on.
+   * @param x The x coordinate to draw on.
+   * @param y The y coordinate to draw on.
+   * @param size The size to draw the shape in.
+   * @param color The color to draw the shape in.
+   * @param opacity The opacity of the drawn shape.
+   */
   protected abstract void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity);
 
+  /**
+   * Draws a preview at the correct position and removes the last drawn one.
+   * @param og GraphicsContext to draw the preview on.
+   * @param e The MouseEvent necessary to grab the location of drawing.
+   * @param size The size of the drawn preview.
+   */
   @Override
   public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
     double x = e.getX();
@@ -79,8 +108,19 @@ public abstract class Pen implements Tool {
     lastPreviewY = y;
   };
 
+  /**
+   * Draws a preview at the provided coordinates.
+   * @param og GraphicsContext to draw on.
+   * @param x The x coordinate to draw on.
+   * @param y The y coordinate to draw on.
+   * @param size The size of the Preview to be drawn.
+   */
   protected abstract void drawPreviewAt(GraphicsContext og, double x, double y, double size);
 
+  /**
+   * Sets a specific timeframe to recalculate the size of speed dependant pens.
+   * @return True if it is necessary to calculate the size again.
+   */
   protected boolean recalculate() {
     long currentTime = System.nanoTime();
     timeElapsed = currentTime - lastTimestamp;

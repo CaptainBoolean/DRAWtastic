@@ -49,6 +49,7 @@ public class BoxSelectAndMove extends SelectAndMove {
             pw.setColor(i, j, color);
           }
         g.setFill(Background.getBackgroundColor());
+        g.clearRect(cutX, cutY, cutWidth, cutHeight);
         g.fillRect(cutX, cutY, cutWidth, cutHeight);
         mode = Mode.MOVING;
         switchingToMoving = true;

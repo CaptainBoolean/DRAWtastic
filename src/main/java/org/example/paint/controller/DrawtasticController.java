@@ -52,7 +52,7 @@ public class DrawtasticController {
     canvas.setOnMouseMoved(e -> {toolManager.onMove(e);});
     canvas.setOnMouseDragged(e -> {toolManager.onDrag(e);});
     canvas.setOnMousePressed(e -> {toolManager.onPress(e);});
-    canvas.setOnMouseReleased(e -> {toolManager.onRelease(e);});
+    canvas.setOnMouseReleased(e -> {toolManager.onRelease(e);undoRedo.saveState();});
 
     initButtons();
   }
