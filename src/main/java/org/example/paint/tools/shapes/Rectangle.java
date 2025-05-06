@@ -3,9 +3,8 @@ package org.example.paint.tools.shapes;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import org.example.paint.tools.Tool;
 
-public class Rectangle implements Tool {
+public class Rectangle extends Shape {
     private double startX, startY;
     private final Color color;
 

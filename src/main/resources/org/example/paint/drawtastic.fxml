@@ -22,10 +22,14 @@
       <ToolBar>
         <VBox spacing="5">
           <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="undoButton" text="Undo" />
+            <Button fx:id="redoButton" text="Redo" />
+
             <TextField fx:id="brushSize" text="6" prefWidth="40" />
 
-            <ColorPicker fx:id="colorPicker" />
+            <ColorPicker fx:id="colorPicker" prefWidth="40"/>
             <Button fx:id="pipetteButton" text="Pipette" />
+
 
             <SplitMenuButton  fx:id="pensButton" text="Pens" >
               <tooltip>
@@ -48,6 +52,8 @@
               </items>
             </SplitMenuButton >
 
+            <Button fx:id="repaintButton" text="Repaint" />
+            <Button fx:id="paintBucketButton" text="Paint Bucket" />
             <Button fx:id="eraserButton" text="Eraser" />
 
 
@@ -71,36 +77,41 @@
 
           <HBox spacing="10" alignment="CENTER_LEFT">
             <Label text="Background color:" />
-            <ColorPicker fx:id="backgroundColorPicker" />
-            <Button fx:id="transparentBackgroundButton" text="Make Background transparent" />
+            <ColorPicker fx:id="backgroundColorPicker" prefWidth="40"/>
+            <Button fx:id="transparentBackgroundButton" text="None" />
           </HBox>
 
           <HBox>
-            <Button text="Line Tool" />
 
-            <Button text="Circle Tool" />
-            <Button fx:id="rectangleButton" text="Rectangle" />
-          </HBox>
+            <SplitMenuButton  fx:id="lineButton" text="Insert Line" >
+              <items>
+                <MenuItem fx:id="rectangleButton" text="Insert Rectangle" />
+                <MenuItem fx:id="circleButton" text="Insert Circle" />
+                <MenuItem fx:id="ellipseButton" text="Insert Ellipse" />
+                <MenuItem fx:id="starButton" text="Insert Star" />
+                <MenuItem fx:id="arrowButton" text="Insert Arrow" />
+              </items>
+            </SplitMenuButton>
 
-          <HBox>
-            <Button fx:id="insertPicture" text="Picture" />
-            <Button fx:id="removeRedEyeButton" text="Remove red eyes" />
-          </HBox>
 
-          <HBox>
+            <SplitMenuButton  fx:id="insertPicture" text="Insert Picture" >
+
+              <items>
+                <MenuItem fx:id="removeRedEyeButton" text="Remove red eyes" />
+                <MenuItem fx:id="blurFilterButton" text="Blur Filter" />
+                <MenuItem fx:id="blackAndWhiteFilterButton" text="Black and White Filter" />
+              </items>
+
+            </SplitMenuButton >
+
+
             <Button fx:id="textFieldButton" text="Textfield" />
           </HBox>
         </VBox>
 
-        <HBox>
-          <Button fx:id="undoButton" text="Undo" />
-          <Button fx:id="redoButton" text="Redo" />
-        </HBox>
+
 
       </ToolBar>
-
-
-
 
 
 

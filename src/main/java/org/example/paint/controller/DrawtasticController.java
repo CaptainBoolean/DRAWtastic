@@ -7,13 +7,17 @@ import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.util.converter.NumberStringConverter;
 import org.example.paint.tools.generalTools.DeleteColor;
+import org.example.paint.tools.generalTools.PaintBucket;
 import org.example.paint.tools.generalTools.Pipette;
+import org.example.paint.tools.generalTools.Repaint;
 import org.example.paint.tools.generalTools.selectAndMove.BoxSelectAndMove;
 import org.example.paint.tools.generalTools.selectAndMove.ConnectedSelectAndMove;
 import org.example.paint.tools.pens.*;
+import org.example.paint.tools.picture.BlackAndWhiteFilter;
+import org.example.paint.tools.picture.BlurFilter;
 import org.example.paint.tools.picture.PictureInsert;
 import org.example.paint.tools.picture.RemoveRedEye;
-import org.example.paint.tools.shapes.Rectangle;
+import org.example.paint.tools.shapes.*;
 import org.example.paint.tools.textField.Textfield;
 
 
@@ -27,13 +31,15 @@ public class DrawtasticController {
   @FXML private Label opacityLabel;
   @FXML private Slider opacitySlider;
   @FXML private Button undoButton, redoButton;
-  @FXML private Button selectAndMoveButton, connectedSelectAndMoveButton, pipetteButton, transparentBackgroundButton, deleteColorButton;
+  @FXML private Button selectAndMoveButton, connectedSelectAndMoveButton, pipetteButton, transparentBackgroundButton, deleteColorButton, repaintButton, paintBucketButton;
   @FXML private SplitMenuButton pensButton;
   @FXML private Button eraserButton;
   @FXML private MenuItem penButton, markerButton, blurButton, paintBrushButton, fountainPenButton, rainbowPenButton;
-  @FXML private Button rectangleButton;
-  @FXML private Button insertPicture, removeRedEyeButton;
+  @FXML private SplitMenuButton insertPicture;
+  @FXML private MenuItem removeRedEyeButton, blurFilterButton, blackAndWhiteFilterButton;
   @FXML private Button textFieldButton;
+  @FXML private SplitMenuButton lineButton;
+  @FXML private MenuItem rectangleButton, circleButton, ellipseButton, starButton, arrowButton;
 
   private ToolManager toolManager;
   private Background background;
@@ -104,7 +110,6 @@ public class DrawtasticController {
     blurButton.setOnAction(e -> {toolManager.changeTool(new Blur());});
     paintBrushButton.setOnAction(e -> {toolManager.changeTool(new PaintBrush());});
     rainbowPenButton.setOnAction(e -> {toolManager.changeTool(new RainbowPen());});
-    rectangleButton.setOnAction(e -> {toolManager.changeTool(new Rectangle());});
     insertPicture.setOnAction(e -> toolManager.changeTool(new PictureInsert()));
     pipetteButton.setOnAction(e -> {toolManager.changeTool(new Pipette());});
     transparentBackgroundButton.setOnAction(e -> {Background.transparentBackground();});
@@ -114,6 +119,16 @@ public class DrawtasticController {
     textFieldButton.setOnAction(e -> {toolManager.changeTool(new Textfield());});
     undoButton.setOnAction(e -> undoRedo.undo());
     redoButton.setOnAction(e -> undoRedo.redo());
+    repaintButton.setOnAction(e -> {toolManager.changeTool(new Repaint());});
+    paintBucketButton.setOnAction(e -> {toolManager.changeTool(new PaintBucket());});
+    blurFilterButton.setOnAction(e-> {toolManager.changeTool(new BlurFilter());});
+    blackAndWhiteFilterButton.setOnAction(e -> {toolManager.changeTool(new BlackAndWhiteFilter());});
+    lineButton.setOnAction(e->{toolManager.changeTool(new Line());});
+    rectangleButton.setOnAction(e->{toolManager.changeTool(new Rectangle());});
+    circleButton.setOnAction(e->{toolManager.changeTool(new Circle());});
+    ellipseButton.setOnAction(e->toolManager.changeTool(new Ellipse()));
+    starButton.setOnAction((e->{toolManager.changeTool(new Star());}));
+    arrowButton.setOnAction(e->{toolManager.changeTool(new Arrow());});
   }
 
 }
