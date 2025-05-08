@@ -79,6 +79,8 @@
             <Label text="Background color:" />
             <ColorPicker fx:id="backgroundColorPicker" prefWidth="40"/>
             <Button fx:id="transparentBackgroundButton" text="None" />
+            <Button fx:id="encryptButton" text="Encypt" />
+            <Button fx:id="decryptButton" text="Decrypt" />
           </HBox>
 
           <HBox>

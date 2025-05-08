@@ -40,15 +40,18 @@ public class DrawtasticController {
   @FXML private Button textFieldButton;
   @FXML private SplitMenuButton lineButton;
   @FXML private MenuItem rectangleButton, circleButton, ellipseButton, starButton, arrowButton;
+  @FXML private Button encryptButton, decryptButton;
 
   private ToolManager toolManager;
   private Background background;
   private UndoRedo undoRedo;
+  private Encrypter encrypter;
 
   public void initialize() {
     toolManager = new ToolManager(canvas, overlayCanvas);
     background = new Background(canvas);
     undoRedo = new UndoRedo(canvas);
+    encrypter = new Encrypter(canvas);
     initBinds();
     colorPicker.setValue(Color.BLACK);
     toolManager.changeTool(new RoundPen());
@@ -100,6 +103,7 @@ public class DrawtasticController {
 
 
 
+  //TODO sort buttons in groups and comment on them
   private void initButtons() {
     selectAndMoveButton.setOnAction(e -> {toolManager.changeTool(new BoxSelectAndMove());});
     connectedSelectAndMoveButton.setOnAction(e -> {toolManager.changeTool(new ConnectedSelectAndMove());});
@@ -129,6 +133,8 @@ public class DrawtasticController {
     ellipseButton.setOnAction(e->toolManager.changeTool(new Ellipse()));
     starButton.setOnAction((e->{toolManager.changeTool(new Star());}));
     arrowButton.setOnAction(e->{toolManager.changeTool(new Arrow());});
+    encryptButton.setOnAction(e->encrypter.encrypte());
+    decryptButton.setOnAction(e->encrypter.decrypte());
   }
 
 }
