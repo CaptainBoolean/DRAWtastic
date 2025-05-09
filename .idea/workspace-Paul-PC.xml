@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="acd86740-252c-400b-8c20-540d1f65fe14" name="Changes" comment="changes to UI">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/paint/tools/generalTools/ConnectedSelectAndMove.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/paint/tools/generalTools/SelectAndMove.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/paint/tools/textField/Font.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/paint/tools/textField/MyFont.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/paint/tools/textField/TextFormating.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Paul" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;cyr0dan&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/CaptainBoolean/Multimeda-Paint-Project.git&quot;,
+    &quot;accountId&quot;: &quot;0ebe02ff-53e4-4513-943b-5cefa6b2f5af&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/org/example/paint/tools/SelectAndMove.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2w7bP3QMu642u7OOiBwCdlf84oo" />
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/OneDrive/Dokumente/Paul Schule/CCT/4.Semester/Multimed/UE/project/src/main/resources/org/example/buttonIcons&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3137931&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\OneDrive\Dokumente\Paul Schule\CCT\4.Semester\Multimed\UE\project\src\main\resources\org\example\buttonIcons" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\OneDrive\Dokumente\Paul Schule\CCT\4.Semester\Multimed\UE\project\src\main\resources\org\example\paint" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.paint.Main" />
+      <module name="Multimedia-Group-Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.paint.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="acd86740-252c-400b-8c20-540d1f65fe14" name="Changes" comment="" />
+      <created>1745395532010</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1745395532010</updated>
+      <workItem from="1745395533186" duration="697000" />
+      <workItem from="1745396242890" duration="15782000" />
+      <workItem from="1745420423674" duration="178000" />
+      <workItem from="1745427281773" duration="9758000" />
+      <workItem from="1745437354886" duration="639000" />
+      <workItem from="1745438144553" duration="116000" />
+      <workItem from="1745472611657" duration="4377000" />
+      <workItem from="1745477315171" duration="9449000" />
+      <workItem from="1745504340239" duration="307000" />
+      <workItem from="1745504665391" duration="14299000" />
+      <workItem from="1745520991733" duration="3906000" />
+      <workItem from="1745678915734" duration="18000" />
+      <workItem from="1745683620806" duration="246000" />
+      <workItem from="1745684826748" duration="40000" />
+      <workItem from="1745692168774" duration="4583000" />
+      <workItem from="1745740752451" duration="989000" />
+      <workItem from="1745832291604" duration="140000" />
+      <workItem from="1745838230725" duration="173000" />
+      <workItem from="1745845743211" duration="71000" />
+      <workItem from="1745853939298" duration="9420000" />
+      <workItem from="1745864935012" duration="2727000" />
+      <workItem from="1745943162397" duration="4755000" />
+      <workItem from="1746110006308" duration="8484000" />
+      <workItem from="1746118561170" duration="1949000" />
+      <workItem from="1746120558596" duration="357000" />
+      <workItem from="1746120942880" duration="340000" />
+      <workItem from="1746121985055" duration="4441000" />
+      <workItem from="1746186033896" duration="19000" />
+      <workItem from="1746799097514" duration="148000" />
+    </task>
+    <task id="LOCAL-00009" summary="tinkering with on release method">
+      <option name="closed" value="true" />
+      <created>1745406291505</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1745406291505</updated>
+    </task>
+    <task id="LOCAL-00010" summary="overlay implement">
+      <option name="closed" value="true" />
+      <created>1745407075860</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1745407075860</updated>
+    </task>
+    <task id="LOCAL-00011" summary="overlay implemented">
+      <option name="closed" value="true" />
+      <created>1745408244453</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1745408244453</updated>
+    </task>
+    <task id="LOCAL-00012" summary="overlay fixed">
+      <option name="closed" value="true" />
+      <created>1745410287530</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1745410287530</updated>
+    </task>
+    <task id="LOCAL-00013" summary="overlay fixed">
+      <option name="closed" value="true" />
+      <created>1745410852829</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1745410852829</updated>
+    </task>
+    <task id="LOCAL-00014" summary=".">
+      <option name="closed" value="true" />
+      <created>1745419316916</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1745419316916</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Fixed erase">
+      <option name="closed" value="true" />
+      <created>1745427518687</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1745427518687</updated>
+    </task>
+    <task id="LOCAL-00016" summary="implement preview for round eraser">
+      <option name="closed" value="true" />
+      <created>1745428646871</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1745428646871</updated>
+    </task>
+    <task id="LOCAL-00017" summary="toggle for eraser">
+      <option name="closed" value="true" />
+      <created>1745428656859</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1745428656859</updated>
+    </task>
+    <task id="LOCAL-00018" summary="implement round eraser">
+      <option name="closed" value="true" />
+      <created>1745429358120</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1745429358120</updated>
+    </task>
+    <task id="LOCAL-00019" summary="implement new pens">
+      <option name="closed" value="true" />
+      <created>1745429374521</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1745429374521</updated>
+    </task>
+    <task id="LOCAL-00020" summary="implement paint brush">
+      <option name="closed" value="true" />
+      <created>1745431573908</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1745431573908</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fix paint brush">
+      <option name="closed" value="true" />
+      <created>1745436855387</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1745436855387</updated>
+    </task>
+    <task id="LOCAL-00022" summary="paint brush fully functional">
+      <option name="closed" value="true" />
+      <created>1745437079750</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1745437079750</updated>
+    </task>
+    <task id="LOCAL-00023" summary="some minor adjusts and comments">
+      <option name="closed" value="true" />
+      <created>1745438231582</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1745438231582</updated>
+    </task>
+    <task id="LOCAL-00024" summary="added blur">
+      <option name="closed" value="true" />
+      <created>1745477451679</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1745477451679</updated>
+    </task>
+    <task id="LOCAL-00025" summary="added fountain pen and moved recalculate to Pen">
+      <option name="closed" value="true" />
+      <created>1745481885774</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1745481885774</updated>
+    </task>
+    <task id="LOCAL-00026" summary="fixed fountain pen">
+      <option name="closed" value="true" />
+      <created>1745483396168</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1745483396168</updated>
+    </task>
+    <task id="LOCAL-00027" summary="added rainbow pen">
+      <option name="closed" value="true" />
+      <created>1745486600853</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1745486600853</updated>
+    </task>
+    <task id="LOCAL-00028" summary="changes to the way lines are created">
+      <option name="closed" value="true" />
+      <created>1745507631329</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1745507631329</updated>
+    </task>
+    <task id="LOCAL-00029" summary=".">
+      <option name="closed" value="true" />
+      <created>1745508356522</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1745508356522</updated>
+    </task>
+    <task id="LOCAL-00030" summary="added todos">
+      <option name="closed" value="true" />
+      <created>1745509714441</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1745509714441</updated>
+    </task>
+    <task id="LOCAL-00031" summary="added shape parent class">
+      <option name="closed" value="true" />
+      <created>1745511566669</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1745511566669</updated>
+    </task>
+    <task id="LOCAL-00032" summary="dynamically color slider">
+      <option name="closed" value="true" />
+      <created>1745514427253</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1745514427253</updated>
+    </task>
+    <task id="LOCAL-00033" summary="changed color slider">
+      <option name="closed" value="true" />
+      <created>1745514902822</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1745514902822</updated>
+    </task>
+    <task id="LOCAL-00034" summary="implement lasso">
+      <option name="closed" value="true" />
+      <created>1745518896656</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1745518896656</updated>
+    </task>
+    <task id="LOCAL-00035" summary="cemove background">
+      <option name="closed" value="true" />
+      <created>1745522062494</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1745522062494</updated>
+    </task>
+    <task id="LOCAL-00036" summary="changes to lasso">
+      <option name="closed" value="true" />
+      <created>1745524891824</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1745524891824</updated>
+    </task>
+    <task id="LOCAL-00037" summary="fixed bugs in selection tool">
+      <option name="closed" value="true" />
+      <created>1745697613586</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1745697613586</updated>
+    </task>
+    <task id="LOCAL-00038" summary="changes to controller">
+      <option name="closed" value="true" />
+      <created>1745857032651</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1745857032651</updated>
+    </task>
+    <task id="LOCAL-00039" summary="changes to controller">
+      <option name="closed" value="true" />
+      <created>1745858967457</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1745858967457</updated>
+    </task>
+    <task id="LOCAL-00040" summary="changes to controller">
+      <option name="closed" value="true" />
+      <created>1745858985452</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1745858985452</updated>
+    </task>
+    <task id="LOCAL-00041" summary="changes to controller structure">
+      <option name="closed" value="true" />
+      <created>1745864081109</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1745864081109</updated>
+    </task>
+    <task id="LOCAL-00042" summary="fixed eraser bug">
+      <option name="closed" value="true" />
+      <created>1745864137800</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1745864137800</updated>
+    </task>
+    <task id="LOCAL-00043" summary="changes to controller">
+      <option name="closed" value="true" />
+      <created>1745866623456</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1745866623456</updated>
+    </task>
+    <task id="LOCAL-00044" summary="changes to pen">
+      <option name="closed" value="true" />
+      <created>1745867220134</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1745867220134</updated>
+    </task>
+    <task id="LOCAL-00045" summary="changes to pen">
+      <option name="closed" value="true" />
+      <created>1745867575025</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1745867575025</updated>
+    </task>
+    <task id="LOCAL-00046" summary="changes to controller">
+      <option name="closed" value="true" />
+      <created>1745945446306</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1745945446306</updated>
+    </task>
+    <task id="LOCAL-00047" summary="started work on ConnectedSelectAndMove">
+      <option name="closed" value="true" />
+      <created>1745947013006</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1745947013006</updated>
+    </task>
+    <task id="LOCAL-00048" summary="started work on ConnectedSelectAndMove">
+      <option name="closed" value="true" />
+      <created>1746110058043</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1746110058043</updated>
+    </task>
+    <task id="LOCAL-00049" summary="structure for future classes">
+      <option name="closed" value="true" />
+      <created>1746114240820</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1746114240820</updated>
+    </task>
+    <task id="LOCAL-00050" summary="structure for future classes">
+      <option name="closed" value="true" />
+      <created>1746114814803</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1746114814807</updated>
+    </task>
+    <task id="LOCAL-00051" summary="changes to toolbar">
+      <option name="closed" value="true" />
+      <created>1746118648918</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1746118648919</updated>
+    </task>
+    <task id="LOCAL-00052" summary="comment code out">
+      <option name="closed" value="true" />
+      <created>1746118819943</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1746118819943</updated>
+    </task>
+    <task id="LOCAL-00053" summary="comment code out">
+      <option name="closed" value="true" />
+      <created>1746120599923</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1746120599923</updated>
+    </task>
+    <task id="LOCAL-00054" summary="try solve merge fail">
+      <option name="closed" value="true" />
+      <created>1746122343594</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1746122343594</updated>
+    </task>
+    <task id="LOCAL-00055" summary="try solve merge fail">
+      <option name="closed" value="true" />
+      <created>1746122539659</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1746122539659</updated>
+    </task>
+    <task id="LOCAL-00056" summary="getter for bold, italic, underline">
+      <option name="closed" value="true" />
+      <created>1746125147487</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1746125147487</updated>
+    </task>
+    <task id="LOCAL-00057" summary="changes to UI">
+      <option name="closed" value="true" />
+      <created>1746126454026</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1746126454026</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="525444b4-2cfa-46e2-bc6e-13eeb3aa5262" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="525444b4-2cfa-46e2-bc6e-13eeb3aa5262">
+          <value>
+            <State />
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="fixed fountain pen" />
+    <MESSAGE value="added rainbow pen" />
+    <MESSAGE value="changes to the way lines are created" />
+    <MESSAGE value="." />
+    <MESSAGE value="added todos" />
+    <MESSAGE value="added shape parent class" />
+    <MESSAGE value="dynamically color slider" />
+    <MESSAGE value="changed color slider" />
+    <MESSAGE value="implement lasso" />
+    <MESSAGE value="cemove background" />
+    <MESSAGE value="changes to lasso" />
+    <MESSAGE value="fixed bugs in selection tool" />
+    <MESSAGE value="changes to controller structure" />
+    <MESSAGE value="fixed eraser bug" />
+    <MESSAGE value="changes to pen" />
+    <MESSAGE value="changes to controller" />
+    <MESSAGE value="started work on ConnectedSelectAndMove" />
+    <MESSAGE value="structure for future classes" />
+    <MESSAGE value="changes to toolbar" />
+    <MESSAGE value="comment code out" />
+    <MESSAGE value="merge conflict solve" />
+    <MESSAGE value="try" />
+    <MESSAGE value="try solve merge fail" />
+    <MESSAGE value="getter for bold, italic, underline" />
+    <MESSAGE value="changes to UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes to UI" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
