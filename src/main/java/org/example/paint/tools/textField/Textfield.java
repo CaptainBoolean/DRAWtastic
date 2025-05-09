@@ -1,12 +1,15 @@
 package org.example.paint.tools.textField;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import org.example.paint.controller.ToolManager;
 import org.example.paint.tools.Tool;
 
 import java.util.Optional;
@@ -15,8 +18,8 @@ import java.util.Optional;
 //TODO also maybe set as lidebar of some sort and allow to paste text as many times as wanted while keeping the settings in the sidebar as long as the tool is selected
 public class Textfield implements Tool {
     private String text = "write here";
-    private TextColor textColor = new TextColor(Color.BLACK);
-    private TextSize textSize = new TextSize(12);
+    private Color textColor = Color.BLACK;
+    private int textSize = 12;
     private boolean bold = false;
     private boolean italic = false;
     private boolean underline = false;
@@ -34,8 +37,8 @@ public class Textfield implements Tool {
         Optional<String> result = dialog.showAndWait();
 
         if (result.isPresent()) { //ok: setting selected string, color and size
-            textColor = new TextColor(dialog.getSelectedColor());
-            textSize.setSize((int) dialog.getSelectedSize());
+            textColor = dialog.getSelectedColor();
+            textSize = (int) dialog.getSelectedSize();
             bold = dialog.getBold();
             italic = dialog.getItalic();
             underline = dialog.getUnderline();
@@ -53,11 +56,11 @@ public class Textfield implements Tool {
         setString(userInput); //set text to the input
 
         //draw text there where mouse click happened
-        g.setFill(textColor.getColor());
+        g.setFill(textColor);
         g.setFont(Font.font(Font.getDefault().getFamily(),
                 bold ? FontWeight.BOLD : FontWeight.NORMAL,
                 italic ? FontPosture.ITALIC : FontPosture.REGULAR,
-                textSize.getSize()));
+                textSize));
 
         //get position to place the text
         double x = e.getX();
@@ -74,9 +77,85 @@ public class Textfield implements Tool {
 
             //drawing the underline
             double underlineY = y + 2; //value position adjusted
-            g.setStroke(textColor.getColor()); //stroke color is set
+            g.setStroke(textColor); //stroke color is set
             g.setLineWidth(1); //line width is chosen
             g.strokeLine(x, underlineY, x + textWidth, underlineY); //draw the underline
         }
+    }
+
+    private class CustomDialog extends Dialog<String> {
+        private TextField textField;
+        private TextField sizeField;
+        private ComboBox<String> fontComboBox;
+        private ColorPicker colorPicker;
+        private ToggleButton toggleBold;
+        private ToggleButton toggleItalic;
+        private ToggleButton toggleUnderline;
+
+        public CustomDialog(String defaultText) {
+            setTitle("Input Text");
+            setHeaderText("Enter the text to display:");
+
+            //creating controls
+            textField = new TextField(defaultText);
+            sizeField = new TextField("12"); // Default size
+            colorPicker = new ColorPicker(ToolManager.getDrawColor());
+            fontComboBox = new ComboBox<>();
+            toggleBold = new ToggleButton("Bold");
+            toggleItalic = new ToggleButton("Italic");
+            toggleUnderline = new ToggleButton("Underline");
+
+
+            //only 1 font option
+            fontComboBox.getItems().add("System default");
+            //is the default value
+            fontComboBox.setValue("System default");
+
+            //grid layout
+            GridPane grid = new GridPane();
+            grid.setHgap(10);
+            grid.setVgap(10);
+            grid.add(new Label("Input Text:"), 0, 0);
+            grid.add(textField, 1, 0);
+            grid.add(new Label("Size:"), 0, 1);
+            grid.add(sizeField, 1, 1);
+            grid.add(new Label("Font:"), 0, 2);
+            grid.add(fontComboBox, 1, 2);
+            grid.add(new Label("Color:"), 0, 3);
+            grid.add(colorPicker, 1, 3);
+            grid.add(new Label("Bold:"), 0, 4);
+            grid.add(toggleBold, 1, 4);
+            grid.add(new Label("Italic:"), 0, 5);
+            grid.add(toggleItalic, 1, 5);
+            grid.add(new Label("Underline:"), 0, 6);
+            grid.add(toggleUnderline, 1, 6);
+
+            DialogPane dialogPane = new DialogPane();
+            dialogPane.setContent(grid);
+            getDialogPane().setContent(dialogPane);
+            getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+            //setting result converter
+            setResultConverter(dialogButton -> {
+                if (dialogButton == ButtonType.OK) {
+                    return textField.getText();
+                }
+                return null;
+            });
+        }
+
+        public Color getSelectedColor() {return colorPicker.getValue();}
+
+        public double getSelectedSize() {
+            try {
+                return Double.parseDouble(sizeField.getText());
+            } catch (NumberFormatException e) {
+                return 12; //default size 12 is chosen if parsing fails
+            }
+        }
+
+        public boolean getBold(){return toggleBold.isSelected();}
+        public boolean getItalic(){return toggleItalic.isSelected();}
+        public boolean getUnderline(){return toggleUnderline.isSelected();}
     }
 }

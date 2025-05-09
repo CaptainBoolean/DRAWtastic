@@ -16,7 +16,6 @@ import org.example.paint.tools.pens.*;
 import org.example.paint.tools.picture.BlackAndWhiteFilter;
 import org.example.paint.tools.picture.BlurFilter;
 import org.example.paint.tools.picture.PictureInsert;
-import org.example.paint.tools.picture.RemoveRedEye;
 import org.example.paint.tools.shapes.*;
 import org.example.paint.tools.textField.Textfield;
 
@@ -118,7 +117,6 @@ public class DrawtasticController {
     pipetteButton.setOnAction(e -> {toolManager.changeTool(new Pipette());});
     transparentBackgroundButton.setOnAction(e -> {Background.transparentBackground();});
     deleteColorButton.setOnAction(e -> {toolManager.changeTool(new DeleteColor());});
-    removeRedEyeButton.setOnAction(e -> toolManager.changeTool(new RemoveRedEye()));
     pensButton.setOnAction(e -> {toolManager.changeTool(new RoundPen());});
     textFieldButton.setOnAction(e -> {toolManager.changeTool(new Textfield());});
     undoButton.setOnAction(e -> undoRedo.undo());
