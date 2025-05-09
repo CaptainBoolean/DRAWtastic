@@ -1,4 +1,4 @@
-package org.example.paint.tools.textField;
+package org.example.paint.tools.generalTools;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;

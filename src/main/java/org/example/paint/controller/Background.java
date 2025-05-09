@@ -31,4 +31,8 @@ public class Background {
 
   static ObjectProperty<Color> backgroundColorProperty() {return backgroundColor;}
 
+  public static void fillWithBackground(double var1, double var3, double var5, double var7) {
+    //TODO implement -
+  }
+
 }

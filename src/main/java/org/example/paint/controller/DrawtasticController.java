@@ -6,10 +6,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.util.converter.NumberStringConverter;
-import org.example.paint.tools.generalTools.DeleteColor;
-import org.example.paint.tools.generalTools.PaintBucket;
-import org.example.paint.tools.generalTools.Pipette;
-import org.example.paint.tools.generalTools.Repaint;
+import org.example.paint.tools.generalTools.*;
 import org.example.paint.tools.generalTools.selectAndMove.BoxSelectAndMove;
 import org.example.paint.tools.generalTools.selectAndMove.ConnectedSelectAndMove;
 import org.example.paint.tools.pens.*;
@@ -17,7 +14,6 @@ import org.example.paint.tools.picture.BlackAndWhiteFilter;
 import org.example.paint.tools.picture.BlurFilter;
 import org.example.paint.tools.picture.PictureInsert;
 import org.example.paint.tools.shapes.*;
-import org.example.paint.tools.textField.Textfield;
 
 
 public class DrawtasticController {
