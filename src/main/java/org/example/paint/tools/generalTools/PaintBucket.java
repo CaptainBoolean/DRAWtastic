@@ -37,7 +37,7 @@ public class PaintBucket implements Tool {
   }
 
   //algorithm to flood fill
-  public static void floodFill(GraphicsContext g, int x, int y, Color targetColor, ObjectProperty<Color> fillColor) {
+  private static void floodFill(GraphicsContext g, int x, int y, Color targetColor, ObjectProperty<Color> fillColor) {
       //waiting for implementation
   }
 }
