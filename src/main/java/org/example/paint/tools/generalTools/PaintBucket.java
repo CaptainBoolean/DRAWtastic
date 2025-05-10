@@ -38,30 +38,6 @@ public class PaintBucket implements Tool {
 
   //algorithm to flood fill
   public static void floodFill(GraphicsContext g, int x, int y, Color targetColor, ObjectProperty<Color> fillColor) {
-      //checking starting point being out of bounds
-      if (x < 0 || x >= g.getCanvas().getWidth() || y < 0 || y >= g.getCanvas().getHeight()) {
-          return;
-      }
-
-      //capturing current state of canvas
-      WritableImage image = g.getCanvas().snapshot(null, null);
-
-      //selected neighbor must have the target color
-      if (!image.getPixelReader().getColor(x, y).equals(targetColor)) {
-            return;
-      }
-
-      g.setFill(fillColor.getValue());
-      g.fillRect(x, y, 1, 1);
-
-      //color neighborhood pixels: clockwise
-      floodFill(g, x, y-1, targetColor, fillColor); //south
-      floodFill(g, x-1, y-1, targetColor, fillColor); //southwest
-      floodFill(g, x-1, y, targetColor, fillColor); //west
-      floodFill(g, x-1, y+1, targetColor, fillColor); //northwest
-      floodFill(g, x, y+1, targetColor, fillColor); //north
-      floodFill(g, x+1, y+1, targetColor, fillColor); //northeast
-      floodFill(g, x+1, y, targetColor, fillColor); //east
-      floodFill(g, x+1, y-1, targetColor, fillColor); //southeast
-    }
+      //waiting for implementation
+  }
 }
