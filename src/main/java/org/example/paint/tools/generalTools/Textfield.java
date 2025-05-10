@@ -97,7 +97,7 @@ public class Textfield implements Tool {
             //creating controls
             textField = new TextField(text);
             sizeField = new TextField(Integer.toString(textSize));
-            colorPicker = new ColorPicker(textColor); //new ColorPicker(ToolManager.getDrawColor());
+            colorPicker = new ColorPicker(textColor);
             fontComboBox = new ComboBox<>();
             toggleBold = new ToggleButton("Bold");
             toggleBold.setSelected(bold);
