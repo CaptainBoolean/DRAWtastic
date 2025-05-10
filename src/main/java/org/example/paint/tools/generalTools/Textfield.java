@@ -83,7 +83,7 @@ public class Textfield implements Tool {
         }
     }
 
-    private class CustomDialog extends Dialog<String> {
+    private static class CustomDialog extends Dialog<String> {
         private TextField textField;
         private TextField sizeField;
         private ComboBox<String> fontComboBox;
