@@ -69,8 +69,8 @@ public class DrawtasticController {
   private void initBinds() {
     brushSize.textProperty().bindBidirectional(toolManager.brushSizeProperty(), new NumberStringConverter());
     opacitySlider.valueProperty().bindBidirectional(toolManager.brushOpacityProperty());
-    opacitySlider.visibleProperty().bind(toolManager.opacitySliderProperty());
-    opacityLabel.visibleProperty().bind(toolManager.opacityLabelProperty());
+    opacitySlider.visibleProperty().set(true); // changed this because wasnt visable .bind(toolManager.opacitySliderProperty()
+    opacityLabel.visibleProperty().set(true); // same here
     colorPicker.valueProperty().bindBidirectional(toolManager.colorProperty());
     backgroundColorPicker.valueProperty().bindBidirectional(background.backgroundColorProperty());
   }

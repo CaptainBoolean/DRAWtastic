@@ -46,10 +46,9 @@
               <ColorPicker fx:id="colorPicker" prefWidth="40" />
             </HBox>
             <TextField fx:id="brushSize" text="6" prefWidth="40" />
-            <VBox spacing="10" alignment="CENTER" style="-fx-background-color: lightblue;">
-              <Label fx:id="opacityLabel" text="Opacity" />
-              <Slider fx:id="opacitySlider" max="1.0" value="1.0" min="0.0" blockIncrement="0.1" prefWidth="100" />
-            </VBox>
+            <Label fx:id="opacityLabel" text="Opacity" />
+            <Slider fx:id="opacitySlider" max="1.0" value="1" />
+
           </VBox>
 
           <!-- Trennlinie zwischen Spalten -->
@@ -58,12 +57,19 @@
           <!-- Zweite Spalte (Pens, Repaint, Tools) -->
           <VBox spacing="10">
             <Label text="Tools" />
-            <Button fx:id="repaintButton" text="Repaint" />
-            <Button fx:id="paintBucketButton" text="Paint Bucket" />
-            <Button fx:id="eraserButton" text="Eraser" />
-            <Button fx:id="selectAndMoveButton" text="Select and move" />
-            <Button fx:id="connectedSelectAndMoveButton" text="Connected select and move" />
-            <Button fx:id="pipetteButton" text="Pipette" />
+            <HBox spacing="10">
+              <Button fx:id="eraserButton" text="Eraser" />
+              <Button fx:id="paintBucketButton" text="Paint Bucket" />
+              <Button fx:id="repaintButton" text="Repaint" />
+            </HBox>
+            <HBox spacing="10">
+              <Button fx:id="selectAndMoveButton" text="Select and move" />
+              <Button fx:id="connectedSelectAndMoveButton" text="Connected select and move" />
+            </HBox>
+            <HBox spacing="10">
+              <Button fx:id="pipetteButton" text="Pipette" />
+              <Button fx:id="deleteColorButton" text="Delete Color Pipette" />
+            </HBox>
           </VBox>
 
           <!-- Trennlinie zwischen Spalten -->
@@ -72,14 +78,15 @@
           <!-- Dritte Spalte (Hintergrund, Filter, Sonstiges) -->
           <VBox spacing="10">
             <Label text="Background &amp; Effects" />
-            <Button fx:id="deleteColorButton" text="Delete Color Pipette" />
             <HBox spacing="10" alignment="CENTER_LEFT">
               <Label text="Background color:" />
               <ColorPicker fx:id="backgroundColorPicker" prefWidth="40"/>
               <Button fx:id="transparentBackgroundButton" text="None" />
             </HBox>
-            <Button fx:id="encryptButton" text="Encrypt" />
-            <Button fx:id="decryptButton" text="Decrypt" />
+            <HBox spacing="10">
+              <Button fx:id="encryptButton" text="Encrypt" />
+              <Button fx:id="decryptButton" text="Decrypt" />
+            </HBox>
           </VBox>
 
           <!-- Trennlinie zwischen Spalten -->
@@ -87,7 +94,7 @@
 
           <!-- Vierte Spalte (Shapes, Text) -->
           <VBox spacing="10">
-            <Label text="Shapes" />
+            <Label text="Shapes &amp; Picture" />
             <SplitMenuButton fx:id="lineButton" text="Insert Line">
               <items>
                 <MenuItem fx:id="rectangleButton" text="Insert Rectangle" />
@@ -112,8 +119,10 @@
           <!-- Fünfte Spalte (Noch zuzuordnen) -->
           <VBox spacing="10">
             <Label text="Diverses" />
-            <Button fx:id="undoButton" text="Undo" />
-            <Button fx:id="redoButton" text="Redo" />
+            <HBox spacing="10">
+              <Button fx:id="undoButton" text="Undo" />
+              <Button fx:id="redoButton" text="Redo" />
+            </HBox>
           </VBox>
 
         </HBox>
