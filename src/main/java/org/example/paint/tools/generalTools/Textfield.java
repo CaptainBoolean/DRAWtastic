@@ -14,8 +14,6 @@ import org.example.paint.tools.Tool;
 
 import java.util.Optional;
 
-//TODO maybe remember the last entered size, bold, italic, underline  for next textfield as long as it is selected
-//TODO also maybe set as lidebar of some sort and allow to paste text as many times as wanted while keeping the settings in the sidebar as long as the tool is selected
 public class Textfield implements Tool {
     private String text = "write here";
     private Color textColor = Color.BLACK;
@@ -31,7 +29,7 @@ public class Textfield implements Tool {
     //shows the dialog
     private String promptForText() {
         //create the custom dialog
-        CustomDialog dialog = new CustomDialog(text);
+        CustomDialog dialog = new CustomDialog(text, textColor, textSize, bold, italic, underline);
 
         //show and wait for user input
         Optional<String> result = dialog.showAndWait();
@@ -92,19 +90,21 @@ public class Textfield implements Tool {
         private ToggleButton toggleItalic;
         private ToggleButton toggleUnderline;
 
-        public CustomDialog(String defaultText) {
+        public CustomDialog(String text, Color textColor, int textSize, boolean bold, boolean italic, boolean underline) {
             setTitle("Input Text");
             setHeaderText("Enter the text to display:");
 
             //creating controls
-            textField = new TextField(defaultText);
-            sizeField = new TextField("12"); // Default size
-            colorPicker = new ColorPicker(ToolManager.getDrawColor());
+            textField = new TextField(text);
+            sizeField = new TextField(Integer.toString(textSize));
+            colorPicker = new ColorPicker(textColor); //new ColorPicker(ToolManager.getDrawColor());
             fontComboBox = new ComboBox<>();
             toggleBold = new ToggleButton("Bold");
+            toggleBold.setSelected(bold);
             toggleItalic = new ToggleButton("Italic");
+            toggleItalic.setSelected(italic);
             toggleUnderline = new ToggleButton("Underline");
-
+            toggleUnderline.setSelected(underline);
 
             //only 1 font option
             fontComboBox.getItems().add("System default");
