@@ -20,72 +20,75 @@
       </MenuBar>
 
       <ToolBar>
-        <VBox spacing="5">
-          <HBox spacing="10" alignment="CENTER">
-            <Button fx:id="undoButton" text="Undo" />
-            <Button fx:id="redoButton" text="Redo" />
-
+        <HBox spacing="20" alignment="TOP_CENTER">
+          <!-- Erste Spalte (Pinsel, Farben) -->
+          <VBox spacing="10">
+            <Label text="Pens" />
+            <HBox spacing="10">
+              <SplitMenuButton fx:id="pensButton">
+                <tooltip>
+                  <Tooltip text="Selection of Pens" />
+                </tooltip>
+                <graphic>
+                  <ImageView fitWidth="24" fitHeight="24" preserveRatio="true" smooth="false">
+                    <Image url="@buttonIcons/pen.png" />
+                  </ImageView>
+                </graphic>
+                <items>
+                  <MenuItem fx:id="penButton" text="Pencil" />
+                  <MenuItem fx:id="markerButton" text="Marker" />
+                  <MenuItem fx:id="blurButton" text="Blur" />
+                  <MenuItem fx:id="paintBrushButton" text="Pain Brush" />
+                  <MenuItem fx:id="fountainPenButton" text="Fountain Pen" />
+                  <MenuItem fx:id="rainbowPenButton" text="Rainbow Pen" />
+                </items>
+              </SplitMenuButton>
+              <ColorPicker fx:id="colorPicker" prefWidth="40" />
+            </HBox>
             <TextField fx:id="brushSize" text="6" prefWidth="40" />
+            <VBox spacing="10" alignment="CENTER" style="-fx-background-color: lightblue;">
+              <Label fx:id="opacityLabel" text="Opacity" />
+              <Slider fx:id="opacitySlider" max="1.0" value="1.0" min="0.0" blockIncrement="0.1" prefWidth="100" />
+            </VBox>
+          </VBox>
 
-            <ColorPicker fx:id="colorPicker" prefWidth="40"/>
-            <Button fx:id="pipetteButton" text="Pipette" />
+          <!-- Trennlinie zwischen Spalten -->
+          <Separator orientation="VERTICAL" />
 
-
-            <SplitMenuButton  fx:id="pensButton" text="Pens" >
-              <tooltip>
-                <Tooltip text="Selection of Pens" />
-              </tooltip>
-
-              <graphic>
-                <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                  <Image url="@buttonIcons/chookity.jpg" />
-                </ImageView>
-              </graphic>
-              <items>
-                <MenuItem fx:id="penButton" text="Pencil" />
-                <MenuItem fx:id="markerButton" text="Marker" />
-                <MenuItem fx:id="blurButton" text="Blur" />
-                <MenuItem fx:id="paintBrushButton" text="Pain Brush" />
-                <MenuItem fx:id="fountainPenButton" text="Fountain Pen" />
-                <MenuItem fx:id="rainbowPenButton" text="Rainbow Pen" />
-
-              </items>
-            </SplitMenuButton >
-
+          <!-- Zweite Spalte (Pens, Repaint, Tools) -->
+          <VBox spacing="10">
+            <Label text="Tools" />
             <Button fx:id="repaintButton" text="Repaint" />
             <Button fx:id="paintBucketButton" text="Paint Bucket" />
             <Button fx:id="eraserButton" text="Eraser" />
-
-
             <Button fx:id="selectAndMoveButton" text="Select and move" />
             <Button fx:id="connectedSelectAndMoveButton" text="Connected select and move" />
+            <Button fx:id="pipetteButton" text="Pipette" />
+          </VBox>
 
+          <!-- Trennlinie zwischen Spalten -->
+          <Separator orientation="VERTICAL" />
 
-
-
-
-
-
+          <!-- Dritte Spalte (Hintergrund, Filter, Sonstiges) -->
+          <VBox spacing="10">
+            <Label text="Background &amp; Effects" />
             <Button fx:id="deleteColorButton" text="Delete Color Pipette" />
-
-            <VBox spacing="10" alignment="CENTER">
-                  <Label fx:id="opacityLabel" text="Opacity" />
-                  <Slider fx:id="opacitySlider" max="1.0" value="1" />
-            </VBox>
-
-          </HBox>
-
-          <HBox spacing="10" alignment="CENTER_LEFT">
-            <Label text="Background color:" />
-            <ColorPicker fx:id="backgroundColorPicker" prefWidth="40"/>
-            <Button fx:id="transparentBackgroundButton" text="None" />
-            <Button fx:id="encryptButton" text="Encypt" />
+            <HBox spacing="10" alignment="CENTER_LEFT">
+              <Label text="Background color:" />
+              <ColorPicker fx:id="backgroundColorPicker" prefWidth="40"/>
+              <Button fx:id="transparentBackgroundButton" text="None" />
+            </HBox>
+            <Button fx:id="encryptButton" text="Encrypt" />
             <Button fx:id="decryptButton" text="Decrypt" />
-          </HBox>
+          </VBox>
 
-          <HBox>
+          <!-- Trennlinie zwischen Spalten -->
+          <Separator orientation="VERTICAL" />
 
-            <SplitMenuButton  fx:id="lineButton" text="Insert Line" >
+          <!-- Vierte Spalte (Shapes, Text) -->
+          <VBox spacing="10">
+            <Label text="Shapes" />
+            <SplitMenuButton fx:id="lineButton" text="Insert Line">
               <items>
                 <MenuItem fx:id="rectangleButton" text="Insert Rectangle" />
                 <MenuItem fx:id="circleButton" text="Insert Circle" />
@@ -94,29 +97,27 @@
                 <MenuItem fx:id="arrowButton" text="Insert Arrow" />
               </items>
             </SplitMenuButton>
-
-
-            <SplitMenuButton  fx:id="insertPicture" text="Insert Picture" >
-
+            <SplitMenuButton fx:id="insertPicture" text="Insert Picture">
               <items>
                 <MenuItem fx:id="removeRedEyeButton" text="Remove red eyes" />
                 <MenuItem fx:id="blurFilterButton" text="Blur Filter" />
                 <MenuItem fx:id="blackAndWhiteFilterButton" text="Black and White Filter" />
               </items>
-
-            </SplitMenuButton >
-
-
+            </SplitMenuButton>
             <Button fx:id="textFieldButton" text="Textfield" />
-          </HBox>
-        </VBox>
+          </VBox>
 
+          <Separator orientation="VERTICAL" />
 
+          <!-- Fünfte Spalte (Noch zuzuordnen) -->
+          <VBox spacing="10">
+            <Label text="Diverses" />
+            <Button fx:id="undoButton" text="Undo" />
+            <Button fx:id="redoButton" text="Redo" />
+          </VBox>
 
+        </HBox>
       </ToolBar>
-
-
-
     </VBox>
   </top>
 
@@ -127,5 +128,6 @@
     </StackPane>
   </center>
 
-
 </BorderPane>
+
+
