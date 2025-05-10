@@ -13,7 +13,7 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("drawtastic.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
+        Scene scene = new Scene(fxmlLoader.load(), 1300, 900);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("Style.css")).toExternalForm());
         stage.setScene(scene);
         stage.setTitle("DRAWtastic");

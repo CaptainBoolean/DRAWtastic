@@ -5,10 +5,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.Group?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.paint.controller.DrawtasticController"
-            prefHeight="800.0" prefWidth="800.0">
+            prefHeight="1300.0" prefWidth="900.0">
 
   <top>
     <VBox>
@@ -131,10 +132,12 @@
   </top>
 
   <center>
-    <StackPane>
-      <Canvas fx:id="canvas" width="6000" height="6000" />
-      <Canvas fx:id="overlayCanvas" width="6000" height="6000" pickOnBounds="false" mouseTransparent="true" />
-    </StackPane>
+    <Pane fx:id="canvasPane">
+      <Group fx:id="canvasGroup">
+        <Canvas fx:id="canvas" width="2600" height="1800" />
+        <Canvas fx:id="overlayCanvas" width="2600" height="1800" mouseTransparent="true" />
+      </Group>
+    </Pane>
   </center>
 
 </BorderPane>
