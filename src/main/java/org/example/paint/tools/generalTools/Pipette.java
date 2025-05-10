@@ -35,4 +35,8 @@ public class Pipette implements Tool {
     }
   }
 
+  public ObjectProperty<Color> getColor() {
+    return color;
+  }
+
 }

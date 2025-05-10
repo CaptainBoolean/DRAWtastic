@@ -1,6 +1,7 @@
 package org.example.paint.tools.generalTools;
 
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
@@ -17,22 +18,15 @@ public class PaintBucket implements Tool {
       this.fillColor = fillColor;
   }
 
-  //TODO: musing Pipette instead these first lines of code down here
   @Override
   public void onRelease(GraphicsContext g, MouseEvent e, double size) {
-      double x = e.getX();
-      double y = e.getY();
-
-      //creating WriteableImage with same size as canvas
-      WritableImage image = new WritableImage((int) g.getCanvas().getWidth(), (int) g.getCanvas().getHeight());
-      //capturing current state of canvas
-      g.getCanvas().snapshot(null, image);
-
-      //getting pixel color at mouse position
-      Color targetColor = image.getPixelReader().getColor((int) x, (int) y);
+      //getting pixel color at mouse position using pipette
+      Pipette pipette = new Pipette(new SimpleObjectProperty<>());
+      pipette.onRelease(g, e, size);
+      Color targetColor = pipette.getColor().getValue();
 
       if (!targetColor.equals(fillColor.getValue())) {
-          floodFill(g, (int) x, (int) y, targetColor, fillColor);
+          floodFill(g, (int) e.getX(), (int) e.getY(), targetColor, fillColor);
       }
   }
 
