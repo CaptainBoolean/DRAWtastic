@@ -6,6 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import org.example.paint.tools.Tool;
+import org.example.paint.tools.generalTools.PaintBucket;
 import org.example.paint.tools.generalTools.Pipette;
 import org.example.paint.tools.pens.*;
 
@@ -19,8 +20,8 @@ public class ToolManager {
   private static final DoubleProperty opacity = new SimpleDoubleProperty(1);
   private static final BooleanProperty opacitySlider = new SimpleBooleanProperty();
   private static final BooleanProperty opacityLabel = new SimpleBooleanProperty();
-  private final double markerSizeRatio = 2;
-  private final double markerOpacity = 0.3;
+  private static final double markerSizeRatio = 2;
+  private static final double markerOpacity = 0.3;
   private static final ObjectProperty<Color> color = new SimpleObjectProperty<>(Color.BLACK);
 
 
@@ -37,6 +38,7 @@ public class ToolManager {
     checkOpacitySliderDisplay(newTool);
     newTool = checkEraserSwitch(newTool);
     newTool = checkPipette(newTool);
+    newTool = checkPaintBucket(newTool);
 
     currentTool = newTool;
   }
@@ -74,6 +76,13 @@ public class ToolManager {
   private Tool checkPipette(Tool newTool) {
     if (newTool instanceof Pipette) {
       return new Pipette(color);
+    }
+    return newTool;
+  }
+
+  private Tool checkPaintBucket(Tool newTool) {
+    if (newTool instanceof PaintBucket) {
+      return new PaintBucket(color);
     }
     return newTool;
   }

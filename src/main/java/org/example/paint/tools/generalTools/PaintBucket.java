@@ -12,20 +12,17 @@ import org.example.paint.tools.Tool;
 
 public class PaintBucket implements Tool {
 
-  private ObjectProperty<Color> fillColor = null;
+  private static ObjectProperty<Color> fillColor = new SimpleObjectProperty<>();
 
   public PaintBucket() {}
 
   public PaintBucket(ObjectProperty<Color> fillColor) {
-      this.fillColor = fillColor;
+      PaintBucket.fillColor = fillColor;
   }
 
   @Override
   public void onRelease(GraphicsContext g, MouseEvent e, double size) {
-      //getting pixel color at mouse position using pipette
-      Pipette pipette = new Pipette(new SimpleObjectProperty<>());
-      pipette.onRelease(g, e, size);
-      Color targetColor = pipette.getColor().getValue();
+      Color targetColor = new WritableImage((int) g.getCanvas().getWidth(), (int) g.getCanvas().getHeight()).getPixelReader().getColor((int) e.getX(), (int) e.getY());
 
       if (!targetColor.equals(fillColor.getValue())) {
           fillAll(g, targetColor, fillColor);
@@ -53,4 +50,6 @@ public class PaintBucket implements Tool {
           }
       }
   }
+
+  //TODO implement preview
 }

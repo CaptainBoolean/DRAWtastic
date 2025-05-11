@@ -67,19 +67,18 @@ public class DrawtasticController {
   public void onExit() {Platform.exit();}
 
   private void initBinds() {
-    brushSize.textProperty().bindBidirectional(toolManager.brushSizeProperty(), new NumberStringConverter());
-    opacitySlider.valueProperty().bindBidirectional(toolManager.brushOpacityProperty());
-    opacitySlider.visibleProperty().set(true); // changed this because wasnt visable .bind(toolManager.opacitySliderProperty()
-    opacityLabel.visibleProperty().set(true); // same here
-    colorPicker.valueProperty().bindBidirectional(toolManager.colorProperty());
-    backgroundColorPicker.valueProperty().bindBidirectional(background.backgroundColorProperty());
+    brushSize.textProperty().bindBidirectional(ToolManager.brushSizeProperty(), new NumberStringConverter());
+    opacitySlider.valueProperty().bindBidirectional(ToolManager.brushOpacityProperty());
+    opacitySlider.visibleProperty().bindBidirectional(ToolManager.opacitySliderProperty());
+    opacityLabel.visibleProperty().bindBidirectional(ToolManager.opacityLabelProperty());
+    colorPicker.valueProperty().bindBidirectional(ToolManager.colorProperty());
+    backgroundColorPicker.valueProperty().bindBidirectional(Background.backgroundColorProperty());
   }
 
   private void initListeners() {
     opacitySlider.valueProperty().addListener((observable, oldValue, newValue) -> updateSliderColor());
     colorPicker.valueProperty().addListener((observable, oldValue, newValue) -> updateSliderColor());
     backgroundColorPicker.valueProperty().addListener((observable, oldValue, newValue) -> Background.changeBackground(newValue));
-
   }
 
   private void updateSliderColor() {

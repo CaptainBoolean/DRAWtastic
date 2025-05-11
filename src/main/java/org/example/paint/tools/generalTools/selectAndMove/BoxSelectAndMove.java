@@ -37,7 +37,7 @@ public class BoxSelectAndMove extends SelectAndMove {
                 (int)cutWidth, (int)cutHeight);
         PixelWriter pw = movedImage.getPixelWriter();
 
-        for (int i = 0; i < cutWidth; i++)
+        for (int i = 0; i < cutWidth; i++) {
           for (int j = 0; j < cutHeight; j++) {
             Color color = movedImage.getPixelReader().getColor(i, j);
             Color background = Background.getBackgroundColor();
@@ -48,9 +48,11 @@ public class BoxSelectAndMove extends SelectAndMove {
             }
             pw.setColor(i, j, color);
           }
+        }
         g.setFill(Background.getBackgroundColor());
         g.clearRect(cutX, cutY, cutWidth, cutHeight);
         g.fillRect(cutX, cutY, cutWidth, cutHeight);
+        //Background.fillRectWithBackground(cutX, cutY, cutWidth, cutHeight);
         mode = Mode.MOVING;
         switchingToMoving = true;
       } else {
