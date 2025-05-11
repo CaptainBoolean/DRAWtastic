@@ -27,8 +27,6 @@ public class DrawtasticController {
   @FXML private Group canvasGroup;
   @FXML private Button zoomInButton;
   @FXML private Button zoomOutButton;
-
-
   @FXML private ColorPicker colorPicker;
   @FXML private ColorPicker backgroundColorPicker;
   @FXML private TextField brushSize;
@@ -50,7 +48,6 @@ public class DrawtasticController {
   private Background background;
   private UndoRedo undoRedo;
   private Encrypter encrypter;
-  private double scale = 1.0;
   private final Scale canvasScale = new Scale(1.0, 1.0, 0, 0);
 
   public void initialize() {
@@ -63,7 +60,7 @@ public class DrawtasticController {
     toolManager.changeTool(new RoundPen());
     initListeners();
 
-    // Canvas Color init
+    // Canvas Color & Scale init
     GraphicsContext gc = canvas.getGraphicsContext2D();
     gc.setFill(Color.WHITE);
     gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -76,23 +73,6 @@ public class DrawtasticController {
     canvas.setOnMouseReleased(e -> {toolManager.onRelease(e);undoRedo.saveState();});
     initButtons();
   }
-
-  private void zoom(double zoomFactor) {
-    double canvasCenterX = canvas.getWidth() / 2;
-    double canvasCenterY = canvas.getHeight() / 2;
-
-    scale *= zoomFactor;
-    scale = Math.max(0.2, Math.min(scale, 10)); // Begrenzung des Zooms
-
-    canvasScale.setX(scale);
-    canvasScale.setY(scale);
-
-    // Setze den Mittelpunkt des Canvas als Ursprung der Skalierung
-    canvasScale.setPivotX(canvasCenterX);
-    canvasScale.setPivotY(canvasCenterY);
-  }
-
-
 
   public void onSave() {
     FileService.save(canvas);}
@@ -161,8 +141,8 @@ public class DrawtasticController {
     arrowButton.setOnAction(e->{toolManager.changeTool(new Arrow());});
     encryptButton.setOnAction(e->encrypter.encrypte());
     decryptButton.setOnAction(e->encrypter.decrypte());
-    zoomInButton.setOnAction(e -> zoom(1.1));
-    zoomOutButton.setOnAction(e -> zoom(0.9));
+    zoomInButton.setOnAction(e -> toolManager.zoom(1.1,canvas, canvasScale));
+    zoomOutButton.setOnAction(e -> toolManager.zoom(0.9,canvas, canvasScale));
   }
 
 }

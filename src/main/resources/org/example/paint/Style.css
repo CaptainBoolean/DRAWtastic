@@ -5,12 +5,30 @@
     -fx-text-fill: white;
 }
 
+/* Entferne den Fokusrahmen und setze den Rand in Grau für alle ScrollPanes */
+.scroll-pane {
+    -fx-border-color: gray;
+    -fx-background-color: gray;
+}
+
+/* Entferne den Fokusrahmen, aber behalte den grauen Rand */
+.scroll-pane:focused {
+    -fx-border-color: gray;
+}
+
+
+
 /* Hintergrundfarbe für Buttons */
 .button {
     -fx-background-color: #424242;
     -fx-text-fill: white;
     -fx-background-radius: 5;
 }
+
+.scroll-pane:focused {
+    -fx-border-color: transparent;
+}
+
 
 /* Button Hover-Effekt */
 .button:hover {

@@ -88,6 +88,21 @@ public class ToolManager {
     return newTool;
   }
 
+  public void zoom(double zoomFactor, Canvas canvas, Scale canvasScale) {
+    double canvasCenterX = canvas.getWidth() / 2;
+    double canvasCenterY = canvas.getHeight() / 2;
+
+    double newScale = canvasScale.getX() * zoomFactor;
+    newScale = Math.max(0.2, Math.min(newScale, 10));
+
+    canvasScale.setX(newScale);
+    canvasScale.setY(newScale);
+
+    canvasScale.setPivotX(canvasCenterX);
+    canvasScale.setPivotY(canvasCenterY);
+  }
+
+
   void onDrag(MouseEvent e) {
     try {
       double size = brushSize.getValue();
