@@ -123,6 +123,8 @@
             <HBox spacing="10">
               <Button fx:id="undoButton" text="Undo" />
               <Button fx:id="redoButton" text="Redo" />
+              <Button fx:id="zoomInButton" text="Zoom +" />
+              <Button fx:id="zoomOutButton" text="Zoom -" />
             </HBox>
           </VBox>
 
@@ -132,12 +134,12 @@
   </top>
 
   <center>
-    <Pane fx:id="canvasPane">
+    <ScrollPane fx:id="canvasPane">
       <Group fx:id="canvasGroup">
-        <Canvas fx:id="canvas" width="2600" height="1800" />
-        <Canvas fx:id="overlayCanvas" width="2600" height="1800" mouseTransparent="true" />
+        <Canvas fx:id="canvas" width="1295" height="715" />
+        <Canvas fx:id="overlayCanvas" width="1295" height="715" mouseTransparent="true" />
       </Group>
-    </Pane>
+    </ScrollPane>
   </center>
 
 </BorderPane>

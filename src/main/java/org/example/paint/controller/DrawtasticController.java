@@ -2,9 +2,13 @@ package org.example.paint.controller;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Scale;
 import javafx.util.converter.NumberStringConverter;
 import org.example.paint.tools.generalTools.*;
 import org.example.paint.tools.generalTools.selectAndMove.BoxSelectAndMove;
@@ -20,6 +24,11 @@ public class DrawtasticController {
 
 
   @FXML private Canvas canvas, overlayCanvas;
+  @FXML private Group canvasGroup;
+  @FXML private Button zoomInButton;
+  @FXML private Button zoomOutButton;
+
+
   @FXML private ColorPicker colorPicker;
   @FXML private ColorPicker backgroundColorPicker;
   @FXML private TextField brushSize;
@@ -41,6 +50,8 @@ public class DrawtasticController {
   private Background background;
   private UndoRedo undoRedo;
   private Encrypter encrypter;
+  private double scale = 1.0;
+  private final Scale canvasScale = new Scale(1.0, 1.0, 0, 0);
 
   public void initialize() {
     toolManager = new ToolManager(canvas, overlayCanvas);
@@ -52,14 +63,36 @@ public class DrawtasticController {
     toolManager.changeTool(new RoundPen());
     initListeners();
 
+    // Canvas Color init
+    GraphicsContext gc = canvas.getGraphicsContext2D();
+    gc.setFill(Color.WHITE);
+    gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    canvasGroup.getTransforms().add(canvasScale);
+
     canvas.setOnMouseEntered(e ->{toolManager.onEnter(e);});
     canvas.setOnMouseMoved(e -> {toolManager.onMove(e);});
     canvas.setOnMouseDragged(e -> {toolManager.onDrag(e);});
     canvas.setOnMousePressed(e -> {toolManager.onPress(e);});
     canvas.setOnMouseReleased(e -> {toolManager.onRelease(e);undoRedo.saveState();});
-
     initButtons();
   }
+
+  private void zoom(double zoomFactor) {
+    double canvasCenterX = canvas.getWidth() / 2;
+    double canvasCenterY = canvas.getHeight() / 2;
+
+    scale *= zoomFactor;
+    scale = Math.max(0.2, Math.min(scale, 10)); // Begrenzung des Zooms
+
+    canvasScale.setX(scale);
+    canvasScale.setY(scale);
+
+    // Setze den Mittelpunkt des Canvas als Ursprung der Skalierung
+    canvasScale.setPivotX(canvasCenterX);
+    canvasScale.setPivotY(canvasCenterY);
+  }
+
+
 
   public void onSave() {
     FileService.save(canvas);}
@@ -128,6 +161,8 @@ public class DrawtasticController {
     arrowButton.setOnAction(e->{toolManager.changeTool(new Arrow());});
     encryptButton.setOnAction(e->encrypter.encrypte());
     decryptButton.setOnAction(e->encrypter.decrypte());
+    zoomInButton.setOnAction(e -> zoom(1.1));
+    zoomOutButton.setOnAction(e -> zoom(0.9));
   }
 
 }
