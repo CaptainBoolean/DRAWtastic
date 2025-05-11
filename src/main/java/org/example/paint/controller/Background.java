@@ -18,6 +18,10 @@ public class Background {
 
   static void changeBackground(Color newColor) {
     //TODO implement - listener already calling this method hen color picker is changed
+    backgroundColor.set(newColor);
+    javafx.scene.canvas.GraphicsContext gc = canvas.getGraphicsContext2D();
+    gc.setFill(newColor);
+    gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
   }
 

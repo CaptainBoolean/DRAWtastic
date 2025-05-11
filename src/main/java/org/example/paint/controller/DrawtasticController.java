@@ -61,9 +61,7 @@ public class DrawtasticController {
     initListeners();
 
     // Canvas Color & Scale init
-    GraphicsContext gc = canvas.getGraphicsContext2D();
-    gc.setFill(Color.WHITE);
-    gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    Background.changeBackground(Color.WHITE);
     canvasGroup.getTransforms().add(canvasScale);
 
     canvas.setOnMouseEntered(e ->{toolManager.onEnter(e);});
