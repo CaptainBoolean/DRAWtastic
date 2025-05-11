@@ -11,7 +11,7 @@ public class Background {
   private static Canvas canvas;
 
   Background(Canvas canvas) {
-    this.canvas = canvas;
+    Background.canvas = canvas;
   }
 
 
@@ -31,8 +31,8 @@ public class Background {
 
   static ObjectProperty<Color> backgroundColorProperty() {return backgroundColor;}
 
-  public static void fillWithBackground(double var1, double var3, double var5, double var7) {
-    //TODO implement -
+  public static void fillRectWithBackground(double x, double y, double width, double height) {
+    //TODO implement - x,y should be in the center and height and width to the left and right respective up and down
   }
 
 }

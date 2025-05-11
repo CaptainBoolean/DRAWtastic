@@ -8,6 +8,7 @@ public class SquareEraser extends Pen {
     @Override
     protected void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity) {
         g.clearRect(x - size / 2, y - size / 2, size, size);
+        //Background.fillWithBackground(x,y, size, size);
     }
 
     @Override

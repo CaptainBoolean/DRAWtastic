@@ -1,6 +1,7 @@
 package org.example.paint.tools.generalTools;
 
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
@@ -8,12 +9,12 @@ import javafx.scene.paint.Color;
 import org.example.paint.tools.Tool;
 
 public class Pipette implements Tool {
-  private ObjectProperty<Color> color = null;
+  private static ObjectProperty<Color> color = new SimpleObjectProperty<>();
 
   public Pipette() {}
 
   public Pipette(ObjectProperty<Color> color) {
-    this.color = color;
+    Pipette.color = color;
   }
 
   @Override
@@ -35,8 +36,6 @@ public class Pipette implements Tool {
     }
   }
 
-  public ObjectProperty<Color> getColor() {
-    return color;
-  }
+  //TODO implement preview
 
 }

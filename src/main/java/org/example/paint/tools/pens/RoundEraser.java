@@ -14,6 +14,7 @@ public class RoundEraser extends Pen {
       for (double dy = -radius; dy <= radius; dy += step) {
         if (dx * dx + dy * dy <= radius * radius) {
           g.clearRect(x + dx, y + dy, step, step);
+          //Background.fillRectWithBackground(x, y, size, size);
         }
       }
     }
