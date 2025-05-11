@@ -34,8 +34,11 @@ public class Rectangle extends Shape {
             double clearY = Math.min(startY, lastPreviewY);
             double clearWidth = Math.abs(lastPreviewX - startX);
             double clearHeight = Math.abs(lastPreviewY - startY);
-            drawShape.clearRect(clearX - saveSize / 2, clearY - saveSize / 2, clearWidth + saveSize, clearHeight + saveSize);
+
+            drawShape.setFill(Color.WHITE); // Oder Farbe des Hintergrundes
+            drawShape.fillRect(clearX - saveSize / 2, clearY - saveSize / 2, clearWidth + saveSize, clearHeight + saveSize);
         }
+
 
         double endX = mouse.getX();
         double endY = mouse.getY();
