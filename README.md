@@ -49,6 +49,8 @@ git push # Gibt die Mappe ab
 ```bash
 git checkout main # Wechselt auf Main
 git merge DeineBranch
-git push origin main
+git add . 
+git commit -m "Was auch immer du implementiert hast" 
+git push 
 ```
 -Bei Merge Konflikte -> weinen gehen bzw. manuell lösen
