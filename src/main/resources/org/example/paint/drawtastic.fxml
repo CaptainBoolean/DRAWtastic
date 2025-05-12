@@ -136,6 +136,7 @@
   <center>
     <ScrollPane fx:id="canvasPane">
       <Group fx:id="canvasGroup">
+        <Canvas fx:id="backgroundCanvas" width="1295" height="715" />
         <Canvas fx:id="canvas" width="1295" height="715" />
         <Canvas fx:id="overlayCanvas" width="1295" height="715" mouseTransparent="true" />
       </Group>

@@ -21,7 +21,7 @@ import org.example.paint.tools.shapes.*;
 public class DrawtasticController {
 
 
-  @FXML private Canvas canvas, overlayCanvas;
+  @FXML private Canvas canvas, overlayCanvas, backgroundCanvas;
   @FXML private Group canvasGroup;
   @FXML private Button zoomInButton;
   @FXML private Button zoomOutButton;
@@ -50,7 +50,7 @@ public class DrawtasticController {
 
   public void initialize() {
     toolManager = new ToolManager(canvas, overlayCanvas);
-    background = new Background(canvas);
+    background = new Background(backgroundCanvas);
     undoRedo = new UndoRedo(canvas);
     encrypter = new Encrypter(canvas);
     initBinds();
