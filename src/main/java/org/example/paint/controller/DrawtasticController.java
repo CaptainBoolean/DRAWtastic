@@ -58,8 +58,6 @@ public class DrawtasticController {
     toolManager.changeTool(new RoundPen());
     initListeners();
 
-    // Canvas Color & Scale init
-    Background.changeBackground(Color.WHITE);
     canvasGroup.getTransforms().add(canvasScale);
 
     canvas.setOnMouseEntered(e ->{toolManager.onEnter(e);});

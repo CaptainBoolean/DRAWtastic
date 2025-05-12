@@ -5,7 +5,6 @@ import javafx.scene.image.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import org.example.paint.controller.Background;
 
 import java.awt.*;
 import java.util.ArrayDeque;
@@ -24,7 +23,7 @@ public class ConnectedSelectAndMove extends SelectAndMove {
       int height = (int) snapshot.getHeight();
       int startX = (int) e.getX();
       int startY = (int) e.getY();
-      Color bg = Background.getBackgroundColor();
+      Color bg = null; //TODO fix
       int bgARGB = reader.getArgb(startX, startY);
       if (bgARGB == reader.getArgb(startX, startY) && bg.equals(reader.getColor(startX, startY))) {
         return;

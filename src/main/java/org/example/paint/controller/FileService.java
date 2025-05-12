@@ -11,6 +11,8 @@ import java.io.File;
 
 public class FileService {
 
+  //TODO remove background if transparent maybe need method in baclground
+
   static void save(Canvas canvas) {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Save drawing as 'png'");
