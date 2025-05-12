@@ -5,7 +5,6 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import org.example.paint.controller.Background;
 
 public class BoxSelectAndMove extends SelectAndMove {
 
@@ -40,16 +39,13 @@ public class BoxSelectAndMove extends SelectAndMove {
         for (int i = 0; i < cutWidth; i++) {
           for (int j = 0; j < cutHeight; j++) {
             Color color = movedImage.getPixelReader().getColor(i, j);
-            Color background = Background.getBackgroundColor();
-            if (color.equals(background)) {
-              color = Color.TRANSPARENT;
-            } else if (background.equals(Color.TRANSPARENT) && color.equals(Color.WHITE)) {
+            if (color.equals(Color.WHITE)) {
               color = Color.TRANSPARENT;
             }
             pw.setColor(i, j, color);
           }
         }
-        Background.fillRectWithBackground(cutX-1, cutY-1, cutWidth+2, cutHeight+2);
+        g.clearRect(cutX-1, cutY-1, cutWidth+2, cutHeight+2);
         mode = Mode.MOVING;
         switchingToMoving = true;
       } else {

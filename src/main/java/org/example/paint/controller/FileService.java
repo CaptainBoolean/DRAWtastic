@@ -21,7 +21,7 @@ public class FileService {
       WritableImage image = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
       Image snapshot = canvas.snapshot(null, image);
       int cutX = 0, cutY = 0, cutWidth = 0, cutHeight = 0;
-      cutX = cutY = cutWidth = cutHeight = 100;
+      cutX = cutY = cutWidth = cutHeight = 500;
       //TODO cut snapshot to max y and x of non background pixel and add 10px as buffer
       Image cutImage = new WritableImage(snapshot.getPixelReader(), cutX,cutY,cutWidth,cutHeight);
       ImageIO.write(SwingFXUtils.fromFXImage(cutImage, null), "png", file);

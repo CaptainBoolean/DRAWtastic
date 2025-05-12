@@ -2,7 +2,6 @@ package org.example.paint.tools.pens;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import org.example.paint.controller.Background;
 
 public class RoundEraser extends Pen {
 
@@ -14,7 +13,7 @@ public class RoundEraser extends Pen {
     for (double dx = -radius; dx <= radius; dx += step) {
       for (double dy = -radius; dy <= radius; dy += step) {
         if (dx * dx + dy * dy <= radius * radius) {
-        Background.fillRectWithBackground(x, y, size, size);
+          g.clearRect(x - size / 2, y - size / 2, size, size);
         }
       }
     }

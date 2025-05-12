@@ -3,11 +3,10 @@ package org.example.paint.controller;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 
 
 public class Background {
@@ -67,16 +66,5 @@ public class Background {
     return backgroundColor;
   }
 
-  public static void fillRectWithBackground(double x, double y, double width, double height) {
-    GraphicsContext gc = backgroundCanvas.getGraphicsContext2D();
-    gc.setFill(backgroundColor.get());
-    gc.fillRect(x - width / 2, y - height / 2, width, height);
-  }
-
-  public static void fillEllipseWithBackground(double x, double y, double width, double height) {
-    GraphicsContext gc = backgroundCanvas.getGraphicsContext2D();
-    gc.setFill(backgroundColor.get());
-    gc.fillOval(x - width / 2, y - height / 2, width, height);
-  }
 
 }
