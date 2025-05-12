@@ -39,4 +39,8 @@ public class Background {
     //TODO implement - x,y should be in the center and height and width to the left and right respective up and down
   }
 
+  public static void fillEllipseWithBackground(double x, double y, double width, double height) {
+    //TODO implement
+  }
+
 }

@@ -49,10 +49,7 @@ public class BoxSelectAndMove extends SelectAndMove {
             pw.setColor(i, j, color);
           }
         }
-        g.setFill(Background.getBackgroundColor());
-        g.clearRect(cutX, cutY, cutWidth, cutHeight);
-        g.fillRect(cutX, cutY, cutWidth, cutHeight);
-        //Background.fillRectWithBackground(cutX, cutY, cutWidth, cutHeight);
+        Background.fillRectWithBackground(cutX-1, cutY-1, cutWidth+2, cutHeight+2);
         mode = Mode.MOVING;
         switchingToMoving = true;
       } else {
@@ -71,7 +68,7 @@ public class BoxSelectAndMove extends SelectAndMove {
       int newX = Math.min(startX, currX), newY = Math.min(startY, currY);
       int newWidth = Math.abs(currX - startX), newHeight = Math.abs(currY - startY);
 
-      double m = 1; // stroke margin
+      double m = 5;
       og.clearRect(lastX - m, lastY - m, lastWidth + 2*m, lastHeight + 2*m);
       og.setStroke(Color.GRAY);
       og.strokeRect(newX, newY, newWidth, newHeight);
@@ -81,7 +78,7 @@ public class BoxSelectAndMove extends SelectAndMove {
     }
     else if (mode == Mode.MOVING && movedImage != null) {
       if (switchingToMoving) {
-        double m = 1;
+        double m = 5;
         og.clearRect(lastX - m, lastY - m, lastWidth + 2*m, lastHeight + 2*m);
         switchingToMoving = false;
       }
