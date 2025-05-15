@@ -176,12 +176,18 @@ public abstract class Pen implements Tool {
   private boolean checkNoMovement(MouseEvent e) {
     double x = e.getX();
     double y = e.getY();
-    boolean noMovement = System.nanoTime() - lastNoMovementTime > holdThreshold &&
-            Math.hypot(x - noMovementX, y - noMovementY) < movementMargin;
-    lastNoMovementTime = System.nanoTime();
-    noMovementX = x;
-    noMovementY = y;
-    return noMovement;
+
+    double distance = Math.hypot(x - noMovementX, y - noMovementY);
+    long now = System.nanoTime();
+
+    if (distance > movementMargin) {
+      lastNoMovementTime = now;
+      noMovementX = x;
+      noMovementY = y;
+      return false;
+    }
+
+    return now - lastNoMovementTime > holdThreshold;
   }
 }
 
