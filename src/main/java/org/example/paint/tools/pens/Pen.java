@@ -83,6 +83,7 @@ public abstract class Pen implements Tool {
     lastX = -1;
     lastY = -1;
 
+    //TODO make transparent aware
     WritableImage tempImage = new WritableImage((int) predrawGC.getCanvas().getWidth(), (int) predrawGC.getCanvas().getHeight());
     predrawGC.getCanvas().snapshot(null, tempImage);
     g.drawImage(tempImage, 0, 0);
