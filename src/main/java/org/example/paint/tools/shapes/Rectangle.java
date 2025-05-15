@@ -11,14 +11,14 @@ public class Rectangle extends Shape {
     private double currOpacity = 1;
 
     @Override
-    public void onPress(GraphicsContext drawShape, MouseEvent mouse) {
+    public void onPress(GraphicsContext drawShape, GraphicsContext dg, MouseEvent mouse, double size, Color color, double opacity) {
         startX = mouse.getX();
         startY = mouse.getY();
         drawing = true;
     }
 
     @Override
-    public void onDrag(GraphicsContext preview, MouseEvent mouse, double size, Color color, double opacity) {
+    public void onDrag(GraphicsContext preview, GraphicsContext dg, MouseEvent mouse, double size, Color color, double opacity) {
         if (!drawing) {
             return;
         }
@@ -39,7 +39,7 @@ public class Rectangle extends Shape {
     }
 
     @Override
-    public void onRelease(GraphicsContext drawShape, MouseEvent mouse, double size) {
+    public void onRelease(GraphicsContext drawShape, GraphicsContext dg, MouseEvent mouse, double size, Color color, double opacity) {
         if (drawing) {
             double endX = mouse.getX();
             double endY = mouse.getY();
@@ -57,7 +57,7 @@ public class Rectangle extends Shape {
     @Override
     public void drawPreviewAt(GraphicsContext preview, MouseEvent mouse, double size) {
         if (drawing) {
-            onDrag(preview, mouse, size, currColor, currOpacity);
+            onDrag(preview, null, mouse, size, currColor, currOpacity);
         }
     }
 

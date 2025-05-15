@@ -18,7 +18,7 @@ public class Pipette implements Tool {
   }
 
   @Override
-  public void onRelease(GraphicsContext g, MouseEvent e, double size) {
+  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color, double opacity) {
     double x = e.getX();
     double y = e.getY();
 
@@ -32,7 +32,7 @@ public class Pipette implements Tool {
 
     //setting pixel color to the color property
     if (color != null) {
-      color.setValue(pickedColor);
+      this.color.setValue(pickedColor);
     }
   }
 

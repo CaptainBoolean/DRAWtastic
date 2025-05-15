@@ -9,7 +9,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import org.example.paint.controller.ToolManager;
 import org.example.paint.tools.Tool;
 
 import java.util.Optional;
@@ -48,7 +47,7 @@ public class Textfield implements Tool {
 
 
     @Override
-    public void onRelease(GraphicsContext g, MouseEvent e, double size) {
+    public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color, double opacity) {
         //capturing user input
         String userInput = promptForText();
         setString(userInput); //set text to the input

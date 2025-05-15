@@ -16,12 +16,12 @@ public class PictureInsert implements Tool {
     //TODO resize the picture with downscaling and insert in correct format after drag (maybe take y axis from mouse and set x so it is not distorted)
 
     @Override
-    public void onDrag(GraphicsContext g, MouseEvent e, double size, Color color, double opacity) {
+    public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color, double opacity) {
 
     }
 
     @Override
-    public void onRelease(GraphicsContext g, MouseEvent e, double size) {
+    public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color, double opacity) {
         Canvas canvas = g.getCanvas();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Bild auswählen");

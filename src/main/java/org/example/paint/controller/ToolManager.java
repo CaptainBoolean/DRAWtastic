@@ -15,8 +15,8 @@ public class ToolManager {
   private Tool currentTool;
   private final Canvas canvas;
   private final GraphicsContext g;
-  private final Canvas overlayCanvas;
   private final GraphicsContext og;
+  private final GraphicsContext dg;
   private static final DoubleProperty brushSize = new SimpleDoubleProperty(8);
   private static final DoubleProperty opacity = new SimpleDoubleProperty(1);
   private static final BooleanProperty opacitySlider = new SimpleBooleanProperty();
@@ -27,11 +27,11 @@ public class ToolManager {
 
 
 
-  public ToolManager(Canvas canvas, Canvas overlayCanvas) {
+  public ToolManager(Canvas canvas, Canvas overlayCanvas, Canvas drawCanvas) {
     this.canvas = canvas;
     this.g = canvas.getGraphicsContext2D();
-    this.overlayCanvas = overlayCanvas;
     this.og = overlayCanvas.getGraphicsContext2D();
+    this.dg = drawCanvas.getGraphicsContext2D();
   }
 
   public void changeTool(Tool newTool) {
@@ -105,10 +105,7 @@ public class ToolManager {
 
   void onDrag(MouseEvent e) {
     try {
-      double size = brushSize.getValue();
-      int opacitySteepness = 6; //TODO implement better progression of curve
-      double corrOpacity = (Math.exp(opacity.getValue()*opacitySteepness)-1)/(Math.exp(opacitySteepness)-1);
-      currentTool.onDrag(g, e, size, color.getValue(), corrOpacity);
+      currentTool.onDrag(g, dg, e, brushSize.getValue(), color.getValue(), opacity.getValue());
       currentTool.drawPreviewAt(og, e, brushSize.getValue());
     } catch (NumberFormatException ex) {
       System.out.println("Ungültige Pinselgröße!");
@@ -116,11 +113,11 @@ public class ToolManager {
   }
 
   void onPress(MouseEvent e) {
-    currentTool.onPress(g, e);
+    currentTool.onPress(g, dg, e, brushSize.getValue(), color.getValue() , opacity.getValue() );
   }
 
   void onRelease(MouseEvent e) {
-    currentTool.onRelease(g, e, brushSize.getValue());
+    currentTool.onRelease(g, dg, e, brushSize.getValue(),color.getValue() , opacity.getValue() );
   }
 
   void onMove(MouseEvent e) {

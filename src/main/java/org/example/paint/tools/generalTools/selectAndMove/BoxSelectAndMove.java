@@ -15,7 +15,7 @@ public class BoxSelectAndMove extends SelectAndMove {
   private boolean switchingToMoving = false;
 
   @Override
-  public void onDrag(GraphicsContext g, MouseEvent e, double size, Color color, double opacity) {
+  public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color, double opacity) {
     if (mode == Mode.IDLE) {
       startX = (int)e.getX();
       startY = (int)e.getY();
@@ -24,7 +24,7 @@ public class BoxSelectAndMove extends SelectAndMove {
   }
 
   @Override
-  public void onRelease(GraphicsContext g, MouseEvent e, double size) {
+  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color, double opacity) {
     if (mode == Mode.SELECTING) {
       int ex = (int)e.getX(), ey = (int)e.getY();
       double cutWidth = Math.abs(startX - ex), cutHeight = Math.abs(startY - ey);
@@ -38,11 +38,11 @@ public class BoxSelectAndMove extends SelectAndMove {
 
         for (int i = 0; i < cutWidth; i++) {
           for (int j = 0; j < cutHeight; j++) {
-            Color color = movedImage.getPixelReader().getColor(i, j);
-            if (color.equals(Color.WHITE)) {
-              color = Color.TRANSPARENT;
+            Color pixColor = movedImage.getPixelReader().getColor(i, j);
+            if (pixColor.equals(Color.WHITE)) {
+              pixColor = Color.TRANSPARENT;
             }
-            pw.setColor(i, j, color);
+            pw.setColor(i, j, pixColor);
           }
         }
         g.clearRect(cutX-1, cutY-1, cutWidth+2, cutHeight+2);

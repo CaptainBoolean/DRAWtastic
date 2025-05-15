@@ -1,9 +1,11 @@
 package org.example.paint.controller;
 
 import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
 import javax.imageio.ImageIO;
@@ -32,5 +34,13 @@ public class FileService {
     } catch (Exception e) {
       System.out.println("Failed to save Image: " + e);
     }
+  }
+
+  public static WritableImage getTranspSnapshot(Canvas canvas) {
+    WritableImage tempImage = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
+    SnapshotParameters params = new SnapshotParameters();
+    params.setFill(Color.TRANSPARENT);
+    canvas.snapshot(params, tempImage);
+    return  tempImage;
   }
 }

@@ -1,10 +1,9 @@
 package org.example.paint.tools.pens;
 
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import org.example.paint.controller.FileService;
 import org.example.paint.tools.Tool;
 
 /**
@@ -21,33 +20,29 @@ public abstract class Pen implements Tool {
   long lastTimestamp = System.nanoTime();
   int recalculateTime = 5000000;
   long timeElapsed = 0;
-  private GraphicsContext predrawGC;
 
-  public Pen() {
-    predrawGC = new Canvas().getGraphicsContext2D();
-    predrawGC.setGlobalAlpha(1);
-    predrawGC.setGlobalBlendMode(javafx.scene.effect.BlendMode.SRC_OVER);
-
-  }
 
   /**
    * Draws the sepcific kind of shape when dragging over the canvas.
    * Between the registered points interpolation happens to allow pens to draw one continuos line.
-   * @param g The GraphicsContect to draw on.
-   * @param e The MouseEvent necessary to grab the location of drawing.
-   * @param size The size that the pen should use for it's shape.
-   * @param color The color that the pen should draw in if it has changable colors.
+   *
+   * @param g       The GraphicsContect to draw on.
+   * @param dg
+   * @param e       The MouseEvent necessary to grab the location of drawing.
+   * @param size    The size that the pen should use for it's shape.
+   * @param color   The color that the pen should draw in if it has changable colors.
    * @param opacity The opacity that the line should be.
    */
-  public void onDrag(GraphicsContext g, MouseEvent e, double size, Color color, double opacity) {
-    if (predrawGC.getCanvas().getWidth() == 0 || predrawGC.getCanvas().getHeight() == 0) {
-      predrawGC.getCanvas().setHeight(g.getCanvas().getHeight());
-      predrawGC.getCanvas().setWidth(g.getCanvas().getWidth());
+  public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color, double opacity) {
+    if (dg.getCanvas().getWidth() == 0 || dg.getCanvas().getHeight() == 0) {
+      dg.getCanvas().setHeight(g.getCanvas().getHeight());
+      dg.getCanvas().setWidth(g.getCanvas().getWidth());
     }
     double x = e.getX();
     double y = e.getY();
 
-    predrawGC.setFill(color);
+    dg.setFill(color);
+    g.setGlobalAlpha(opacity);
     //TODO maybe create temporary canvas to write on and then put that on top to merge colors
     //TODO maybe make it so the line on the temp canvas gets deleted when pen is held at the end and straight line is drawn
 
@@ -61,10 +56,10 @@ public abstract class Pen implements Tool {
         double t = (double) i / steps;
         double interpX = lastX + t * dx;
         double interpY = lastY + t * dy;
-        drawAt(predrawGC, interpX, interpY, size, color, opacity);
+        drawAt(dg, interpX, interpY, size, color, opacity);
       }
     } else {
-      drawAt(predrawGC, x, y, size, color, opacity);
+      drawAt(dg, x, y, size, color, opacity);
     }
 
     lastX = x;
@@ -74,20 +69,21 @@ public abstract class Pen implements Tool {
 
   /**
    * Resets the parameters necessary for interpolation.
-   * @param g -
-   * @param e -
-   * @param size -
+   *
+   * @param g       -
+   * @param dg
+   * @param e       -
+   * @param size    -
+   * @param color
+   * @param opacity
    */
   @Override
-  public void onRelease(GraphicsContext g, MouseEvent e, double size) {
+  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color, double opacity) {
     lastX = -1;
     lastY = -1;
 
-    //TODO make transparent aware
-    WritableImage tempImage = new WritableImage((int) predrawGC.getCanvas().getWidth(), (int) predrawGC.getCanvas().getHeight());
-    predrawGC.getCanvas().snapshot(null, tempImage);
-    g.drawImage(tempImage, 0, 0);
-    predrawGC.clearRect(0, 0, predrawGC.getCanvas().getWidth(), predrawGC.getCanvas().getHeight());
+    g.drawImage(FileService.getTranspSnapshot(dg.getCanvas()), 0, 0);
+    dg.clearRect(0, 0, dg.getCanvas().getWidth(), dg.getCanvas().getHeight());
   }
 
   /**

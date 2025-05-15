@@ -2,10 +2,10 @@
 
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.Group?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.paint.controller.DrawtasticController"
@@ -138,6 +138,7 @@
       <Group fx:id="canvasGroup">
         <Canvas fx:id="backgroundCanvas" width="1295" height="715" />
         <Canvas fx:id="canvas" width="1295" height="715" />
+        <Canvas fx:id="drawCanvas" width="1295" height="715" mouseTransparent="true"/>
         <Canvas fx:id="overlayCanvas" width="1295" height="715" mouseTransparent="true" />
       </Group>
     </ScrollPane>

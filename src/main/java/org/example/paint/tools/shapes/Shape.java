@@ -7,12 +7,12 @@ import org.example.paint.tools.Tool;
 
 public class Shape implements Tool {
   @Override
-  public void onDrag(GraphicsContext g, MouseEvent e, double size, Color color, double opacity) {
+  public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color, double opacity) {
 
   }
 
   @Override
-  public void onRelease(GraphicsContext g, MouseEvent e, double size) {
+  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color, double opacity) {
 
   }
 

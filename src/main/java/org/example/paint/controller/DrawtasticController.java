@@ -21,7 +21,7 @@ import org.example.paint.tools.shapes.*;
 public class DrawtasticController {
 
 
-  @FXML private Canvas canvas, overlayCanvas, backgroundCanvas;
+  @FXML private Canvas canvas,drawCanvas, overlayCanvas, backgroundCanvas;
   @FXML private Group canvasGroup;
   @FXML private Button zoomInButton;
   @FXML private Button zoomOutButton;
@@ -49,7 +49,7 @@ public class DrawtasticController {
   private final Scale canvasScale = new Scale(1.0, 1.0, 0, 0);
 
   public void initialize() {
-    toolManager = new ToolManager(canvas, overlayCanvas);
+    toolManager = new ToolManager(canvas, overlayCanvas, drawCanvas);
     background = new Background(backgroundCanvas);
     undoRedo = new UndoRedo(canvas);
     encrypter = new Encrypter(canvas);
@@ -99,9 +99,8 @@ public class DrawtasticController {
             (int)(colorWithOpacity.getRed() * 255) + "," +
             (int)(colorWithOpacity.getGreen() * 255) + "," +
             (int)(colorWithOpacity.getBlue() * 255) + "," +
-            Math.min(colorWithOpacity.getOpacity()*1.2, 1) + ");"); //TODO match with implemented curve
+            Math.min(colorWithOpacity.getOpacity(), 1) + ");"); //TODO match with implemented curve
   }
-
 
 
   //TODO sort buttons in groups and comment on them
