@@ -105,7 +105,7 @@ public class ToolManager {
 
   void onDrag(MouseEvent e) {
     try {
-      currentTool.onDrag(g, dg, e, brushSize.getValue(), color.getValue(), opacity.getValue());
+      currentTool.onDrag(g, dg, e, brushSize.getValue(), color.getValue());
       currentTool.drawPreviewAt(og, e, brushSize.getValue());
     } catch (NumberFormatException ex) {
       System.out.println("Ungültige Pinselgröße!");
@@ -113,11 +113,12 @@ public class ToolManager {
   }
 
   void onPress(MouseEvent e) {
-    currentTool.onPress(g, dg, e, brushSize.getValue(), color.getValue() , opacity.getValue() );
+    currentTool.onPress(g, dg, e, brushSize.getValue(), color.getValue());
   }
 
   void onRelease(MouseEvent e) {
-    currentTool.onRelease(g, dg, e, brushSize.getValue(),color.getValue() , opacity.getValue() );
+    currentTool.onRelease(g, dg, e, brushSize.getValue(),color.getValue());
+    copyToMainCanvas();
   }
 
   void onMove(MouseEvent e) {
@@ -125,6 +126,11 @@ public class ToolManager {
   }
 
   void onEnter(MouseEvent e) {og.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());}
+
+  private void copyToMainCanvas() {
+    g.drawImage(FileService.getTranspSnapshot(dg.getCanvas()), 0, 0);
+    dg.clearRect(0, 0, dg.getCanvas().getWidth(), dg.getCanvas().getHeight());
+  }
 
 
   static DoubleProperty brushSizeProperty() {return brushSize;}

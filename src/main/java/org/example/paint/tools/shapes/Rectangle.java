@@ -8,47 +8,43 @@ public class Rectangle extends Shape {
     private double startX, startY;
     private boolean drawing = false;
     private Color currColor = Color.BLACK;
-    private double currOpacity = 1;
 
     @Override
-    public void onPress(GraphicsContext drawShape, GraphicsContext dg, MouseEvent mouse, double size, Color color, double opacity) {
+    public void onPress(GraphicsContext drawShape, GraphicsContext dg, MouseEvent mouse, double size, Color color) {
         startX = mouse.getX();
         startY = mouse.getY();
         drawing = true;
     }
 
     @Override
-    public void onDrag(GraphicsContext preview, GraphicsContext dg, MouseEvent mouse, double size, Color color, double opacity) {
+    public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent mouse, double size, Color color) {
         if (!drawing) {
             return;
         }
-
-        preview.clearRect(0, 0, preview.getCanvas().getWidth(), preview.getCanvas().getHeight());
+        //TODO don't draw preview on main canvas -> call drawPreviewAt and just preview canvas
+        dg.clearRect(0, 0, g.getCanvas().getWidth(), g.getCanvas().getHeight());
 
         currColor = color;
-        currOpacity = opacity;
 
         double endX = mouse.getX();
         double endY = mouse.getY();
 
-        preview.setGlobalAlpha(opacity);
-        preview.setStroke(color);
-        preview.setLineWidth(size);
-        preview.strokeRect(Math.min(startX, endX), Math.min(startY, endY), Math.abs(endX - startX), Math.abs(endY - startY));
-        preview.setGlobalAlpha(1);
+        dg.setStroke(color);
+        dg.setLineWidth(size);
+        dg.strokeRect(Math.min(startX, endX), Math.min(startY, endY), Math.abs(endX - startX), Math.abs(endY - startY));
+        dg.setGlobalAlpha(1);
     }
 
     @Override
-    public void onRelease(GraphicsContext drawShape, GraphicsContext dg, MouseEvent mouse, double size, Color color, double opacity) {
+    public void onRelease(GraphicsContext drawShape, GraphicsContext dg, MouseEvent mouse, double size, Color color) {
         if (drawing) {
             double endX = mouse.getX();
             double endY = mouse.getY();
 
-            drawShape.setGlobalAlpha(currOpacity);
-            drawShape.setStroke(currColor);
-            drawShape.setLineWidth(size);
-            drawShape.strokeRect(Math.min(startX, endX), Math.min(startY, endY), Math.abs(endX - startX), Math.abs(endY - startY));
-            drawShape.setGlobalAlpha(1);
+            dg.setStroke(currColor);
+            dg.setLineWidth(size);
+            dg.strokeRect(Math.min(startX, endX), Math.min(startY, endY), Math.abs(endX - startX), Math.abs(endY - startY));
+            dg.setGlobalAlpha(1);
 
             drawing = false;
         }
@@ -57,7 +53,7 @@ public class Rectangle extends Shape {
     @Override
     public void drawPreviewAt(GraphicsContext preview, MouseEvent mouse, double size) {
         if (drawing) {
-            onDrag(preview, null, mouse, size, currColor, currOpacity);
+            onDrag(preview, null, mouse, size, currColor);
         }
     }
 

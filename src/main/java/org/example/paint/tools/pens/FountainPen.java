@@ -8,9 +8,9 @@ public class FountainPen extends Pen {
   private double height = 0;
 
   @Override
-  protected void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity) {
+  protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color) {
     getNewSize(size);
-    g.fillOval(x-width / 2, y-height / 2, width, height);
+    dg.fillOval(x-width / 2, y-height / 2, width, height);
   }
 
   private void getNewSize(double size) {

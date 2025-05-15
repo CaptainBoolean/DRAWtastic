@@ -15,7 +15,7 @@ import java.util.Deque;
 public class ConnectedSelectAndMove extends SelectAndMove {
 
   @Override
-  public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color, double opacity) {
+  public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
     if (mode == Mode.IDLE) {
       Image snapshot = g.getCanvas().snapshot(null, null);
       PixelReader reader = snapshot.getPixelReader();
@@ -54,14 +54,14 @@ public class ConnectedSelectAndMove extends SelectAndMove {
   }
 
   @Override
-  public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color, double opacity) {
+  public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
     if (mode == Mode.MOVING && movedImage != null) {
       super.printHere(g, e);
     }
   }
 
   @Override
-  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color, double opacity) {
+  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
     if (mode == Mode.MOVING && movedImage != null) {
       super.printHere(g, e);
       movedImage = null;

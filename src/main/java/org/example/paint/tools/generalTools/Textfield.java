@@ -47,7 +47,7 @@ public class Textfield implements Tool {
 
 
     @Override
-    public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color, double opacity) {
+    public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
         //capturing user input
         String userInput = promptForText();
         setString(userInput); //set text to the input

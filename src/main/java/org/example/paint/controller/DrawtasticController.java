@@ -34,7 +34,7 @@ public class DrawtasticController {
   @FXML private Button selectAndMoveButton, connectedSelectAndMoveButton, pipetteButton, transparentBackgroundButton, deleteColorButton, repaintButton, paintBucketButton;
   @FXML private SplitMenuButton pensButton;
   @FXML private Button eraserButton;
-  @FXML private MenuItem penButton, markerButton, blurButton, paintBrushButton, fountainPenButton, rainbowPenButton;
+  @FXML private MenuItem markerButton, blurButton, paintBrushButton, fountainPenButton, rainbowPenButton;
   @FXML private SplitMenuButton insertPicture;
   @FXML private MenuItem  blurFilterButton, blackAndWhiteFilterButton;
   @FXML private Button textFieldButton;
@@ -68,6 +68,8 @@ public class DrawtasticController {
     initButtons();
   }
 
+
+
   public void onSave() {
     FileService.save(canvas);}
 
@@ -100,6 +102,8 @@ public class DrawtasticController {
             (int)(colorWithOpacity.getGreen() * 255) + "," +
             (int)(colorWithOpacity.getBlue() * 255) + "," +
             Math.min(colorWithOpacity.getOpacity(), 1) + ");"); //TODO match with implemented curve
+
+    drawCanvas.setOpacity(opacity);
   }
 
 
@@ -107,7 +111,6 @@ public class DrawtasticController {
   private void initButtons() {
     selectAndMoveButton.setOnAction(e -> {toolManager.changeTool(new BoxSelectAndMove());});
     connectedSelectAndMoveButton.setOnAction(e -> {toolManager.changeTool(new ConnectedSelectAndMove());});
-    penButton.setOnAction(e -> {toolManager.changeTool(new RoundPen());});
     markerButton.setOnAction(e -> {toolManager.changeTool(new Marker());});
     eraserButton.setOnAction(e -> {toolManager.changeTool(new RoundEraser());});
     fountainPenButton.setOnAction(e -> {toolManager.changeTool(new FountainPen());});

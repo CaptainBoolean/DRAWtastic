@@ -6,7 +6,7 @@ import javafx.scene.paint.Color;
 public class RoundEraser extends Pen {
 
   @Override
-  protected void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity) {
+  protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color) {
     double radius = size / 2;
     double step = 1.0;
 

@@ -21,7 +21,7 @@ public class PaintBucket implements Tool {
   }
 
   @Override
-  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color, double opacity) {
+  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
       Color targetColor = new WritableImage((int) g.getCanvas().getWidth(), (int) g.getCanvas().getHeight()).getPixelReader().getColor((int) e.getX(), (int) e.getY());
 
       if (!targetColor.equals(fillColor.getValue())) {

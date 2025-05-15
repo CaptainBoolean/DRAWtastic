@@ -12,9 +12,9 @@ public class PaintBrush extends Pen{
   private double avSize;
 
   @Override
-  protected void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity) {
+  protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color) {
     getNewSize(x, y, size);
-    g.fillOval(x - avSize / 2, y - avSize / 2, avSize, avSize);
+    dg.fillOval(x - avSize / 2, y - avSize / 2, avSize, avSize);
   }
 
   private void getNewSize(double x, double y, double size) {

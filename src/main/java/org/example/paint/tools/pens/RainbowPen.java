@@ -12,7 +12,7 @@ public class RainbowPen extends Pen {
 
 
   @Override
-  protected void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity) {
+  protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color) {
     getNewAngle(x, y);
     int segments = 20;
 
@@ -23,9 +23,9 @@ public class RainbowPen extends Pen {
 
 
       double hue = 360.0 * i / segments;
-      Color rainbowColor = Color.hsb(hue, 1.0, 1.0, opacity);
-      g.setFill(rainbowColor);
-      g.fillOval(x + offsetX, y + offsetY, size / segments+1, size / segments+1);
+      Color rainbowColor = Color.hsb(hue, 1.0, 1.0, 1);
+      dg.setFill(rainbowColor);
+      dg.fillOval(x + offsetX, y + offsetY, size / segments+1, size / segments+1);
 
       System.out.printf("OSX: %f.2 OSY: %f.2\n", offsetX, offsetY);
     }

@@ -36,7 +36,6 @@
                   </ImageView>
                 </graphic>
                 <items>
-                  <MenuItem fx:id="penButton" text="Pencil" />
                   <MenuItem fx:id="markerButton" text="Marker" />
                   <MenuItem fx:id="blurButton" text="Blur" />
                   <MenuItem fx:id="paintBrushButton" text="Pain Brush" />

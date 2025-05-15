@@ -3,7 +3,6 @@ package org.example.paint.tools.pens;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import org.example.paint.controller.FileService;
 import org.example.paint.tools.Tool;
 
 /**
@@ -26,14 +25,13 @@ public abstract class Pen implements Tool {
    * Draws the sepcific kind of shape when dragging over the canvas.
    * Between the registered points interpolation happens to allow pens to draw one continuos line.
    *
-   * @param g       The GraphicsContect to draw on.
+   * @param g     The GraphicsContect to draw on.
    * @param dg
-   * @param e       The MouseEvent necessary to grab the location of drawing.
-   * @param size    The size that the pen should use for it's shape.
-   * @param color   The color that the pen should draw in if it has changable colors.
-   * @param opacity The opacity that the line should be.
+   * @param e     The MouseEvent necessary to grab the location of drawing.
+   * @param size  The size that the pen should use for it's shape.
+   * @param color The color that the pen should draw in if it has changable colors.
    */
-  public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color, double opacity) {
+  public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
     if (dg.getCanvas().getWidth() == 0 || dg.getCanvas().getHeight() == 0) {
       dg.getCanvas().setHeight(g.getCanvas().getHeight());
       dg.getCanvas().setWidth(g.getCanvas().getWidth());
@@ -42,8 +40,7 @@ public abstract class Pen implements Tool {
     double y = e.getY();
 
     dg.setFill(color);
-    g.setGlobalAlpha(opacity);
-    //TODO maybe create temporary canvas to write on and then put that on top to merge colors
+    g.setGlobalAlpha(1);
     //TODO maybe make it so the line on the temp canvas gets deleted when pen is held at the end and straight line is drawn
 
     if (lastX != -1 && lastY != -1) {
@@ -56,10 +53,10 @@ public abstract class Pen implements Tool {
         double t = (double) i / steps;
         double interpX = lastX + t * dx;
         double interpY = lastY + t * dy;
-        drawAt(dg, interpX, interpY, size, color, opacity);
+        drawAt(g, dg, interpX, interpY, size, color);
       }
     } else {
-      drawAt(dg, x, y, size, color, opacity);
+      drawAt(g, dg, x, y, size, color);
     }
 
     lastX = x;
@@ -70,32 +67,31 @@ public abstract class Pen implements Tool {
   /**
    * Resets the parameters necessary for interpolation.
    *
-   * @param g       -
+   * @param g     -
    * @param dg
-   * @param e       -
-   * @param size    -
+   * @param e     -
+   * @param size  -
    * @param color
-   * @param opacity
    */
   @Override
-  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color, double opacity) {
+  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
     lastX = -1;
     lastY = -1;
 
-    g.drawImage(FileService.getTranspSnapshot(dg.getCanvas()), 0, 0);
-    dg.clearRect(0, 0, dg.getCanvas().getWidth(), dg.getCanvas().getHeight());
+
   }
 
   /**
    * Draws at the provided coordinated with the specified characteristics
-   * @param g GraphicsContext to draw on.
-   * @param x The x coordinate to draw on.
-   * @param y The y coordinate to draw on.
-   * @param size The size to draw the shape in.
+   *
+   * @param g     GraphicsContext to draw on.
+   * @param dg
+   * @param x     The x coordinate to draw on.
+   * @param y     The y coordinate to draw on.
+   * @param size  The size to draw the shape in.
    * @param color The color to draw the shape in.
-   * @param opacity The opacity of the drawn shape.
    */
-  protected abstract void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity);
+  protected abstract void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color);
 
   /**
    * Draws a preview at the correct position and removes the last drawn one.

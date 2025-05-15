@@ -13,7 +13,7 @@ public class Blur extends Pen{
 
   //TODO fix laggyness and maybe update more frequently and not every stroke? (performance problem? no multithread in java fx)
   @Override
-  protected void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity) {
+  protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color) {
     long currentTime = System.nanoTime();
     long timeElapsed = currentTime - lastTimestamp;
     if ((lastX == -1 && lastY == -1) || timeElapsed > 500000000) {
@@ -47,7 +47,7 @@ public class Blur extends Pen{
     }
 
     if (count > 0) {
-      Color avgColor = new Color(red / count, green / count, blue / count, opacity);
+      Color avgColor = new Color(red / count, green / count, blue / count,1);
       g.setFill(avgColor);
       g.fillOval(x - size / 2, y - size / 2, size, size);
     }

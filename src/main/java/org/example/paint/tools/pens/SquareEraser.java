@@ -6,7 +6,7 @@ import javafx.scene.paint.Color;
 public class SquareEraser extends Pen {
 
     @Override
-    protected void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity) {
+    protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color) {
         g.clearRect(x - size / 2, y - size / 2, size, size);
     }
 
