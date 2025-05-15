@@ -7,7 +7,7 @@ public class RoundPen extends Pen{
 
   @Override
   protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color) {
-    g.fillOval(x - size / 2, y - size / 2, size, size);
+    dg.fillOval(x - size / 2, y - size / 2, size, size);
   }
 
   @Override

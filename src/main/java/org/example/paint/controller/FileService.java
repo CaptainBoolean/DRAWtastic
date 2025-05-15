@@ -36,6 +36,11 @@ public class FileService {
     }
   }
 
+  /**
+   * Return a full Image of the provided canvas, displaying transparent pixels as transparent.
+   * @param canvas
+   * @return WritableImage
+   */
   public static WritableImage getTranspSnapshot(Canvas canvas) {
     WritableImage tempImage = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
     SnapshotParameters params = new SnapshotParameters();

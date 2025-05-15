@@ -26,9 +26,10 @@ public abstract class SelectAndMove implements Tool {
   }
 
   protected void printHere(GraphicsContext g, MouseEvent e) {
-    double printX = e.getX() - movedImage.getWidth()  / 2;
-    double printY = e.getY() - movedImage.getHeight() / 2;
+    int printX = (int)e.getX() - (int)(movedImage.getWidth() / 2);
+    int printY = (int)e.getY() - (int)(movedImage.getHeight() / 2);
     g.drawImage(movedImage, printX, printY);
+
     movedImage = null;
     mode = Mode.IDLE;
   }

@@ -10,6 +10,8 @@ This is the abstract form of a Pen providing all necessary common fields, managi
  */
 public abstract class Pen implements Tool {
 
+  private double startX = -1;
+  private double startY = -1;
   protected double lastX = -1;
   protected double lastY = -1;
   private double lastPreviewX = -1;
@@ -19,6 +21,9 @@ public abstract class Pen implements Tool {
   long lastTimestamp = System.nanoTime();
   int recalculateTime = 5000000;
   long timeElapsed = 0;
+  private final long holdThreshold = 200000000;
+  private boolean straightLine;
+  private boolean noMovement;
 
 
   /**
@@ -44,17 +49,7 @@ public abstract class Pen implements Tool {
     //TODO maybe make it so the line on the temp canvas gets deleted when pen is held at the end and straight line is drawn
 
     if (lastX != -1 && lastY != -1) {
-      double dx = x - lastX;
-      double dy = y - lastY;
-      double distance = Math.hypot(dx, dy);
-      int steps = (int) distance;
-
-      for (int i = 0; i <= steps; i++) {
-        double t = (double) i / steps;
-        double interpX = lastX + t * dx;
-        double interpY = lastY + t * dy;
-        drawAt(g, dg, interpX, interpY, size, color);
-      }
+      drawStraightLine(g, e, size, color);
     } else {
       drawAt(g, dg, x, y, size, color);
     }
@@ -75,8 +70,15 @@ public abstract class Pen implements Tool {
    */
   @Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+    if (straightLine) {
+      drawStraightLine(g, e, lastX, color);
+    }
     lastX = -1;
     lastY = -1;
+    startX = -1;
+    startY = -1;
+    straightLine = false;
+    noMovement = false;
 
 
   }
@@ -101,6 +103,9 @@ public abstract class Pen implements Tool {
    */
   @Override
   public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
+    if (straightLine) {
+
+    }
     double x = e.getX();
     double y = e.getY();
 
@@ -140,5 +145,36 @@ public abstract class Pen implements Tool {
     return false;
   }
 
+  @Override
+  public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color){
+    startX = e.getX();
+    startY = e.getY();
+  }
+
+  private void drawStraightLine(GraphicsContext g, MouseEvent e, double size, Color color) {
+    double dx, dy;
+    double calcX, calcY;
+    if (straightLine) {
+      calcX = startX;
+      calcY = startY;
+    } else {
+      calcX = lastX;
+      calcY = lastY;
+    }
+
+    dx = e.getX() - calcX;
+    dy = e.getY() - calcY;
+
+
+    double distance = Math.hypot(dx, dy);
+    int steps = (int) distance;
+
+    for (int i = 0; i <= steps; i++) {
+      double t = (double) i / steps;
+      double x = lastX + t * dx;
+      double y = lastY + t * dy;
+      drawAt(g, g, x, y, size, color);
+    }
+  }
 }
 

@@ -1,10 +1,10 @@
 package org.example.paint.tools.generalTools.selectAndMove;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import org.example.paint.controller.FileService;
 
 public class BoxSelectAndMove extends SelectAndMove {
 
@@ -30,21 +30,10 @@ public class BoxSelectAndMove extends SelectAndMove {
       double cutWidth = Math.abs(startX - ex), cutHeight = Math.abs(startY - ey);
       if (cutWidth > 0 && cutHeight > 0) {
         double cutX = Math.min(startX, ex), cutY = Math.min(startY, ey);
-        WritableImage full = g.getCanvas().snapshot(null, null);
+        WritableImage full = FileService.getTranspSnapshot(g.getCanvas());
         movedImage = new WritableImage(full.getPixelReader(),
                 (int)cutX, (int)cutY,
                 (int)cutWidth, (int)cutHeight);
-        PixelWriter pw = movedImage.getPixelWriter();
-
-        for (int i = 0; i < cutWidth; i++) {
-          for (int j = 0; j < cutHeight; j++) {
-            Color pixColor = movedImage.getPixelReader().getColor(i, j);
-            if (pixColor.equals(Color.WHITE)) {
-              pixColor = Color.TRANSPARENT;
-            }
-            pw.setColor(i, j, pixColor);
-          }
-        }
         g.clearRect(cutX-1, cutY-1, cutWidth+2, cutHeight+2);
         mode = Mode.MOVING;
         switchingToMoving = true;
