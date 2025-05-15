@@ -1,17 +1,12 @@
 package org.example.paint.controller;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Scale;
-import javafx.util.Duration;
 import javafx.util.converter.NumberStringConverter;
 import org.example.paint.tools.generalTools.*;
 import org.example.paint.tools.generalTools.selectAndMove.BoxSelectAndMove;
@@ -52,7 +47,6 @@ public class DrawtasticController {
   private UndoRedo undoRedo;
   private Encrypter encrypter;
   private final Scale canvasScale = new Scale(1.0, 1.0, 0, 0);
-  private MouseEvent lastMouseEvent;
 
   public void initialize() {
     toolManager = new ToolManager(canvas, overlayCanvas, drawCanvas);
@@ -67,18 +61,11 @@ public class DrawtasticController {
     canvasGroup.getTransforms().add(canvasScale);
 
     canvas.setOnMouseEntered(e ->{toolManager.onEnter(e);});
-    canvas.setOnMouseMoved(e -> {toolManager.onMove(e); lastMouseEvent = e;}); //TODO also call in intervals
+    canvas.setOnMouseMoved(e -> {toolManager.onMove(e);}); //TODO also call in intervals
     canvas.setOnMouseDragged(e -> {toolManager.onDrag(e);});
     canvas.setOnMousePressed(e -> {toolManager.onPress(e);});
     canvas.setOnMouseReleased(e -> {toolManager.onRelease(e);undoRedo.saveState();});
 
-    Timeline pollTimer = new Timeline(new KeyFrame(Duration.millis(100), event -> {
-      if (lastMouseEvent != null) {
-        toolManager.onMove(lastMouseEvent);
-      }
-    }));
-    pollTimer.setCycleCount(Animation.INDEFINITE);
-    pollTimer.play();
 
 
     initButtons();

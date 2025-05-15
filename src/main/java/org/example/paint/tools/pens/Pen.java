@@ -106,9 +106,9 @@ public abstract class Pen implements Tool {
    */
   @Override
   public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
-    if (checkNoMovement(e)) {
-      og.clearRect(0, 0, size, size);
-      drawLine(og, og, e, startX, startY, size, Color.LIGHTGRAY);
+    if (checkNoMovement(e) && startX != -1 && startY != -1) {
+      og.clearRect(0, 0, og.getCanvas().getWidth(), og.getCanvas().getHeight());
+      drawLine(og, og, e, startX, startY, size, null);
     } else {
       double x = e.getX();
       double y = e.getY();
