@@ -1,6 +1,8 @@
 package org.example.paint.tools.pens;
 
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import org.example.paint.tools.Tool;
@@ -19,8 +21,14 @@ public abstract class Pen implements Tool {
   long lastTimestamp = System.nanoTime();
   int recalculateTime = 5000000;
   long timeElapsed = 0;
+  private GraphicsContext predrawGC;
 
-  //no constructor necessary because every drag data should be updated
+  public Pen() {
+    predrawGC = new Canvas().getGraphicsContext2D();
+    predrawGC.setGlobalAlpha(1);
+    predrawGC.setGlobalBlendMode(javafx.scene.effect.BlendMode.SRC_OVER);
+
+  }
 
   /**
    * Draws the sepcific kind of shape when dragging over the canvas.
@@ -32,13 +40,16 @@ public abstract class Pen implements Tool {
    * @param opacity The opacity that the line should be.
    */
   public void onDrag(GraphicsContext g, MouseEvent e, double size, Color color, double opacity) {
+    if (predrawGC.getCanvas().getWidth() == 0 || predrawGC.getCanvas().getHeight() == 0) {
+      predrawGC.getCanvas().setHeight(g.getCanvas().getHeight());
+      predrawGC.getCanvas().setWidth(g.getCanvas().getWidth());
+    }
     double x = e.getX();
     double y = e.getY();
 
+    predrawGC.setFill(color);
     //TODO maybe create temporary canvas to write on and then put that on top to merge colors
     //TODO maybe make it so the line on the temp canvas gets deleted when pen is held at the end and straight line is drawn
-    g.setGlobalAlpha(opacity);
-    g.setFill(new Color(color.getRed(), color.getGreen(), color.getBlue(), 1));
 
     if (lastX != -1 && lastY != -1) {
       double dx = x - lastX;
@@ -50,10 +61,10 @@ public abstract class Pen implements Tool {
         double t = (double) i / steps;
         double interpX = lastX + t * dx;
         double interpY = lastY + t * dy;
-        drawAt(g, interpX, interpY, size, color, opacity);
+        drawAt(predrawGC, interpX, interpY, size, color, opacity);
       }
     } else {
-      drawAt(g, x, y, size, color, opacity);
+      drawAt(predrawGC, x, y, size, color, opacity);
     }
 
     lastX = x;
@@ -71,6 +82,11 @@ public abstract class Pen implements Tool {
   public void onRelease(GraphicsContext g, MouseEvent e, double size) {
     lastX = -1;
     lastY = -1;
+
+    WritableImage tempImage = new WritableImage((int) predrawGC.getCanvas().getWidth(), (int) predrawGC.getCanvas().getHeight());
+    predrawGC.getCanvas().snapshot(null, tempImage);
+    g.drawImage(tempImage, 0, 0);
+    predrawGC.clearRect(0, 0, predrawGC.getCanvas().getWidth(), predrawGC.getCanvas().getHeight());
   }
 
   /**

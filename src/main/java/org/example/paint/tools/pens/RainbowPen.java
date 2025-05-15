@@ -8,9 +8,9 @@ public class RainbowPen extends Pen {
   private double lastX = -1;
   private double lastY = -1;
   private double avAngle = 0;
+  private double dirX,  dirY;
 
 
-  //TODO fix weird jagged line when goin top left
   @Override
   protected void drawAt(GraphicsContext g, double x, double y, double size, Color color, double opacity) {
     getNewAngle(x, y);
@@ -36,9 +36,26 @@ public class RainbowPen extends Pen {
       if (lastX != -1 && lastY != -1) {
         double dx = x - lastX;
         double dy = y - lastY;
-        double angle = Math.atan2(dy, dx) + Math.PI/2;
-        avAngle = (avAngle + angle) / 2;
+
+        double len = Math.sqrt(dx * dx + dy * dy);
+        if (len > 0.0001) {
+          dx /= len;
+          dy /= len;
+
+          double smoothing = 0.7; //TODO adjust smoothing
+          dirX = (1 - smoothing) * dirX + smoothing * dx;
+          dirY = (1 - smoothing) * dirY + smoothing * dy;
+
+          double dirLen = Math.sqrt(dirX * dirX + dirY * dirY);
+          if (dirLen > 0.0001) {
+            dirX /= dirLen;
+            dirY /= dirLen;
+          }
+        }
+
+        avAngle = Math.atan2(dirY, dirX) + Math.PI / 2;
       }
+
       lastX = x;
       lastY = y;
     }
