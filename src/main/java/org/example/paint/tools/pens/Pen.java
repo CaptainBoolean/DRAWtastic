@@ -21,9 +21,12 @@ public abstract class Pen implements Tool {
   long lastTimestamp = System.nanoTime();
   int recalculateTime = 5000000;
   long timeElapsed = 0;
+
   private final long holdThreshold = 200000000;
-  private boolean straightLine;
-  private boolean noMovement;
+  private long lastNoMovementTime = System.nanoTime();
+  private final double movementMargin = 5;
+  private double noMovementX = -1;
+  private double noMovementY = -1;
 
 
   /**
@@ -41,15 +44,16 @@ public abstract class Pen implements Tool {
       dg.getCanvas().setHeight(g.getCanvas().getHeight());
       dg.getCanvas().setWidth(g.getCanvas().getWidth());
     }
+
     double x = e.getX();
     double y = e.getY();
 
     dg.setFill(color);
-    g.setGlobalAlpha(1);
+
     //TODO maybe make it so the line on the temp canvas gets deleted when pen is held at the end and straight line is drawn
 
     if (lastX != -1 && lastY != -1) {
-      drawStraightLine(g, e, size, color);
+      drawLine(g, dg, e, lastX, lastY, size, color);
     } else {
       drawAt(g, dg, x, y, size, color);
     }
@@ -70,15 +74,14 @@ public abstract class Pen implements Tool {
    */
   @Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
-    if (straightLine) {
-      drawStraightLine(g, e, lastX, color);
+    if (checkNoMovement(e)) {
+      dg.clearRect(0, 0, dg.getCanvas().getWidth(), dg.getCanvas().getHeight());
+      drawLine(g, dg, e, startX, startY, size, color);
     }
     lastX = -1;
     lastY = -1;
     startX = -1;
     startY = -1;
-    straightLine = false;
-    noMovement = false;
 
 
   }
@@ -103,23 +106,25 @@ public abstract class Pen implements Tool {
    */
   @Override
   public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
-    if (straightLine) {
+    if (checkNoMovement(e)) {
+      og.clearRect(0, 0, size, size);
+      drawLine(og, og, e, startX, startY, size, Color.LIGHTGRAY);
+    } else {
+      double x = e.getX();
+      double y = e.getY();
 
+      if (lastPreviewX != -1 && lastPreviewY != -1) {
+        double clearX = lastPreviewX - size / 2;
+        double clearY = lastPreviewY - size / 2;
+        double saveSize = size*(maxSizeFactor*1.5);
+        og.clearRect(clearX - saveSize/2, clearY - saveSize/2, saveSize, saveSize);
+      }
+
+      drawPreviewAt(og, x, y, size);
+
+      lastPreviewX = x;
+      lastPreviewY = y;
     }
-    double x = e.getX();
-    double y = e.getY();
-
-    if (lastPreviewX != -1 && lastPreviewY != -1) {
-      double clearX = lastPreviewX - size / 2;
-      double clearY = lastPreviewY - size / 2;
-      double saveSize = size*(maxSizeFactor*1.5);
-      og.clearRect(clearX - saveSize/2, clearY - saveSize/2, saveSize, saveSize);
-    }
-
-    drawPreviewAt(og, x, y, size);
-
-    lastPreviewX = x;
-    lastPreviewY = y;
   };
 
   /**
@@ -151,19 +156,10 @@ public abstract class Pen implements Tool {
     startY = e.getY();
   }
 
-  private void drawStraightLine(GraphicsContext g, MouseEvent e, double size, Color color) {
-    double dx, dy;
-    double calcX, calcY;
-    if (straightLine) {
-      calcX = startX;
-      calcY = startY;
-    } else {
-      calcX = lastX;
-      calcY = lastY;
-    }
+  private void drawLine(GraphicsContext g,GraphicsContext dg, MouseEvent e, double calcX, double calcY, double size, Color color) {
 
-    dx = e.getX() - calcX;
-    dy = e.getY() - calcY;
+    double dx = e.getX() - calcX;
+    double dy = e.getY() - calcY;
 
 
     double distance = Math.hypot(dx, dy);
@@ -171,10 +167,21 @@ public abstract class Pen implements Tool {
 
     for (int i = 0; i <= steps; i++) {
       double t = (double) i / steps;
-      double x = lastX + t * dx;
-      double y = lastY + t * dy;
-      drawAt(g, g, x, y, size, color);
+      double x = calcX + t * dx;
+      double y = calcY + t * dy;
+      drawAt(g, dg, x, y, size, color);
     }
+  }
+
+  private boolean checkNoMovement(MouseEvent e) {
+    double x = e.getX();
+    double y = e.getY();
+    boolean noMovement = System.nanoTime() - lastNoMovementTime > holdThreshold &&
+            Math.hypot(x - noMovementX, y - noMovementY) < movementMargin;
+    lastNoMovementTime = System.nanoTime();
+    noMovementX = x;
+    noMovementY = y;
+    return noMovement;
   }
 }
 
