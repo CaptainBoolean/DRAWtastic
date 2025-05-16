@@ -118,7 +118,7 @@ public class DrawtasticController {
     insertPicture.setOnAction(e -> toolManager.changeTool(new PictureInsert()));
     pipetteButton.setOnAction(e -> {toolManager.changeTool(new Pipette());});
     transparentBackgroundButton.setOnAction(e -> {Background.transparentBackground();});
-    deleteColorButton.setOnAction(e -> {toolManager.changeTool(new DeleteColor());});
+    deleteColorButton.setOnAction(e -> {toolManager.changeTool(new DeleteColor(canvas));});
     pensButton.setOnAction(e -> {toolManager.changeTool(new RoundPen());});
     textFieldButton.setOnAction(e -> {toolManager.changeTool(new Textfield());});
     undoButton.setOnAction(e -> undoRedo.undo());

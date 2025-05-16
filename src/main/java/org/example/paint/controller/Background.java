@@ -58,7 +58,7 @@ public class Background {
     checkerboard = new ImagePattern(patternImage, 0, 0, TILE_SIZE * 2, TILE_SIZE * 2, false);
   }
 
-  static ObjectProperty<Color> backgroundColorProperty() {
+  public static ObjectProperty<Color> backgroundColorProperty() {
     return backgroundColor;
   }
 
