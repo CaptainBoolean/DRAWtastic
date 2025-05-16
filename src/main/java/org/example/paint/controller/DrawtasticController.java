@@ -61,12 +61,10 @@ public class DrawtasticController {
     canvasGroup.getTransforms().add(canvasScale);
 
     canvas.setOnMouseEntered(e ->{toolManager.onEnter(e);});
-    canvas.setOnMouseMoved(e -> {toolManager.onMove(e);}); //TODO also call in intervals
+    canvas.setOnMouseMoved(e -> {toolManager.onMove(e);});
     canvas.setOnMouseDragged(e -> {toolManager.onDrag(e);});
     canvas.setOnMousePressed(e -> {toolManager.onPress(e);});
     canvas.setOnMouseReleased(e -> {toolManager.onRelease(e);undoRedo.saveState();});
-
-
 
     initButtons();
   }

@@ -22,7 +22,7 @@ public abstract class Pen implements Tool {
   int recalculateTime = 5000000;
   long timeElapsed = 0;
 
-  private final long holdThreshold = 200000000;
+  private final long holdThreshold = 500000000;
   private long lastNoMovementTime = System.nanoTime();
   private final double movementMargin = 5;
   private double noMovementX = -1;
@@ -49,8 +49,6 @@ public abstract class Pen implements Tool {
     double y = e.getY();
 
     dg.setFill(color);
-
-    //TODO maybe make it so the line on the temp canvas gets deleted when pen is held at the end and straight line is drawn
 
     if (lastX != -1 && lastY != -1) {
       drawLine(g, dg, e, lastX, lastY, size, color);
@@ -108,6 +106,7 @@ public abstract class Pen implements Tool {
   public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
     if (checkNoMovement(e) && startX != -1 && startY != -1) {
       og.clearRect(0, 0, og.getCanvas().getWidth(), og.getCanvas().getHeight());
+      //TODO fix doesnt get drawn initially
       drawLine(og, og, e, startX, startY, size, null);
     } else {
       double x = e.getX();
