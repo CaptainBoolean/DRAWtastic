@@ -18,19 +18,18 @@ public class Rectangle extends Shape {
 
     @Override
     public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent mouse, double size, Color color) {
-        if (!drawing) {
+        if (!drawing || dg == null) {
             return;
         }
-        //TODO don't draw preview on main canvas -> call drawPreviewAt and just preview canvas
-        dg.clearRect(0, 0, g.getCanvas().getWidth(), g.getCanvas().getHeight());
+        dg.clearRect(0, 0, dg.getCanvas().getWidth(), dg.getCanvas().getHeight());
 
         currColor = color;
+        dg.setStroke(color);
+        dg.setLineWidth(size);
 
         double endX = mouse.getX();
         double endY = mouse.getY();
 
-        dg.setStroke(color);
-        dg.setLineWidth(size);
         dg.strokeRect(Math.min(startX, endX), Math.min(startY, endY), Math.abs(endX - startX), Math.abs(endY - startY));
         dg.setGlobalAlpha(1);
     }
@@ -41,10 +40,10 @@ public class Rectangle extends Shape {
             double endX = mouse.getX();
             double endY = mouse.getY();
 
-            dg.setStroke(currColor);
-            dg.setLineWidth(size);
-            dg.strokeRect(Math.min(startX, endX), Math.min(startY, endY), Math.abs(endX - startX), Math.abs(endY - startY));
-            dg.setGlobalAlpha(1);
+            drawShape.setStroke(currColor);
+            drawShape.setLineWidth(size);
+            drawShape.strokeRect(Math.min(startX, endX), Math.min(startY, endY), Math.abs(endX - startX), Math.abs(endY - startY));
+            drawShape.setGlobalAlpha(1);
 
             drawing = false;
         }
