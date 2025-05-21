@@ -11,7 +11,7 @@ import org.example.paint.tools.generalTools.FloodFill;
 import java.util.ArrayList;
 
 
-//TODO check if it works after flood fill implement
+//TODO write comment
 public class ConnectedSelectAndMove extends SelectAndMove {
 
   @Override
