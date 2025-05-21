@@ -16,8 +16,6 @@ import java.io.File;
 
 public class FileService {
 
-  //TODO remove background if transparent maybe need method in background
-
   static void save(Canvas canvas, Color backgroundColor) {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Save drawing as 'png'");
@@ -50,30 +48,45 @@ public class FileService {
       }
       int width = (int) image.getWidth();
       int height = (int) image.getHeight();
-      int buffer = 10; //buffer amount
-      int cutX = Math.max(0, minX - buffer);
-      int cutY = Math.max(0, minY - buffer);
+      int buffer = 50; //buffer amount
+      int cutX = Math.max(0, minX - buffer/2);
+      int cutY = Math.max(0, minY - buffer/2);
       int cutWidth = Math.min(width - cutX, maxX - minX + buffer);
       int cutHeight = Math.min(height - cutY, maxY - minY + buffer);
-      //TODO cut snapshot to max y and x of non background pixel and add 10px as buffer
       Image cutImage = new WritableImage(reader, cutX, cutY, cutWidth, cutHeight);
       //check if jpg or png because of background handling
       String type = file.getName().toLowerCase().endsWith(".jpg") || file.getName().toLowerCase().endsWith(".jpeg") ? "jpg" : "png";
-      if(type.equals("png")) {
+      if(type.equals("png") && backgroundColor.equals(Color.TRANSPARENT)) {
         ImageIO.write(SwingFXUtils.fromFXImage(cutImage, null), "png", file);
       } else {
         BufferedImage bufferedImage = new BufferedImage(cutWidth, cutHeight, BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics = bufferedImage.createGraphics();
-        graphics.setColor(java.awt.Color.WHITE);
+        if(backgroundColor.equals(Color.TRANSPARENT) && type.equals("jpg")) {
+          graphics.setColor(java.awt.Color.white);
+        } else {
+          graphics.setColor(colorTypeTransformer(backgroundColor));
+        }
         graphics.fillRect(0, 0, cutWidth, cutHeight);
         graphics.drawImage(SwingFXUtils.fromFXImage(cutImage, null), 0, 0, null);
         graphics.dispose();
-        ImageIO.write(bufferedImage, "jpg", file);
+        if(type.equals("jpg")) {
+          ImageIO.write(bufferedImage, "jpg", file);
+        } else {
+          ImageIO.write(bufferedImage, "png", file);
+        }
       }
 
     } catch (Exception e) {
       System.out.println("Failed to save Image: " + e);
     }
+  }
+
+  private static java.awt.Color colorTypeTransformer(Color color) {
+      int r = (int) Math.round(color.getRed() * 255);
+      int g = (int) Math.round(color.getGreen() * 255);
+      int b = (int) Math.round(color.getBlue() * 255);
+      int a = (int) Math.round(color.getOpacity() * 255);
+      return new java.awt.Color(r, g, b, a);
   }
 
   /**

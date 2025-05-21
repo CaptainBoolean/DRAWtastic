@@ -10,7 +10,7 @@ public class Blur extends Pen{
   private WritableImage snapshot = null;
   private long lastTimestamp;
 
-
+  //TODO transparent is scho a transparent :) <3
   //TODO fix laggyness and maybe update more frequently and not every stroke? (performance problem? no multithread in java fx)
   @Override
   protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color) {

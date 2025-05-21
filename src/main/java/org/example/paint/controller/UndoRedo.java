@@ -9,7 +9,7 @@ import javafx.scene.image.WritableImage;
 //TODO background gets white every time --> fix
 public class UndoRedo {
   private final Canvas currCanvas;
-  private static final int MAX_COUNT = 15; //TODO test if it works on systems with less memory
+  private static final int MAX_COUNT = 40;
 
   private final WritableImage[] history = new WritableImage[MAX_COUNT];
   private int historyIndex = 0;
