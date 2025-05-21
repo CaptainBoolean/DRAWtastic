@@ -4,6 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+import org.example.paint.controller.FileService;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -24,8 +25,7 @@ public class FloodFill {
     // how to move
     int width = (int) g.getCanvas().getWidth();
     int height = (int) g.getCanvas().getHeight();
-    WritableImage image = new WritableImage(width, height);
-    g.getCanvas().snapshot(null, image);
+    WritableImage image = FileService.getTranspSnapshot(g.getCanvas());
     PixelReader pixelReader = image.getPixelReader();
     // PixelReader to pixel information
     boolean[][] read = new boolean[width][height];
@@ -44,16 +44,14 @@ public class FloodFill {
       int h = cur[0];
       int w = cur[1];
       listOP.add(new int[]{h, w});
-
       for(int[] direction : directions) {
         //iterating over all possible directions
         int newH = h + direction[0];
         int newW = w + direction[1];
-
         if(newH >= 0 && newW >= 0 && newH < width && newW < height && !read[newH][newW]) {
           // checking if already read
           Color color = pixelReader.getColor(newH, newW);
-          if(color.equals(readC)) {
+          if(!color.equals(Color.TRANSPARENT)) {
             //checking if it's the same color
             queue.offer(new int[]{newH, newW});
             read[newH][newW] = true;
@@ -61,7 +59,6 @@ public class FloodFill {
         }
       }
     }
-
     return listOP;
   }
 }
