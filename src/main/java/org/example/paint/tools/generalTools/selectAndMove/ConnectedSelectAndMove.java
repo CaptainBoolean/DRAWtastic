@@ -35,15 +35,17 @@ public class ConnectedSelectAndMove extends SelectAndMove {
       int width = maxX - minX + 1;
       int height = maxY - minY + 1;
 
-      PixelWriter writableImage = new WritableImage(width, height).getPixelWriter();
+      WritableImage image = new WritableImage(width, height);
+      PixelWriter writableImage = image.getPixelWriter();
       WritableImage full = FileService.getTranspSnapshot(g.getCanvas());
 
       for (int[] pixel : pixels) {
         int x = pixel[0], y = pixel[1];
         Color c = full.getPixelReader().getColor(x, y);
-        writableImage.setColor(pixel[0], pixel[1], c);
-        g.clearRect(pixel[0], pixel[1], 1, 1);
+        writableImage.setColor(x-minX, y-minY, c);
+        g.clearRect(x, y, 1.01, 1.01); // ensure full clear
       }
+      movedImage = image;
       mode = Mode.MOVING;
     } else if (mode == Mode.MOVING && movedImage != null) {
       super.printHere(g, e);

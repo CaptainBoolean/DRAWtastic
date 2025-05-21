@@ -5,7 +5,6 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -54,7 +53,7 @@ public class FloodFill {
         if(newH >= 0 && newW >= 0 && newH < width && newW < height && !read[newH][newW]) {
           // checking if already read
           Color color = pixelReader.getColor(newH, newW);
-          if(color == readC) {
+          if(color.equals(readC)) {
             //checking if it's the same color
             queue.offer(new int[]{newH, newW});
             read[newH][newW] = true;
