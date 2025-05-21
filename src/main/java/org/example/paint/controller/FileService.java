@@ -13,13 +13,12 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.Locale;
 
 public class FileService {
 
   //TODO remove background if transparent maybe need method in background
 
-  static void save(Canvas canvas) {
+  static void save(Canvas canvas, Color backgroundColor) {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Save drawing as 'png'");
     fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PNG", "*.png"), new FileChooser.ExtensionFilter("JPEG", "*.jpg","*.jpeg"));

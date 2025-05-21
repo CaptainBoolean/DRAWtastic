@@ -74,7 +74,7 @@ public class DrawtasticController {
 
 
   public void onSave() {
-    FileService.save(canvas);}
+    FileService.save(canvas, backgroundColorPicker.getValue());}
 
   public void onExit() {Platform.exit();}
 
