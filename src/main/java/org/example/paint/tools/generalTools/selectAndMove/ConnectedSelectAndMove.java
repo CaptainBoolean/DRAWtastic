@@ -11,7 +11,7 @@ import org.example.paint.tools.generalTools.FloodFill;
 import java.util.ArrayList;
 
 
-//TODO write comment
+//TODO fix not selecting all pixels
 public class ConnectedSelectAndMove extends SelectAndMove {
 
   @Override
@@ -32,8 +32,11 @@ public class ConnectedSelectAndMove extends SelectAndMove {
         if (y < minY) minY = y;
         if (y > maxY) maxY = y;
       }
-      int width = maxX - minX + 1;
-      int height = maxY - minY + 1;
+      int width = (int) Math.max(maxX - e.getX(), e.getX() - minX)*2 + 1;
+      int height = (int) Math.max(maxY - e.getY(), e.getY() - minY)*2 + 1;
+
+      int offsetX = (int)(width / 2 - (e.getX() - minX));
+      int offsetY = (int)(height / 2 - (e.getY() - minY));
 
       WritableImage image = new WritableImage(width, height);
       PixelWriter writableImage = image.getPixelWriter();
@@ -42,7 +45,7 @@ public class ConnectedSelectAndMove extends SelectAndMove {
       for (int[] pixel : pixels) {
         int x = pixel[0], y = pixel[1];
         Color c = full.getPixelReader().getColor(x, y);
-        writableImage.setColor(x-minX, y-minY, c);
+        writableImage.setColor(x-minX+offsetX, y-minY+offsetY, c);
         g.clearRect(x, y, 1.01, 1.01); // ensure full clear
       }
       movedImage = image;
