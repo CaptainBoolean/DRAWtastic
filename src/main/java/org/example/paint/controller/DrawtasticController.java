@@ -12,9 +12,7 @@ import org.example.paint.tools.generalTools.*;
 import org.example.paint.tools.generalTools.selectAndMove.BoxSelectAndMove;
 import org.example.paint.tools.generalTools.selectAndMove.ConnectedSelectAndMove;
 import org.example.paint.tools.pens.*;
-import org.example.paint.tools.picture.BlackAndWhiteFilter;
-import org.example.paint.tools.picture.BlurFilter;
-import org.example.paint.tools.picture.PictureInsert;
+import org.example.paint.tools.picture.*;
 import org.example.paint.tools.shapes.*;
 
 
@@ -36,7 +34,7 @@ public class DrawtasticController {
   @FXML private Button eraserButton;
   @FXML private MenuItem markerButton, blurButton, paintBrushButton, fountainPenButton, rainbowPenButton;
   @FXML private SplitMenuButton insertPicture;
-  @FXML private MenuItem  blurFilterButton, blackAndWhiteFilterButton;
+  @FXML private MenuItem blurFilterButton, blackAndWhiteFilterButton, sepiaFilterButton, flipVerticalButton, flipHorizontalButton;
   @FXML private Button textFieldButton;
   @FXML private SplitMenuButton lineButton;
   @FXML private MenuItem rectangleButton, circleButton, ellipseButton, starButton, arrowButton;
@@ -132,6 +130,11 @@ public class DrawtasticController {
     paintBucketButton.setOnAction(e -> {toolManager.changeTool(new PaintBucket());});
     blurFilterButton.setOnAction(e-> {toolManager.changeTool(new BlurFilter(canvas));});
     blackAndWhiteFilterButton.setOnAction(e -> {toolManager.changeTool(new BlackAndWhiteFilter(canvas));});
+    sepiaFilterButton.setOnAction(e -> {toolManager.changeTool(new SepiaFilter(canvas));});
+
+    flipVerticalButton.setOnAction(e -> {toolManager.changeTool(new flipPicture("vertical"));});
+    flipHorizontalButton.setOnAction(e -> {toolManager.changeTool(new flipPicture("horizontal"));});
+
     lineButton.setOnAction(e->{toolManager.changeTool(new Line());});
     rectangleButton.setOnAction(e->{toolManager.changeTool(new Rectangle());});
     circleButton.setOnAction(e->{toolManager.changeTool(new Circle());});
