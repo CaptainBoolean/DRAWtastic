@@ -17,7 +17,7 @@ public class BlackAndWhiteFilter implements Tool {
     }
 
     @Override
-    public void onPress(GraphicsContext g, MouseEvent e) {
+    public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
 
         // Snapshot des Canvas in ein Bild
         WritableImage snapshot = canvas.snapshot(new SnapshotParameters(), null);
@@ -29,11 +29,11 @@ public class BlackAndWhiteFilter implements Tool {
 
         for (int x = 0; x < (int)canvas.getWidth(); x++) {
             for (int y = 0; y < (int)canvas.getHeight(); y++) {
-                Color color = pr.getColor(x, y);
-                double luminance = 0.299 * color.getRed()
-                        + 0.587 * color.getGreen()
-                        + 0.114 * color.getBlue();
-                Color gray = new Color(luminance, luminance, luminance, color.getOpacity());
+                Color co = pr.getColor(x, y);
+                double luminance = 0.299 * co.getRed()
+                        + 0.587 * co.getGreen()
+                        + 0.114 * co.getBlue();
+                Color gray = new Color(luminance, luminance, luminance, co.getOpacity());
                 pw.setColor(x, y, gray);
             }
         }

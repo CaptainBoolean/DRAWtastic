@@ -18,7 +18,7 @@ public class DeleteColor implements Tool {
   }
 
   @Override
-  public void onRelease(GraphicsContext g, MouseEvent e, double size) {
+  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
     // Farbe an Mausposition holen
     WritableImage snapshot = canvas.snapshot(new SnapshotParameters(), null);
     PixelReader reader = snapshot.getPixelReader();
@@ -35,11 +35,11 @@ public class DeleteColor implements Tool {
 
     for (int i = 0; i < canvas.getWidth(); i++) {
       for (int j = 0; j < canvas.getHeight(); j++) {
-        Color color = reader.getColor(i, j);
-        if (color.equals(deleteColor)) {
+        Color co = reader.getColor(i, j);
+        if (co.equals(deleteColor)) {
           pw.setColor(i, j, Color.TRANSPARENT);
         } else {
-          pw.setColor(i, j, color);
+          pw.setColor(i, j, co);
         }
       }
     }
