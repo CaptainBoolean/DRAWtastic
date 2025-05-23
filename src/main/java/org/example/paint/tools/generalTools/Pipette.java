@@ -17,6 +17,8 @@ public class Pipette implements Tool {
     Pipette.color = color;
   }
 
+  Color pickedColor;
+
   @Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
     double x = e.getX();
@@ -28,12 +30,16 @@ public class Pipette implements Tool {
     g.getCanvas().snapshot(null, image);
 
     //getting pixel color at mouse position
-    Color pickedColor = image.getPixelReader().getColor((int) x, (int) y);
+    pickedColor = image.getPixelReader().getColor((int) x, (int) y);
 
     //setting pixel color to the color property
     if (color != null) {
       this.color.setValue(pickedColor);
     }
+  }
+
+  public Color getColor() {
+    return pickedColor;
   }
 
   //TODO implement preview

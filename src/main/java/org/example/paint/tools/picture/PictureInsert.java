@@ -12,35 +12,23 @@ import java.io.File;
 
 public class PictureInsert implements Tool {
     double startX, startY;
-    static Image savedImage;
-    static double imgWidth, imgHeight, imgX, imgY;
 
     //TODO implement a preview with dragging (just an outline - see select and move for inspo)
     //TODO resize the picture with downscaling and insert in correct format after drag (maybe take y axis from mouse and set x so it is not distorted)
 
-
-    /**
-     *
-     * @param g
-     * @param e
-     */
-
     @Override
-    public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+    public void onPress(GraphicsContext g, MouseEvent e) {
         startX = e.getX();
         startY = e.getY();
-
-
     }
 
     @Override
-    public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+    public void onDrag(GraphicsContext g, MouseEvent e, double size, Color color, double opacity) {
         // Rechteck zeichnen für Vorschau
         double x = Math.min(startX, e.getX());
         double y = Math.min(startY, e.getY());
         double w = Math.abs(e.getX() - startX);
         double h = Math.abs(e.getY() - startY);
-
 
         Canvas canvas = g.getCanvas();
         GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -54,7 +42,7 @@ public class PictureInsert implements Tool {
 
 
     @Override
-    public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+    public void onRelease(GraphicsContext g, MouseEvent e, double size) {
         Canvas canvas = g.getCanvas();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Bild auswählen");
@@ -81,12 +69,6 @@ public class PictureInsert implements Tool {
             // Bild zeichnen
             GraphicsContext gc = canvas.getGraphicsContext2D();
             gc.drawImage(image, x, y, w, h);
-            savedImage = image;
-            imgX = x;
-            imgY = y;
-            imgWidth = w;
-            imgHeight = h;
-
         }
     }
 

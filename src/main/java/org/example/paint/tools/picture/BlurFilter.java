@@ -18,7 +18,7 @@ public class BlurFilter implements Tool {
     }
 
     @Override
-    public void onPress(GraphicsContext gr, GraphicsContext dg, MouseEvent e, double size, Color color) {
+    public void onPress(GraphicsContext gr, MouseEvent e) {
         // Snapshot des Canvas
         WritableImage snapshot = canvas.snapshot(new SnapshotParameters(), null);
         PixelReader pr = snapshot.getPixelReader();
