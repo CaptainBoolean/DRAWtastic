@@ -130,8 +130,8 @@ public class DrawtasticController {
     redoButton.setOnAction(e -> undoRedo.redo());
     repaintButton.setOnAction(e -> {toolManager.changeTool(new Repaint());});
     paintBucketButton.setOnAction(e -> {toolManager.changeTool(new PaintBucket());});
-    blurFilterButton.setOnAction(e-> {toolManager.changeTool(new BlurFilter());});
-    blackAndWhiteFilterButton.setOnAction(e -> {toolManager.changeTool(new BlackAndWhiteFilter());});
+    blurFilterButton.setOnAction(e-> {toolManager.changeTool(new BlurFilter(canvas));});
+    blackAndWhiteFilterButton.setOnAction(e -> {toolManager.changeTool(new BlackAndWhiteFilter(canvas));});
     lineButton.setOnAction(e->{toolManager.changeTool(new Line());});
     rectangleButton.setOnAction(e->{toolManager.changeTool(new Rectangle());});
     circleButton.setOnAction(e->{toolManager.changeTool(new Circle());});
