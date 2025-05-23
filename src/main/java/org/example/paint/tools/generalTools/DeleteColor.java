@@ -10,6 +10,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import org.example.paint.tools.Tool;
 
+import java.util.ArrayList;
+
 public class DeleteColor implements Tool {
   private final Canvas canvas;
 
@@ -17,7 +19,8 @@ public class DeleteColor implements Tool {
     this.canvas = canvas;
   }
 
-  @Override
+  //löscht Pixel einer Farbe, aber hässlich TODO
+  /*@Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
     // Farbe an Mausposition holen
     WritableImage snapshot = canvas.snapshot(new SnapshotParameters(), null);
@@ -47,5 +50,25 @@ public class DeleteColor implements Tool {
     // Canvas löschen und Bild neu zeichnen
     g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     g.drawImage(output, 0, 0);
+  }*/
+
+  //löscht alle zusammenhängenden Pixel
+
+  @Override
+  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+    int x = (int) e.getX();
+    int y = (int) e.getY();
+    int width = (int) canvas.getWidth();
+    int height = (int) canvas.getHeight();
+
+    if (x < 0 || y < 0 || x >= width || y >= height) return;
+
+    ArrayList<int[]> toDelete = FloodFill.fill(g, x, y);  // verwendet bestehende FloodFill
+
+    for (int[] pos : toDelete) {
+      int px = pos[0];
+      int py = pos[1];
+      g.clearRect(px, py, 1, 1);  // löscht Pixel durch Setzen auf transparent
+    }
   }
 }
