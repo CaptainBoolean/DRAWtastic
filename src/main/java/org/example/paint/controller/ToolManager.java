@@ -9,7 +9,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.transform.Scale;
 import org.example.paint.tools.Opaqueable;
 import org.example.paint.tools.Tool;
-import org.example.paint.tools.generalTools.PaintBucket;
 import org.example.paint.tools.generalTools.Pipette;
 import org.example.paint.tools.pens.Marker;
 import org.example.paint.tools.pens.RoundEraser;
@@ -45,7 +44,6 @@ public class ToolManager {
     checkOpacitySliderDisplay(newTool);
     newTool = checkEraserSwitch(newTool);
     newTool = checkPipette(newTool);
-    newTool = checkPaintBucket(newTool);
 
     currentTool = newTool;
   }
@@ -83,13 +81,6 @@ public class ToolManager {
   private Tool checkPipette(Tool newTool) {
     if (newTool instanceof Pipette) {
       return new Pipette(color);
-    }
-    return newTool;
-  }
-
-  private Tool checkPaintBucket(Tool newTool) {
-    if (newTool instanceof PaintBucket) {
-      return new PaintBucket(color);
     }
     return newTool;
   }

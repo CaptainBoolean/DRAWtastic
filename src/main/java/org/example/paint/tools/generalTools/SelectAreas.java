@@ -61,4 +61,9 @@ public class SelectAreas {
     }
     return listOP;
   }
+
+  public static ArrayList<int[]> floodFillBackground(GraphicsContext g, int x, int y, int width, int height) {
+    //TODO implement for paint bucket
+    return null;
+  }
 }
