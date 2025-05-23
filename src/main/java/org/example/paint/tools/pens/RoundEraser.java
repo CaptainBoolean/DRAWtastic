@@ -5,6 +5,7 @@ import javafx.scene.paint.Color;
 
 public class RoundEraser extends Pen {
 
+  //TODO is squre????
   @Override
   protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color) {
     double radius = size / 2;
