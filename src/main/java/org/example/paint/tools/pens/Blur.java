@@ -4,6 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+import org.example.paint.controller.FileService;
 
 public class Blur extends Pen {
 
@@ -16,8 +17,8 @@ public class Blur extends Pen {
   protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color) {
     long currentTime = System.nanoTime();
     long timeElapsed = currentTime - lastTimestamp;
-    if ((lastX == -1 && lastY == -1) || timeElapsed > 500000000) {
-      snapshot = g.getCanvas().snapshot(null, null);
+    if ((lastX == -1 && lastY == -1) || timeElapsed > 5000000) {
+      snapshot = FileService.getTranspSnapshot(g.getCanvas());
       lastTimestamp = currentTime;
     }
     PixelReader reader = snapshot.getPixelReader();
@@ -38,10 +39,14 @@ public class Blur extends Pen {
 
         if (px >= 0 && py >= 0 && px < snapshot.getWidth() && py < snapshot.getHeight()) {
           Color sampled = reader.getColor(px, py);
-          red += sampled.getRed();
-          green += sampled.getGreen();
-          blue += sampled.getBlue();
-          count++;
+          if (sampled.getOpacity() > 0) {
+            red += sampled.getRed();
+            green += sampled.getGreen();
+            blue += sampled.getBlue();
+            count++;
+
+          }
+
         }
       }
     }
