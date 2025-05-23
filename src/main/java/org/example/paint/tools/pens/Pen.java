@@ -162,7 +162,7 @@ public abstract class Pen implements Tool {
 
 
     double distance = Math.hypot(dx, dy);
-    int steps = (int) distance;
+    int steps = Math.max(1, (int) distance); // changed this to fix zoom
 
     for (int i = 0; i <= steps; i++) {
       double t = (double) i / steps;
