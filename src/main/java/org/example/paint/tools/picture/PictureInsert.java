@@ -59,7 +59,7 @@ public class PictureInsert implements Tool {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Bild auswählen");
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Bilddateien", "*.png", "*.jpg", "*.jpeg")
+                new FileChooser.ExtensionFilter("Bilddateien", "*.png", "*.jpg", "*.jpeg", "*.gif")
         );
 
         File file = fileChooser.showOpenDialog(canvas.getScene().getWindow());
