@@ -83,6 +83,7 @@
             </HBox>
             <HBox spacing="10">
               <Button fx:id="deleteConnectedLineButton" text="Delete Line" />
+              <Button fx:id="removeColorFromCanvasButton" text="Remove Color" />
               <Button fx:id="pipetteButton">
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">

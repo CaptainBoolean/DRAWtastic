@@ -38,6 +38,7 @@ public class DrawtasticController {
   @FXML private Button textFieldButton;
   @FXML private SplitMenuButton lineButton;
   @FXML private MenuItem rectangleButton, circleButton, ellipseButton, starButton, arrowButton;
+  @FXML private Button removeColorFromCanvasButton;
 
   private ToolManager toolManager;
   private Background background;
@@ -139,6 +140,7 @@ public class DrawtasticController {
     arrowButton.setOnAction(e->{toolManager.changeTool(new Arrow());});
     zoomInButton.setOnAction(e -> toolManager.zoom(1.1,canvas, canvasScale));
     zoomOutButton.setOnAction(e -> toolManager.zoom(0.9,canvas, canvasScale));
+    removeColorFromCanvasButton.setOnAction(e->{toolManager.changeTool(new RemoveColorFromCanvas());});
   }
 
 }
