@@ -10,14 +10,10 @@ import javafx.scene.canvas.*;
 import javafx.scene.SnapshotParameters;
 
 public class BlackAndWhiteFilter implements Tool {
-    private final Canvas canvas;
-
-    public BlackAndWhiteFilter(Canvas canvas) {
-        this.canvas = canvas;
-    }
 
     @Override
     public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+        Canvas canvas = g.getCanvas();
 
         // Snapshot des Canvas in ein Bild
         WritableImage snapshot = canvas.snapshot(new SnapshotParameters(), null);

@@ -11,14 +11,10 @@ import javafx.scene.paint.Color;
 import org.example.paint.tools.Tool;
 
 public class BlurFilter implements Tool {
-    private final Canvas canvas;
-
-    public BlurFilter(Canvas canvas) {
-        this.canvas = canvas;
-    }
 
     @Override
     public void onPress(GraphicsContext gr, GraphicsContext dg, MouseEvent e, double size, Color color) {
+        Canvas canvas = gr.getCanvas();
         // Snapshot des Canvas
         WritableImage snapshot = canvas.snapshot(new SnapshotParameters(), null);
         PixelReader pr = snapshot.getPixelReader();

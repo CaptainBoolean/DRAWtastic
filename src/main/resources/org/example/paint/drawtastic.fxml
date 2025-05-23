@@ -109,9 +109,9 @@
                 <MenuItem fx:id="sepiaFilterButton" text="Sepia Filter" />
                 <MenuItem fx:id="blurFilterButton" text="Blur Filter" />
                 <MenuItem fx:id="blackAndWhiteFilterButton" text="Black and White Filter" />
+                <MenuItem fx:id="invertFilterButton" text="Invert Picture Filter" />
                 <MenuItem fx:id="flipVerticalButton" text="Flip Picture Vertical" />
                 <MenuItem fx:id="flipHorizontalButton" text="Flip Picture Horizontal" />
-
               </items>
             </SplitMenuButton>
             <Button fx:id="textFieldButton" text="Textfield" />

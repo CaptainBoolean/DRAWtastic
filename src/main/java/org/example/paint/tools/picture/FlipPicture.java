@@ -7,10 +7,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import org.example.paint.tools.Tool;
 
-public class flipPicture implements Tool {
-    private String mode;
+public class FlipPicture implements Tool {
+    private final String mode;
 
-    public flipPicture(String mode) {
+    public FlipPicture(String mode) {
         this.mode = mode;
     }
 
@@ -31,7 +31,7 @@ public class flipPicture implements Tool {
 
         g.save();
         g.translate(0, canvas.getHeight()); // verschiebe Ursprung ganz nach unten
-        g.scale(1, -1);                     // spiegle vertikal
+        g.scale(1, -1);                     // flip
         g.drawImage(snapshot, 0, 0);
         g.restore();
     }
@@ -44,7 +44,7 @@ public class flipPicture implements Tool {
 
         g.save();
         g.translate(canvas.getWidth(), 0);  // verschiebe Ursprung ganz nach rechts
-        g.scale(-1, 1);                     // spiegle horizontal
+        g.scale(-1, 1);                     // flip
         g.drawImage(snapshot, 0, 0);
         g.restore();
     }

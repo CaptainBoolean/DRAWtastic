@@ -13,15 +13,10 @@ import org.example.paint.tools.Tool;
 import java.util.ArrayList;
 
 public class DeleteColor implements Tool {
-  private final Canvas canvas;
-
-  public DeleteColor(Canvas canvas) {
-    this.canvas = canvas;
-  }
-
   //löscht Pixel einer Farbe, aber hässlich TODO
   /*@Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+    Canvas canvas = g.getCanvas();
     // Farbe an Mausposition holen
     WritableImage snapshot = canvas.snapshot(new SnapshotParameters(), null);
     PixelReader reader = snapshot.getPixelReader();
@@ -56,6 +51,8 @@ public class DeleteColor implements Tool {
 
   @Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+    Canvas canvas = g.getCanvas();
+
     int x = (int) e.getX();
     int y = (int) e.getY();
     int width = (int) canvas.getWidth();
