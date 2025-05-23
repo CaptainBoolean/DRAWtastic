@@ -3,44 +3,37 @@ package org.example.paint.tools.generalTools;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.WritableImage;
+import javafx.scene.image.PixelReader;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import org.example.paint.controller.FileService;
 import org.example.paint.tools.Tool;
 
 public class Pipette implements Tool {
-  private static ObjectProperty<Color> color = new SimpleObjectProperty<>();
+  private ObjectProperty<Color> color = new SimpleObjectProperty<>();
+  private ObjectProperty<Color> backgroundColor = new SimpleObjectProperty<>();
 
   public Pipette() {}
 
-  public Pipette(ObjectProperty<Color> color) {
-    Pipette.color = color;
+
+  public Pipette(ObjectProperty<Color> color, ObjectProperty<Color> backgroundColor) {
+    this.color = color;
+    this.backgroundColor = backgroundColor;
   }
 
-  Color pickedColor;
 
   @Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
-    double x = e.getX();
-    double y = e.getY();
+    PixelReader pixelReader = FileService.getTranspSnapshot(g.getCanvas()).getPixelReader();
+    Color pickedColor = pixelReader.getColor((int)e.getX(), (int)e.getY());
 
-    //creating WriteableImage with same size as canvas
-    WritableImage image = new WritableImage((int) g.getCanvas().getWidth(), (int) g.getCanvas().getHeight());
-    //capturing current state of canvas
-    g.getCanvas().snapshot(null, image);
-
-    //getting pixel color at mouse position
-    pickedColor = image.getPixelReader().getColor((int) x, (int) y);
-
-    //setting pixel color to the color property
-    if (color != null) {
-      this.color.setValue(pickedColor);
+    if (pickedColor.equals(Color.TRANSPARENT)) {
+      this.color.set(backgroundColor.getValue());
+    } else {
+      this.color.set(pickedColor);
     }
   }
 
-  public Color getColor() {
-    return pickedColor;
-  }
 
   //TODO implement preview
 

@@ -1,12 +1,12 @@
 package org.example.paint.tools.generalTools;
 
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.PixelWriter;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import org.example.paint.tools.Tool;
+
+import java.util.ArrayList;
 
 public class PaintBucket implements Tool {
 
@@ -14,34 +14,25 @@ public class PaintBucket implements Tool {
 
   @Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
-      Color targetColor = new WritableImage((int) g.getCanvas().getWidth(), (int) g.getCanvas().getHeight()).getPixelReader().getColor((int) e.getX(), (int) e.getY());
+    Canvas canvas = g.getCanvas();
 
-      if (!targetColor.equals(color)) {
-          fillAll(g, targetColor, color);
-      }
+    int x = (int) e.getX();
+    int y = (int) e.getY();
+    int width = (int) canvas.getWidth();
+    int height = (int) canvas.getHeight();
+
+    if (x < 0 || y < 0 || x >= width || y >= height) return;
+
+    ArrayList<int[]> toRecolor = SelectAreas.floodFillBackground(g, x, y);  // verwendet bestehende FloodFill
+
+    g.setFill(color);
+    for (int[] pos : toRecolor) {
+      int px = pos[0];
+      int py = pos[1];
+      g.fillRect(px, py, 1, 1);
+    }
+
+
   }
 
-  private static void fillAll(GraphicsContext g, Color targetColor, Color fillColor) {
-      int width = (int) g.getCanvas().getWidth();
-      int height = (int) g.getCanvas().getHeight();
-
-      WritableImage image = new WritableImage(width, height);
-      g.getCanvas().snapshot(null, image);
-
-      PixelReader pixelReader = image.getPixelReader();
-      PixelWriter pixelWriter = g.getPixelWriter();
-
-      Color fill = fillColor;
-
-      for (int i = 0; i < height; i++) { //iterating through each pixel
-          for (int j = 0; j < width; j++) {
-              Color currentColor = pixelReader.getColor(j, i);
-              if (currentColor.equals(targetColor)) { //replace the pixel with the target color with fill color
-                  pixelWriter.setColor(j, i, fill);
-              }
-          }
-      }
-  }
-
-  //TODO implement preview
 }

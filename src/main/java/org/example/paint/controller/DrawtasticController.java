@@ -80,7 +80,7 @@ public class DrawtasticController {
     opacitySlider.visibleProperty().bindBidirectional(ToolManager.opacitySliderProperty());
     opacityLabel.visibleProperty().bindBidirectional(ToolManager.opacityLabelProperty());
     colorPicker.valueProperty().bindBidirectional(ToolManager.colorProperty());
-    backgroundColorPicker.valueProperty().bindBidirectional(Background.backgroundColorProperty());
+    backgroundColorPicker.valueProperty().bindBidirectional(ToolManager.backgroundColorProperty());
   }
 
   private void initListeners() {
@@ -142,6 +142,8 @@ public class DrawtasticController {
     zoomOutButton.setOnAction(e -> toolManager.zoom(0.9,canvas, canvasScale));
     removeColorFromCanvasButton.setOnAction(e->{toolManager.changeTool(new RemoveColorFromCanvas());});
   }
+
+
 
 }
 

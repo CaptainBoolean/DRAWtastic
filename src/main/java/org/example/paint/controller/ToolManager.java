@@ -27,6 +27,7 @@ public class ToolManager {
   private static final double markerSizeRatio = 2;
   private static final double markerOpacity = 0.3;
   private static final ObjectProperty<Color> color = new SimpleObjectProperty<>(Color.BLACK);
+  private static final ObjectProperty<Color> backgroundColor = new SimpleObjectProperty<>(Color.WHITE);
   private MouseEvent lastMouseEvent;
 
 
@@ -80,7 +81,7 @@ public class ToolManager {
 
   private Tool checkPipette(Tool newTool) {
     if (newTool instanceof Pipette) {
-      return new Pipette(color);
+      return new Pipette(color, backgroundColor);
     }
     return newTool;
   }
@@ -158,6 +159,7 @@ public class ToolManager {
   static BooleanProperty opacitySliderProperty() {return opacitySlider;}
   static BooleanProperty opacityLabelProperty() {return opacityLabel;}
   static ObjectProperty<Color> colorProperty() {return color;}
+  static ObjectProperty<Color> backgroundColorProperty() {return backgroundColor;}
 
   public static Color getDrawColor() {return colorProperty().getValue();}
 
