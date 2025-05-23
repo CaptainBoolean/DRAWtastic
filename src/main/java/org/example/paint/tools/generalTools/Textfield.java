@@ -9,11 +9,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import org.example.paint.tools.Opaqueable;
 import org.example.paint.tools.Tool;
 
 import java.util.Optional;
 
-public class Textfield implements Tool {
+public class Textfield implements Tool, Opaqueable {
     private String text = "write here";
     private Color textColor = Color.BLACK;
     private int textSize = 12;
