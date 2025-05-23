@@ -58,8 +58,24 @@
           <VBox spacing="10">
             <Label text="Tools" />
             <HBox spacing="10">
-              <Button fx:id="eraserButton" text="Eraser" />
-              <Button fx:id="paintBucketButton" text="Paint Bucket" />
+              <Button fx:id="eraserButton">
+                <graphic>
+                  <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                    <image>
+                      <Image url="@buttonIcons/eraserIcon.png" />
+                    </image>
+                  </ImageView>
+                </graphic>
+              </Button>
+              <Button fx:id="paintBucketButton">
+                <graphic>
+                  <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                    <image>
+                      <Image url="@buttonIcons/paintbucketIcon.png" />
+                    </image>
+                  </ImageView>
+                </graphic>
+              </Button>
               <Button fx:id="repaintButton" text="Repaint" />
             </HBox>
             <HBox spacing="10">
@@ -67,8 +83,24 @@
               <Button fx:id="connectedSelectAndMoveButton" text="Connected select and move" />
             </HBox>
             <HBox spacing="10">
-              <Button fx:id="pipetteButton" text="Pipette" />
-              <Button fx:id="deleteColorButton" text="Delete Color Pipette" />
+              <Button fx:id="pipetteButton">
+                <graphic>
+                  <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                    <image>
+                      <Image url="@buttonIcons/pipetteIcon.png" />
+                    </image>
+                  </ImageView>
+                </graphic>
+              </Button>
+              <Button fx:id="deleteColorButton">
+                <graphic>
+                  <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                    <image>
+                      <Image url="@buttonIcons/deletepipetteIcon.png" />
+                    </image>
+                  </ImageView>
+                </graphic>
+              </Button>
             </HBox>
           </VBox>
 
@@ -123,8 +155,24 @@
           <VBox spacing="10">
             <Label text="Diverses" />
             <HBox spacing="10">
-              <Button fx:id="undoButton" text="Undo" />
-              <Button fx:id="redoButton" text="Redo" />
+              <Button fx:id="redoButton">
+                <graphic>
+                  <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                    <image>
+                      <Image url="@buttonIcons/redoIcon.png" />
+                    </image>
+                  </ImageView>
+                </graphic>
+              </Button>
+              <Button fx:id="undoButton">
+                <graphic>
+                  <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                    <image>
+                      <Image url="@buttonIcons/undoIcon.png" />
+                    </image>
+                  </ImageView>
+                </graphic>
+              </Button>
               <Button fx:id="zoomInButton" text="Zoom +" />
               <Button fx:id="zoomOutButton" text="Zoom -" />
             </HBox>
