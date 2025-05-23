@@ -3,8 +3,9 @@ package org.example.paint.tools.shapes;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import org.example.paint.tools.Opaqueable;
 
-public class Circle extends Shape {
+public class Circle extends Shape implements Opaqueable {
     private double startX, startY;
     private boolean drawing = false;
     private Color currColor = Color.BLACK;

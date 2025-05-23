@@ -36,8 +36,8 @@ public class DrawtasticController {
   @FXML private SplitMenuButton insertPicture;
   @FXML private MenuItem blurFilterButton, blackAndWhiteFilterButton, sepiaFilterButton, invertFilterButton, flipVerticalButton, flipHorizontalButton;
   @FXML private Button textFieldButton;
-  @FXML private SplitMenuButton lineButton;
-  @FXML private MenuItem rectangleButton, circleButton, ellipseButton, starButton, arrowButton;
+  @FXML private SplitMenuButton rectangleButton;
+  @FXML private MenuItem circleButton, ellipseButton, starButton, arrowButton, triangleButton;
   @FXML private Button removeColorFromCanvasButton;
 
   private ToolManager toolManager;
@@ -132,12 +132,15 @@ public class DrawtasticController {
     flipVerticalButton.setOnAction(e -> {toolManager.changeTool(new FlipPicture("vertical"));});
     flipHorizontalButton.setOnAction(e -> {toolManager.changeTool(new FlipPicture("horizontal"));});
     invertFilterButton.setOnAction(e -> {toolManager.changeTool(new InvertFilter());});
-    lineButton.setOnAction(e->{toolManager.changeTool(new Line());});
+
+    //shapes
     rectangleButton.setOnAction(e->{toolManager.changeTool(new Rectangle());});
+    triangleButton.setOnAction(e->{toolManager.changeTool(new Triangle());});
     circleButton.setOnAction(e->{toolManager.changeTool(new Circle());});
     ellipseButton.setOnAction(e->toolManager.changeTool(new Ellipse()));
     starButton.setOnAction((e->{toolManager.changeTool(new Star());}));
     arrowButton.setOnAction(e->{toolManager.changeTool(new Arrow());});
+
     zoomInButton.setOnAction(e -> toolManager.zoom(1.1,canvas, canvasScale));
     zoomOutButton.setOnAction(e -> toolManager.zoom(0.9,canvas, canvasScale));
     removeColorFromCanvasButton.setOnAction(e->{toolManager.changeTool(new RemoveColorFromCanvas());});
