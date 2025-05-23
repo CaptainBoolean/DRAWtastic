@@ -59,8 +59,8 @@
             <Label text="Tools" />
             <HBox spacing="10">
               <Button fx:id="eraserButton" text="Eraser" />
-              <Button fx:id="paintBucketButton" text="Paint Bucket" />
-              <Button fx:id="repaintButton" text="Repaint" />
+              <Button fx:id="deleteConnectedLineButton" text="Delete Connected Line" />
+
             </HBox>
             <HBox spacing="10">
               <Button fx:id="selectAndMoveButton" text="Select and move" />
@@ -68,7 +68,8 @@
             </HBox>
             <HBox spacing="10">
               <Button fx:id="pipetteButton" text="Pipette" />
-              <Button fx:id="deleteColorButton" text="Delete Color Pipette" />
+              <Button fx:id="paintBucketButton" text="Paint Bucket" />
+              <Button fx:id="repaintButton" text="Repaint" />
             </HBox>
           </VBox>
 
@@ -82,10 +83,6 @@
               <Label text="Background color:" />
               <ColorPicker fx:id="backgroundColorPicker" prefWidth="40"/>
               <Button fx:id="transparentBackgroundButton" text="None" />
-            </HBox>
-            <HBox spacing="10">
-              <Button fx:id="encryptButton" text="Encrypt" />
-              <Button fx:id="decryptButton" text="Decrypt" />
             </HBox>
           </VBox>
 

@@ -29,7 +29,7 @@ public class DrawtasticController {
   @FXML private Label opacityLabel;
   @FXML private Slider opacitySlider;
   @FXML private Button undoButton, redoButton;
-  @FXML private Button selectAndMoveButton, connectedSelectAndMoveButton, pipetteButton, transparentBackgroundButton, deleteColorButton, repaintButton, paintBucketButton;
+  @FXML private Button selectAndMoveButton, connectedSelectAndMoveButton, pipetteButton, transparentBackgroundButton, deleteConnectedLineButton, repaintButton, paintBucketButton;
   @FXML private SplitMenuButton pensButton;
   @FXML private Button eraserButton;
   @FXML private MenuItem markerButton, blurButton, paintBrushButton, fountainPenButton, rainbowPenButton;
@@ -43,14 +43,12 @@ public class DrawtasticController {
   private ToolManager toolManager;
   private Background background;
   private UndoRedo undoRedo;
-  private Encrypter encrypter;
   private final Scale canvasScale = new Scale(1.0, 1.0, 0, 0);
 
   public void initialize() {
     toolManager = new ToolManager(canvas, overlayCanvas, drawCanvas);
     background = new Background(backgroundCanvas);
     undoRedo = new UndoRedo(canvas);
-    encrypter = new Encrypter(canvas);
     initBinds();
     colorPicker.setValue(Color.BLACK);
     toolManager.changeTool(new RoundPen());
@@ -121,7 +119,7 @@ public class DrawtasticController {
     insertPicture.setOnAction(e -> toolManager.changeTool(new PictureInsert()));
     pipetteButton.setOnAction(e -> {toolManager.changeTool(new Pipette());});
     transparentBackgroundButton.setOnAction(e -> {Background.transparentBackground();});
-    deleteColorButton.setOnAction(e -> {toolManager.changeTool(new DeleteColor());});
+    deleteConnectedLineButton.setOnAction(e -> {toolManager.changeTool(new DeleteLine());});
     pensButton.setOnAction(e -> {toolManager.changeTool(new RoundPen());});
     textFieldButton.setOnAction(e -> {toolManager.changeTool(new Textfield());});
     undoButton.setOnAction(e -> undoRedo.undo());
@@ -140,8 +138,6 @@ public class DrawtasticController {
     ellipseButton.setOnAction(e->toolManager.changeTool(new Ellipse()));
     starButton.setOnAction((e->{toolManager.changeTool(new Star());}));
     arrowButton.setOnAction(e->{toolManager.changeTool(new Arrow());});
-    encryptButton.setOnAction(e->encrypter.encrypte());
-    decryptButton.setOnAction(e->encrypter.decrypte());
     zoomInButton.setOnAction(e -> toolManager.zoom(1.1,canvas, canvasScale));
     zoomOutButton.setOnAction(e -> toolManager.zoom(0.9,canvas, canvasScale));
   }

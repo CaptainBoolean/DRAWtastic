@@ -6,7 +6,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import org.example.paint.controller.FileService;
-import org.example.paint.tools.generalTools.FloodFill;
+import org.example.paint.tools.generalTools.SelectAreas;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class ConnectedSelectAndMove extends SelectAndMove {
   @Override
   public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
     if (mode == Mode.IDLE) {
-      ArrayList<int[]> pixels = FloodFill.fill(g, (int)e.getX(), (int)e.getY());
+      ArrayList<int[]> pixels = SelectAreas.floodFill(g, (int)e.getX(), (int)e.getY());
       if (pixels.isEmpty()) {
         return;
       }

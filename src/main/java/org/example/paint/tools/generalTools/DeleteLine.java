@@ -1,18 +1,14 @@
 package org.example.paint.tools.generalTools;
 
-import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.PixelWriter;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import org.example.paint.tools.Tool;
 
 import java.util.ArrayList;
 
-public class DeleteColor implements Tool {
+public class DeleteLine implements Tool {
   //löscht Pixel einer Farbe, aber hässlich TODO
   /*@Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
@@ -60,7 +56,7 @@ public class DeleteColor implements Tool {
 
     if (x < 0 || y < 0 || x >= width || y >= height) return;
 
-    ArrayList<int[]> toDelete = FloodFill.fill(g, x, y);  // verwendet bestehende FloodFill
+    ArrayList<int[]> toDelete = SelectAreas.floodFill(g, x, y);  // verwendet bestehende FloodFill
 
     for (int[] pos : toDelete) {
       int px = pos[0];

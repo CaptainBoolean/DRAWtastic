@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class FloodFill {
+public class SelectAreas {
 
   /**
    * Returns an ArrayList of all connected pixels to the initially selected Pixel
@@ -19,7 +19,7 @@ public class FloodFill {
    * @param y
    * @return
    */
-  public static ArrayList<int[]> fill(GraphicsContext g, int x, int y) {
+  public static ArrayList<int[]> floodFill(GraphicsContext g, int x, int y) {
     //TODO implement - return a list of all relevant pixels to work with
     int[][] directions = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
     // how to move
