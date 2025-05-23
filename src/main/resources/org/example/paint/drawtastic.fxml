@@ -3,8 +3,7 @@
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.Group?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -83,6 +82,7 @@
               <Button fx:id="connectedSelectAndMoveButton" text="Connected select and move" />
             </HBox>
             <HBox spacing="10">
+              <Button fx:id="deleteConnectedLineButton" text="Delete Line" />
               <Button fx:id="pipetteButton">
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">

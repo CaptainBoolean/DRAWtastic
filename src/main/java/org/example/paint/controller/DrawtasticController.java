@@ -38,7 +38,6 @@ public class DrawtasticController {
   @FXML private Button textFieldButton;
   @FXML private SplitMenuButton lineButton;
   @FXML private MenuItem rectangleButton, circleButton, ellipseButton, starButton, arrowButton;
-  @FXML private Button encryptButton, decryptButton;
 
   private ToolManager toolManager;
   private Background background;
