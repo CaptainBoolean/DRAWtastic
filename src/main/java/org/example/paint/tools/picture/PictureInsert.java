@@ -15,6 +15,7 @@ public class PictureInsert implements Tool {
 
     //TODO implement a preview with dragging (just an outline - see select and move for inspo)
     //TODO resize the picture with downscaling and insert in correct format after drag (maybe take y axis from mouse and set x so it is not distorted)
+    //mergetest
 
     @Override
     public void onPress(GraphicsContext g, MouseEvent e) {
