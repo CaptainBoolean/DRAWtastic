@@ -2,8 +2,9 @@ package org.example.paint.tools.pens;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import org.example.paint.tools.Opaqueable;
 
-public class Marker extends Pen {
+public class Marker extends Pen implements Opaqueable {
 
   @Override
   protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color) {

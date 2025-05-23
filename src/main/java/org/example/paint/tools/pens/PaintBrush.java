@@ -2,8 +2,9 @@ package org.example.paint.tools.pens;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import org.example.paint.tools.Opaqueable;
 
-public class PaintBrush extends Pen{
+public class PaintBrush extends Pen implements Opaqueable {
 
 
   private double lastX = -1;

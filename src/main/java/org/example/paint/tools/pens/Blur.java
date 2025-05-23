@@ -5,7 +5,7 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
-public class Blur extends Pen{
+public class Blur extends Pen {
 
   private WritableImage snapshot = null;
   private long lastTimestamp;

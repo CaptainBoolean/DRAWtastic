@@ -53,8 +53,8 @@ public class Textfield implements Tool {
         setString(userInput); //set text to the input
 
         //draw text there where mouse click happened
-        g.setFill(textColor);
-        g.setFont(Font.font(Font.getDefault().getFamily(),
+        dg.setFill(textColor);
+        dg.setFont(Font.font(Font.getDefault().getFamily(),
                 bold ? FontWeight.BOLD : FontWeight.NORMAL,
                 italic ? FontPosture.ITALIC : FontPosture.REGULAR,
                 textSize));
@@ -64,19 +64,19 @@ public class Textfield implements Tool {
         double y = e.getY();
 
         //draw the text there
-        g.fillText(text, x, y);
+        dg.fillText(text, x, y);
 
         if (underline) { //in case underline was clicked
             //calculating width of the text
             Text textNode = new Text(text);
-            textNode.setFont(g.getFont());
+            textNode.setFont(dg.getFont());
             double textWidth = textNode.getLayoutBounds().getWidth();
 
             //drawing the underline
             double underlineY = y + 2; //value position adjusted
-            g.setStroke(textColor); //stroke color is set
-            g.setLineWidth(1); //line width is chosen
-            g.strokeLine(x, underlineY, x + textWidth, underlineY); //draw the underline
+            dg.setStroke(textColor); //stroke color is set
+            dg.setLineWidth(1); //line width is chosen
+            dg.strokeLine(x, underlineY, x + textWidth, underlineY); //draw the underline
         }
     }
 
