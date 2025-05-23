@@ -11,6 +11,7 @@ public class BoxSelectAndMove extends SelectAndMove {
   //TODO fix occurring blurriness (maybe int casts?)
   //TODO fix problem when marking out of canvas
   //TODO implement no copy if totally background
+  //TODO fix selecting white???
 
   private boolean switchingToMoving = false;
 

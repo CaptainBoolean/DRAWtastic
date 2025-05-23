@@ -7,10 +7,13 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Scale;
+import org.example.paint.tools.Opaqueable;
 import org.example.paint.tools.Tool;
 import org.example.paint.tools.generalTools.PaintBucket;
 import org.example.paint.tools.generalTools.Pipette;
-import org.example.paint.tools.pens.*;
+import org.example.paint.tools.pens.Marker;
+import org.example.paint.tools.pens.RoundEraser;
+import org.example.paint.tools.pens.SquareEraser;
 
 public class ToolManager {
   private Tool currentTool;
@@ -59,7 +62,7 @@ public class ToolManager {
   }
 
   private void checkOpacitySliderDisplay(Tool newTool) {
-    if (newTool instanceof Marker || newTool instanceof FountainPen || newTool instanceof RainbowPen || newTool instanceof PaintBrush) {
+    if (newTool instanceof Opaqueable) {
       opacitySlider.setValue(true);
       opacityLabel.setValue(true);
     } else {
