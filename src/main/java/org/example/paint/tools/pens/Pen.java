@@ -107,6 +107,7 @@ public abstract class Pen implements Tool {
     if (checkNoMovement(e) && startX != -1 && startY != -1) {
       og.clearRect(0, 0, og.getCanvas().getWidth(), og.getCanvas().getHeight());
       //TODO fix doesnt get drawn initially
+      //TODO fix line with eraser
       drawLine(og, og, e, startX, startY, size, null);
     } else {
       double x = e.getX();
