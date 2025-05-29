@@ -25,11 +25,11 @@ public class PaintBucket implements Tool {
 
     ArrayList<int[]> toRecolor = SelectAreas.floodFillBackground(g, x, y);  // verwendet bestehende FloodFill
 
-    g.setFill(color);
+    dg.setFill(color);
     for (int[] pos : toRecolor) {
       int px = pos[0];
       int py = pos[1];
-      g.fillRect(px, py, 1, 1);
+      dg.fillRect(px, py, 1, 1);
     }
 
 
