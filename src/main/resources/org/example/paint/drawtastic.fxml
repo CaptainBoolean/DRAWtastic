@@ -5,7 +5,6 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.paint.controller.DrawtasticController"
@@ -13,23 +12,45 @@
 
   <top>
     <VBox>
-      <MenuBar>
-        <Menu text="File">
-          <MenuItem text="Save" onAction="#onSave" />
-          <MenuItem text="Exit" onAction="#onExit" />
-        </Menu>
-      </MenuBar>
+      <HBox spacing="10" alignment="CENTER_LEFT">
+        <MenuBar>
+          <Menu text="File">
+            <MenuItem text="Save" onAction="#onSave" />
+            <MenuItem text="Exit" onAction="#onExit" />
+          </Menu>
+        </MenuBar>
+
+
+        <Button onAction="#onUndo">
+          <graphic>
+            <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+              <image>
+                <Image url="@buttonIcons/undo.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+
+        <Button onAction="#onRedo">
+          <graphic>
+            <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+              <image>
+                <Image url="@buttonIcons/redo.png"/>
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+      </HBox>
 
       <ToolBar>
         <HBox spacing="20" alignment="TOP_CENTER">
-
           <!-- Erste Spalte (Pinsel, Farben) -->
           <VBox spacing="10">
             <Label text="Pens" />
             <HBox spacing="10">
               <SplitMenuButton fx:id="pensButton">
                 <tooltip>
-                  <Tooltip text="Select different pen types" />
+                  <Tooltip text="Selection of Pens" />
                 </tooltip>
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true" smooth="false">
@@ -39,43 +60,27 @@
                 <items>
                   <MenuItem fx:id="markerButton" text="Marker" />
                   <MenuItem fx:id="blurButton" text="Blur" />
-                  <MenuItem fx:id="paintBrushButton" text="Paint Brush" />
+                  <MenuItem fx:id="paintBrushButton" text="Pain Brush" />
                   <MenuItem fx:id="fountainPenButton" text="Fountain Pen" />
                   <MenuItem fx:id="rainbowPenButton" text="Rainbow Pen" />
                 </items>
               </SplitMenuButton>
-
-              <ColorPicker fx:id="colorPicker" prefWidth="40">
-                <tooltip>
-                  <Tooltip text="Choose drawing color" />
-                </tooltip>
-              </ColorPicker>
+              <ColorPicker fx:id="colorPicker" prefWidth="40" />
             </HBox>
-
-            <TextField fx:id="brushSize" text="6" prefWidth="40">
-              <tooltip>
-                <Tooltip text="Brush size (numeric)" />
-              </tooltip>
-            </TextField>
-
+            <TextField fx:id="brushSize" text="6" prefWidth="40" />
             <Label fx:id="opacityLabel" text="Opacity" />
-            <Slider fx:id="opacitySlider" max="1.0" value="1">
-              <tooltip>
-                <Tooltip text="Adjust brush opacity" />
-              </tooltip>
-            </Slider>
+            <Slider fx:id="opacitySlider" max="1.0" value="1" />
+
           </VBox>
 
+          <!-- Trennlinie zwischen Spalten -->
           <Separator orientation="VERTICAL" />
 
-          <!-- Zweite Spalte (Tools) -->
+          <!-- Zweite Spalte (Pens, Repaint, Tools) -->
           <VBox spacing="10">
             <Label text="Tools" />
             <HBox spacing="10">
               <Button fx:id="eraserButton">
-                <tooltip>
-                  <Tooltip text="Erase drawing elements" />
-                </tooltip>
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
                     <image>
@@ -84,11 +89,7 @@
                   </ImageView>
                 </graphic>
               </Button>
-
               <Button fx:id="paintBucketButton">
-                <tooltip>
-                  <Tooltip text="Fill area with color" />
-                </tooltip>
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
                     <image>
@@ -97,45 +98,16 @@
                   </ImageView>
                 </graphic>
               </Button>
-
-              <Button fx:id="repaintButton" text="Repaint">
-                <tooltip>
-                  <Tooltip text="Redraw elements with current settings" />
-                </tooltip>
-              </Button>
+              <Button fx:id="repaintButton" text="Repaint" />
             </HBox>
-
             <HBox spacing="10">
-              <Button fx:id="selectAndMoveButton" text="Select and move">
-                <tooltip>
-                  <Tooltip text="Move selected elements" />
-                </tooltip>
-              </Button>
-
-              <Button fx:id="connectedSelectAndMoveButton" text="Connected select and move">
-                <tooltip>
-                  <Tooltip text="Move connected elements together" />
-                </tooltip>
-              </Button>
+              <Button fx:id="selectAndMoveButton" text="Select and move" />
+              <Button fx:id="connectedSelectAndMoveButton" text="Connected select and move" />
             </HBox>
-
             <HBox spacing="10">
-              <Button fx:id="deleteConnectedLineButton" text="Delete Line">
-                <tooltip>
-                  <Tooltip text="Delete connected lines" />
-                </tooltip>
-              </Button>
-
-              <Button fx:id="removeColorFromCanvasButton" text="Remove Color">
-                <tooltip>
-                  <Tooltip text="Erase all of selected color from canvas" />
-                </tooltip>
-              </Button>
-
+              <Button fx:id="deleteConnectedLineButton" text="Delete Line" />
+              <Button fx:id="removeColorFromCanvasButton" text="Remove Color" />
               <Button fx:id="pipetteButton">
-                <tooltip>
-                  <Tooltip text="Pick color from canvas" />
-                </tooltip>
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
                     <image>
@@ -144,11 +116,7 @@
                   </ImageView>
                 </graphic>
               </Button>
-
               <Button fx:id="deleteColorButton">
-                <tooltip>
-                  <Tooltip text="Remove picked color from canvas" />
-                </tooltip>
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
                     <image>
@@ -160,47 +128,36 @@
             </HBox>
           </VBox>
 
+          <!-- Trennlinie zwischen Spalten -->
           <Separator orientation="VERTICAL" />
 
-          <!-- Dritte Spalte (Background) -->
+          <!-- Dritte Spalte (Hintergrund, Filter, Sonstiges) -->
           <VBox spacing="10">
             <Label text="Background &amp; Effects" />
             <HBox spacing="10" alignment="CENTER_LEFT">
               <Label text="Background color:" />
-              <ColorPicker fx:id="backgroundColorPicker" prefWidth="40">
-                <tooltip>
-                  <Tooltip text="Choose canvas background color" />
-                </tooltip>
-              </ColorPicker>
-              <Button fx:id="transparentBackgroundButton" text="None">
-                <tooltip>
-                  <Tooltip text="Set background to transparent" />
-                </tooltip>
-              </Button>
+              <ColorPicker fx:id="backgroundColorPicker" prefWidth="40"/>
+              <Button fx:id="transparentBackgroundButton" text="None" />
             </HBox>
+
           </VBox>
 
+          <!-- Trennlinie zwischen Spalten -->
           <Separator orientation="VERTICAL" />
 
-          <!-- Vierte Spalte (Shapes & Picture) -->
+          <!-- Vierte Spalte (Shapes, Text) -->
           <VBox spacing="10">
             <Label text="Shapes &amp; Picture" />
             <SplitMenuButton fx:id="rectangleButton" text="Insert Rectangle">
-              <tooltip>
-                <Tooltip text="Insert shapes into canvas" />
-              </tooltip>
               <items>
                 <MenuItem fx:id="ellipseButton" text="Insert Ellipse" />
                 <MenuItem fx:id="circleButton" text="Insert Circle" />
                 <MenuItem fx:id="triangleButton" text="Insert Triangle" />
                 <MenuItem fx:id="starButton" text="Insert Star" />
+
               </items>
             </SplitMenuButton>
-
             <SplitMenuButton fx:id="insertPicture" text="Insert Picture">
-              <tooltip>
-                <Tooltip text="Insert picture and apply filters" />
-              </tooltip>
               <items>
                 <MenuItem fx:id="sepiaFilterButton" text="Sepia Filter" />
                 <MenuItem fx:id="blurFilterButton" text="Blur Filter" />
@@ -210,56 +167,25 @@
                 <MenuItem fx:id="flipHorizontalButton" text="Flip Picture Horizontal" />
               </items>
             </SplitMenuButton>
-
-            <Button fx:id="textFieldButton" text="Textfield">
-              <tooltip>
-                <Tooltip text="Insert text into canvas" />
-              </tooltip>
-            </Button>
+            <Button fx:id="textFieldButton" text="Textfield" />
           </VBox>
 
           <Separator orientation="VERTICAL" />
 
-          <!-- Fünfte Spalte (Diverses) -->
+          <!-- Fünfte Spalte (Noch zuzuordnen) -->
           <VBox spacing="10">
             <Label text="Diverses" />
             <HBox spacing="10">
 
-              <Button fx:id="undoButton">
-                <tooltip>
-                  <Tooltip text="Undo last action" />
-                </tooltip>
-                <graphic>
-                  <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                    <image>
-                      <Image url="@buttonIcons/undo.png" />
-                    </image>
-                  </ImageView>
-                </graphic>
-              </Button>
 
-              <Button fx:id="redoButton">
-                <tooltip>
-                  <Tooltip text="Redo previous action" />
-                </tooltip>
-                <graphic>
-                  <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                    <image>
-                      <Image url="@buttonIcons/redo.png" />
-                    </image>
-                  </ImageView>
-                </graphic>
-              </Button>
 
-              <Label text="Zoom:" />
-              <Slider fx:id="zoomSlider" min="0.2" max="2.0" value="1.0" blockIncrement="0.1" prefWidth="150">
-                <tooltip>
-                  <Tooltip text="Zoomlevel (0.1x – 2.0x)" />
-                </tooltip>
-              </Slider>
 
+
+              <Button fx:id="zoomInButton" text="Zoom +" />
+              <Button fx:id="zoomOutButton" text="Zoom -" />
             </HBox>
           </VBox>
+
         </HBox>
       </ToolBar>
     </VBox>
@@ -277,3 +203,5 @@
   </center>
 
 </BorderPane>
+
+
