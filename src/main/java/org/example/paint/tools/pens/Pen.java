@@ -76,6 +76,8 @@ public abstract class Pen extends DrawingTool {
       if(previewDrawn) {
         previewDrawn = false;
         og.clearRect(0, 0, og.getCanvas().getWidth(), og.getCanvas().getHeight());
+        dg.getCanvas().setOpacity(lastDrawingOpac);
+        og.getCanvas().setOpacity(1);
       }
       super.drawPreviewAt(og, e, size);
     }
