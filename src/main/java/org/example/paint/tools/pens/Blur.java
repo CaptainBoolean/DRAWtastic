@@ -19,7 +19,7 @@ public class Blur extends Pen {
     long timeElapsed = currentTime - lastTimestamp;
 
     if ((lastX == -1 && lastY == -1) || timeElapsed > 5_000_000) {
-      snapshot = FileService.getTranspSnapshot(g.getCanvas());
+      snapshot = FileService.getTranspSnapshot(g);
       lastTimestamp = currentTime;
     }
 

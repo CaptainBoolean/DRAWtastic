@@ -3,6 +3,7 @@ package org.example.paint.controller;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
@@ -26,7 +27,7 @@ public class FileService {
       return;
     }
     try {
-      WritableImage image = getTranspSnapshot(canvas);
+      WritableImage image = getTranspSnapshot(canvas.getGraphicsContext2D());
       PixelReader reader = image.getPixelReader();
       int minX = (int) canvas.getWidth();
       int minY = (int) canvas.getHeight();
@@ -91,14 +92,20 @@ public class FileService {
 
   /**
    * Return a full Image of the provided canvas, displaying transparent pixels as transparent.
-   * @param canvas
    * @return WritableImage
    */
-  public static WritableImage getTranspSnapshot(Canvas canvas) {
+  public static WritableImage getTranspSnapshot(GraphicsContext g) {
+    Canvas canvas = g.getCanvas();
     WritableImage tempImage = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
     SnapshotParameters params = new SnapshotParameters();
     params.setFill(Color.TRANSPARENT);
     canvas.snapshot(params, tempImage);
     return  tempImage;
+  }
+
+  public static Color getColorAtPosition(GraphicsContext g, int x, int y) {
+    WritableImage image = getTranspSnapshot(g);
+    PixelReader reader = image.getPixelReader();
+    return  reader.getColor(x, y);
   }
 }

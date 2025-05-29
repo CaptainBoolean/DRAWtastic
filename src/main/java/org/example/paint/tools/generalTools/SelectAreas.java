@@ -22,7 +22,7 @@ public class SelectAreas {
   private static ArrayList<int[]> floodFill(GraphicsContext g, int x, int y, PixelMatch condition) {
     int width = (int) g.getCanvas().getWidth();
     int height = (int) g.getCanvas().getHeight();
-    WritableImage image = FileService.getTranspSnapshot(g.getCanvas());
+    WritableImage image = FileService.getTranspSnapshot(g);
     PixelReader pixelReader = image.getPixelReader();
     // PixelReader to pixel information
     boolean[][] read = new boolean[width][height];
@@ -69,8 +69,9 @@ public class SelectAreas {
    * @param y
    * @return ArrayList<int[]>
    */
-  public static ArrayList<int[]> floodFillBackground(GraphicsContext g, int x, int y) {
-    return floodFill(g, x, y, color -> color.equals(Color.TRANSPARENT));
+  public static ArrayList<int[]> floodFillArea(GraphicsContext g, int x, int y) {
+    Color selectedColor =  FileService.getColorAtPosition(g, x,y);
+    return floodFill(g, x, y, color -> color.equals(selectedColor));
   }
 
   public static ArrayList<int[]> floodFillSelected(GraphicsContext g, int x, int y) {

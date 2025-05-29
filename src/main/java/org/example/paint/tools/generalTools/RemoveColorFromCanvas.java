@@ -11,6 +11,8 @@ import org.example.paint.tools.Tool;
 
 public class RemoveColorFromCanvas implements Tool {
 
+  //TODO breaks when rapid clicking
+
   WritableImage tempImage;
   PixelReader pixelReader;
   PixelWriter pixelWriter;
@@ -19,7 +21,7 @@ public class RemoveColorFromCanvas implements Tool {
   @Override
   public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
 
-    tempImage = FileService.getTranspSnapshot(g.getCanvas());
+    tempImage = FileService.getTranspSnapshot(g);
     pixelReader = tempImage.getPixelReader();
     pixelWriter = tempImage.getPixelWriter();
 

@@ -39,7 +39,7 @@ public class ConnectedSelectAndMove extends SelectAndMove {
 
       WritableImage image = new WritableImage(width, height);
       PixelWriter writableImage = image.getPixelWriter();
-      WritableImage full = FileService.getTranspSnapshot(g.getCanvas());
+      WritableImage full = FileService.getTranspSnapshot(g);
 
       for (int[] pixel : pixels) {
         int x = pixel[0], y = pixel[1];

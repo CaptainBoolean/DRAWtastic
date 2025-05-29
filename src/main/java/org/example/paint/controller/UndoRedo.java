@@ -20,7 +20,7 @@ public class UndoRedo {
   }
 
   public void saveState() {
-    WritableImage snap = FileService.getTranspSnapshot(currCanvas);
+    WritableImage snap = FileService.getTranspSnapshot(currCanvas.getGraphicsContext2D());
 
     if (historyIndex < topIndex) {
       topIndex = historyIndex;
