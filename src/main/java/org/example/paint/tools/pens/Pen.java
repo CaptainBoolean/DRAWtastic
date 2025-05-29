@@ -36,7 +36,7 @@ public abstract class Pen implements Tool {
    * @param g     The GraphicsContect to draw on.
    * @param dg
    * @param e     The MouseEvent necessary to grab the location of drawing.
-   * @param size  The size that the pen should use for it's shape.
+   * @param size  The size that the pen should use for its shape.
    * @param color The color that the pen should draw in if it has changable colors.
    */
   public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {

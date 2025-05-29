@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class PaintBucket implements Tool {
 
-  //TODO fix and implement SelectAreas filood fill method
+  //TODO fix not filling perfectly
 
   @Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {

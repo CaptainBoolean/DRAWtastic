@@ -9,12 +9,12 @@ public class RoundEraser extends Pen {
   @Override
   protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color) {
     double radius = size / 2;
-    double step = 1.0;
+    int step = 1; // could be adjusted for performance reasons
 
     for (double dx = -radius; dx <= radius; dx += step) {
       for (double dy = -radius; dy <= radius; dy += step) {
         if (dx * dx + dy * dy <= radius * radius) {
-          g.clearRect(x - size / 2, y - size / 2, size, size);
+          g.clearRect(x+dx , y+dy , step, step);
         }
       }
     }

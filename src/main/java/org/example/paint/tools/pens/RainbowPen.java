@@ -41,9 +41,8 @@ public class RainbowPen extends Pen implements Opaqueable {
           dx /= len;
           dy /= len;
 
-          double smoothing = 0.7; //TODO adjust smoothing
-          dirX = (1 - smoothing) * dirX + smoothing * dx;
-          dirY = (1 - smoothing) * dirY + smoothing * dy;
+          dirX = dirX + dx;
+          dirY = dirY + dy;
 
           double dirLen = Math.sqrt(dirX * dirX + dirY * dirY);
           if (dirLen > 0.0001) {
