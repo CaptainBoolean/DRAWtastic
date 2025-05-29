@@ -12,12 +12,35 @@
 
   <top>
     <VBox>
-      <MenuBar>
-        <Menu text="File">
-          <MenuItem text="Save" onAction="#onSave" />
-          <MenuItem text="Exit" onAction="#onExit" />
-        </Menu>
-      </MenuBar>
+      <HBox spacing="10" alignment="CENTER_LEFT">
+        <MenuBar>
+          <Menu text="File">
+            <MenuItem text="Save" onAction="#onSave" />
+            <MenuItem text="Exit" onAction="#onExit" />
+          </Menu>
+        </MenuBar>
+
+
+        <Button onAction="#onUndo">
+          <graphic>
+            <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+              <image>
+                <Image url="@buttonIcons/undo.png" />
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+
+        <Button onAction="#onRedo">
+          <graphic>
+            <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+              <image>
+                <Image url="@buttonIcons/redo.png"/>
+              </image>
+            </ImageView>
+          </graphic>
+        </Button>
+      </HBox>
 
       <ToolBar>
         <HBox spacing="20" alignment="TOP_CENTER">
@@ -155,25 +178,9 @@
             <Label text="Diverses" />
             <HBox spacing="10">
 
-              <Button fx:id="undoButton">
-                <graphic>
-                  <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                    <image>
-                      <Image url="@buttonIcons/undo.png" />
-                    </image>
-                  </ImageView>
-                </graphic>
-              </Button>
 
-              <Button fx:id="redoButton">
-                <graphic>
-                  <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                    <image>
-                      <Image url="@buttonIcons/redo.png" />
-                    </image>
-                  </ImageView>
-                </graphic>
-              </Button>
+
+
 
               <Button fx:id="zoomInButton" text="Zoom +" />
               <Button fx:id="zoomOutButton" text="Zoom -" />
