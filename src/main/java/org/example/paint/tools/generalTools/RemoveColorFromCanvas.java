@@ -22,7 +22,7 @@ public class RemoveColorFromCanvas implements Tool {
 
     Color pickedColor = tempImage.getPixelReader().getColor((int)e.getX(), (int)e.getY());
 
-
+    //TODO fix account fo opaque?
     for (int x = 0; x < tempImage.getWidth(); x++) {
       for (int y = 0; y < tempImage.getHeight(); y++) {
         if (checkColorMath(pixelReader.getColor(x, y), pickedColor)) {
