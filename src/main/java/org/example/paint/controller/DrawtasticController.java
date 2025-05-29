@@ -28,7 +28,6 @@ public class DrawtasticController {
   @FXML private TextField brushSize;
   @FXML private Label opacityLabel;
   @FXML private Slider opacitySlider;
-  @FXML private Button undoButton, redoButton;
   @FXML private Button selectAndMoveButton, connectedSelectAndMoveButton, pipetteButton, transparentBackgroundButton, deleteConnectedLineButton, repaintButton, paintBucketButton;
   @FXML private SplitMenuButton pensButton;
   @FXML private Button eraserButton;
@@ -73,6 +72,9 @@ public class DrawtasticController {
     FileService.save(canvas, backgroundColorPicker.getValue());}
 
   public void onExit() {Platform.exit();}
+
+  public void onUndo() {undoRedo.undo();}
+  public void onRedo() {undoRedo.redo();}
 
   private void initBinds() {
     brushSize.textProperty().bindBidirectional(ToolManager.brushSizeProperty(), new NumberStringConverter());
@@ -122,8 +124,6 @@ public class DrawtasticController {
     deleteConnectedLineButton.setOnAction(e -> {toolManager.changeTool(new DeleteLine());});
     pensButton.setOnAction(e -> {toolManager.changeTool(new RoundPen());});
     textFieldButton.setOnAction(e -> {toolManager.changeTool(new Textfield());});
-    undoButton.setOnAction(e -> undoRedo.undo());
-    redoButton.setOnAction(e -> undoRedo.redo());
     repaintButton.setOnAction(e -> {toolManager.changeTool(new Repaint());});
     paintBucketButton.setOnAction(e -> {toolManager.changeTool(new PaintBucket());});
     blurFilterButton.setOnAction(e-> {toolManager.changeTool(new BlurFilter());});
@@ -135,11 +135,10 @@ public class DrawtasticController {
 
     //shapes
     rectangleButton.setOnAction(e->{toolManager.changeTool(new Rectangle());});
-    triangleButton.setOnAction(e->{toolManager.changeTool(new Triangle());});
-    circleButton.setOnAction(e->{toolManager.changeTool(new Circle());});
     ellipseButton.setOnAction(e->toolManager.changeTool(new Ellipse()));
+    circleButton.setOnAction(e->{toolManager.changeTool(new Circle());});
+    triangleButton.setOnAction(e->{toolManager.changeTool(new Triangle());});
     starButton.setOnAction((e->{toolManager.changeTool(new Star());}));
-    arrowButton.setOnAction(e->{toolManager.changeTool(new Arrow());});
 
     zoomInButton.setOnAction(e -> toolManager.zoom(1.1,canvas, canvasScale));
     zoomOutButton.setOnAction(e -> toolManager.zoom(0.9,canvas, canvasScale));
