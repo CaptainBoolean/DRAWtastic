@@ -177,12 +177,13 @@
             <Label text="Diverses" />
             <HBox spacing="10">
 
+              <Label text="Zoom:" />
+              <Slider fx:id="zoomSlider" min="0.1" max="2.0" value="1.0" blockIncrement="0.1" prefWidth="150">
+                <tooltip>
+                  <Tooltip text="Zoomlevel (0.1x – 2.0x)" />
+                </tooltip>
+              </Slider>
 
-
-
-
-              <Button fx:id="zoomInButton" text="Zoom +" />
-              <Button fx:id="zoomOutButton" text="Zoom -" />
             </HBox>
           </VBox>
 
