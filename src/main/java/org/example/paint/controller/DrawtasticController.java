@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
@@ -27,7 +26,6 @@ public class DrawtasticController {
   @FXML private ColorPicker colorPicker;
   @FXML private ColorPicker backgroundColorPicker;
   @FXML private TextField brushSize;
-  @FXML private Label opacityLabel;
   @FXML private Slider opacitySlider;
 
   private ToolManager toolManager;
@@ -51,20 +49,12 @@ public class DrawtasticController {
     canvas.setOnMouseDragged(e -> {toolManager.onDrag(e);});
     canvas.setOnMousePressed(e -> {toolManager.onPress(e);});
     canvas.setOnMouseReleased(e -> {toolManager.onRelease(e);undoRedo.saveState();});
-
   }
-
-
-
-
-
-
 
   private void initBinds() {
     brushSize.textProperty().bindBidirectional(ToolManager.brushSizeProperty(), new NumberStringConverter());
     opacitySlider.valueProperty().bindBidirectional(ToolManager.brushOpacityProperty());
     opacitySlider.visibleProperty().bindBidirectional(ToolManager.opacitySliderProperty());
-    opacityLabel.visibleProperty().bindBidirectional(ToolManager.opacityLabelProperty());
     colorPicker.valueProperty().bindBidirectional(ToolManager.colorProperty());
     backgroundColorPicker.valueProperty().bindBidirectional(ToolManager.backgroundColorProperty());
   }

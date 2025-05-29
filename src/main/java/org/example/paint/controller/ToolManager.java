@@ -23,7 +23,6 @@ public class ToolManager {
   private static final DoubleProperty brushSize = new SimpleDoubleProperty(8);
   private static final DoubleProperty opacity = new SimpleDoubleProperty(1);
   private static final BooleanProperty opacitySlider = new SimpleBooleanProperty();
-  private static final BooleanProperty opacityLabel = new SimpleBooleanProperty();
   private static final double markerSizeRatio = 2;
   private static final double markerOpacity = 0.3;
   private static final ObjectProperty<Color> color = new SimpleObjectProperty<>(Color.BLACK);
@@ -61,13 +60,7 @@ public class ToolManager {
   }
 
   private void checkOpacitySliderDisplay(Tool newTool) {
-    if (newTool instanceof Opaqueable) {
-      opacitySlider.setValue(true);
-      opacityLabel.setValue(true);
-    } else {
-      opacitySlider.setValue(false);
-      opacityLabel.setValue(false);
-    }
+    opacitySlider.setValue(newTool instanceof Opaqueable);
   }
 
   private Tool checkEraserSwitch(Tool newTool) {
@@ -157,7 +150,6 @@ public class ToolManager {
   static DoubleProperty brushSizeProperty() {return brushSize;}
   static DoubleProperty brushOpacityProperty() {return opacity;}
   static BooleanProperty opacitySliderProperty() {return opacitySlider;}
-  static BooleanProperty opacityLabelProperty() {return opacityLabel;}
   static ObjectProperty<Color> colorProperty() {return color;}
   static ObjectProperty<Color> backgroundColorProperty() {return backgroundColor;}
 

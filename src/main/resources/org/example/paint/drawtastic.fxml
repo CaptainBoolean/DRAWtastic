@@ -47,14 +47,37 @@
 
       <ToolBar>
         <HBox spacing="20" alignment="TOP_CENTER">
+          <VBox spacing="10">
+            <Label text="General Settings" />
+            <HBox spacing="10">
+              <ColorPicker fx:id="colorPicker" prefWidth="40" />
+
+              <Button onAction="#newPipette" text="Pipette">
+                <graphic>
+                  <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                    <Image url="@buttonIcons/pipette.png"/>
+                  </ImageView>
+                </graphic>
+              </Button>
+
+            </HBox>
+
+            <HBox >
+              <TextField fx:id="brushSize" text="6" prefWidth="40" />
+            </HBox>
+
+            <HBox>
+              <Slider fx:id="opacitySlider" max="1.0" value="1" />
+            </HBox>
+
+          </VBox>
+
+
           <!-- Erste Spalte (Pinsel, Farben) -->
           <VBox spacing="10">
             <Label text="Pens" />
             <HBox spacing="10">
               <SplitMenuButton onAction="#newPen">
-                <tooltip>
-                  <Tooltip text="Selection of Pens" />
-                </tooltip>
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true" smooth="false">
                     <Image url="@buttonIcons/pen.png" />
@@ -64,7 +87,7 @@
                   <MenuItem onAction="#newMarker" text="Marker" >
                     <graphic>
                       <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                        <Image url="@buttonIcons/redo.png"/>
+                        <Image url="@buttonIcons/marker.png"/>
                       </ImageView>
                     </graphic>
                   </MenuItem>
@@ -72,7 +95,7 @@
                   <MenuItem onAction="#newBlur" text="Blur" >
                     <graphic>
                       <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                        <Image url="@buttonIcons/redo.png"/>
+                        <Image url="@buttonIcons/blur.png"/>
                       </ImageView>
                     </graphic>
                   </MenuItem>
@@ -80,7 +103,7 @@
                   <MenuItem onAction="#newPaintBrush" text="Pain Brush" >
                     <graphic>
                       <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                        <Image url="@buttonIcons/redo.png"/>
+                        <Image url="@buttonIcons/brush_fat.png"/>
                       </ImageView>
                     </graphic>
                   </MenuItem>
@@ -88,7 +111,7 @@
                   <MenuItem onAction="#newFountainPen" text="Fountain Pen" >
                     <graphic>
                       <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                        <Image url="@buttonIcons/redo.png"/>
+                        <Image url="@buttonIcons/fountain_pen.png"/>
                       </ImageView>
                     </graphic>
                   </MenuItem>
@@ -96,18 +119,25 @@
                   <MenuItem onAction="#newRainbowPen" text="Rainbow Pen" >
                     <graphic>
                       <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                        <Image url="@buttonIcons/redo.png"/>
+                        <Image url="@buttonIcons/brush_rainbow.png"/>
                       </ImageView>
                     </graphic>
                   </MenuItem>
 
                 </items>
               </SplitMenuButton>
-              <ColorPicker fx:id="colorPicker" prefWidth="40" />
+
             </HBox>
-            <TextField fx:id="brushSize" text="6" prefWidth="40" />
-            <Label fx:id="opacityLabel" text="Opacity" />
-            <Slider fx:id="opacitySlider" max="1.0" value="1" />
+
+            <Button onAction="#newEraser" text="Eraser">
+              <graphic>
+                <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                  <image>
+                    <Image url="@buttonIcons/eraser.png" />
+                  </image>
+                </ImageView>
+              </graphic>
+            </Button>
 
           </VBox>
 
@@ -118,16 +148,8 @@
           <VBox spacing="10">
             <Label text="Tools" />
             <HBox spacing="10">
-              <Button onAction="#newEraser">
-                <graphic>
-                  <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                    <image>
-                      <Image url="@buttonIcons/eraser.png" />
-                    </image>
-                  </ImageView>
-                </graphic>
-              </Button>
-              <Button onAction="#newPaintbucket">
+
+              <Button onAction="#newPaintbucket" text="Paint Bucket">
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
                     <Image url="@buttonIcons/paintbucket.png"/>
@@ -167,13 +189,7 @@
                   </ImageView>
                 </graphic>
               </Button>
-              <Button onAction="#newPipette">
-                <graphic>
-                  <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                    <Image url="@buttonIcons/pipette.png"/>
-                  </ImageView>
-                </graphic>
-              </Button>
+
 
             </HBox>
           </VBox>
