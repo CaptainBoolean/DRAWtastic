@@ -116,10 +116,7 @@
               <ColorPicker fx:id="backgroundColorPicker" prefWidth="40"/>
               <Button fx:id="transparentBackgroundButton" text="None" />
             </HBox>
-            <HBox spacing="10">
-              <Button fx:id="encryptButton" text="Encrypt" />
-              <Button fx:id="decryptButton" text="Decrypt" />
-            </HBox>
+
           </VBox>
 
           <!-- Trennlinie zwischen Spalten -->
@@ -157,24 +154,27 @@
           <VBox spacing="10">
             <Label text="Diverses" />
             <HBox spacing="10">
-              <Button fx:id="redoButton">
-                <graphic>
-                  <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                    <image>
-                      <Image url="@buttonIcons/redoIcon.png" />
-                    </image>
-                  </ImageView>
-                </graphic>
-              </Button>
+
               <Button fx:id="undoButton">
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
                     <image>
-                      <Image url="@buttonIcons/undoIcon.png" />
+                      <Image url="@buttonIcons/undo.png" />
                     </image>
                   </ImageView>
                 </graphic>
               </Button>
+
+              <Button fx:id="redoButton">
+                <graphic>
+                  <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                    <image>
+                      <Image url="@buttonIcons/redo.png" />
+                    </image>
+                  </ImageView>
+                </graphic>
+              </Button>
+
               <Button fx:id="zoomInButton" text="Zoom +" />
               <Button fx:id="zoomOutButton" text="Zoom -" />
             </HBox>
