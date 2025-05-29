@@ -8,10 +8,6 @@ import org.example.paint.controller.FileService;
 
 public class BoxSelectAndMove extends SelectAndMove {
 
-  //TODO fix problem when marking out of canvas
-  //TODO implement no copy if totally background
-
-
   private boolean switchingToMoving = false;
 
   @Override
@@ -26,7 +22,9 @@ public class BoxSelectAndMove extends SelectAndMove {
   @Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
     if (mode == Mode.SELECTING) {
-      int ex = (int)e.getX(), ey = (int)e.getY();
+      int ex = (int) Math.max(0, Math.min(e.getX(), g.getCanvas().getWidth() - 1));
+      int ey = (int) Math.max(0, Math.min(e.getY(), g.getCanvas().getHeight() - 1));
+
       double cutWidth = Math.abs(startX - ex), cutHeight = Math.abs(startY - ey);
       if (cutWidth > 0 && cutHeight > 0) {
         double cutX = Math.min(startX, ex), cutY = Math.min(startY, ey);
@@ -35,8 +33,15 @@ public class BoxSelectAndMove extends SelectAndMove {
                 (int)cutX, (int)cutY,
                 (int)cutWidth, (int)cutHeight);
         g.clearRect(cutX-1, cutY-1, cutWidth+2, cutHeight+2);
-        mode = Mode.MOVING;
-        switchingToMoving = true;
+        if(checkIfContent()) {
+          mode = Mode.MOVING;
+          switchingToMoving = true;
+        } else  {
+          mode = Mode.FAILEDMOVE;
+          switchingToMoving = false;
+          movedImage = null;
+        }
+
       } else {
         mode = Mode.IDLE;
       }
@@ -48,6 +53,7 @@ public class BoxSelectAndMove extends SelectAndMove {
 
   @Override
   public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
+
     if (mode == Mode.SELECTING) {
       int currX = (int)e.getX(), currY = (int)e.getY();
       int newX = Math.min(startX, currX), newY = Math.min(startY, currY);
@@ -68,6 +74,20 @@ public class BoxSelectAndMove extends SelectAndMove {
         switchingToMoving = false;
       }
       super.drawPreviewAt(og, e, size);
+    } else if (mode == Mode.FAILEDMOVE) {
+      og.clearRect(0, 0, og.getCanvas().getWidth(), og.getCanvas().getHeight());
+      mode = Mode.IDLE;
     }
+  }
+
+  private boolean checkIfContent() {
+    for(int i = 0; movedImage.getWidth() > i; i++) {
+      for(int j = 0; movedImage.getHeight() > j; j++) {
+        if (!movedImage.getPixelReader().getColor(i, j).equals(Color.TRANSPARENT)) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }

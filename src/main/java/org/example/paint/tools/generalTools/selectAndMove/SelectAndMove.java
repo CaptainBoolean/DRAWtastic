@@ -6,7 +6,7 @@ import javafx.scene.input.MouseEvent;
 import org.example.paint.tools.Tool;
 
 public abstract class SelectAndMove implements Tool {
-  protected enum Mode {IDLE, SELECTING, MOVING}
+  protected enum Mode {IDLE, SELECTING, MOVING, FAILEDMOVE}
   protected Mode mode = Mode.IDLE;
   protected int startX = -1, startY = -1;
   protected int lastX = 0, lastY = 0, lastWidth = 0, lastHeight = 0;
