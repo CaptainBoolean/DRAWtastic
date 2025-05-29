@@ -76,7 +76,7 @@ public class DrawtasticController {
             (int)(colorWithOpacity.getRed() * 255) + "," +
             (int)(colorWithOpacity.getGreen() * 255) + "," +
             (int)(colorWithOpacity.getBlue() * 255) + "," +
-            Math.min(colorWithOpacity.getOpacity(), 1) + ");"); //TODO match with implemented curve
+            colorWithOpacity.getOpacity() + ");");
 
     drawCanvas.setOpacity(opacity);
   }

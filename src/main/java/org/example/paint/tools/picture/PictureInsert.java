@@ -14,10 +14,7 @@ public class PictureInsert implements Tool {
     double startX, startY;
     static Image savedImage;
     static double imgWidth, imgHeight, imgX, imgY;
-
-    //TODO implement a preview with dragging (just an outline - see select and move for inspo)
-    //TODO resize the picture with downscaling and insert in correct format after drag (maybe take y axis from mouse and set x so it is not distorted)
-
+    boolean dragging;
 
     /**
      *
@@ -29,29 +26,8 @@ public class PictureInsert implements Tool {
     public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
         startX = e.getX();
         startY = e.getY();
-
-
+        dragging = true;
     }
-
-    @Override
-    public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
-        // Rechteck zeichnen für Vorschau
-        double x = Math.min(startX, e.getX());
-        double y = Math.min(startY, e.getY());
-        double w = Math.abs(e.getX() - startX);
-        double h = Math.abs(e.getY() - startY);
-
-
-        Canvas canvas = g.getCanvas();
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight()); // alternativ: Canvas-Zustand puffern
-        gc.setStroke(Color.GRAY);
-        gc.setLineDashes(5);
-        gc.strokeRect(x, y, w, h);
-        gc.setLineDashes(0);
-    }
-
-
 
     @Override
     public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
@@ -86,13 +62,26 @@ public class PictureInsert implements Tool {
             imgY = y;
             imgWidth = w;
             imgHeight = h;
-
         }
+        dragging = false;
     }
 
 
     @Override
     public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
+      if (dragging) {
+        // Rechteck zeichnen für Vorschau
+        double x = Math.min(startX, e.getX());
+        double y = Math.min(startY, e.getY());
+        double w = Math.abs(e.getX() - startX);
+        double h = Math.abs(e.getY() - startY);
 
+
+        og.clearRect(0, 0, og.getCanvas().getWidth(), og.getCanvas().getHeight()); // alternativ: Canvas-Zustand puffern
+        og.setStroke(Color.GRAY);
+        og.setLineDashes(5);
+        og.strokeRect(x, y, w, h);
+        og.setLineDashes(0);
+      }
     }
 }

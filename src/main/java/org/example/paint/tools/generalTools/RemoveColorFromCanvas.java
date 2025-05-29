@@ -12,21 +12,24 @@ import org.example.paint.tools.Tool;
 public class RemoveColorFromCanvas implements Tool {
 
   WritableImage tempImage;
+  PixelReader pixelReader;
+  PixelWriter pixelWriter;
+  Color pickedColor;
 
   @Override
   public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
 
     tempImage = FileService.getTranspSnapshot(g.getCanvas());
-    PixelReader pixelReader = tempImage.getPixelReader();
-    PixelWriter pixelWriter = tempImage.getPixelWriter();
+    pixelReader = tempImage.getPixelReader();
+    pixelWriter = tempImage.getPixelWriter();
 
-    Color pickedColor = tempImage.getPixelReader().getColor((int)e.getX(), (int)e.getY());
+    pickedColor = tempImage.getPixelReader().getColor((int)e.getX(), (int)e.getY());
 
-    //TODO fix account fo opaque?
     for (int x = 0; x < tempImage.getWidth(); x++) {
       for (int y = 0; y < tempImage.getHeight(); y++) {
-        if (checkColorMath(pixelReader.getColor(x, y), pickedColor)) {
+        if (checkColorMatch(pixelReader.getColor(x, y), 0.1)) {
           pixelWriter.setColor(x, y, Color.TRANSPARENT);
+          removeAdjacientPixels(x,y);
         }
       }
     }
@@ -34,12 +37,31 @@ public class RemoveColorFromCanvas implements Tool {
     g.drawImage(tempImage, 0, 0, tempImage.getWidth(), tempImage.getHeight());
   }
 
-  private boolean checkColorMath(Color imageC, Color pickedC) {
-    double tolerance = 0.2;
-    double dr = imageC.getRed() - pickedC.getRed();
-    double dg = imageC.getGreen() - pickedC.getGreen();
-    double db = imageC.getBlue() - pickedC.getBlue();
-    return Math.sqrt(dr * dr + dg * dg + db * db) < tolerance;
+  private boolean checkColorMatch(Color imageC, double tolerance) {
+
+    double dr = imageC.getRed() - pickedColor.getRed();
+    double dg = imageC.getGreen() - pickedColor.getGreen();
+    double db = imageC.getBlue() - pickedColor.getBlue();
+    double da = imageC.getOpacity() - pickedColor.getOpacity();
+
+    return Math.sqrt(dr * dr + dg * dg + db * db + da * da) < tolerance;
+  }
+
+  private void removeAdjacientPixels(int x, int y) {
+    int radius = 5;
+
+    for (int dx = -radius; dx <= radius; dx++) {
+      for (int dy = -radius; dy <= radius; dy++) {
+        int absX = x + dx;
+        int absY = y + dy;
+        if (absX >= 0 && absY >= 0 && absX < tempImage.getWidth() && absY < tempImage.getHeight()) {
+          Color imageC = tempImage.getPixelReader().getColor(absX, absY);
+          if (checkColorMatch(imageC, 1)) {
+            pixelWriter.setColor(absX, absY, Color.TRANSPARENT);
+          }
+        }
+      }
+    }
   }
 
 
