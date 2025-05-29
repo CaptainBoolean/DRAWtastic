@@ -6,7 +6,9 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import org.example.paint.controller.FileService;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class SelectAreas {
   static int[][] directions = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
@@ -18,7 +20,6 @@ public class SelectAreas {
    * @return ArrayList<int[]>
    */
   private static ArrayList<int[]> floodFill(GraphicsContext g, int x, int y, PixelMatch condition) {
-    //TODO implement - return a list of all relevant pixels to work with
     int width = (int) g.getCanvas().getWidth();
     int height = (int) g.getCanvas().getHeight();
     WritableImage image = FileService.getTranspSnapshot(g.getCanvas());

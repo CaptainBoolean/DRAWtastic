@@ -11,7 +11,6 @@ import org.example.paint.tools.generalTools.SelectAreas;
 import java.util.ArrayList;
 
 
-//TODO fix not selecting all pixels
 public class ConnectedSelectAndMove extends SelectAndMove {
 
   @Override

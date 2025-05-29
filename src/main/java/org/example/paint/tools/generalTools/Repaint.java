@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public class Repaint implements Tool {
 
-  //TODO sag danke fürs copy pasten lena :)
   @Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
     Canvas canvas = g.getCanvas();
