@@ -150,11 +150,10 @@
             <Label text="Shapes &amp; Picture" />
             <SplitMenuButton fx:id="rectangleButton" text="Insert Rectangle">
               <items>
-                <MenuItem fx:id="triangleButton" text="Insert Triangle" />
-                <MenuItem fx:id="circleButton" text="Insert Circle" />
                 <MenuItem fx:id="ellipseButton" text="Insert Ellipse" />
+                <MenuItem fx:id="circleButton" text="Insert Circle" />
+                <MenuItem fx:id="triangleButton" text="Insert Triangle" />
                 <MenuItem fx:id="starButton" text="Insert Star" />
-                <MenuItem fx:id="arrowButton" text="Insert Arrow" />
 
               </items>
             </SplitMenuButton>
