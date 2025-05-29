@@ -6,7 +6,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.WritableImage;
 
 //TODO test if it works with all tools!!!
-//TODO background gets white every time --> fix copys white pixels
 public class UndoRedo {
   private final Canvas currCanvas;
   private static final int MAX_COUNT = 40;
@@ -21,7 +20,7 @@ public class UndoRedo {
   }
 
   public void saveState() {
-    WritableImage snap = currCanvas.snapshot(new SnapshotParameters(), null);
+    WritableImage snap = FileService.getTranspSnapshot(currCanvas);
 
     if (historyIndex < topIndex) {
       topIndex = historyIndex;

@@ -34,7 +34,4 @@ public class Pipette implements Tool {
     }
   }
 
-
-  //TODO implement preview
-
 }
