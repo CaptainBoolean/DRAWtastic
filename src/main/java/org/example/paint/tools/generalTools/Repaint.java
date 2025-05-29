@@ -4,11 +4,12 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import org.example.paint.tools.Opaqueable;
 import org.example.paint.tools.Tool;
 
 import java.util.ArrayList;
 
-public class Repaint implements Tool {
+public class Repaint implements Tool, Opaqueable {
 
   @Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
@@ -23,11 +24,12 @@ public class Repaint implements Tool {
 
     ArrayList<int[]> toRecolor = SelectAreas.floodFillSelected(g, x, y);  // verwendet bestehende FloodFill
 
-    g.setFill(color);
+    dg.setFill(color);
     for (int[] pos : toRecolor) {
       int px = pos[0];
       int py = pos[1];
-      g.fillRect(px, py, 1, 1);
+      dg.clearRect(px, py, 1, 1);
+      dg.fillRect(px, py, 1, 1);
     }
   }
 }
