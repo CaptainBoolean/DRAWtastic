@@ -21,8 +21,7 @@ public class DrawtasticController {
 
   @FXML private Canvas canvas,drawCanvas, overlayCanvas, backgroundCanvas;
   @FXML private Group canvasGroup;
-  @FXML private Button zoomInButton;
-  @FXML private Button zoomOutButton;
+  @FXML private Slider zoomSlider;
   @FXML private ColorPicker colorPicker;
   @FXML private ColorPicker backgroundColorPicker;
   @FXML private TextField brushSize;
@@ -44,6 +43,7 @@ public class DrawtasticController {
   private Background background;
   private UndoRedo undoRedo;
   private final Scale canvasScale = new Scale(1.0, 1.0, 0, 0);
+  private double lastSliderValue = 1.0;
 
   public void initialize() {
     toolManager = new ToolManager(canvas, overlayCanvas, drawCanvas);
@@ -65,10 +65,6 @@ public class DrawtasticController {
     initButtons();
   }
 
-
-
-
-
   public void onSave() {
     FileService.save(canvas, backgroundColorPicker.getValue());}
 
@@ -87,6 +83,16 @@ public class DrawtasticController {
     opacitySlider.valueProperty().addListener((observable, oldValue, newValue) -> updateSliderColor());
     colorPicker.valueProperty().addListener((observable, oldValue, newValue) -> updateSliderColor());
     backgroundColorPicker.valueProperty().addListener((observable, oldValue, newValue) -> Background.changeBackground(newValue));
+
+    zoomSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+      double currentValue = newVal.doubleValue();
+      double zoomFactor = currentValue / lastSliderValue;
+
+      toolManager.zoom(zoomFactor, canvas, canvasScale);
+
+      lastSliderValue = currentValue;
+    });
+
   }
 
   private void updateSliderColor() {
@@ -139,9 +145,6 @@ public class DrawtasticController {
     circleButton.setOnAction(e->{toolManager.changeTool(new Circle());});
     triangleButton.setOnAction(e->{toolManager.changeTool(new Triangle());});
     starButton.setOnAction((e->{toolManager.changeTool(new Star());}));
-
-    zoomInButton.setOnAction(e -> toolManager.zoom(1.1,canvas, canvasScale));
-    zoomOutButton.setOnAction(e -> toolManager.zoom(0.9,canvas, canvasScale));
     removeColorFromCanvasButton.setOnAction(e->{toolManager.changeTool(new RemoveColorFromCanvas());});
   }
 

@@ -91,7 +91,7 @@ public class ToolManager {
     double canvasCenterY = canvas.getHeight() / 2;
 
     double newScale = canvasScale.getX() * zoomFactor;
-    newScale = Math.max(0.2, Math.min(newScale, 10));
+    newScale = Math.max(0.2, Math.min(newScale, 2.0));
 
     canvasScale.setX(newScale);
     canvasScale.setY(newScale);

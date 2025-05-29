@@ -251,17 +251,13 @@
                 </graphic>
               </Button>
 
-              <Button fx:id="zoomInButton" text="Zoom +">
+              <Label text="Zoom:" />
+              <Slider fx:id="zoomSlider" min="0.2" max="2.0" value="1.0" blockIncrement="0.1" prefWidth="150">
                 <tooltip>
-                  <Tooltip text="Zoom in" />
+                  <Tooltip text="Zoomlevel (0.1x – 2.0x)" />
                 </tooltip>
-              </Button>
+              </Slider>
 
-              <Button fx:id="zoomOutButton" text="Zoom -">
-                <tooltip>
-                  <Tooltip text="Zoom out" />
-                </tooltip>
-              </Button>
             </HBox>
           </VBox>
         </HBox>
