@@ -135,11 +135,10 @@ public class DrawtasticController {
 
     //shapes
     rectangleButton.setOnAction(e->{toolManager.changeTool(new Rectangle());});
-    triangleButton.setOnAction(e->{toolManager.changeTool(new Triangle());});
-    circleButton.setOnAction(e->{toolManager.changeTool(new Circle());});
     ellipseButton.setOnAction(e->toolManager.changeTool(new Ellipse()));
+    circleButton.setOnAction(e->{toolManager.changeTool(new Circle());});
+    triangleButton.setOnAction(e->{toolManager.changeTool(new Triangle());});
     starButton.setOnAction((e->{toolManager.changeTool(new Star());}));
-    arrowButton.setOnAction(e->{toolManager.changeTool(new Arrow());});
 
     zoomInButton.setOnAction(e -> toolManager.zoom(1.1,canvas, canvasScale));
     zoomOutButton.setOnAction(e -> toolManager.zoom(0.9,canvas, canvasScale));
