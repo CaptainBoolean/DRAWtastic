@@ -21,7 +21,7 @@
         </MenuBar>
 
 
-        <Button onAction="#onUndo">
+        <Button onAction="#undo">
           <graphic>
             <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
               <image>
@@ -31,7 +31,7 @@
           </graphic>
         </Button>
 
-        <Button onAction="#onRedo">
+        <Button onAction="#redo">
           <graphic>
             <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
               <image>
@@ -40,6 +40,11 @@
             </ImageView>
           </graphic>
         </Button>
+
+        <Button onAction="#zoomIn" text="Zoom +" />
+        <Button onAction="#zoomOut" text="Zoom -" />
+
+
       </HBox>
 
       <ToolBar>
@@ -48,7 +53,7 @@
           <VBox spacing="10">
             <Label text="Pens" />
             <HBox spacing="10">
-              <SplitMenuButton fx:id="pensButton">
+              <SplitMenuButton onAction="#newPen">
                 <tooltip>
                   <Tooltip text="Selection of Pens" />
                 </tooltip>
@@ -58,11 +63,11 @@
                   </ImageView>
                 </graphic>
                 <items>
-                  <MenuItem fx:id="markerButton" text="Marker" />
-                  <MenuItem fx:id="blurButton" text="Blur" />
-                  <MenuItem fx:id="paintBrushButton" text="Pain Brush" />
-                  <MenuItem fx:id="fountainPenButton" text="Fountain Pen" />
-                  <MenuItem fx:id="rainbowPenButton" text="Rainbow Pen" />
+                  <MenuItem onAction="#newMarker" text="Marker" />
+                  <MenuItem onAction="#newBlur" text="Blur" />
+                  <MenuItem onAction="#newPaintBrush" text="Pain Brush" />
+                  <MenuItem onAction="#newFountainPen" text="Fountain Pen" />
+                  <MenuItem onAction="#newRainbowPen" text="Rainbow Pen" />
                 </items>
               </SplitMenuButton>
               <ColorPicker fx:id="colorPicker" prefWidth="40" />
@@ -80,7 +85,7 @@
           <VBox spacing="10">
             <Label text="Tools" />
             <HBox spacing="10">
-              <Button fx:id="eraserButton">
+              <Button onAction="#newEraser">
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
                     <image>
@@ -89,7 +94,7 @@
                   </ImageView>
                 </graphic>
               </Button>
-              <Button fx:id="paintBucketButton">
+              <Button onAction="#newPaintbucket">
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
                     <image>
@@ -98,30 +103,26 @@
                   </ImageView>
                 </graphic>
               </Button>
-              <Button fx:id="repaintButton" text="Repaint" />
+              <Button onAction="#newRepaint" text="Repaint" />
             </HBox>
             <HBox spacing="10">
-              <Button fx:id="selectAndMoveButton" text="Select and move" />
-              <Button fx:id="connectedSelectAndMoveButton" text="Connected select and move" />
+              <Button onAction="#newBoxSelectAndMove" text="Select and move" />
+              <Button onAction="#newConnectedSelectAndMove" text="Connected select and move" />
             </HBox>
             <HBox spacing="10">
-              <Button fx:id="deleteConnectedLineButton" text="Delete Line" />
-              <Button fx:id="removeColorFromCanvasButton" text="Remove Color" />
-              <Button fx:id="pipetteButton">
+              <Button onAction="#newDeleteConnectedLine" text="Delete Line" />
+              <Button onAction="#newRemoveColor" text="Remove Color" />
+              <Button onAction="#newPipette">
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                    <image>
-                      <Image url="@buttonIcons/pipetteIcon.png" />
-                    </image>
+                    <Image url="@buttonIcons/pipetteIcon.png"/>
                   </ImageView>
                 </graphic>
               </Button>
               <Button fx:id="deleteColorButton">
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                    <image>
-                      <Image url="@buttonIcons/deletepipetteIcon.png" />
-                    </image>
+                    <Image url="@buttonIcons/deletepipetteIcon.png"/>
                   </ImageView>
                 </graphic>
               </Button>
@@ -137,7 +138,7 @@
             <HBox spacing="10" alignment="CENTER_LEFT">
               <Label text="Background color:" />
               <ColorPicker fx:id="backgroundColorPicker" prefWidth="40"/>
-              <Button fx:id="transparentBackgroundButton" text="None" />
+              <Button onAction="#setTransparentBackground" text="None" />
             </HBox>
 
           </VBox>
@@ -148,44 +149,73 @@
           <!-- Vierte Spalte (Shapes, Text) -->
           <VBox spacing="10">
             <Label text="Shapes &amp; Picture" />
-            <SplitMenuButton fx:id="rectangleButton" text="Insert Rectangle">
-              <items>
-                <MenuItem fx:id="ellipseButton" text="Insert Ellipse" />
-                <MenuItem fx:id="circleButton" text="Insert Circle" />
-                <MenuItem fx:id="triangleButton" text="Insert Triangle" />
-                <MenuItem fx:id="starButton" text="Insert Star" />
+            <MenuButton>
+              <graphic>
+                <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                  <Image url="@buttonIcons/generalshapes.png"/>
+                </ImageView>
+              </graphic>
 
-              </items>
-            </SplitMenuButton>
-            <SplitMenuButton fx:id="insertPicture" text="Insert Picture">
               <items>
-                <MenuItem fx:id="sepiaFilterButton" text="Sepia Filter" />
-                <MenuItem fx:id="blurFilterButton" text="Blur Filter" />
-                <MenuItem fx:id="blackAndWhiteFilterButton" text="Black and White Filter" />
-                <MenuItem fx:id="invertFilterButton" text="Invert Picture Filter" />
-                <MenuItem fx:id="flipVerticalButton" text="Flip Picture Vertical" />
-                <MenuItem fx:id="flipHorizontalButton" text="Flip Picture Horizontal" />
+                <MenuItem onAction="#newRectangle" text="Rectangle" >
+                  <graphic>
+                    <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                      <Image url="@buttonIcons/rect.png"/>
+                    </ImageView>
+                  </graphic>
+                </MenuItem>
+
+                <MenuItem onAction="#newEllipse" text="Ellipse" >
+                  <graphic>
+                    <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                      <Image url="@buttonIcons/ellipse.png"/>
+                    </ImageView>
+                  </graphic>
+                </MenuItem>
+
+                <MenuItem onAction="#newCircle" text="Circle"  >
+                  <graphic>
+                    <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                      <Image url="@buttonIcons/rect.png"/>
+                    </ImageView>
+                  </graphic>
+                </MenuItem>
+
+                <MenuItem onAction="#newTriangle" text="Triangle" >
+                  <graphic>
+                    <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                      <Image url="@buttonIcons/triangle.png"/>
+                    </ImageView>
+                  </graphic>
+                </MenuItem>
+
+                <MenuItem onAction="#newStar" text="Star" >
+                  <graphic>
+                    <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                      <Image url="@buttonIcons/star.png"/>
+                    </ImageView>
+                  </graphic>
+                </MenuItem>
+              </items>
+
+            </MenuButton>
+
+            <SplitMenuButton onAction="#newInsertPicture" text="Insert Picture">
+              <items>
+                <MenuItem onAction="#newSepiaFilter" text="Sepia Filter" />
+                <MenuItem onAction="#newBlur" text="Blur Filter" />
+                <MenuItem onAction="#newBlackAndWhiteFilter" text="Black and White Filter" />
+                <MenuItem onAction="#newInvertFilter" text="Invert Canvas Filter" />
+                <MenuItem onAction="#newFlipVertical" text="Flip Canvas Vertical" />
+                <MenuItem onAction="#newFlipHorizontal" text="Flip Canvas Horizontal" />
               </items>
             </SplitMenuButton>
-            <Button fx:id="textFieldButton" text="Textfield" />
+            <Button onAction="#newTextfield" text="Textfield" />
           </VBox>
 
           <Separator orientation="VERTICAL" />
 
-          <!-- Fünfte Spalte (Noch zuzuordnen) -->
-          <VBox spacing="10">
-            <Label text="Diverses" />
-            <HBox spacing="10">
 
-              <Label text="Zoom:" />
-              <Slider fx:id="zoomSlider" min="0.1" max="2.0" value="1.0" blockIncrement="0.1" prefWidth="150">
-                <tooltip>
-                  <Tooltip text="Zoomlevel (0.1x – 2.0x)" />
-                </tooltip>
-              </Slider>
-
-            </HBox>
-          </VBox>
 
         </HBox>
       </ToolBar>

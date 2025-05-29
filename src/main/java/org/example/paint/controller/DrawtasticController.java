@@ -4,7 +4,10 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.*;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Scale;
 import javafx.util.converter.NumberStringConverter;
@@ -21,28 +24,16 @@ public class DrawtasticController {
 
   @FXML private Canvas canvas,drawCanvas, overlayCanvas, backgroundCanvas;
   @FXML private Group canvasGroup;
-  @FXML private Slider zoomSlider;
   @FXML private ColorPicker colorPicker;
   @FXML private ColorPicker backgroundColorPicker;
   @FXML private TextField brushSize;
   @FXML private Label opacityLabel;
   @FXML private Slider opacitySlider;
-  @FXML private Button selectAndMoveButton, connectedSelectAndMoveButton, pipetteButton, transparentBackgroundButton, deleteConnectedLineButton, repaintButton, paintBucketButton;
-  @FXML private SplitMenuButton pensButton;
-  @FXML private Button eraserButton;
-  @FXML private MenuItem markerButton, blurButton, paintBrushButton, fountainPenButton, rainbowPenButton;
-  @FXML private SplitMenuButton insertPicture;
-  @FXML private MenuItem blurFilterButton, blackAndWhiteFilterButton, sepiaFilterButton, invertFilterButton, flipVerticalButton, flipHorizontalButton;
-  @FXML private Button textFieldButton;
-  @FXML private SplitMenuButton rectangleButton;
-  @FXML private MenuItem circleButton, ellipseButton, starButton, arrowButton, triangleButton;
-  @FXML private Button removeColorFromCanvasButton;
 
   private ToolManager toolManager;
   private Background background;
   private UndoRedo undoRedo;
   private final Scale canvasScale = new Scale(1.0, 1.0, 0, 0);
-  private double lastSliderValue = 1.0;
 
   public void initialize() {
     toolManager = new ToolManager(canvas, overlayCanvas, drawCanvas);
@@ -61,16 +52,13 @@ public class DrawtasticController {
     canvas.setOnMousePressed(e -> {toolManager.onPress(e);});
     canvas.setOnMouseReleased(e -> {toolManager.onRelease(e);undoRedo.saveState();});
 
-    initButtons();
   }
 
-  public void onSave() {
-    FileService.save(canvas, backgroundColorPicker.getValue());}
 
-  public void onExit() {Platform.exit();}
 
-  public void onUndo() {undoRedo.undo();}
-  public void onRedo() {undoRedo.redo();}
+
+
+
 
   private void initBinds() {
     brushSize.textProperty().bindBidirectional(ToolManager.brushSizeProperty(), new NumberStringConverter());
@@ -85,16 +73,6 @@ public class DrawtasticController {
     opacitySlider.valueProperty().addListener((observable, oldValue, newValue) -> updateSliderColor());
     colorPicker.valueProperty().addListener((observable, oldValue, newValue) -> updateSliderColor());
     backgroundColorPicker.valueProperty().addListener((observable, oldValue, newValue) -> Background.changeBackground(newValue));
-
-    zoomSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
-      double currentValue = newVal.doubleValue();
-      double zoomFactor = currentValue / lastSliderValue;
-
-      toolManager.zoom(zoomFactor, canvas, canvasScale);
-
-      lastSliderValue = currentValue;
-    });
-
   }
 
   private void updateSliderColor() {
@@ -114,41 +92,49 @@ public class DrawtasticController {
   }
 
 
-  //TODO sort buttons in groups and comment on them
-  private void initButtons() {
-    selectAndMoveButton.setOnAction(e -> {toolManager.changeTool(new BoxSelectAndMove());});
-    connectedSelectAndMoveButton.setOnAction(e -> {toolManager.changeTool(new ConnectedSelectAndMove());});
-    markerButton.setOnAction(e -> {toolManager.changeTool(new Marker());});
-    eraserButton.setOnAction(e -> {toolManager.changeTool(new RoundEraser());});
-    fountainPenButton.setOnAction(e -> {toolManager.changeTool(new FountainPen());});
-    blurButton.setOnAction(e -> {toolManager.changeTool(new Blur());});
-    paintBrushButton.setOnAction(e -> {toolManager.changeTool(new PaintBrush());});
-    rainbowPenButton.setOnAction(e -> {toolManager.changeTool(new RainbowPen());});
-    insertPicture.setOnAction(e -> toolManager.changeTool(new PictureInsert()));
-    pipetteButton.setOnAction(e -> {toolManager.changeTool(new Pipette());});
-    transparentBackgroundButton.setOnAction(e -> {Background.transparentBackground();});
-    deleteConnectedLineButton.setOnAction(e -> {toolManager.changeTool(new DeleteLine());});
-    pensButton.setOnAction(e -> {toolManager.changeTool(new RoundPen());});
-    textFieldButton.setOnAction(e -> {toolManager.changeTool(new Textfield());});
-    repaintButton.setOnAction(e -> {toolManager.changeTool(new Repaint());});
-    paintBucketButton.setOnAction(e -> {toolManager.changeTool(new PaintBucket());});
-    blurFilterButton.setOnAction(e-> {toolManager.changeTool(new BlurFilter());});
-    blackAndWhiteFilterButton.setOnAction(e -> {toolManager.changeTool(new BlackAndWhiteFilter());});
-    sepiaFilterButton.setOnAction(e -> {toolManager.changeTool(new SepiaFilter());});
-    flipVerticalButton.setOnAction(e -> {toolManager.changeTool(new FlipPicture("vertical"));});
-    flipHorizontalButton.setOnAction(e -> {toolManager.changeTool(new FlipPicture("horizontal"));});
-    invertFilterButton.setOnAction(e -> {toolManager.changeTool(new InvertFilter());});
+  public void onSave() {FileService.save(canvas, backgroundColorPicker.getValue());}
+  public void onExit() {Platform.exit();}
 
-    //shapes
-    rectangleButton.setOnAction(e->{toolManager.changeTool(new Rectangle());});
-    ellipseButton.setOnAction(e->toolManager.changeTool(new Ellipse()));
-    circleButton.setOnAction(e->{toolManager.changeTool(new Circle());});
-    triangleButton.setOnAction(e->{toolManager.changeTool(new Triangle());});
-    starButton.setOnAction((e->{toolManager.changeTool(new Star());}));
-    removeColorFromCanvasButton.setOnAction(e->{toolManager.changeTool(new RemoveColorFromCanvas());});
-  }
+  public void undo() {undoRedo.undo();}
+  public void redo() {undoRedo.redo();}
 
+  public void zoomIn() {toolManager.zoom(1.1,canvas, canvasScale);}
+  public void zoomOut() {toolManager.zoom(0.9,canvas, canvasScale);}
 
+  public void newBoxSelectAndMove() {toolManager.changeTool(new BoxSelectAndMove());}
+  public void newConnectedSelectAndMove() {toolManager.changeTool(new ConnectedSelectAndMove());}
+
+  public void newEraser(){toolManager.changeTool(new RoundEraser());}
+  public void newPipette() {toolManager.changeTool(new Pipette());}
+  public void newPaintbucket() {toolManager.changeTool(new PaintBucket());}
+  public void newRepaint() {toolManager.changeTool(new Repaint());}
+  public void newRemoveColor() {toolManager.changeTool(new RemoveColorFromCanvas());}
+  public void newDeleteConnectedLine() {toolManager.changeTool(new DeleteLine());}
+
+  public void newPen() {toolManager.changeTool(new RoundPen());}
+  public void newMarker() {toolManager.changeTool(new Marker());}
+  public void newBlur() {toolManager.changeTool(new Blur());}
+  public void newPaintBrush() {toolManager.changeTool(new PaintBrush());}
+  public void newFountainPen() {toolManager.changeTool(new FountainPen());}
+  public void newRainbowPen() {toolManager.changeTool(new RainbowPen());}
+
+  public void newInsertPicture() {toolManager.changeTool(new PictureInsert());}
+  public void newSepiaFilter() {toolManager.changeTool(new SepiaFilter());}
+  public void newBlurFilter() {toolManager.changeTool(new BlurFilter());}
+  public void newBlackAndWhiteFilter() {toolManager.changeTool(new BlackAndWhiteFilter());}
+  public void newInvertFilter() {toolManager.changeTool(new InvertFilter());}
+  public void newFlipVertical() {toolManager.changeTool(new FlipPicture("vertical"));}
+  public void newFlipHorizontal() {toolManager.changeTool(new FlipPicture("horizontal"));}
+
+  public void newRectangle() {toolManager.changeTool(new Rectangle());}
+  public void newEllipse() {toolManager.changeTool(new Ellipse());}
+  public void newCircle() {toolManager.changeTool(new Circle());}
+  public void newTriangle() {toolManager.changeTool(new Triangle());}
+  public void newStar() {toolManager.changeTool(new Star());}
+
+  public void newTextfield() {toolManager.changeTool(new Textfield());}
+
+  public void setTransparentBackground() {Background.transparentBackground();}
 
 }
 
