@@ -3,7 +3,7 @@ package org.example.paint.tools.pens;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class SquareEraser extends Pen {
+public class SquareEraser extends DrawingTool {
 
     @Override
     protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color) {

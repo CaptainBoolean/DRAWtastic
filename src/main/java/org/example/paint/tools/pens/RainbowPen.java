@@ -41,6 +41,7 @@ public class RainbowPen extends Pen implements Opaqueable {
           dx /= len;
           dy /= len;
 
+          //TODO add smoothing for straight line???
           dirX = dirX + dx;
           dirY = dirY + dy;
 

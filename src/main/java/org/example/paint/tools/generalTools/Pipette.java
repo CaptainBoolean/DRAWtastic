@@ -21,7 +21,6 @@ public class Pipette implements Tool {
     this.backgroundColor = backgroundColor;
   }
 
-
   @Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
     PixelReader pixelReader = FileService.getTranspSnapshot(g.getCanvas()).getPixelReader();

@@ -1,6 +1,5 @@
 package org.example.paint.controller;
 
-import javafx.animation.AnimationTimer;
 import javafx.beans.property.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -27,8 +26,6 @@ public class ToolManager {
   private static final double markerOpacity = 0.3;
   private static final ObjectProperty<Color> color = new SimpleObjectProperty<>(Color.BLACK);
   private static final ObjectProperty<Color> backgroundColor = new SimpleObjectProperty<>(Color.WHITE);
-  private MouseEvent lastMouseEvent;
-
 
 
   public ToolManager(Canvas canvas, Canvas overlayCanvas, Canvas drawCanvas) {
@@ -36,7 +33,6 @@ public class ToolManager {
     this.g = canvas.getGraphicsContext2D();
     this.og = overlayCanvas.getGraphicsContext2D();
     this.dg = drawCanvas.getGraphicsContext2D();
-    previewTimer.start();
   }
 
   public void changeTool(Tool newTool) {
@@ -116,28 +112,7 @@ public class ToolManager {
     currentTool.drawPreviewAt(og, e, brushSize.getValue());
   }
 
-  AnimationTimer previewTimer = new AnimationTimer() {
-    private long lastUpdate = 0;
-    private double prevX = -1;
-    private double prevY = -1;
 
-    @Override
-    public void handle(long now) {
-      if (now - lastUpdate < 33_000_000) return; // ~30 FPS cap
-      lastUpdate = now;
-
-      if (lastMouseEvent != null) {
-        double currX = lastMouseEvent.getX();
-        double currY = lastMouseEvent.getY();
-
-        if (currX != prevX || currY != prevY) {
-          onMove(lastMouseEvent);
-          prevX = currX;
-          prevY = currY;
-        }
-      }
-    }
-  };
 
   void onEnter(MouseEvent e) {og.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());}
 

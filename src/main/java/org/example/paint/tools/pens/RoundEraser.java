@@ -3,9 +3,9 @@ package org.example.paint.tools.pens;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class RoundEraser extends Pen {
+public class RoundEraser extends DrawingTool {
 
-  //TODO is squre????
+
   @Override
   protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color) {
     double radius = size / 2;

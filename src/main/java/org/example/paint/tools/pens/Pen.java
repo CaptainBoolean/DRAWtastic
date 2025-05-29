@@ -1,140 +1,87 @@
 package org.example.paint.tools.pens;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import org.example.paint.tools.Tool;
+import javafx.util.Duration;
+
 
 /**
 This is the abstract form of a Pen providing all necessary common fields, managing the position of drawing, preview and recalculation time to preserve performance.
  */
-public abstract class Pen implements Tool {
+public abstract class Pen extends DrawingTool {
 
-  private double startX = -1;
-  private double startY = -1;
-  protected double lastX = -1;
-  protected double lastY = -1;
-  private double lastPreviewX = -1;
-  private double lastPreviewY = -1;
-  protected double minSizeFactor = 0.5;
-  protected double maxSizeFactor = 4;
   long lastTimestamp = System.nanoTime();
   int recalculateTime = 5000000;
   long timeElapsed = 0;
 
+  private Timeline timeline;
+  private MouseEvent lastMouseEvent;
+  private double lastSize;
+  private Color lastColor;
+  private GraphicsContext dg;
+  private GraphicsContext og;
+  private double lastDrawingOpac = -1;
+  private boolean previewDrawn;
   private final long holdThreshold = 500000000;
   private long lastNoMovementTime = System.nanoTime();
   private final double movementMargin = 5;
   private double noMovementX = -1;
   private double noMovementY = -1;
 
-
-  /**
-   * Draws the sepcific kind of shape when dragging over the canvas.
-   * Between the registered points interpolation happens to allow pens to draw one continuos line.
-   *
-   * @param g     The GraphicsContect to draw on.
-   * @param dg
-   * @param e     The MouseEvent necessary to grab the location of drawing.
-   * @param size  The size that the pen should use for its shape.
-   * @param color The color that the pen should draw in if it has changable colors.
-   */
-  public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
-    if (dg.getCanvas().getWidth() == 0 || dg.getCanvas().getHeight() == 0) {
-      dg.getCanvas().setHeight(g.getCanvas().getHeight());
-      dg.getCanvas().setWidth(g.getCanvas().getWidth());
-    }
-
-    double x = e.getX();
-    double y = e.getY();
-
-    dg.setFill(color);
-
-    if (lastX != -1 && lastY != -1) {
-      drawLine(g, dg, e, lastX, lastY, size, color);
-    } else {
-      drawAt(g, dg, x, y, size, color);
-    }
-
-    lastX = x;
-    lastY = y;
-    g.getCanvas().setEffect(null);
-  }
-
-  /**
-   * Resets the parameters necessary for interpolation.
-   *
-   * @param g     -
-   * @param dg
-   * @param e     -
-   * @param size  -
-   * @param color
-   */
   @Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
     if (checkNoMovement(e)) {
       dg.clearRect(0, 0, dg.getCanvas().getWidth(), dg.getCanvas().getHeight());
       drawLine(g, dg, e, startX, startY, size, color);
     }
-    lastX = -1;
-    lastY = -1;
-    startX = -1;
-    startY = -1;
-
-
+    dg.getCanvas().setOpacity(lastDrawingOpac);
+    og.getCanvas().setOpacity(1);
+    og.clearRect(0, 0, dg.getCanvas().getWidth(), dg.getCanvas().getHeight());
+    lastDrawingOpac = -1;
+    previewDrawn = false;
+    timeline = null;
+    super.onRelease(g, dg, e, size, color);
   }
 
-  /**
-   * Draws at the provided coordinated with the specified characteristics
-   *
-   * @param g     GraphicsContext to draw on.
-   * @param dg
-   * @param x     The x coordinate to draw on.
-   * @param y     The y coordinate to draw on.
-   * @param size  The size to draw the shape in.
-   * @param color The color to draw the shape in.
-   */
-  protected abstract void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color);
 
-  /**
-   * Draws a preview at the correct position and removes the last drawn one.
-   * @param og GraphicsContext to draw the preview on.
-   * @param e The MouseEvent necessary to grab the location of drawing.
-   * @param size The size of the drawn preview.
-   */
+
+  @Override
+  public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+    super.onDrag(g, dg, e, size, color);
+    lastMouseEvent = e;
+    lastSize = size;
+    lastColor = color;
+    resetHoldTimer();
+  }
+
+  @Override
+  public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+    super.onPress(g, dg, e, size, color);
+    this.dg = dg;
+    lastDrawingOpac = dg.getCanvas().getOpacity();
+  }
+
   @Override
   public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
+    this.og = og;
     if (checkNoMovement(e) && startX != -1 && startY != -1) {
       og.clearRect(0, 0, og.getCanvas().getWidth(), og.getCanvas().getHeight());
-      //TODO fix doesnt get drawn initially
-      //TODO fix line with eraser
-      drawLine(og, og, e, startX, startY, size, null);
+      drawLine(og, og, e, startX, startY, size, lastColor);
+      dg.getCanvas().setOpacity(lastDrawingOpac * 0.3);
+      og.getCanvas().setOpacity(lastDrawingOpac);
     } else {
-      double x = e.getX();
-      double y = e.getY();
-
-      if (lastPreviewX != -1 && lastPreviewY != -1) {
-        double clearX = lastPreviewX - size / 2;
-        double clearY = lastPreviewY - size / 2;
-        double saveSize = size*(maxSizeFactor*1.5);
-        og.clearRect(clearX - saveSize/2, clearY - saveSize/2, saveSize, saveSize);
+      if(previewDrawn) {
+        previewDrawn = false;
+        og.clearRect(0, 0, og.getCanvas().getWidth(), og.getCanvas().getHeight());
       }
-
-      drawPreviewAt(og, x, y, size);
-
-      lastPreviewX = x;
-      lastPreviewY = y;
+      super.drawPreviewAt(og, e, size);
     }
   };
 
-  /**
-   * Draws a preview at the provided coordinates.
-   * @param og GraphicsContext to draw on.
-   * @param x The x coordinate to draw on.
-   * @param y The y coordinate to draw on.
-   * @param size The size of the Preview to be drawn.
-   */
-  protected abstract void drawPreviewAt(GraphicsContext og, double x, double y, double size);
+
 
   /**
    * Sets a specific timeframe to recalculate the size of speed dependant pens.
@@ -148,29 +95,6 @@ public abstract class Pen implements Tool {
       return true;
     }
     return false;
-  }
-
-  @Override
-  public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color){
-    startX = e.getX();
-    startY = e.getY();
-  }
-
-  private void drawLine(GraphicsContext g,GraphicsContext dg, MouseEvent e, double calcX, double calcY, double size, Color color) {
-
-    double dx = e.getX() - calcX;
-    double dy = e.getY() - calcY;
-
-
-    double distance = Math.hypot(dx, dy);
-    int steps = Math.max(1, (int) distance); // changed this to fix zoom
-
-    for (int i = 0; i <= steps; i++) {
-      double t = (double) i / steps;
-      double x = calcX + t * dx;
-      double y = calcY + t * dy;
-      drawAt(g, dg, x, y, size, color);
-    }
   }
 
   private boolean checkNoMovement(MouseEvent e) {
@@ -189,5 +113,28 @@ public abstract class Pen implements Tool {
 
     return now - lastNoMovementTime > holdThreshold;
   }
+
+  private void resetHoldTimer() {
+    if (timeline != null) {
+      timeline.stop();
+    }
+
+    timeline = new Timeline(new KeyFrame(Duration.millis(500), e -> {
+      if (lastMouseEvent != null && checkNoMovement(lastMouseEvent) && !previewDrawn) {
+        previewDrawn = true;
+        drawPreviewAt(
+                og,
+                lastMouseEvent,
+                lastSize
+        );
+      }
+    }));
+
+    timeline.setCycleCount(1);
+    timeline.play();
+
+  }
+
+
 }
 
