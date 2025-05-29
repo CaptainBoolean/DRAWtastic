@@ -115,18 +115,14 @@
               <Button onAction="#newPipette">
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                    <image>
-                      <Image url="@buttonIcons/pipetteIcon.png" />
-                    </image>
+                    <Image url="@buttonIcons/pipetteIcon.png"/>
                   </ImageView>
                 </graphic>
               </Button>
               <Button fx:id="deleteColorButton">
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                    <image>
-                      <Image url="@buttonIcons/deletepipetteIcon.png" />
-                    </image>
+                    <Image url="@buttonIcons/deletepipetteIcon.png"/>
                   </ImageView>
                 </graphic>
               </Button>
@@ -142,7 +138,7 @@
             <HBox spacing="10" alignment="CENTER_LEFT">
               <Label text="Background color:" />
               <ColorPicker fx:id="backgroundColorPicker" prefWidth="40"/>
-              <Button fx:id="transparentBackgroundButton" text="None" />
+              <Button onAction="#setTransparentBackground" text="None" />
             </HBox>
 
           </VBox>
@@ -153,15 +149,57 @@
           <!-- Vierte Spalte (Shapes, Text) -->
           <VBox spacing="10">
             <Label text="Shapes &amp; Picture" />
-            <MenuButton >
+            <MenuButton>
+              <graphic>
+                <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                  <Image url="@buttonIcons/generalshapes.png"/>
+                </ImageView>
+              </graphic>
+
               <items>
-                <MenuItem onAction="#newRectangle" text="Insert Rectangle" />
-                <MenuItem onAction="#newEllipse" text="Insert Ellipse" />
-                <MenuItem onAction="#newCircle" text="Insert Circle"  />
-                <MenuItem onAction="#newTriangle" text="Insert Triangle" />
-                <MenuItem onAction="#newStar" text="Insert Star" />
+                <MenuItem onAction="#newRectangle" text="Rectangle" >
+                  <graphic>
+                    <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                      <Image url="@buttonIcons/rect.png"/>
+                    </ImageView>
+                  </graphic>
+                </MenuItem>
+
+                <MenuItem onAction="#newEllipse" text="Ellipse" >
+                  <graphic>
+                    <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                      <Image url="@buttonIcons/ellipse.png"/>
+                    </ImageView>
+                  </graphic>
+                </MenuItem>
+
+                <MenuItem onAction="#newCircle" text="Circle"  >
+                  <graphic>
+                    <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                      <Image url="@buttonIcons/rect.png"/>
+                    </ImageView>
+                  </graphic>
+                </MenuItem>
+
+                <MenuItem onAction="#newTriangle" text="Triangle" >
+                  <graphic>
+                    <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                      <Image url="@buttonIcons/triangle.png"/>
+                    </ImageView>
+                  </graphic>
+                </MenuItem>
+
+                <MenuItem onAction="#newStar" text="Star" >
+                  <graphic>
+                    <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                      <Image url="@buttonIcons/star.png"/>
+                    </ImageView>
+                  </graphic>
+                </MenuItem>
               </items>
+
             </MenuButton>
+
             <SplitMenuButton onAction="#newInsertPicture" text="Insert Picture">
               <items>
                 <MenuItem onAction="#newSepiaFilter" text="Sepia Filter" />
@@ -172,7 +210,7 @@
                 <MenuItem onAction="#newFlipHorizontal" text="Flip Canvas Horizontal" />
               </items>
             </SplitMenuButton>
-            <Button fx:id="textFieldButton" text="Textfield" />
+            <Button onAction="#newTextfield" text="Textfield" />
           </VBox>
 
           <Separator orientation="VERTICAL" />
