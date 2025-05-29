@@ -17,7 +17,7 @@ public class ConnectedSelectAndMove extends SelectAndMove {
   @Override
   public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
     if (mode == Mode.IDLE) {
-      ArrayList<int[]> pixels = SelectAreas.floodFill(g, (int)e.getX(), (int)e.getY());
+      ArrayList<int[]> pixels = SelectAreas.floodFillSelected(g, (int)e.getX(), (int)e.getY());
       if (pixels.isEmpty()) {
         return;
       }

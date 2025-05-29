@@ -22,7 +22,7 @@ public class Repaint implements Tool {
 
     if (x < 0 || y < 0 || x >= width || y >= height) return;
 
-    ArrayList<int[]> toRecolor = SelectAreas.floodFill(g, x, y);  // verwendet bestehende FloodFill
+    ArrayList<int[]> toRecolor = SelectAreas.floodFillSelected(g, x, y);  // verwendet bestehende FloodFill
 
     g.setFill(color);
     for (int[] pos : toRecolor) {
