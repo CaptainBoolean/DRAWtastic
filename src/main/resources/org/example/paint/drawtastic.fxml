@@ -77,13 +77,21 @@
           <VBox spacing="10">
             <Label text="Pens" />
             <HBox spacing="10">
-              <SplitMenuButton onAction="#newPen">
+              <SplitMenuButton fx:id="penButton" onAction="#lastPen">
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true" smooth="false">
                     <Image url="@buttonIcons/pen.png" />
                   </ImageView>
                 </graphic>
                 <items>
+                  <MenuItem onAction="#newPen" text="Pen" >
+                    <graphic>
+                      <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                        <Image url="@buttonIcons/pen.png"/>
+                      </ImageView>
+                    </graphic>
+                  </MenuItem>
+
                   <MenuItem onAction="#newMarker" text="Marker" >
                     <graphic>
                       <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
@@ -121,12 +129,10 @@
 
             </HBox>
 
-            <Button onAction="#newEraser" text="Eraser">
+            <Button fx:id="eraserButton" onAction="#newEraser" text="Eraser">
               <graphic>
                 <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                  <image>
-                    <Image url="@buttonIcons/eraser.png" />
-                  </image>
+                  <Image url="@buttonIcons/round_eraser.png"/>
                 </ImageView>
               </graphic>
             </Button>

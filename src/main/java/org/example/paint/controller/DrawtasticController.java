@@ -4,9 +4,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Scale;
 import javafx.util.converter.NumberStringConverter;
@@ -25,6 +23,8 @@ public class DrawtasticController {
   @FXML private Group canvasGroup;
   @FXML private ColorPicker colorPicker;
   @FXML private ColorPicker backgroundColorPicker;
+  @FXML private SplitMenuButton penButton;
+  @FXML private Button eraserButton;
   @FXML private TextField brushSize;
   @FXML private Slider opacitySlider;
 
@@ -57,6 +57,8 @@ public class DrawtasticController {
     opacitySlider.visibleProperty().bindBidirectional(ToolManager.opacitySliderProperty());
     colorPicker.valueProperty().bindBidirectional(ToolManager.colorProperty());
     backgroundColorPicker.valueProperty().bindBidirectional(ToolManager.backgroundColorProperty());
+    penButton.graphicProperty().bindBidirectional(ToolManager.penButtonGraphicProperty());
+    eraserButton.graphicProperty().bindBidirectional(ToolManager.eraserButtonGraphicProperty());
   }
 
   private void initListeners() {
@@ -101,6 +103,7 @@ public class DrawtasticController {
   public void newRemoveColor() {toolManager.changeTool(new RemoveColorFromCanvas());}
   public void newDeleteConnectedLine() {toolManager.changeTool(new DeleteLine());}
 
+  public void lastPen() {toolManager.lastPen();}
   public void newPen() {toolManager.changeTool(new RoundPen());}
   public void newMarker() {toolManager.changeTool(new Marker());}
   public void newPaintBrush() {toolManager.changeTool(new PaintBrush());}

@@ -1,20 +1,22 @@
 package org.example.paint.controller;
 
 import javafx.beans.property.*;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Scale;
 import org.example.paint.tools.Opaqueable;
 import org.example.paint.tools.Tool;
 import org.example.paint.tools.generalTools.Pipette;
-import org.example.paint.tools.pens.Marker;
-import org.example.paint.tools.pens.RoundEraser;
-import org.example.paint.tools.pens.SquareEraser;
+import org.example.paint.tools.pens.*;
 
 public class ToolManager {
   private Tool currentTool;
+  private Tool lastPen;
   private final Canvas canvas;
   private final GraphicsContext g;
   private final GraphicsContext og;
@@ -26,22 +28,75 @@ public class ToolManager {
   private static final double markerOpacity = 0.3;
   private static final ObjectProperty<Color> color = new SimpleObjectProperty<>(Color.BLACK);
   private static final ObjectProperty<Color> backgroundColor = new SimpleObjectProperty<>(Color.WHITE);
+  private static final ObjectProperty<Node> penButtonGraphic = new SimpleObjectProperty<>();
+  private static final ObjectProperty<Node> eraserButtonGraphic = new SimpleObjectProperty<>();
 
 
-  public ToolManager(Canvas canvas, Canvas overlayCanvas, Canvas drawCanvas) {
+
+  ToolManager(Canvas canvas, Canvas overlayCanvas, Canvas drawCanvas) {
     this.canvas = canvas;
     this.g = canvas.getGraphicsContext2D();
     this.og = overlayCanvas.getGraphicsContext2D();
     this.dg = drawCanvas.getGraphicsContext2D();
   }
 
-  public void changeTool(Tool newTool) {
+  void changeTool(Tool newTool) {
+
     checkIfMarker(newTool);
     checkOpacitySliderDisplay(newTool);
     newTool = checkEraserSwitch(newTool);
     newTool = checkPipette(newTool);
+    checkIfIconChange(newTool);
 
     currentTool = newTool;
+  }
+
+  void lastPen() {
+    changeTool(lastPen);
+  }
+
+  private void checkIfIconChange(Tool newTool) {
+    ImageView imageView = null;
+
+    if (newTool instanceof Pen) {
+      if (newTool instanceof RoundPen) {
+        imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/pen.png").toExternalForm()));
+      } else  if (newTool instanceof Marker) {
+        imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/marker.png").toExternalForm()));
+      } else  if (newTool instanceof PaintBrush) {
+        imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/brush_fat.png").toExternalForm()));
+      } else  if (newTool instanceof FountainPen) {
+        imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/fountain_pen.png").toExternalForm()));
+      } else  if (newTool instanceof RainbowPen) {
+        imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/brush_rainbow.png").toExternalForm()));
+      }
+      formatImageView(imageView);
+      penButtonGraphic.set(imageView);
+      lastPen = newTool;
+    }
+
+
+    if (newTool instanceof RoundEraser) {
+      imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/round_eraser.png").toExternalForm()));
+      formatImageView(imageView);
+      eraserButtonGraphic.set(imageView);
+    } else  if (newTool instanceof SquareEraser) {
+      imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/square_eraser.png").toExternalForm()));
+      formatImageView(imageView);
+      eraserButtonGraphic.set(imageView);
+    } else {
+      imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/round_eraser.png").toExternalForm()));
+      formatImageView(imageView);
+      eraserButtonGraphic.set(imageView);
+    }
+  }
+
+  private void formatImageView(ImageView imageView) {
+    if (imageView != null) {
+      imageView.setFitWidth(24);
+      imageView.setFitHeight(24);
+      imageView.setPreserveRatio(true);
+    }
   }
 
   private void checkIfMarker(Tool newTool) {
@@ -128,7 +183,7 @@ public class ToolManager {
   static BooleanProperty opacitySliderProperty() {return opacitySlider;}
   static ObjectProperty<Color> colorProperty() {return color;}
   static ObjectProperty<Color> backgroundColorProperty() {return backgroundColor;}
-
-  public static Color getDrawColor() {return colorProperty().getValue();}
+  static ObjectProperty<Node> penButtonGraphicProperty() {return penButtonGraphic;}
+  static ObjectProperty<Node> eraserButtonGraphicProperty() {return eraserButtonGraphic;}
 
 }
