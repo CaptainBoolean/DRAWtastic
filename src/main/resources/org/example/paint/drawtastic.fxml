@@ -213,11 +213,6 @@
           <VBox spacing="10">
             <Label text="Shapes &amp; Picture" />
             <SplitMenuButton fx:id="shapeButton" onAction="#lastShape">
-              <graphic>
-                <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                  <Image url="@buttonIcons/rectangle.png"/>
-                </ImageView>
-              </graphic>
 
               <items>
                 <MenuItem onAction="#newRectangle" text="Rectangle" >

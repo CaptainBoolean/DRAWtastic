@@ -18,7 +18,7 @@ import org.example.paint.tools.shapes.*;
 public class ToolManager {
   private Tool currentTool;
   private Tool lastPen;
-  private Tool lastShape;
+  private Tool lastShape = new Rectangle();
   private final Canvas canvas;
   private final GraphicsContext g;
   private final GraphicsContext og;
@@ -98,6 +98,8 @@ public class ToolManager {
       formatImageView(imageView);
       eraserButtonGraphic.set(imageView);
     }
+
+    //TODO set initial shape
 
     if (newTool instanceof Shape) {
       switch (newTool) {
