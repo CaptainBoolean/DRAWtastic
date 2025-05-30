@@ -13,10 +13,12 @@ import org.example.paint.tools.Opaqueable;
 import org.example.paint.tools.Tool;
 import org.example.paint.tools.generalTools.Pipette;
 import org.example.paint.tools.pens.*;
+import org.example.paint.tools.shapes.*;
 
 public class ToolManager {
   private Tool currentTool;
   private Tool lastPen;
+  private Tool lastShape;
   private final Canvas canvas;
   private final GraphicsContext g;
   private final GraphicsContext og;
@@ -30,7 +32,7 @@ public class ToolManager {
   private static final ObjectProperty<Color> backgroundColor = new SimpleObjectProperty<>(Color.WHITE);
   private static final ObjectProperty<Node> penButtonGraphic = new SimpleObjectProperty<>();
   private static final ObjectProperty<Node> eraserButtonGraphic = new SimpleObjectProperty<>();
-
+  private static final ObjectProperty<Node> shapeButtonGraphic = new SimpleObjectProperty<>();
 
 
   ToolManager(Canvas canvas, Canvas overlayCanvas, Canvas drawCanvas) {
@@ -55,20 +57,27 @@ public class ToolManager {
     changeTool(lastPen);
   }
 
+  void lastShape() {
+    changeTool(lastShape);
+  }
+
   private void checkIfIconChange(Tool newTool) {
     ImageView imageView = null;
 
     if (newTool instanceof Pen) {
-      if (newTool instanceof RoundPen) {
-        imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/pen.png").toExternalForm()));
-      } else  if (newTool instanceof Marker) {
-        imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/marker.png").toExternalForm()));
-      } else  if (newTool instanceof PaintBrush) {
-        imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/brush_fat.png").toExternalForm()));
-      } else  if (newTool instanceof FountainPen) {
-        imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/fountain_pen.png").toExternalForm()));
-      } else  if (newTool instanceof RainbowPen) {
-        imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/brush_rainbow.png").toExternalForm()));
+      switch (newTool) {
+        case RoundPen roundPen ->
+                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/pen.png").toExternalForm()));
+        case Marker marker ->
+                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/marker.png").toExternalForm()));
+        case PaintBrush paintBrush ->
+                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/brush_fat.png").toExternalForm()));
+        case FountainPen fountainPen ->
+                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/fountain_pen.png").toExternalForm()));
+        case RainbowPen rainbowPen ->
+                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/brush_rainbow.png").toExternalForm()));
+        default -> {
+        }
       }
       formatImageView(imageView);
       penButtonGraphic.set(imageView);
@@ -88,6 +97,26 @@ public class ToolManager {
       imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/round_eraser.png").toExternalForm()));
       formatImageView(imageView);
       eraserButtonGraphic.set(imageView);
+    }
+
+    if (newTool instanceof Shape) {
+      switch (newTool) {
+        case Circle circle ->
+                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/circle.png").toExternalForm()));
+        case Ellipse ellipse ->
+                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/ellipse.png").toExternalForm()));
+        case Rectangle rectangle ->
+                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/rectangle.png").toExternalForm()));
+        case Star star ->
+                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/star.png").toExternalForm()));
+        case Triangle triangle ->
+                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/triangle.png").toExternalForm()));
+        default -> {
+        }
+      }
+      formatImageView(imageView);
+      shapeButtonGraphic.set(imageView);
+      lastShape = newTool;
     }
   }
 
@@ -185,5 +214,6 @@ public class ToolManager {
   static ObjectProperty<Color> backgroundColorProperty() {return backgroundColor;}
   static ObjectProperty<Node> penButtonGraphicProperty() {return penButtonGraphic;}
   static ObjectProperty<Node> eraserButtonGraphicProperty() {return eraserButtonGraphic;}
+  static ObjectProperty<Node> shapeButtonGraphicProperty() {return shapeButtonGraphic;}
 
 }

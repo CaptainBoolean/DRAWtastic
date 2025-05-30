@@ -212,7 +212,7 @@
           <!-- Vierte Spalte (Shapes, Text) -->
           <VBox spacing="10">
             <Label text="Shapes &amp; Picture" />
-            <MenuButton>
+            <SplitMenuButton fx:id="shapeButton" onAction="#lastShape">
               <graphic>
                 <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
                   <Image url="@buttonIcons/generalshapes.png"/>
@@ -261,7 +261,7 @@
                 </MenuItem>
               </items>
 
-            </MenuButton>
+            </SplitMenuButton>
 
             <SplitMenuButton onAction="#newInsertPicture" text="Insert Picture">
               <items>

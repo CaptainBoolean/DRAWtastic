@@ -23,7 +23,7 @@ public class DrawtasticController {
   @FXML private Group canvasGroup;
   @FXML private ColorPicker colorPicker;
   @FXML private ColorPicker backgroundColorPicker;
-  @FXML private SplitMenuButton penButton;
+  @FXML private SplitMenuButton penButton, shapeButton;
   @FXML private Button eraserButton;
   @FXML private TextField brushSize;
   @FXML private Slider opacitySlider;
@@ -59,6 +59,7 @@ public class DrawtasticController {
     backgroundColorPicker.valueProperty().bindBidirectional(ToolManager.backgroundColorProperty());
     penButton.graphicProperty().bindBidirectional(ToolManager.penButtonGraphicProperty());
     eraserButton.graphicProperty().bindBidirectional(ToolManager.eraserButtonGraphicProperty());
+    shapeButton.graphicProperty().bindBidirectional(ToolManager.shapeButtonGraphicProperty());
   }
 
   private void initListeners() {
@@ -118,6 +119,7 @@ public class DrawtasticController {
   public void newFlipVertical() {toolManager.changeTool(new FlipPicture("vertical"));}
   public void newFlipHorizontal() {toolManager.changeTool(new FlipPicture("horizontal"));}
 
+  public void lastShape() {toolManager.lastShape();}
   public void newRectangle() {toolManager.changeTool(new Rectangle());}
   public void newEllipse() {toolManager.changeTool(new Ellipse());}
   public void newCircle() {toolManager.changeTool(new Circle());}
