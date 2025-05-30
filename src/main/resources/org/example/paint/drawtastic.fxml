@@ -215,7 +215,7 @@
             <SplitMenuButton fx:id="shapeButton" onAction="#lastShape">
               <graphic>
                 <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                  <Image url="@buttonIcons/generalshapes.png"/>
+                  <Image url="@buttonIcons/rectangle.png"/>
                 </ImageView>
               </graphic>
 
@@ -223,7 +223,7 @@
                 <MenuItem onAction="#newRectangle" text="Rectangle" >
                   <graphic>
                     <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                      <Image url="@buttonIcons/rect.png"/>
+                      <Image url="@buttonIcons/rectangle.png"/>
                     </ImageView>
                   </graphic>
                 </MenuItem>

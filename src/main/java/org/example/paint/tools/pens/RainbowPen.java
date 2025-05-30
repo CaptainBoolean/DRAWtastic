@@ -6,6 +6,8 @@ import org.example.paint.tools.Opaqueable;
 
 public class RainbowPen extends Pen implements Opaqueable {
 
+  //TODO fix weird line on hold
+
   private double lastX = -1;
   private double lastY = -1;
   private double avAngle = 0;
