@@ -33,7 +33,7 @@ public class RainbowPen extends Pen implements Opaqueable {
   }
 
   private void getNewAngle(double x, double y) {
-    if (recalculate()) {
+    if (recalculate() || checkNoMovement(lastMouseEvent)) {
       if (lastX != -1 && lastY != -1) {
         double dx = x - lastX;
         double dy = y - lastY;
@@ -43,7 +43,6 @@ public class RainbowPen extends Pen implements Opaqueable {
           dx /= len;
           dy /= len;
 
-          //TODO add smoothing for straight line???
           dirX = dirX + dx;
           dirY = dirY + dy;
 

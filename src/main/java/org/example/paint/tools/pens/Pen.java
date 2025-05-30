@@ -18,7 +18,7 @@ public abstract class Pen extends DrawingTool {
   long timeElapsed = 0;
 
   private Timeline timeline;
-  private MouseEvent lastMouseEvent;
+  protected MouseEvent lastMouseEvent;
   private double lastSize;
   private Color lastColor;
   private GraphicsContext dg;
@@ -99,7 +99,7 @@ public abstract class Pen extends DrawingTool {
     return false;
   }
 
-  private boolean checkNoMovement(MouseEvent e) {
+  protected boolean checkNoMovement(MouseEvent e) {
     double x = e.getX();
     double y = e.getY();
 
