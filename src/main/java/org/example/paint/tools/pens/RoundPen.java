@@ -7,7 +7,7 @@ import org.example.paint.tools.Opaqueable;
 public class RoundPen extends Pen implements Opaqueable {
 
   @Override
-  protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color) {
+  protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size) {
     dg.fillOval(x - size / 2, y - size / 2, size, size);
   }
 

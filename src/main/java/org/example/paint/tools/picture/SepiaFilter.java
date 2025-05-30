@@ -5,13 +5,14 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import org.example.paint.tools.Tool;
 
 public class SepiaFilter implements Tool {
 
     @Override
-    public void onPress(GraphicsContext g, GraphicsContext dg, javafx.scene.input.MouseEvent e, double size, Color color) {
+    public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
         Canvas canvas = g.getCanvas();
 
         WritableImage snapshot = canvas.snapshot(null, null);

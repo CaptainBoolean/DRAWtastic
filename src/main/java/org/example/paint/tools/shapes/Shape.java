@@ -9,31 +9,31 @@ import org.example.paint.tools.Tool;
 public abstract class Shape implements Tool, Opaqueable {
   private double startX, startY;
   private boolean drawing = false;
-  private Color currColor = Color.BLACK;
+  private Color currColor;
 
   @Override
-  public void onPress(GraphicsContext graphicsContext, GraphicsContext previewGraphicsContext, MouseEvent mouseEvent, double size, Color color) {
+  public void onPress(GraphicsContext graphicsContext, GraphicsContext drawingGraphicsContext, MouseEvent mouseEvent, double size) {
     startX = mouseEvent.getX();
     startY = mouseEvent.getY();
-    currColor = color;
+    currColor = (Color) drawingGraphicsContext.getFill();
     drawing = true;
   }
 
   @Override
-  public void onDrag(GraphicsContext graphicsContext, GraphicsContext dg, MouseEvent mouseEvent, double size, Color color) {
+  public void onDrag(GraphicsContext graphicsContext, GraphicsContext dg, MouseEvent mouseEvent, double size) {
     if (!drawing || dg == null) return;
 
     dg.clearRect(0, 0, dg.getCanvas().getWidth(), dg.getCanvas().getHeight());
 
-    dg.setStroke(color);
+    dg.setStroke(currColor);
     dg.setLineWidth(size);
-    dg.setGlobalAlpha(color.getOpacity());
+    dg.setGlobalAlpha(currColor.getOpacity());
 
-    drawShape(dg, startX, startY, mouseEvent.getX(), mouseEvent.getY(), color);
+    drawShape(dg, startX, startY, mouseEvent.getX(), mouseEvent.getY(), currColor);
   }
 
   @Override
-  public void onRelease(GraphicsContext graphicsContext, GraphicsContext dg, MouseEvent mouseEvent, double size, Color color) {
+  public void onRelease(GraphicsContext graphicsContext, GraphicsContext dg, MouseEvent mouseEvent, double size) {
     if (!drawing) return;
 
     dg.setFill(currColor);

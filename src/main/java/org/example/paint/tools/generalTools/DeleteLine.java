@@ -3,7 +3,6 @@ package org.example.paint.tools.generalTools;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import org.example.paint.tools.Tool;
 
 import java.util.ArrayList;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 public class DeleteLine implements Tool {
 
   @Override
-  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
     Canvas canvas = g.getCanvas();
 
     int x = (int) e.getX();

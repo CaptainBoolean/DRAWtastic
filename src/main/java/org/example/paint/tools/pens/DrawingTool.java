@@ -2,7 +2,6 @@ package org.example.paint.tools.pens;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import org.example.paint.tools.Tool;
 
 /**
@@ -26,13 +25,12 @@ public abstract class DrawingTool implements Tool {
    * Draws the sepcific kind of shape when dragging over the canvas.
    * Between the registered points interpolation happens to allow pens to draw one continuos line.
    *
-   * @param g     The GraphicsContect to draw on.
+   * @param g    The GraphicsContect to draw on.
    * @param dg
-   * @param e     The MouseEvent necessary to grab the location of drawing.
-   * @param size  The size that the pen should use for its shape.
-   * @param color The color that the pen should draw in if it has changable colors.
+   * @param e    The MouseEvent necessary to grab the location of drawing.
+   * @param size The size that the pen should use for its shape.
    */
-  public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+  public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
     if (dg.getCanvas().getWidth() == 0 || dg.getCanvas().getHeight() == 0) {
       dg.getCanvas().setHeight(g.getCanvas().getHeight());
       dg.getCanvas().setWidth(g.getCanvas().getWidth());
@@ -41,12 +39,10 @@ public abstract class DrawingTool implements Tool {
     double x = e.getX();
     double y = e.getY();
 
-    dg.setFill(color);
-
     if (lastX != -1 && lastY != -1) {
-      drawLine(g, dg, e, lastX, lastY, size, color);
+      drawLine(g, dg, e, lastX, lastY, size);
     } else {
-      drawAt(g, dg, x, y, size, color);
+      drawAt(g, dg, x, y, size);
     }
 
     lastX = x;
@@ -55,7 +51,7 @@ public abstract class DrawingTool implements Tool {
   }
 
   @Override
-  public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color){
+  public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size){
     startX = e.getX();
     startY = e.getY();
   }
@@ -63,14 +59,13 @@ public abstract class DrawingTool implements Tool {
   /**
    * Resets the parameters necessary for interpolation.
    *
-   * @param g     -
+   * @param g    -
    * @param dg
-   * @param e     -
-   * @param size  -
-   * @param color
+   * @param e    -
+   * @param size -
    */
   @Override
-  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
     lastX = -1;
     lastY = -1;
     startX = -1;
@@ -120,12 +115,10 @@ public abstract class DrawingTool implements Tool {
    * @param size  The size to draw the shape in.
    * @param color The color to draw the shape in.
    */
-  protected abstract void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color);
+  protected abstract void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size);
 
-  protected void drawLine(GraphicsContext g,GraphicsContext dg, MouseEvent e, double calcX, double calcY, double size, Color color) {
+  protected void drawLine(GraphicsContext g,GraphicsContext dg, MouseEvent e, double calcX, double calcY, double size) {
 
-    g.setFill(color);
-    dg.setFill(color);
     double dx = e.getX() - calcX;
     double dy = e.getY() - calcY;
 
@@ -137,7 +130,7 @@ public abstract class DrawingTool implements Tool {
       double t = (double) i / steps;
       double x = calcX + t * dx;
       double y = calcY + t * dy;
-      drawAt(g, dg, x, y, size, color);
+      drawAt(g, dg, x, y, size);
     }
   }
 }

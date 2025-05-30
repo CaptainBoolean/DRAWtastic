@@ -17,20 +17,19 @@ public class PictureInsert implements Tool {
     boolean dragging;
 
     /**
-     *
      * @param g
      * @param e
      */
 
     @Override
-    public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+    public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
         startX = e.getX();
         startY = e.getY();
         dragging = true;
     }
 
     @Override
-    public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+    public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
         Canvas canvas = g.getCanvas();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Bild auswählen");

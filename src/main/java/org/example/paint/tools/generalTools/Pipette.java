@@ -22,7 +22,7 @@ public class Pipette implements Tool {
   }
 
   @Override
-  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
     PixelReader pixelReader = FileService.getTranspSnapshot(g).getPixelReader();
     Color pickedColor = pixelReader.getColor((int)e.getX(), (int)e.getY());
 

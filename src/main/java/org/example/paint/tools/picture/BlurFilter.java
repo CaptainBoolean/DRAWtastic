@@ -13,7 +13,7 @@ import org.example.paint.tools.Tool;
 public class BlurFilter implements Tool {
 
     @Override
-    public void onPress(GraphicsContext gr, GraphicsContext dg, MouseEvent e, double size, Color color) {
+    public void onPress(GraphicsContext gr, GraphicsContext dg, MouseEvent e, double size) {
         Canvas canvas = gr.getCanvas();
         // Snapshot des Canvas
         WritableImage snapshot = canvas.snapshot(new SnapshotParameters(), null);

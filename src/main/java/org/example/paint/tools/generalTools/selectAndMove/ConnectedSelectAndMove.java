@@ -16,7 +16,7 @@ public class ConnectedSelectAndMove extends SelectAndMove {
   private boolean switchingToMove;
 
   @Override
-  public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+  public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
     if (mode == Mode.IDLE) {
       ArrayList<int[]> pixels = SelectAreas.floodFillSelected(g, (int)e.getX(), (int)e.getY());
       if (pixels.isEmpty()) {
@@ -59,7 +59,7 @@ public class ConnectedSelectAndMove extends SelectAndMove {
 
 
   @Override
-  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
     if (mode == Mode.MOVING && movedImage != null) {
       super.printHere(g, e);
       movedImage = null;

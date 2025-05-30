@@ -92,7 +92,7 @@ public class ToolManager {
 
   void onDrag(MouseEvent e) {
     try {
-      currentTool.onDrag(g, dg, e, brushSize.getValue(), color.getValue());
+      currentTool.onDrag(g, dg, e, brushSize.getValue());
       currentTool.drawPreviewAt(og, e, brushSize.getValue());
     } catch (NumberFormatException ex) {
       System.out.println("Ungültige Pinselgröße!");
@@ -100,11 +100,12 @@ public class ToolManager {
   }
 
   void onPress(MouseEvent e) {
-    currentTool.onPress(g, dg, e, brushSize.getValue(), color.getValue());
+    dg.setFill(color.getValue());
+    currentTool.onPress(g, dg, e, brushSize.getValue());
   }
 
   void onRelease(MouseEvent e) {
-    currentTool.onRelease(g, dg, e, brushSize.getValue(),color.getValue());
+    currentTool.onRelease(g, dg, e, brushSize.getValue());
     copyToMainCanvas();
   }
 

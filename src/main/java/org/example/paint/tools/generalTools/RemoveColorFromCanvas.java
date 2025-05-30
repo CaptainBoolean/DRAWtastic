@@ -17,7 +17,7 @@ public class RemoveColorFromCanvas implements Tool {
   Color pickedColor;
 
   @Override
-  public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+  public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
 
     tempImage = FileService.getTranspSnapshot(g);
     pixelReader = tempImage.getPixelReader();

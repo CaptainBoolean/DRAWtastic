@@ -48,7 +48,7 @@ public class Textfield implements Tool, Opaqueable {
 
 
     @Override
-    public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+    public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
         //capturing user input
         String userInput = promptForText();
         setString(userInput); //set text to the input

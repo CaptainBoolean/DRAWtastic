@@ -9,7 +9,7 @@ public class FountainPen extends Pen implements Opaqueable {
   private double height = 0;
 
   @Override
-  protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color) {
+  protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size) {
     getNewSize(size);
     dg.fillOval(x-width / 2, y-height / 2, width, height);
   }

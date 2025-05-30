@@ -4,7 +4,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import org.example.paint.tools.Tool;
 
 public class FlipPicture implements Tool {
@@ -15,7 +14,7 @@ public class FlipPicture implements Tool {
     }
 
     @Override
-    public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+    public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
         if (mode.equals("vertical")) {
             flipVertical(g);
         } else {

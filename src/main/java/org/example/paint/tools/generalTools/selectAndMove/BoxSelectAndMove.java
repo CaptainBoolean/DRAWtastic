@@ -11,7 +11,7 @@ public class BoxSelectAndMove extends SelectAndMove {
   private boolean switchingToMoving = false;
 
   @Override
-  public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+  public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
     if (mode == Mode.IDLE) {
       startX = (int)e.getX();
       startY = (int)e.getY();
@@ -20,7 +20,7 @@ public class BoxSelectAndMove extends SelectAndMove {
   }
 
   @Override
-  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
     if (mode == Mode.SELECTING) {
       int ex = (int) Math.max(0, Math.min(e.getX(), g.getCanvas().getWidth() - 1));
       int ey = (int) Math.max(0, Math.min(e.getY(), g.getCanvas().getHeight() - 1));

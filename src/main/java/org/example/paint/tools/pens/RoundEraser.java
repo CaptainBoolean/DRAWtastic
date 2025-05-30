@@ -7,7 +7,7 @@ public class RoundEraser extends DrawingTool {
 
 
   @Override
-  protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size, Color color) {
+  protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size) {
     double radius = size / 2;
     int step = 1; // could be adjusted for performance reasons
 

@@ -11,7 +11,7 @@ import org.example.paint.tools.Tool;
 
 public class InvertFilter implements Tool {
     @Override
-    public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+    public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
         Canvas canvas = g.getCanvas();
         int width = (int) canvas.getWidth();
         int height = (int) canvas.getHeight();

@@ -1,18 +1,19 @@
 package org.example.paint.tools.picture;
 
-import org.example.paint.tools.Tool;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.canvas.*;
-import javafx.scene.SnapshotParameters;
+import org.example.paint.tools.Tool;
 
 public class BlackAndWhiteFilter implements Tool {
 
     @Override
-    public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+    public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
         Canvas canvas = g.getCanvas();
 
         // Snapshot des Canvas in ein Bild

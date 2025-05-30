@@ -32,10 +32,10 @@ public abstract class Pen extends DrawingTool {
   private double noMovementY = -1;
 
   @Override
-  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
+  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
     if (checkNoMovement(e)) {
       dg.clearRect(0, 0, dg.getCanvas().getWidth(), dg.getCanvas().getHeight());
-      drawLine(g, dg, e, startX, startY, size, color);
+      drawLine(g, dg, e, startX, startY, size);
     }
     dg.getCanvas().setOpacity(lastDrawingOpac);
     og.getCanvas().setOpacity(1);
@@ -43,23 +43,23 @@ public abstract class Pen extends DrawingTool {
     lastDrawingOpac = -1;
     previewDrawn = false;
     timeline = null;
-    super.onRelease(g, dg, e, size, color);
+    super.onRelease(g, dg, e, size);
   }
 
 
 
   @Override
-  public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
-    super.onDrag(g, dg, e, size, color);
+  public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
+    super.onDrag(g, dg, e, size);
     lastMouseEvent = e;
     lastSize = size;
-    lastColor = color;
+    lastColor = (Color) dg.getFill();
     resetHoldTimer();
   }
 
   @Override
-  public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
-    super.onPress(g, dg, e, size, color);
+  public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
+    super.onPress(g, dg, e, size);
     this.dg = dg;
     lastDrawingOpac = dg.getCanvas().getOpacity();
   }
@@ -69,7 +69,7 @@ public abstract class Pen extends DrawingTool {
     this.og = og;
     if (checkNoMovement(e) && startX != -1 && startY != -1) {
       og.clearRect(0, 0, og.getCanvas().getWidth(), og.getCanvas().getHeight());
-      drawLine(og, og, e, startX, startY, size, lastColor);
+      drawLine(og, og, e, startX, startY, size);
       dg.getCanvas().setOpacity(lastDrawingOpac * 0.3);
       og.getCanvas().setOpacity(lastDrawingOpac);
     } else {
