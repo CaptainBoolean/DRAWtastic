@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 public class ConnectedSelectAndMove extends SelectAndMove {
 
+  private boolean switchingToMove;
+
   @Override
   public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
     if (mode == Mode.IDLE) {
@@ -45,9 +47,10 @@ public class ConnectedSelectAndMove extends SelectAndMove {
         int x = pixel[0], y = pixel[1];
         Color c = full.getPixelReader().getColor(x, y);
         writableImage.setColor(x-minX+offsetX, y-minY+offsetY, c);
-        g.clearRect(x, y, 1.01, 1.01); // ensure full clear
+        g.clearRect(x, y, 1.1, 1.1); // ensure full clear
       }
       movedImage = image;
+      switchingToMove = true;
       mode = Mode.MOVING;
     } else if (mode == Mode.MOVING && movedImage != null) {
       super.printHere(g, e);
@@ -66,6 +69,10 @@ public class ConnectedSelectAndMove extends SelectAndMove {
 
   @Override
   public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
+    if (switchingToMove) {
+      og.clearRect(0, 0, og.getCanvas().getWidth(), og.getCanvas().getHeight());
+      switchingToMove = false;
+    }
     if (mode == Mode.MOVING && movedImage != null) {
       super.drawPreviewAt(og, e, size);
     }

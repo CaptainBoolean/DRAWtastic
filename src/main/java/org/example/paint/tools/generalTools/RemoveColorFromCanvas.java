@@ -29,7 +29,7 @@ public class RemoveColorFromCanvas implements Tool {
 
     for (int x = 0; x < tempImage.getWidth(); x++) {
       for (int y = 0; y < tempImage.getHeight(); y++) {
-        if (checkColorMatch(pixelReader.getColor(x, y), 0.1)) {
+        if (checkColorMatch(pixelReader.getColor(x, y), 0.2)) {
           pixelWriter.setColor(x, y, Color.TRANSPARENT);
           removeAdjacientPixels(x,y);
         }
@@ -50,7 +50,7 @@ public class RemoveColorFromCanvas implements Tool {
   }
 
   private void removeAdjacientPixels(int x, int y) {
-    int radius = 5;
+    int radius = 2;
 
     for (int dx = -radius; dx <= radius; dx++) {
       for (int dy = -radius; dy <= radius; dy++) {
@@ -58,7 +58,7 @@ public class RemoveColorFromCanvas implements Tool {
         int absY = y + dy;
         if (absX >= 0 && absY >= 0 && absX < tempImage.getWidth() && absY < tempImage.getHeight()) {
           Color imageC = tempImage.getPixelReader().getColor(absX, absY);
-          if (checkColorMatch(imageC, 1)) {
+          if (checkColorMatch(imageC, 0.5)) {
             pixelWriter.setColor(absX, absY, Color.TRANSPARENT);
           }
         }

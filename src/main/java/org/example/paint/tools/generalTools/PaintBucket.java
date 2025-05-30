@@ -11,8 +11,6 @@ import java.util.ArrayList;
 
 public class PaintBucket implements Tool, Opaqueable {
 
-  //TODO fix not filling perfectly
-
   @Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size, Color color) {
     Canvas canvas = g.getCanvas();
@@ -30,7 +28,7 @@ public class PaintBucket implements Tool, Opaqueable {
     for (int[] pos : toRecolor) {
       int px = pos[0];
       int py = pos[1];
-      double margin = 3; //TODO adjust so it doesnt override to much
+      double margin = 3;
       dg.fillRect(px-margin/2, py-margin/2, margin, margin);
     }
 

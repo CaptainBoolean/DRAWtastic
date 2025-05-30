@@ -85,7 +85,7 @@ public class DrawtasticController {
   public void onSave() {FileService.save(canvas, backgroundColorPicker.getValue());}
   public void onExit() {Platform.exit();}
 
-  public void undo() {undoRedo.undo();}
+  public void undo() {undoRedo.undo(); overlayCanvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());}
   public void redo() {undoRedo.redo();}
 
   public void zoomIn() {toolManager.zoom(1.1,canvas, canvasScale);}
