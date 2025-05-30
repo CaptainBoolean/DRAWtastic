@@ -18,7 +18,7 @@ import org.example.paint.tools.shapes.*;
 public class ToolManager {
   private Tool currentTool;
   private Tool lastPen;
-  private Tool lastShape = new Rectangle();
+  private Tool lastShape;
   private final Canvas canvas;
   private final GraphicsContext g;
   private final GraphicsContext og;
@@ -99,8 +99,13 @@ public class ToolManager {
       eraserButtonGraphic.set(imageView);
     }
 
-    //TODO set initial shape
 
+    if (lastShape == null) {
+      lastShape = new Rectangle();
+      imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/rectangle.png").toExternalForm()));
+      formatImageView(imageView);
+      shapeButtonGraphic.set(imageView);
+    }
     if (newTool instanceof Shape) {
       switch (newTool) {
         case Circle circle ->
