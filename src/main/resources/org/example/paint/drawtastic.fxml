@@ -92,14 +92,6 @@
                     </graphic>
                   </MenuItem>
 
-                  <MenuItem onAction="#newBlur" text="Blur" >
-                    <graphic>
-                      <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
-                        <Image url="@buttonIcons/blur.png"/>
-                      </ImageView>
-                    </graphic>
-                  </MenuItem>
-
                   <MenuItem onAction="#newPaintBrush" text="Pain Brush" >
                     <graphic>
                       <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">

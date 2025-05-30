@@ -103,7 +103,6 @@ public class DrawtasticController {
 
   public void newPen() {toolManager.changeTool(new RoundPen());}
   public void newMarker() {toolManager.changeTool(new Marker());}
-  public void newBlur() {toolManager.changeTool(new Blur());}
   public void newPaintBrush() {toolManager.changeTool(new PaintBrush());}
   public void newFountainPen() {toolManager.changeTool(new FountainPen());}
   public void newRainbowPen() {toolManager.changeTool(new RainbowPen());}
