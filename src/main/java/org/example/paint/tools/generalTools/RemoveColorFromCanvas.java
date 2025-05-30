@@ -11,8 +11,6 @@ import org.example.paint.tools.Tool;
 
 public class RemoveColorFromCanvas implements Tool {
 
-  //TODO breaks when rapid clicking
-
   WritableImage tempImage;
   PixelReader pixelReader;
   PixelWriter pixelWriter;
