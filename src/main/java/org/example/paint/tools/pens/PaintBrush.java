@@ -28,7 +28,7 @@ public class PaintBrush extends Pen implements Opaqueable {
         double dy = y - lastY;
         double distance = Math.hypot(dx, dy);
 
-        avSpeed = Math.min((avSpeed*9 + distance / (timeElapsed/1000000.0)) / 10, 10);
+        avSpeed = Math.min((avSpeed*14 + distance / (timeElapsed/1000000.0)) / 15, 10);
         avSize = Math.max(minSize, Math.min(maxSize, maxSize / avSpeed));
 
       }
