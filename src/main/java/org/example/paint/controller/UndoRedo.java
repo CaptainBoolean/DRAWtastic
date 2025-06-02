@@ -1,6 +1,5 @@
 package org.example.paint.controller;
 
-import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.WritableImage;
@@ -8,7 +7,7 @@ import javafx.scene.image.WritableImage;
 //TODO test if it works with all tools!!!
 public class UndoRedo {
   private final Canvas currCanvas;
-  private static final int MAX_COUNT = 50;
+  private static final int MAX_COUNT = 50; //change depending on canvas size and system performance
 
   private final WritableImage[] history = new WritableImage[MAX_COUNT];
   private int historyIndex = 0;
@@ -16,7 +15,7 @@ public class UndoRedo {
 
   public UndoRedo(Canvas canvas) {
     this.currCanvas = canvas;
-    history[0] = canvas.snapshot(new SnapshotParameters(), null);
+    history[0] = FileService.getTranspSnapshot(canvas.getGraphicsContext2D());
   }
 
   public void saveState() {

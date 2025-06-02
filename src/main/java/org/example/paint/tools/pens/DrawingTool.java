@@ -113,7 +113,6 @@ public abstract class DrawingTool implements Tool {
    * @param x     The x coordinate to draw on.
    * @param y     The y coordinate to draw on.
    * @param size  The size to draw the shape in.
-   * @param color The color to draw the shape in.
    */
   protected abstract void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size);
 
