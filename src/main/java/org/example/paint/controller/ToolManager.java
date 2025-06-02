@@ -13,6 +13,7 @@ import org.example.paint.tools.Opaqueable;
 import org.example.paint.tools.Tool;
 import org.example.paint.tools.generalTools.Pipette;
 import org.example.paint.tools.pens.*;
+import org.example.paint.tools.picture.PictureInsert;
 import org.example.paint.tools.shapes.*;
 
 public class ToolManager {
@@ -46,6 +47,7 @@ public class ToolManager {
 
     checkIfMarker(newTool);
     checkOpacitySliderDisplay(newTool);
+    checkPicture(newTool);
     newTool = checkEraserSwitch(newTool);
     newTool = checkPipette(newTool);
     checkIfIconChange(newTool);
@@ -164,6 +166,12 @@ public class ToolManager {
       return new Pipette(color, backgroundColor);
     }
     return newTool;
+  }
+
+  private void checkPicture(Tool newTool) {
+    if (newTool instanceof PictureInsert) {
+      opacity.setValue(1);
+    }
   }
 
   public void zoom(double zoomFactor, Canvas canvas, Scale canvasScale) {

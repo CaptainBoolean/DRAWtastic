@@ -6,11 +6,12 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import org.example.paint.tools.Opaqueable;
 import org.example.paint.tools.Tool;
 
 import java.io.File;
 
-public class PictureInsert implements Tool {
+public class PictureInsert implements Tool, Opaqueable {
     double startX, startY;
     static Image savedImage;
     static double imgWidth, imgHeight, imgX, imgY;
@@ -30,7 +31,7 @@ public class PictureInsert implements Tool {
 
     @Override
     public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
-        Canvas canvas = g.getCanvas();
+        Canvas canvas = dg.getCanvas();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Bild auswählen");
         fileChooser.getExtensionFilters().addAll(
