@@ -4,7 +4,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 
@@ -20,7 +19,6 @@ public abstract class Pen extends DrawingTool {
   private Timeline timeline;
   protected MouseEvent lastMouseEvent;
   private double lastSize;
-  private Color lastColor;
   private GraphicsContext dg;
   private GraphicsContext og;
   private double lastDrawingOpac = -1;
@@ -53,7 +51,6 @@ public abstract class Pen extends DrawingTool {
     super.onDrag(g, dg, e, size);
     lastMouseEvent = e;
     lastSize = size;
-    lastColor = (Color) dg.getFill();
     resetHoldTimer();
   }
 
