@@ -182,12 +182,8 @@ public class ToolManager {
 
 
   void onDrag(MouseEvent e) {
-    try {
       currentTool.onDrag(g, dg, e, brushSize.getValue());
       currentTool.drawPreviewAt(og, e, brushSize.getValue());
-    } catch (NumberFormatException ex) {
-      System.out.println("Ungültige Pinselgröße!");
-    }
   }
 
   void onPress(MouseEvent e) {
