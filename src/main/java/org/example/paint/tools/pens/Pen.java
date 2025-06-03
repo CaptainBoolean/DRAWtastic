@@ -78,8 +78,7 @@ public abstract class Pen extends DrawingTool {
       }
       super.drawPreviewAt(og, e, size);
     }
-  };
-
+  }
 
 
   /**

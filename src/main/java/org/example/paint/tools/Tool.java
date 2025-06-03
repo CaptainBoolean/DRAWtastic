@@ -16,7 +16,7 @@ public interface Tool {
    * @param e the MouseEvent that triggered this action (useful to get the coordinates)
    * @param size the currently selected tool size
    */
-  default void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size){};
+  default void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size){}
 
   /**
    * Performs the tools specific action when the mouse is dragged over the canvas while pressed.
@@ -25,7 +25,7 @@ public interface Tool {
    * @param e the MouseEvent that triggered this action (useful to get the coordinates)
    * @param size the currently selected tool size
    */
-  default void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size){};
+  default void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size){}
 
   /**
    * Performes the tools specific action when the mouse is released.
@@ -34,7 +34,7 @@ public interface Tool {
    * @param e the MouseEvent that triggered this action (useful to get the coordinates)
    * @param size the currently selected tool size
    */
-  default void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size){};
+  default void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size){}
 
   /**
    * Performs the specific way a tool implements a preview.
@@ -42,7 +42,7 @@ public interface Tool {
    * @param e the MouseEvent that triggered this action (useful to get the coordinates)
    * @param size the currently selected tool size
    */
-  default void drawPreviewAt(GraphicsContext og, MouseEvent e, double size){};
+  default void drawPreviewAt(GraphicsContext og, MouseEvent e, double size){}
 
 
 }

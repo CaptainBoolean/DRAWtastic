@@ -82,13 +82,13 @@ public class Textfield implements Tool, Opaqueable {
     }
 
     private static class CustomDialog extends Dialog<String> {
-        private TextField textField;
-        private TextField sizeField;
-        private ComboBox<String> fontComboBox;
-        private ColorPicker colorPicker;
-        private ToggleButton toggleBold;
-        private ToggleButton toggleItalic;
-        private ToggleButton toggleUnderline;
+        private final TextField textField;
+        private final TextField sizeField;
+        private final ComboBox<String> fontComboBox;
+        private final ColorPicker colorPicker;
+        private final ToggleButton toggleBold;
+        private final ToggleButton toggleItalic;
+        private final ToggleButton toggleUnderline;
 
         public CustomDialog(String text, Color textColor, int textSize, boolean bold, boolean italic, boolean underline) {
             setTitle("Input Text");
