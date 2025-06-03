@@ -9,6 +9,6 @@ module org.example.multimediagroupproject {
 
   opens org.example.paint to javafx.fxml;
     exports org.example.paint;
-    exports org.example.paint.controller;
-    opens org.example.paint.controller to javafx.fxml;
+    exports org.example.paint.core;
+    opens org.example.paint.core to javafx.fxml;
 }

@@ -6,7 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelReader;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import org.example.paint.controller.FileService;
+import org.example.paint.core.FileService;
 import org.example.paint.tools.Tool;
 
 public class Pipette implements Tool {

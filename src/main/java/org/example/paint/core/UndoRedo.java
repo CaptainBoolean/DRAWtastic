@@ -1,4 +1,4 @@
-package org.example.paint.controller;
+package org.example.paint.core;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;

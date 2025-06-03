@@ -5,7 +5,7 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import org.example.paint.controller.FileService;
+import org.example.paint.core.FileService;
 import org.example.paint.tools.generalTools.SelectAreas;
 
 import java.util.ArrayList;

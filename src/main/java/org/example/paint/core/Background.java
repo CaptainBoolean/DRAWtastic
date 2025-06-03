@@ -1,4 +1,4 @@
-package org.example.paint.controller;
+package org.example.paint.core;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;

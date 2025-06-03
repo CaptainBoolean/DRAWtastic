@@ -4,7 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import org.example.paint.controller.FileService;
+import org.example.paint.core.FileService;
 
 public class BoxSelectAndMove extends SelectAndMove {
 

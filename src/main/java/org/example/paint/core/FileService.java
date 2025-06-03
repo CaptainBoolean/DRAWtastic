@@ -1,4 +1,4 @@
-package org.example.paint.controller;
+package org.example.paint.core;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.SnapshotParameters;

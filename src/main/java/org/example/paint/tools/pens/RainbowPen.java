@@ -15,7 +15,7 @@ public class RainbowPen extends Pen implements Opaqueable {
   @Override
   protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size) {
     getNewAngle(x, y);
-    int segments = 20;
+    int segments = 50; //adjustable for performance
 
     for (int i = 0; i < segments; i++) {
       double t = (double) i / (segments - 1) - 0.5;
@@ -31,7 +31,11 @@ public class RainbowPen extends Pen implements Opaqueable {
   }
 
   private void getNewAngle(double x, double y) {
-    if (recalculate() || checkNoMovement(lastMouseEvent)) {
+    boolean noMovement = false;
+    if (lastMouseEvent != null) {
+      noMovement = checkNoMovement(lastMouseEvent);
+    }
+    if (recalculate() || noMovement) {
       if (lastX != -1 && lastY != -1) {
         double dx = x - lastX;
         double dy = y - lastY;
@@ -50,10 +54,8 @@ public class RainbowPen extends Pen implements Opaqueable {
             dirY /= dirLen;
           }
         }
-
         avAngle = Math.atan2(dirY, dirX) + Math.PI / 2;
       }
-
       lastX = x;
       lastY = y;
     }
@@ -61,8 +63,8 @@ public class RainbowPen extends Pen implements Opaqueable {
 
   @Override
   protected void drawPreviewAt(GraphicsContext og, double x, double y, double size) {
-    og.setStroke(Color.GRAY);
-    og.setLineWidth(1);
-    og.strokeOval(x - size / 2, y - size / 2, size, size);
+    og.setGlobalAlpha(0.5);
+    drawAt(og,og,x,y,size);
+    og.setGlobalAlpha(1);
   }
 }

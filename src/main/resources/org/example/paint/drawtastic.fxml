@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.paint.controller.DrawtasticController"
+            fx:controller="org.example.paint.core.DrawtasticController"
             prefHeight="1300.0" prefWidth="900.0">
 
   <top>
