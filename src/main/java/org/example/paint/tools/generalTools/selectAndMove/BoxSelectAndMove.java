@@ -11,7 +11,7 @@ public class BoxSelectAndMove extends SelectAndMove {
   private boolean switchingToMoving = false;
 
   @Override
-  public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
+  public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
     if (mode == Mode.IDLE) {
       startX = (int)e.getX();
       startY = (int)e.getY();
