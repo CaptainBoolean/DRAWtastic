@@ -68,10 +68,10 @@ public class ToolManager {
 
     if (newTool instanceof Pen) {
       switch (newTool) {
-        case RoundPen roundPen ->
-                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/pen.png").toExternalForm()));
         case Marker marker ->
                 imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/marker.png").toExternalForm()));
+        case RoundPen roundPen ->
+                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/pen.png").toExternalForm()));
         case PaintBrush paintBrush ->
                 imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/brush_fat.png").toExternalForm()));
         case FountainPen fountainPen ->
