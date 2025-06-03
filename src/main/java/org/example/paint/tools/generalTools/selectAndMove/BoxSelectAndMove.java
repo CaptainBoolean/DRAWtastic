@@ -53,14 +53,14 @@ public class BoxSelectAndMove extends SelectAndMove {
 
   @Override
   public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
+    double margin = 5;
 
     if (mode == Mode.SELECTING) {
       int currX = (int)e.getX(), currY = (int)e.getY();
       int newX = Math.min(startX, currX), newY = Math.min(startY, currY);
       int newWidth = Math.abs(currX - startX), newHeight = Math.abs(currY - startY);
 
-      double m = 5;
-      og.clearRect(lastX - m, lastY - m, lastWidth + 2*m, lastHeight + 2*m);
+      og.clearRect(lastX - margin, lastY - margin, lastWidth + 2* margin, lastHeight + 2* margin);
       og.setStroke(Color.GRAY);
       og.strokeRect(newX, newY, newWidth, newHeight);
 
@@ -69,8 +69,7 @@ public class BoxSelectAndMove extends SelectAndMove {
     }
     else if (mode == Mode.MOVING && movedImage != null) {
       if (switchingToMoving) {
-        double m = 5;
-        og.clearRect(lastX - m, lastY - m, lastWidth + 2*m, lastHeight + 2*m);
+        og.clearRect(lastX - margin, lastY - margin, lastWidth + 2* margin, lastHeight + 2* margin);
         switchingToMoving = false;
       }
       super.drawPreviewAt(og, e, size);
