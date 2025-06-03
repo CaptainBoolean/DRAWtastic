@@ -17,10 +17,6 @@ public class PictureInsert implements Tool, Opaqueable {
     static double imgWidth, imgHeight, imgX, imgY;
     boolean dragging;
 
-    /**
-     * @param g
-     * @param e
-     */
 
     @Override
     public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {

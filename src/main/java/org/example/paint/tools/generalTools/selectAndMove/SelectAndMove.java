@@ -24,7 +24,7 @@ public abstract class SelectAndMove implements Tool {
     int imageWidth = (int)movedImage.getWidth(), imageHeight = (int)movedImage.getHeight();
     int newX = currX - imageWidth/2, newY = currY - imageHeight/2;
 
-    og.clearRect(lastX - imageWidth/2, lastY - imageHeight/2, imageWidth, imageHeight);
+    og.clearRect(lastX - (double) imageWidth /2, lastY - (double) imageHeight /2, imageWidth, imageHeight);
     og.drawImage(movedImage, newX, newY);
 
     lastX = currX; lastY = currY;

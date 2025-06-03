@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class SelectAreas {
-  static int[][] directions = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+  static final int[][] directions = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
   /**
    * Returns an ArrayList of all connected pixels to the initially selected Pixel
    * @param g

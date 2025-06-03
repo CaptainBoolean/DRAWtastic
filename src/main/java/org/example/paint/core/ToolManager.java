@@ -84,67 +84,71 @@ public class ToolManager {
    * Checks if any UI Icons need to be changed when changing the tool and does so if needed
    * @param newTool Tool to apply the check to
    */
-  private void checkIfIconChange(Tool newTool) {
+  private void checkIfIconChange(Tool newTool) throws NullPointerException {
     ImageView imageView = null;
 
-    if (newTool instanceof Pen) {
-      switch (newTool) {
-        case Marker marker ->
-                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/marker.png").toExternalForm()));
-        case RoundPen roundPen ->
-                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/pen.png").toExternalForm()));
-        case PaintBrush paintBrush ->
-                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/brush_fat.png").toExternalForm()));
-        case FountainPen fountainPen ->
-                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/fountain_pen.png").toExternalForm()));
-        case RainbowPen rainbowPen ->
-                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/brush_rainbow.png").toExternalForm()));
-        default -> {
+    try {
+      if (newTool instanceof Pen) {
+        switch (newTool) {
+          case Marker marker ->
+                  imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/marker.png").toExternalForm()));
+          case RoundPen roundPen ->
+                  imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/pen.png").toExternalForm()));
+          case PaintBrush paintBrush ->
+                  imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/brush_fat.png").toExternalForm()));
+          case FountainPen fountainPen ->
+                  imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/fountain_pen.png").toExternalForm()));
+          case RainbowPen rainbowPen ->
+                  imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/brush_rainbow.png").toExternalForm()));
+          default -> {
+          }
         }
+        formatImageView(imageView);
+        penButtonGraphic.set(imageView);
+        lastPen = newTool;
       }
-      formatImageView(imageView);
-      penButtonGraphic.set(imageView);
-      lastPen = newTool;
-    }
 
-    if (newTool instanceof RoundEraser) {
-      imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/round_eraser.png").toExternalForm()));
-      formatImageView(imageView);
-      eraserButtonGraphic.set(imageView);
-    } else  if (newTool instanceof SquareEraser) {
-      imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/square_eraser.png").toExternalForm()));
-      formatImageView(imageView);
-      eraserButtonGraphic.set(imageView);
-    } else {
-      imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/round_eraser.png").toExternalForm()));
-      formatImageView(imageView);
-      eraserButtonGraphic.set(imageView);
-    }
+      if (newTool instanceof RoundEraser) {
+        imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/round_eraser.png").toExternalForm()));
+        formatImageView(imageView);
+        eraserButtonGraphic.set(imageView);
+      } else  if (newTool instanceof SquareEraser) {
+        imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/square_eraser.png").toExternalForm()));
+        formatImageView(imageView);
+        eraserButtonGraphic.set(imageView);
+      } else {
+        imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/round_eraser.png").toExternalForm()));
+        formatImageView(imageView);
+        eraserButtonGraphic.set(imageView);
+      }
 
-    if (lastShape == null) {
-      lastShape = new Rectangle();
-      imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/rectangle.png").toExternalForm()));
-      formatImageView(imageView);
-      shapeButtonGraphic.set(imageView);
-    }
-    if (newTool instanceof Shape) {
-      switch (newTool) {
-        case Circle circle ->
-                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/circle.png").toExternalForm()));
-        case Ellipse ellipse ->
-                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/ellipse.png").toExternalForm()));
-        case Rectangle rectangle ->
-                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/rectangle.png").toExternalForm()));
-        case Star star ->
-                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/star.png").toExternalForm()));
-        case Triangle triangle ->
-                imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/triangle.png").toExternalForm()));
-        default -> {
+      if (lastShape == null) {
+        lastShape = new Rectangle();
+        imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/rectangle.png").toExternalForm()));
+        formatImageView(imageView);
+        shapeButtonGraphic.set(imageView);
+      }
+      if (newTool instanceof Shape) {
+        switch (newTool) {
+          case Circle circle ->
+                  imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/circle.png").toExternalForm()));
+          case Ellipse ellipse ->
+                  imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/ellipse.png").toExternalForm()));
+          case Rectangle rectangle ->
+                  imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/rectangle.png").toExternalForm()));
+          case Star star ->
+                  imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/star.png").toExternalForm()));
+          case Triangle triangle ->
+                  imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/triangle.png").toExternalForm()));
+          default -> {
+          }
         }
+        formatImageView(imageView);
+        shapeButtonGraphic.set(imageView);
+        lastShape = newTool;
       }
-      formatImageView(imageView);
-      shapeButtonGraphic.set(imageView);
-      lastShape = newTool;
+    } catch (NullPointerException e) {
+      throw new NullPointerException("An icon could not be found - check all paths");
     }
   }
 

@@ -15,7 +15,7 @@ public class UndoRedo {
 
   /**
    * Constructs the UndoRedo with the Canvas it should be applied to and initializes the first image
-   * @param canvas
+   * @param canvas canvas for the UndoRedo to work on
    */
   public UndoRedo(Canvas canvas) {
     this.currCanvas = canvas;

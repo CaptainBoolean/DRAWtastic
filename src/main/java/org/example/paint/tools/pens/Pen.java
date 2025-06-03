@@ -12,9 +12,9 @@ This is the abstract form of a Pen providing all necessary common fields, managi
  */
 public abstract class Pen extends DrawingTool {
 
-  long lastTimestamp = System.nanoTime();
-  int recalculateTime = 5000000;
-  long timeElapsed = 0;
+  protected long lastTimestamp = System.nanoTime();
+  protected final int recalculateTime = 5000000;
+  protected long timeElapsed = 0;
 
   private Timeline timeline;
   protected MouseEvent lastMouseEvent;

@@ -17,8 +17,8 @@ public abstract class DrawingTool implements Tool {
   protected double lastPreviewX = -1;
   protected double lastPreviewY = -1;
 
-  protected double minSizeFactor = 0.1;
-  protected double maxSizeFactor = 2;
+  protected final double minSizeFactor = 0.1;
+  protected final double maxSizeFactor = 2;
 
 
   /**
@@ -109,13 +109,13 @@ public abstract class DrawingTool implements Tool {
   protected abstract void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size);
 
   /**
-   * Draws a line from the provided MouseEvent to the calcX and calcY b< calling the {@link #drawAt(GraphicsContext, GraphicsContext, double, double, double)}
-   * @param g
-   * @param dg
-   * @param e
-   * @param calcX
-   * @param calcY
-   * @param size
+   * Draws a line from the provided MouseEvent to the calcX and calcY by calling the {@link #drawAt(GraphicsContext, GraphicsContext, double, double, double)}
+   * @param g main canvas
+   * @param dg drawing canvas
+   * @param e The MouseEvent necessary to grab the location of drawing.
+   * @param calcX the x coordinate of the second location that should be used
+   * @param calcY the y coordinate of the second location that should be used
+   * @param size The size to draw the shape in.
    */
   protected void drawLine(GraphicsContext g,GraphicsContext dg, MouseEvent e, double calcX, double calcY, double size) {
 

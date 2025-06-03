@@ -65,7 +65,7 @@ public class DrawtasticController {
   private void initListeners() {
     opacitySlider.valueProperty().addListener((observable, oldValue, newValue) -> updateSliderColor());
     colorPicker.valueProperty().addListener((observable, oldValue, newValue) -> updateSliderColor());
-    backgroundColorPicker.valueProperty().addListener((observable, oldValue, newValue) -> Background.changeBackground(newValue));
+    backgroundColorPicker.valueProperty().addListener((observable, oldValue, newValue) -> background.changeBackground(newValue));
   }
 
   private void updateSliderColor() {
@@ -142,7 +142,7 @@ public class DrawtasticController {
 
   public void newTextfield() {toolManager.changeTool(new Textfield());}
 
-  public void setTransparentBackground() {Background.transparentBackground();}
+  public void setTransparentBackground() {background.transparentBackground();}
 
 }
 
