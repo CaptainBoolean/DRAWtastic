@@ -14,7 +14,6 @@ public class PaintBrush extends Pen implements Opaqueable {
 
   @Override
   protected void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size) {
-    getNewSize(x, y, size);
     dg.fillOval(x - avSize / 2, y - avSize / 2, avSize, avSize);
   }
 
