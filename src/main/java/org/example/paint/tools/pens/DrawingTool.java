@@ -17,8 +17,8 @@ public abstract class DrawingTool implements Tool {
   protected double lastPreviewX = -1;
   protected double lastPreviewY = -1;
 
-  protected double minSizeFactor = 0.5;
-  protected double maxSizeFactor = 4;
+  protected double minSizeFactor = 0.1;
+  protected double maxSizeFactor = 2;
 
 
   /**
@@ -80,7 +80,7 @@ public abstract class DrawingTool implements Tool {
     if (lastPreviewX != -1 && lastPreviewY != -1) {
       double clearX = lastPreviewX - size / 2;
       double clearY = lastPreviewY - size / 2;
-      double saveSize = size*(maxSizeFactor*1.5);
+      double saveSize = size*(maxSizeFactor*2);
       og.clearRect(clearX - saveSize/2, clearY - saveSize/2, saveSize, saveSize);
     }
 
