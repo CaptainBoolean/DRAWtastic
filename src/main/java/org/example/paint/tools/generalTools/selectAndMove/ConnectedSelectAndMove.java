@@ -13,8 +13,12 @@ import java.util.ArrayList;
 
 public class ConnectedSelectAndMove extends SelectAndMove {
 
-  private boolean switchingToMove;
-
+  /**
+   * Selects and cuts out all valid pixels by calling {@link SelectAreas#floodFillSelected(GraphicsContext, int, int)}
+   * @param g Main canvas
+   * @param dg Drawing canvas
+   * @param e MouseEvent that triggered this
+   */
   @Override
   public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
     if (mode == Mode.IDLE) {
@@ -36,8 +40,8 @@ public class ConnectedSelectAndMove extends SelectAndMove {
       int width = (int) Math.max(maxX - e.getX(), e.getX() - minX)*2 + 1;
       int height = (int) Math.max(maxY - e.getY(), e.getY() - minY)*2 + 1;
 
-      int offsetX = (int)(width / 2 - (e.getX() - minX));
-      int offsetY = (int)(height / 2 - (e.getY() - minY));
+      int offsetX = (int)((double) width / 2 - (e.getX() - minX));
+      int offsetY = (int)((double) height / 2 - (e.getY() - minY));
 
       WritableImage image = new WritableImage(width, height);
       PixelWriter writableImage = image.getPixelWriter();
@@ -52,12 +56,14 @@ public class ConnectedSelectAndMove extends SelectAndMove {
       movedImage = image;
       switchingToMove = true;
       mode = Mode.MOVING;
-    } else if (mode == Mode.MOVING && movedImage != null) {
-      super.printHere(g, e);
     }
   }
 
-
+  /**
+   * Prints the {@link SelectAndMove#movedImage} if it is not null and resets the mode
+   * @param g Canvas to draw on
+   * @param e MouseEvent that triggered  this
+   */
   @Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
     if (mode == Mode.MOVING && movedImage != null) {
@@ -67,6 +73,11 @@ public class ConnectedSelectAndMove extends SelectAndMove {
     }
   }
 
+  /**
+   * Clears the canvas when it is first called after starting to move something and then draws the preview as specified in {@link SelectAndMove#drawPreviewAt(GraphicsContext, MouseEvent, double)}
+   * @param og Canvas to draw on
+   * @param e MouseEvent that triggered  this
+   */
   @Override
   public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
     if (switchingToMove) {

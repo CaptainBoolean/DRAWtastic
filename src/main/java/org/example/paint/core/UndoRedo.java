@@ -13,11 +13,19 @@ public class UndoRedo {
   private int historyIndex = 0;
   private int topIndex = 0;
 
+  /**
+   * Constructs the UndoRedo with the Canvas it should be applied to and initializes the first image
+   * @param canvas
+   */
   public UndoRedo(Canvas canvas) {
     this.currCanvas = canvas;
     history[0] = FileService.getTranspSnapshot(canvas.getGraphicsContext2D());
   }
 
+  /**
+   * Saves the current state of the canvas to the array of saved states
+   * Saving ofter undoing operations sets this operation as the last one and discards all possible redo
+   */
   public void saveState() {
     WritableImage snap = FileService.getTranspSnapshot(currCanvas.getGraphicsContext2D());
 
@@ -35,6 +43,9 @@ public class UndoRedo {
     }
   }
 
+  /**
+   * Reverts the canvas to the previous state
+   */
   public void undo() {
     if (historyIndex > 0) {
       historyIndex--;
@@ -42,6 +53,9 @@ public class UndoRedo {
     }
   }
 
+  /**
+   * Reverts the canvas to the next state if there is any
+   */
   public void redo() {
     if (historyIndex < topIndex) {
       historyIndex++;
@@ -49,9 +63,13 @@ public class UndoRedo {
     }
   }
 
-  private void restore(WritableImage img) {
+  /**
+   * Restores the canvas to the image provided
+   * @param image Image to restore the canvas to
+   */
+  private void restore(WritableImage image) {
     GraphicsContext gc = currCanvas.getGraphicsContext2D();
     gc.clearRect(0, 0, currCanvas.getWidth(), currCanvas.getHeight());
-    gc.drawImage(img, 0, 0);
+    gc.drawImage(image, 0, 0);
   }
 }

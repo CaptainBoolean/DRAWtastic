@@ -8,8 +8,11 @@ import org.example.paint.core.FileService;
 
 public class BoxSelectAndMove extends SelectAndMove {
 
-  private boolean switchingToMoving = false;
 
+  /**
+   * Switches modes depending on the current mode and initializes variables
+   * @param e MouseEvent that triggered this
+   */
   @Override
   public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
     if (mode == Mode.IDLE) {
@@ -19,6 +22,14 @@ public class BoxSelectAndMove extends SelectAndMove {
     }
   }
 
+  /**
+   * Cuts the {@link #movedImage} out of the canvas after selecting,
+   * or prints the picture using {@link #printHere(GraphicsContext, MouseEvent)},
+   * and changes current modes
+   * @param g Main canvas
+   * @param dg Drawing canvas
+   * @param e MouseEvent that triggered this
+   */
   @Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
     if (mode == Mode.SELECTING) {
@@ -35,10 +46,10 @@ public class BoxSelectAndMove extends SelectAndMove {
         g.clearRect(cutX-1, cutY-1, cutWidth+2, cutHeight+2);
         if(checkIfContent()) {
           mode = Mode.MOVING;
-          switchingToMoving = true;
+          switchingToMove = true;
         } else  {
           mode = Mode.FAILEDMOVE;
-          switchingToMoving = false;
+          switchingToMove = false;
           movedImage = null;
         }
 
@@ -51,6 +62,11 @@ public class BoxSelectAndMove extends SelectAndMove {
     }
   }
 
+  /**
+   * Draws the different previews while selecting or moving
+   * @param og Canvas to draw on
+   * @param e MouseEvent that triggered  this
+   */
   @Override
   public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
     double margin = 5;
@@ -68,9 +84,9 @@ public class BoxSelectAndMove extends SelectAndMove {
       lastWidth = newWidth; lastHeight = newHeight;
     }
     else if (mode == Mode.MOVING && movedImage != null) {
-      if (switchingToMoving) {
+      if (switchingToMove) {
         og.clearRect(lastX - margin, lastY - margin, lastWidth + 2* margin, lastHeight + 2* margin);
-        switchingToMoving = false;
+        switchingToMove = false;
       }
       super.drawPreviewAt(og, e, size);
     } else if (mode == Mode.FAILEDMOVE) {
@@ -79,6 +95,10 @@ public class BoxSelectAndMove extends SelectAndMove {
     }
   }
 
+  /**
+   * Checks if the {@link SelectAndMove#movedImage} is not totally empty
+   * @return true if there is any content in {@link SelectAndMove#movedImage}
+   */
   private boolean checkIfContent() {
     for(int i = 0; movedImage.getWidth() > i; i++) {
       for(int j = 0; movedImage.getHeight() > j; j++) {

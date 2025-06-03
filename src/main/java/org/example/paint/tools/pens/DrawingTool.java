@@ -22,11 +22,10 @@ public abstract class DrawingTool implements Tool {
 
 
   /**
-   * Draws the sepcific kind of shape when dragging over the canvas.
+   * Draws the specific kind of shape when dragging over the canvas.
    * Between the registered points interpolation happens to allow pens to draw one continuos line.
    *
    * @param g    The GraphicsContect to draw on.
-   * @param dg
    * @param e    The MouseEvent necessary to grab the location of drawing.
    * @param size The size that the pen should use for its shape.
    */
@@ -44,6 +43,10 @@ public abstract class DrawingTool implements Tool {
     lastY = y;
   }
 
+  /**
+   * Initializes the start coordinates
+   * @param e the MouseEvent that triggered this action (useful to get the coordinates)
+   */
   @Override
   public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size){
     startX = e.getX();
@@ -52,11 +55,6 @@ public abstract class DrawingTool implements Tool {
 
   /**
    * Resets the parameters necessary for interpolation.
-   *
-   * @param g    -
-   * @param dg
-   * @param e    -
-   * @param size -
    */
   @Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
@@ -102,14 +100,23 @@ public abstract class DrawingTool implements Tool {
   /**
    * Draws at the provided coordinated with the specified characteristics
    *
-   * @param g     GraphicsContext to draw on.
-   * @param dg
+   * @param g     main canvas
+   * @param dg    drawing canvas
    * @param x     The x coordinate to draw on.
    * @param y     The y coordinate to draw on.
    * @param size  The size to draw the shape in.
    */
   protected abstract void drawAt(GraphicsContext g, GraphicsContext dg, double x, double y, double size);
 
+  /**
+   * Draws a line from the provided MouseEvent to the calcX and calcY b< calling the {@link #drawAt(GraphicsContext, GraphicsContext, double, double, double)}
+   * @param g
+   * @param dg
+   * @param e
+   * @param calcX
+   * @param calcY
+   * @param size
+   */
   protected void drawLine(GraphicsContext g,GraphicsContext dg, MouseEvent e, double calcX, double calcY, double size) {
 
     double dx = e.getX() - calcX;

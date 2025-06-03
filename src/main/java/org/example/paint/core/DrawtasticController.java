@@ -84,6 +84,20 @@ public class DrawtasticController {
     drawCanvas.setOpacity(opacity);
   }
 
+  private void zoom(double zoomFactor, Canvas canvas, Scale canvasScale) {
+    double canvasCenterX = canvas.getWidth() / 2;
+    double canvasCenterY = canvas.getHeight() / 2;
+
+    double newScale = canvasScale.getX() * zoomFactor;
+    newScale = Math.max(0.2, Math.min(newScale, 2.0));
+
+    canvasScale.setX(newScale);
+    canvasScale.setY(newScale);
+
+    canvasScale.setPivotX(canvasCenterX);
+    canvasScale.setPivotY(canvasCenterY);
+  }
+
 
   public void onSave() {FileService.save(canvas, backgroundColorPicker.getValue());}
   public void onExit() {Platform.exit();}
@@ -91,8 +105,8 @@ public class DrawtasticController {
   public void undo() {undoRedo.undo(); overlayCanvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());}
   public void redo() {undoRedo.redo();}
 
-  public void zoomIn() {toolManager.zoom(1.1,canvas, canvasScale);}
-  public void zoomOut() {toolManager.zoom(0.9,canvas, canvasScale);}
+  public void zoomIn() {zoom(1.1,canvas, canvasScale);}
+  public void zoomOut() {zoom(0.9,canvas, canvasScale);}
 
   public void newBoxSelectAndMove() {toolManager.changeTool(new BoxSelectAndMove());}
   public void newConnectedSelectAndMove() {toolManager.changeTool(new ConnectedSelectAndMove());}

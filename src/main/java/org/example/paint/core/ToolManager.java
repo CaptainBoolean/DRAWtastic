@@ -8,7 +8,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.transform.Scale;
 import org.example.paint.tools.Opaqueable;
 import org.example.paint.tools.Tool;
 import org.example.paint.tools.generalTools.Pipette;
@@ -16,6 +15,10 @@ import org.example.paint.tools.pens.*;
 import org.example.paint.tools.picture.PictureInsert;
 import org.example.paint.tools.shapes.*;
 
+/**
+ * This is a manager for changing tools which performs all specific tasks that need to be performed when a specific tool is selected.
+ * It also calls to the tools to perform the 4 core methods of every tool.
+ */
 public class ToolManager {
   private Tool currentTool;
   private Tool lastPen;
@@ -35,7 +38,12 @@ public class ToolManager {
   private static final ObjectProperty<Node> eraserButtonGraphic = new SimpleObjectProperty<>();
   private static final ObjectProperty<Node> shapeButtonGraphic = new SimpleObjectProperty<>();
 
-
+  /**
+   * Constructs a ToolManager allowing it to save all the canvas it needs to access.
+   * @param canvas The main canvas
+   * @param overlayCanvas The canvas for previews
+   * @param drawCanvas The canvas to draw on - it gets merged onto the main canvas after each action
+   */
   ToolManager(Canvas canvas, Canvas overlayCanvas, Canvas drawCanvas) {
     this.canvas = canvas;
     this.g = canvas.getGraphicsContext2D();
@@ -43,11 +51,14 @@ public class ToolManager {
     this.dg = drawCanvas.getGraphicsContext2D();
   }
 
+  /**
+   * Allows to change the current tool to a new one.
+   * @param newTool The new tool to take as the current one
+   */
   void changeTool(Tool newTool) {
-
     checkIfMarker(newTool);
     checkOpacitySliderDisplay(newTool);
-    checkPicture(newTool);
+    checkPictureInsert(newTool);
     newTool = checkEraserSwitch(newTool);
     newTool = checkPipette(newTool);
     checkIfIconChange(newTool);
@@ -55,14 +66,24 @@ public class ToolManager {
     currentTool = newTool;
   }
 
+  /**
+   * Allows to change the current tool to the last selected Pen
+   */
   void lastPen() {
     changeTool(lastPen);
   }
 
+  /**
+   * Allows to change the current tool to the last selected Shape
+   */
   void lastShape() {
     changeTool(lastShape);
   }
 
+  /**
+   * Checks if any UI Icons need to be changed when changing the tool and does so if needed
+   * @param newTool Tool to apply the check to
+   */
   private void checkIfIconChange(Tool newTool) {
     ImageView imageView = null;
 
@@ -86,7 +107,6 @@ public class ToolManager {
       lastPen = newTool;
     }
 
-
     if (newTool instanceof RoundEraser) {
       imageView = new ImageView(new Image(getClass().getResource("/org/example/paint/buttonIcons/round_eraser.png").toExternalForm()));
       formatImageView(imageView);
@@ -100,7 +120,6 @@ public class ToolManager {
       formatImageView(imageView);
       eraserButtonGraphic.set(imageView);
     }
-
 
     if (lastShape == null) {
       lastShape = new Rectangle();
@@ -129,6 +148,10 @@ public class ToolManager {
     }
   }
 
+  /**
+   * Formats a given Imageview to the Height and Width of all Icons
+   * @param imageView The ImageView to be formatted
+   */
   private void formatImageView(ImageView imageView) {
     if (imageView != null) {
       imageView.setFitWidth(24);
@@ -137,6 +160,10 @@ public class ToolManager {
     }
   }
 
+  /**
+   * Checks if the newTool is a marker and adjusts the size and opacity accordingly
+   * @param newTool Tool to check if it is a marker
+   */
   private void checkIfMarker(Tool newTool) {
     if(currentTool instanceof Marker && !(newTool instanceof Marker)) {
       brushSize.setValue(brushSize.getValue() / markerSizeRatio);
@@ -148,10 +175,21 @@ public class ToolManager {
     }
   }
 
+  /**
+   * Checks if the newTool implements Opaqueable and sets the display value of the slider.
+   * @param newTool Tool to check if it is Opaqueable
+   */
   private void checkOpacitySliderDisplay(Tool newTool) {
     opacitySlider.setValue(newTool instanceof Opaqueable);
   }
 
+  /**
+   * Checks if the newTool is an Eraser and switches the types of Erasers
+   * @param newTool Tool to check if it is an Eraser and which type it is
+   * @return The newTool if it is not an Eraser,
+   * a RoundEraser if the previous Tool was not an eraser of any Type
+   * or a SquareEraser if the previous Tool was a round Eraser
+   */
   private Tool checkEraserSwitch(Tool newTool) {
     if (newTool instanceof RoundEraser && !(currentTool instanceof RoundEraser)) {
       return new RoundEraser();
@@ -161,6 +199,12 @@ public class ToolManager {
     return newTool;
   }
 
+  /**
+   * Checks if the newTool is a Pipette and constructs the Pipette with the proper parameters
+   * @param newTool The Tool to check if it is a Pipette
+   * @return The newTool if it is not a Pipette
+   * or a new Pipette with the correct Parameters while discarding the previously constructed Pipette
+   */
   private Tool checkPipette(Tool newTool) {
     if (newTool instanceof Pipette) {
       return new Pipette(color, backgroundColor);
@@ -168,56 +212,67 @@ public class ToolManager {
     return newTool;
   }
 
-  private void checkPicture(Tool newTool) {
+  /**
+   * Checks if the newTool is a PictureInsert and sets the Opacity to 1 to allow for Pictures to be inserted with full opaqueness if not changed.
+   * @param newTool The Tool to check if it is a PictureInsert
+   */
+  private void checkPictureInsert(Tool newTool) {
     if (newTool instanceof PictureInsert) {
       opacity.setValue(1);
     }
   }
 
-  public void zoom(double zoomFactor, Canvas canvas, Scale canvasScale) {
-    double canvasCenterX = canvas.getWidth() / 2;
-    double canvasCenterY = canvas.getHeight() / 2;
-
-    double newScale = canvasScale.getX() * zoomFactor;
-    newScale = Math.max(0.2, Math.min(newScale, 2.0));
-
-    canvasScale.setX(newScale);
-    canvasScale.setY(newScale);
-
-    canvasScale.setPivotX(canvasCenterX);
-    canvasScale.setPivotY(canvasCenterY);
-  }
-
-
+  /**
+   * Calls the onDrag method for the specific Tool and the drawPreviewAt
+   * @param e The MouseEvent that triggered this action
+   */
   void onDrag(MouseEvent e) {
       currentTool.onDrag(g, dg, e, brushSize.getValue());
       currentTool.drawPreviewAt(og, e, brushSize.getValue());
   }
 
+  /**
+   * Sets the fill color for the drawingCanvas to the selected color and alls the onPress method for the specific Tool.
+   * @param e The MouseEvent that triggered this action
+   */
   void onPress(MouseEvent e) {
     dg.setFill(color.getValue());
     currentTool.onPress(g, dg, e, brushSize.getValue());
   }
 
+  /**
+   * Calls the onRelease method for the specific Tool and calls {@link #copyToMainCanvas()}
+   * @param e The MouseEvent that triggered this action
+   */
   void onRelease(MouseEvent e) {
     currentTool.onRelease(g, dg, e, brushSize.getValue());
     copyToMainCanvas();
   }
 
+  /**
+   * Calls the drawPreviewAt method for the specific Tool
+   * @param e The MouseEvent that triggered this action
+   */
   void onMove(MouseEvent e) {
     currentTool.drawPreviewAt(og, e, brushSize.getValue());
   }
 
-
-
+  /**
+   * Clears the entire previewCanvas when the mouse enters the canvas to remove residual preview drawings
+   * @param e The MouseEvent that triggered this action
+   */
   void onEnter(MouseEvent e) {og.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());}
 
+  /**
+   * Takes the drawing from the drawingCanvas and copies it to the main canvas with the specified opacity
+   */
   private void copyToMainCanvas() {
     g.drawImage(FileService.getTranspSnapshot(dg), 0, 0);
     dg.clearRect(0, 0, dg.getCanvas().getWidth(), dg.getCanvas().getHeight());
   }
 
 
+  //the following getters are necessary to initialize the binds with the controller
   static DoubleProperty brushSizeProperty() {return brushSize;}
   static DoubleProperty brushOpacityProperty() {return opacity;}
   static BooleanProperty opacitySliderProperty() {return opacitySlider;}
