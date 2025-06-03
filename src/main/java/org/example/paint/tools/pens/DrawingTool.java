@@ -31,11 +31,6 @@ public abstract class DrawingTool implements Tool {
    * @param size The size that the pen should use for its shape.
    */
   public void onDrag(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
-    if (dg.getCanvas().getWidth() == 0 || dg.getCanvas().getHeight() == 0) {
-      dg.getCanvas().setHeight(g.getCanvas().getHeight());
-      dg.getCanvas().setWidth(g.getCanvas().getWidth());
-    }
-
     double x = e.getX();
     double y = e.getY();
 
@@ -47,7 +42,6 @@ public abstract class DrawingTool implements Tool {
 
     lastX = x;
     lastY = y;
-    g.getCanvas().setEffect(null);
   }
 
   @Override
