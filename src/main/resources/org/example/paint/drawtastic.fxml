@@ -22,6 +22,9 @@
 
 
         <Button onAction="#undo">
+          <tooltip>
+            <Tooltip text="Undo last action" />
+          </tooltip>
           <graphic>
             <ImageView fitWidth="18" fitHeight="18" preserveRatio="true">
               <image>
@@ -32,6 +35,9 @@
         </Button>
 
         <Button onAction="#redo">
+          <tooltip>
+            <Tooltip text="Redo last action" />
+          </tooltip>
           <graphic>
             <ImageView fitWidth="18" fitHeight="18" preserveRatio="true">
               <Image url="@buttonIcons/redo.png"/>
@@ -39,10 +45,16 @@
           </graphic>
         </Button>
 
-        <Button onAction="#zoomIn" text="Zoom +" />
-        <Button onAction="#zoomOut" text="Zoom -" />
-
-
+        <Button onAction="#zoomIn" text="Zoom +">
+          <tooltip>
+            <Tooltip text="Zoom in" />
+          </tooltip>
+        </Button>
+        <Button onAction="#zoomOut" text="Zoom -">
+          <tooltip>
+            <Tooltip text="Zoom out" />
+          </tooltip>
+        </Button>
       </HBox>
 
       <ToolBar>
@@ -50,9 +62,15 @@
           <VBox spacing="10">
             <Label text="General Settings" />
             <HBox spacing="10">
-              <ColorPicker fx:id="colorPicker" prefWidth="40" />
-
+              <ColorPicker fx:id="colorPicker" prefWidth="40">
+                <tooltip>
+                  <Tooltip text="Choose brush color" />
+                </tooltip>
+              </ColorPicker>
               <Button onAction="#newPipette" text="Pipette">
+                <tooltip>
+                  <Tooltip text="Pick color from canvas" />
+                </tooltip>
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
                     <Image url="@buttonIcons/pipette.png"/>
@@ -63,21 +81,30 @@
             </HBox>
 
             <HBox >
-              <TextField fx:id="brushSize" text="6" prefWidth="40" />
+              <TextField fx:id="brushSize" text="6" prefWidth="40">
+                <tooltip>
+                  <Tooltip text="Set brush size" />
+                </tooltip>
+              </TextField>
             </HBox>
 
             <HBox>
-              <Slider fx:id="opacitySlider" max="1.0" value="1" />
+              <Slider fx:id="opacitySlider" max="1.0" value="1">
+                <tooltip>
+                  <Tooltip text="Set brush opacity" />
+                </tooltip>
+              </Slider>
             </HBox>
-
           </VBox>
-
 
           <!-- Erste Spalte (Pinsel, Farben) -->
           <VBox spacing="10">
             <Label text="Pens" />
             <HBox spacing="10">
               <SplitMenuButton fx:id="penButton" onAction="#lastPen">
+                <tooltip>
+                  <Tooltip text="Select pen type" />
+                </tooltip>
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true" smooth="false">
                     <Image url="@buttonIcons/pen.png" />
@@ -126,10 +153,12 @@
 
                 </items>
               </SplitMenuButton>
-
             </HBox>
 
             <Button fx:id="eraserButton" onAction="#newEraser" text="Eraser">
+              <tooltip>
+                <Tooltip text="erase from canvas" />
+              </tooltip>
               <graphic>
                 <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
                   <Image url="@buttonIcons/round_eraser.png"/>
@@ -148,6 +177,9 @@
             <HBox spacing="10">
 
               <Button onAction="#newPaintbucket" text="Paint Bucket">
+                <tooltip>
+                  <Tooltip text="Fill an area with color" />
+                </tooltip>
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
                     <Image url="@buttonIcons/paintbucket.png"/>
@@ -155,6 +187,9 @@
                 </graphic>
               </Button>
               <Button onAction="#newRepaint" text="Repaint">
+                <tooltip>
+                  <Tooltip text="Repaint existing area" />
+                </tooltip>
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
                     <Image url="@buttonIcons/repaint.png"/>
@@ -164,6 +199,9 @@
             </HBox>
             <HBox spacing="10">
               <Button onAction="#newBoxSelectAndMove" text="Select and move" >
+                <tooltip>
+                  <Tooltip text="Select and move rectangular area" />
+                </tooltip>
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
                     <Image url="@buttonIcons/select_move.png"/>
@@ -171,6 +209,9 @@
                 </graphic>
               </Button>
               <Button onAction="#newConnectedSelectAndMove" text="Connected select and move" >
+                <tooltip>
+                  <Tooltip text="Select connected lines and move" />
+                </tooltip>
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
                     <Image url="@buttonIcons/connectedselect_move.png"/>
@@ -180,6 +221,9 @@
             </HBox>
             <HBox spacing="10">
               <Button onAction="#newDeleteConnectedLine" text="Delete Line" >
+                <tooltip>
+                  <Tooltip text="Delete connected line" />
+                </tooltip>
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
                     <Image url="@buttonIcons/deleteline.png"/>
@@ -187,6 +231,9 @@
                 </graphic>
               </Button>
               <Button onAction="#newRemoveColor" text="Remove Color" >
+                <tooltip>
+                  <Tooltip text="Remove specific color from canvas" />
+                </tooltip>
                 <graphic>
                   <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
                     <Image url="@buttonIcons/removecolor.png"/>
@@ -206,8 +253,16 @@
             <Label text="Background &amp; Effects" />
             <HBox spacing="10" alignment="CENTER_LEFT">
               <Label text="Background color:" />
-              <ColorPicker fx:id="backgroundColorPicker" prefWidth="40"/>
-              <Button onAction="#setTransparentBackground" text="None" />
+              <ColorPicker fx:id="backgroundColorPicker" prefWidth="40">
+                <tooltip>
+                  <Tooltip text="Choose canvas background color" />
+                </tooltip>
+              </ColorPicker>
+              <Button onAction="#setTransparentBackground" text="None">
+                <tooltip>
+                  <Tooltip text="Set background to transparent" />
+                </tooltip>
+              </Button>
             </HBox>
 
           </VBox>
@@ -219,7 +274,9 @@
           <VBox spacing="10">
             <Label text="Shapes &amp; Picture" />
             <SplitMenuButton fx:id="shapeButton" onAction="#lastShape">
-
+              <tooltip>
+                <Tooltip text="Draw a shape on the canvas" />
+              </tooltip>
               <items>
                 <MenuItem onAction="#newRectangle" text="Rectangle" >
                   <graphic>
@@ -265,6 +322,9 @@
             </SplitMenuButton>
 
             <SplitMenuButton onAction="#newInsertPicture" text="Insert Picture">
+              <tooltip>
+                <Tooltip text="Insert and modify a picture" />
+              </tooltip>
               <items>
                 <MenuItem onAction="#newSepiaFilter" text="Sepia Filter" />
                 <MenuItem onAction="#newBlurFilter" text="Blur Filter" />
@@ -274,7 +334,11 @@
                 <MenuItem onAction="#newFlipHorizontal" text="Flip Canvas Horizontal" />
               </items>
             </SplitMenuButton>
-            <Button onAction="#newTextfield" text="Textfield" />
+            <Button onAction="#newTextfield" text="Textfield">
+              <tooltip>
+                <Tooltip text="Insert text into canvas" />
+              </tooltip>
+            </Button>
           </VBox>
 
           <Separator orientation="VERTICAL" />
@@ -287,7 +351,7 @@
   </top>
 
   <center>
-    <ScrollPane fx:id="canvasPane" fitToWidth="true" fitToHeight="true" pannable="true">
+    <ScrollPane fx:id="canvasPane" fitToWidth="true" fitToHeight="true" pannable="false">
       <StackPane alignment="CENTER">
         <Group fx:id="canvasGroup">
           <Canvas fx:id="backgroundCanvas" width="1295" height="715" />

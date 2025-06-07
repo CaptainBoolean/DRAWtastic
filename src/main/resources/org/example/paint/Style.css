@@ -16,13 +16,16 @@
     -fx-border-color: gray;
 }
 
-
-
 /* Hintergrundfarbe für Buttons */
-.button {
+.button, .split-menu-button{
     -fx-background-color: #424242;
     -fx-text-fill: white;
     -fx-background-radius: 5;
+}
+
+.split-menu-button > .label {
+    -fx-background-color: #424242; /* wichtig, sonst überschreibt's */
+    -fx-text-fill: white;
 }
 
 .scroll-pane:focused {
@@ -31,7 +34,7 @@
 
 
 /* Button Hover-Effekt */
-.button:hover {
+.button:hover, .split-menu-button:hover {
     -fx-background-color: #616161;
 }
 
