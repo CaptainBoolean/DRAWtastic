@@ -287,13 +287,15 @@
   </top>
 
   <center>
-    <ScrollPane fx:id="canvasPane">
-      <Group fx:id="canvasGroup">
-        <Canvas fx:id="backgroundCanvas" width="1295" height="715" />
-        <Canvas fx:id="canvas" width="1295" height="715" />
-        <Canvas fx:id="drawCanvas" width="1295" height="715" mouseTransparent="true"/>
-        <Canvas fx:id="overlayCanvas" width="1295" height="715" mouseTransparent="true" />
-      </Group>
+    <ScrollPane fx:id="canvasPane" fitToWidth="true" fitToHeight="true" pannable="true">
+      <StackPane alignment="CENTER">
+        <Group fx:id="canvasGroup">
+          <Canvas fx:id="backgroundCanvas" width="1295" height="715" />
+          <Canvas fx:id="canvas" width="1295" height="715" />
+          <Canvas fx:id="drawCanvas" width="1295" height="715" mouseTransparent="true"/>
+          <Canvas fx:id="overlayCanvas" width="1295" height="715" mouseTransparent="true" />
+        </Group>
+      </StackPane>
     </ScrollPane>
   </center>
 
