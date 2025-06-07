@@ -154,7 +154,13 @@
                   </ImageView>
                 </graphic>
               </Button>
-              <Button onAction="#newRepaint" text="Repaint" />
+              <Button onAction="#newRepaint" text="Repaint">
+                <graphic>
+                  <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+                    <Image url="@buttonIcons/repaint.png"/>
+                  </ImageView>
+                </graphic>
+              </Button>
             </HBox>
             <HBox spacing="10">
               <Button onAction="#newBoxSelectAndMove" text="Select and move" >
