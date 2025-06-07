@@ -12,7 +12,7 @@
 
   <top>
     <VBox>
-      <HBox spacing="10" alignment="CENTER_LEFT">
+      <HBox spacing="2" alignment="CENTER_LEFT" styleClass="toolbar">
         <MenuBar>
           <Menu text="File">
             <MenuItem text="Save" onAction="#onSave" />
@@ -23,7 +23,7 @@
 
         <Button onAction="#undo">
           <graphic>
-            <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+            <ImageView fitWidth="18" fitHeight="18" preserveRatio="true">
               <image>
                 <Image url="@buttonIcons/undo.png" />
               </image>
@@ -33,7 +33,7 @@
 
         <Button onAction="#redo">
           <graphic>
-            <ImageView fitWidth="24" fitHeight="24" preserveRatio="true">
+            <ImageView fitWidth="18" fitHeight="18" preserveRatio="true">
               <Image url="@buttonIcons/redo.png"/>
             </ImageView>
           </graphic>

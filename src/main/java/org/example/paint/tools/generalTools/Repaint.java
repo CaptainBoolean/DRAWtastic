@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class Repaint implements Tool, Opaqueable {
 
-  //TODO fix
   @Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
 
@@ -18,8 +17,7 @@ public class Repaint implements Tool, Opaqueable {
     for (int[] pos : toRecolor) {
       int px = pos[0];
       int py = pos[1];
-      dg.clearRect(px, py, 1, 1);
-      dg.fillRect(px, py, 1, 1);
+      dg.fillRect(px, py, 1.1, 1.1); //margin to color in all relevant pixels
     }
   }
 }
