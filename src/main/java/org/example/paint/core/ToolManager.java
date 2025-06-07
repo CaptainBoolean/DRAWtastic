@@ -160,7 +160,7 @@ public class ToolManager {
     if (imageView != null) {
       imageView.setFitWidth(24);
       imageView.setFitHeight(24);
-      imageView.setPreserveRatio(true);
+      imageView.setPreserveRatio(false); // to avoid unwanted resizing of the whole icon box when changing the tool
     }
   }
 
