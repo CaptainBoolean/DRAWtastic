@@ -1,6 +1,5 @@
 package org.example.paint.tools.generalTools;
 
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import org.example.paint.tools.Opaqueable;
@@ -10,18 +9,11 @@ import java.util.ArrayList;
 
 public class Repaint implements Tool, Opaqueable {
 
+  //TODO fix
   @Override
   public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
-    Canvas canvas = g.getCanvas();
 
-    int x = (int) e.getX();
-    int y = (int) e.getY();
-    int width = (int) canvas.getWidth();
-    int height = (int) canvas.getHeight();
-
-    if (x < 0 || y < 0 || x >= width || y >= height) return;
-
-    ArrayList<int[]> toRecolor = SelectAreas.floodFillSelected(g, x, y);  // verwendet bestehende FloodFill
+    ArrayList<int[]> toRecolor = SelectAreas.floodFillSelected(g, (int) e.getX(), (int) e.getY());  // verwendet bestehende FloodFill
 
     for (int[] pos : toRecolor) {
       int px = pos[0];
