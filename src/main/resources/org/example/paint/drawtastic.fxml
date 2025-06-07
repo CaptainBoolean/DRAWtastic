@@ -77,7 +77,6 @@
                   </ImageView>
                 </graphic>
               </Button>
-
             </HBox>
 
             <HBox >
@@ -96,6 +95,8 @@
               </Slider>
             </HBox>
           </VBox>
+
+          <Separator orientation="VERTICAL" />
 
           <!-- Erste Spalte (Pinsel, Farben) -->
           <VBox spacing="10">
@@ -196,6 +197,11 @@
                   </ImageView>
                 </graphic>
               </Button>
+              <Button onAction="#newTextfield" text="Textfield">
+                <tooltip>
+                  <Tooltip text="Insert text into canvas" />
+                </tooltip>
+              </Button>
             </HBox>
             <HBox spacing="10">
               <Button onAction="#newBoxSelectAndMove" text="Select and move" >
@@ -264,7 +270,19 @@
                 </tooltip>
               </Button>
             </HBox>
-
+            <SplitMenuButton text="Effects">
+              <tooltip>
+                <Tooltip text="Apply effects, click on canvas to apply" />
+              </tooltip>
+              <items>
+                <MenuItem onAction="#newSepiaFilter" text="Sepia Filter" />
+                <MenuItem onAction="#newBlurFilter" text="Blur Filter" />
+                <MenuItem onAction="#newBlackAndWhiteFilter" text="Black and White Filter" />
+                <MenuItem onAction="#newInvertFilter" text="Invert Canvas Filter" />
+                <MenuItem onAction="#newFlipVertical" text="Flip Canvas Vertical" />
+                <MenuItem onAction="#newFlipHorizontal" text="Flip Canvas Horizontal" />
+              </items>
+            </SplitMenuButton>
           </VBox>
 
           <!-- Trennlinie zwischen Spalten -->
@@ -318,25 +336,11 @@
                   </graphic>
                 </MenuItem>
               </items>
-
             </SplitMenuButton>
 
-            <SplitMenuButton onAction="#newInsertPicture" text="Insert Picture">
+            <Button onAction="#newInsertPicture" text="Insert Picture">
               <tooltip>
-                <Tooltip text="Insert and modify a picture" />
-              </tooltip>
-              <items>
-                <MenuItem onAction="#newSepiaFilter" text="Sepia Filter" />
-                <MenuItem onAction="#newBlurFilter" text="Blur Filter" />
-                <MenuItem onAction="#newBlackAndWhiteFilter" text="Black and White Filter" />
-                <MenuItem onAction="#newInvertFilter" text="Invert Canvas Filter" />
-                <MenuItem onAction="#newFlipVertical" text="Flip Canvas Vertical" />
-                <MenuItem onAction="#newFlipHorizontal" text="Flip Canvas Horizontal" />
-              </items>
-            </SplitMenuButton>
-            <Button onAction="#newTextfield" text="Textfield">
-              <tooltip>
-                <Tooltip text="Insert text into canvas" />
+                <Tooltip text="insert new picture, drag on canvas to apply"/>
               </tooltip>
             </Button>
           </VBox>
