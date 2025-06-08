@@ -81,7 +81,7 @@
             <HBox>
               <Slider fx:id="opacitySlider" max="1.0" value="1">
                 <tooltip>
-                  <Tooltip text="Set brush opacity" />
+                  <Tooltip text="Set opacity" />
                 </tooltip>
               </Slider>
             </HBox>
