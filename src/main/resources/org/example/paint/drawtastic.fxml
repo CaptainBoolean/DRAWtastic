@@ -11,6 +11,7 @@
             prefHeight="1300.0" prefWidth="900.0">
 
   <top>
+    <!-- Menu Bar -->
     <VBox>
       <HBox spacing="2" alignment="CENTER_LEFT" styleClass="toolbar">
         <MenuBar>
@@ -19,8 +20,6 @@
             <MenuItem text="Exit" onAction="#onExit" />
           </Menu>
         </MenuBar>
-
-
         <Button onAction="#undo">
           <tooltip>
             <Tooltip text="Undo last action" />
@@ -52,6 +51,7 @@
       </HBox>
 
       <ToolBar>
+        <!-- Erste Spalte ToolBar -->
         <HBox spacing="20" alignment="TOP_CENTER">
           <VBox spacing="10">
             <Label text="General Settings" />
@@ -89,7 +89,7 @@
 
           <Separator orientation="VERTICAL" />
 
-          <!-- Erste Spalte (Pinsel, Farben) -->
+          <!-- Zweite Spalte ToolBar -->
           <VBox spacing="10">
             <Label text="Pens" />
             <HBox spacing="10">
@@ -154,10 +154,9 @@
 
           </VBox>
 
-          <!-- Trennlinie zwischen Spalten -->
           <Separator orientation="VERTICAL" />
 
-          <!-- Zweite Spalte (Pens, Repaint, Tools) -->
+          <!-- Dritte Spalte ToolBar -->
           <VBox spacing="10">
             <Label text="Tools" />
             <HBox spacing="10">
@@ -212,10 +211,9 @@
             </HBox>
           </VBox>
 
-          <!-- Trennlinie zwischen Spalten -->
           <Separator orientation="VERTICAL" />
 
-          <!-- Dritte Spalte (Hintergrund, Filter, Sonstiges) -->
+          <!-- Vierte Spalte ToolBar -->
           <VBox spacing="10">
             <Label text="Background &amp; Effects" />
             <HBox spacing="10" alignment="CENTER_LEFT">
@@ -238,10 +236,9 @@
             </SplitMenuButton>
           </VBox>
 
-          <!-- Trennlinie zwischen Spalten -->
           <Separator orientation="VERTICAL" />
 
-          <!-- Vierte Spalte (Shapes, Text) -->
+          <!-- Fünfte Spalte ToolBar -->
           <VBox spacing="10">
             <Label text="Shapes &amp; Picture" />
             <SplitMenuButton fx:id="shapeButton" onAction="#lastShape">
@@ -297,15 +294,14 @@
 
           <Separator orientation="VERTICAL" />
 
-
-
         </HBox>
       </ToolBar>
     </VBox>
   </top>
 
+  <!-- Canvas -->
   <center>
-    <ScrollPane fx:id="canvasPane" fitToWidth="true" fitToHeight="true" pannable="false">
+    <ScrollPane fx:id="canvasPane" fitToWidth="true" fitToHeight="true">
       <StackPane alignment="CENTER">
         <Group fx:id="canvasGroup">
           <Canvas fx:id="backgroundCanvas" width="1295" height="715" />
