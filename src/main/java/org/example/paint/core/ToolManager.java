@@ -273,6 +273,7 @@ public class ToolManager {
   private void copyToMainCanvas() {
     g.drawImage(FileService.getTranspSnapshot(dg), 0, 0);
     dg.clearRect(0, 0, dg.getCanvas().getWidth(), dg.getCanvas().getHeight());
+    og.clearRect(0,0,dg.getCanvas().getWidth(),dg.getCanvas().getHeight());
   }
 
 

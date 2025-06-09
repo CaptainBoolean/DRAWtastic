@@ -1,6 +1,5 @@
 package org.example.paint.tools.picture;
 
-import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelReader;
@@ -8,6 +7,7 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import org.example.paint.core.FileService;
 import org.example.paint.tools.Tool;
 
 public class BlurFilter implements Tool {
@@ -16,7 +16,7 @@ public class BlurFilter implements Tool {
     public void onPress(GraphicsContext gr, GraphicsContext dg, MouseEvent e, double size) {
         Canvas canvas = gr.getCanvas();
         // Snapshot des Canvas
-        WritableImage snapshot = canvas.snapshot(new SnapshotParameters(), null);
+        WritableImage snapshot = FileService.getTranspSnapshot(gr);
         PixelReader pr = snapshot.getPixelReader();
 
         // Neues Bild zum Schreiben
