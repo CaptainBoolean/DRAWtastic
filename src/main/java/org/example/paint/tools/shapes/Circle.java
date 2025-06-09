@@ -18,5 +18,4 @@ public class Circle extends Shape {
 
         graphicsContext.strokeOval(leftX, leftY, radius*2, radius*2);
     }
-
 }

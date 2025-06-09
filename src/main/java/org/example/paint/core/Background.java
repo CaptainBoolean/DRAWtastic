@@ -8,7 +8,9 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 
-
+/**
+ * Creates canvas to draw on and another backgroundCanvas for operations that only need the canvas behind the drawings. For transparent background a gray checkerboard is shown.
+ */
 public class Background {
   private final Canvas backgroundCanvas;
   private static ImagePattern checkerboard;
@@ -20,7 +22,6 @@ public class Background {
     createCheckerboard();
     changeBackground(Color.WHITE);
   }
-
 
   void changeBackground(Color newColor) {
     GraphicsContext gc = backgroundCanvas.getGraphicsContext2D();
@@ -57,5 +58,4 @@ public class Background {
   }
 
   static ObjectProperty<Color> backgroundColorProperty() {return backgroundColor;}
-
 }

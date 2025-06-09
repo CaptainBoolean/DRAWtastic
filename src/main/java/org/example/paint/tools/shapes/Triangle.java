@@ -27,5 +27,4 @@ public class Triangle extends Shape {
 
         graphicsContext.strokePolygon(xPoints, yPoints, 3);
     }
-
 }

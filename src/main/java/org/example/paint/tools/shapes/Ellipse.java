@@ -13,5 +13,4 @@ public class Ellipse extends Shape {
 
         graphicsContext.strokeOval(leftX, leftY, width, height);
     }
-
 }

@@ -6,6 +6,9 @@ import javafx.scene.paint.Color;
 import org.example.paint.tools.Opaqueable;
 import org.example.paint.tools.Tool;
 
+/**
+ * This is the abstract shape class which provides methods for the drawing behavior of the shapes.
+ */
 public abstract class Shape implements Tool, Opaqueable {
   private double startX, startY;
   private boolean drawing = false;
@@ -41,10 +44,7 @@ public abstract class Shape implements Tool, Opaqueable {
     drawShape(dg, startX, startY, mouseEvent.getX(), mouseEvent.getY());
 
     drawing = false;
-
   }
 
-
   public abstract void drawShape(GraphicsContext graphicsContext, double startX, double startY, double endX, double endY);
-
 }

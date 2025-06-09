@@ -13,5 +13,4 @@ public class Rectangle extends Shape {
 
         graphicsContext.strokeRect(x, y, width, height);
     }
-
 }
