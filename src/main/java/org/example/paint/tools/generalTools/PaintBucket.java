@@ -16,7 +16,7 @@ public class PaintBucket implements Tool, Opaqueable {
     for (int[] pos : toRecolor) {
       int px = pos[0];
       int py = pos[1];
-      double margin = 3;
+      double margin = 1.1;
       dg.fillRect(px-margin/2, py-margin/2, margin, margin);
     }
 
