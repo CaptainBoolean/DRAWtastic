@@ -63,8 +63,4 @@ public class RemoveColorFromCanvas implements Tool {
       }
     }
   }
-
-
-
-
 }

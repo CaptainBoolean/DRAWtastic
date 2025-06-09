@@ -30,8 +30,10 @@ public class FlipPicture implements Tool {
         g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
         g.save();
-        g.translate(0, canvas.getHeight()); // verschiebe Ursprung ganz nach unten
-        g.scale(1, -1);                     // flip
+        // move Canvas origin downwards
+        g.translate(0, canvas.getHeight());
+        // actual flip
+        g.scale(1, -1);
         g.drawImage(snapshot, 0, 0);
         g.restore();
     }
@@ -41,13 +43,12 @@ public class FlipPicture implements Tool {
         Image snapshot = FileService.getTranspSnapshot(g);
 
         g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
         g.save();
-        g.translate(canvas.getWidth(), 0);  // verschiebe Ursprung ganz nach rechts
-        g.scale(-1, 1);                     // flip
+        // move Canvas origin rightside
+        g.translate(canvas.getWidth(), 0);
+        // actual flip
+        g.scale(-1, 1);
         g.drawImage(snapshot, 0, 0);
         g.restore();
     }
-
-
 }

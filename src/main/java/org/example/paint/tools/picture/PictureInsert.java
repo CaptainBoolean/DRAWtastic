@@ -17,7 +17,6 @@ public class PictureInsert implements Tool, Opaqueable {
     static double imgWidth, imgHeight, imgX, imgY;
     boolean dragging;
 
-
     @Override
     public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
         startX = e.getX();
@@ -41,16 +40,14 @@ public class PictureInsert implements Tool, Opaqueable {
             double endX = e.getX();
             double endY = e.getY();
 
-            // Rechteck-Koordinaten berechnen
             double x = Math.min(startX, endX);
             double y = Math.min(startY, endY);
             double h = Math.abs(endY - startY);
 
-            // Seitenverhältnis beibehalten
+            // maintain scale/ratio
             double aspectRatio = image.getWidth() / image.getHeight();
             double w = h * aspectRatio;
 
-            // Bild zeichnen
             GraphicsContext gc = canvas.getGraphicsContext2D();
             gc.drawImage(image, x, y, w, h);
             savedImage = image;
@@ -62,16 +59,13 @@ public class PictureInsert implements Tool, Opaqueable {
         dragging = false;
     }
 
-
     @Override
     public void drawPreviewAt(GraphicsContext og, MouseEvent e, double size) {
       if (dragging) {
-        // Rechteck zeichnen für Vorschau
         double x = Math.min(startX, e.getX());
         double y = Math.min(startY, e.getY());
         double w = Math.abs(e.getX() - startX);
         double h = Math.abs(e.getY() - startY);
-
 
         og.clearRect(0, 0, og.getCanvas().getWidth(), og.getCanvas().getHeight()); // alternativ: Canvas-Zustand puffern
         og.setStroke(Color.GRAY);

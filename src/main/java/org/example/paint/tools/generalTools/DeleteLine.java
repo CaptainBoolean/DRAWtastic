@@ -20,12 +20,12 @@ public class DeleteLine implements Tool {
 
     if (x < 0 || y < 0 || x >= width || y >= height) return;
 
-    ArrayList<int[]> toDelete = SelectAreas.floodFillSelected(g, x, y);  // verwendet bestehende FloodFill
+    ArrayList<int[]> toDelete = SelectAreas.floodFillSelected(g, x, y);
 
     for (int[] pos : toDelete) {
       int px = pos[0];
       int py = pos[1];
-      g.clearRect(px, py, 1, 1);  // löscht Pixel durch Setzen auf transparent
+      g.clearRect(px, py, 1, 1);
     }
   }
 }

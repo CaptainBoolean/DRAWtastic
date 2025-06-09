@@ -15,11 +15,10 @@ public class BlurFilter implements Tool {
     @Override
     public void onPress(GraphicsContext gr, GraphicsContext dg, MouseEvent e, double size) {
         Canvas canvas = gr.getCanvas();
-        // Snapshot des Canvas
+
         WritableImage snapshot = FileService.getTranspSnapshot(gr);
         PixelReader pr = snapshot.getPixelReader();
 
-        // Neues Bild zum Schreiben
         WritableImage blurredImage = new WritableImage((int)canvas.getWidth(), (int)canvas.getHeight());
         PixelWriter pw = blurredImage.getPixelWriter();
 
@@ -27,7 +26,7 @@ public class BlurFilter implements Tool {
             for (int x = 1; x < (int)canvas.getWidth() - 1; x++) {
                 double r = 0, g = 0, b = 0, a = 0;
 
-                // 3x3 Nachbarschaft durchgehen
+                // get 3x3 region around pixel
                 for (int dy = -1; dy <= 1; dy++) {
                     for (int dx = -1; dx <= 1; dx++) {
                         Color c = pr.getColor(x + dx, y + dy);
@@ -38,13 +37,13 @@ public class BlurFilter implements Tool {
                     }
                 }
 
-                // Mittelwert der 9 Pixel berechnen
+                // calculate average of 3x3 region
                 Color avg = new Color(r / 9, g / 9, b / 9, a / 9);
                 pw.setColor(x, y, avg);
             }
         }
 
-        // Bild auf das Canvas zeichnen
+        // draw result on Canvas
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.drawImage(blurredImage, 0, 0);
     }

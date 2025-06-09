@@ -11,16 +11,13 @@ import org.example.paint.core.FileService;
 import org.example.paint.tools.Tool;
 
 public class BlackAndWhiteFilter implements Tool {
-
     @Override
     public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
         Canvas canvas = g.getCanvas();
 
-        // Snapshot des Canvas in ein Bild
         WritableImage snapshot = FileService.getTranspSnapshot(g);
         PixelReader pr = snapshot.getPixelReader();
 
-        // Neues Bild zum Schreiben
         WritableImage bwImage = new WritableImage((int)canvas.getWidth(), (int)canvas.getHeight());
         PixelWriter pw = bwImage.getPixelWriter();
 
@@ -35,7 +32,7 @@ public class BlackAndWhiteFilter implements Tool {
             }
         }
 
-        // Ergebnis auf das Canvas zeichnen
+        // draw result on Canvas
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.drawImage(bwImage, 0, 0);
     }
