@@ -66,6 +66,7 @@ public abstract class Pen extends DrawingTool {
     this.og = og;
     if (checkNoMovement(e) && startX != -1 && startY != -1) {
       og.clearRect(0, 0, og.getCanvas().getWidth(), og.getCanvas().getHeight());
+      og.setFill(dg.getFill());
       drawLine(og, og, e, startX, startY, size);
       dg.getCanvas().setOpacity(lastDrawingOpac * 0.3);
       og.getCanvas().setOpacity(lastDrawingOpac);
