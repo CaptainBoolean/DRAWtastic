@@ -51,7 +51,7 @@
       </HBox>
 
       <ToolBar>
-        <!-- Erste Spalte ToolBar -->
+        <!-- First Col ToolBar -->
         <HBox spacing="20" alignment="TOP_CENTER">
           <VBox spacing="10">
             <Label text="General Settings" />
@@ -89,7 +89,7 @@
 
           <Separator orientation="VERTICAL" />
 
-          <!-- Zweite Spalte ToolBar -->
+          <!-- Second Col ToolBar -->
           <VBox spacing="10">
             <Label text="Pens" />
             <HBox spacing="10">
@@ -156,7 +156,7 @@
 
           <Separator orientation="VERTICAL" />
 
-          <!-- Dritte Spalte ToolBar -->
+          <!-- Third Col ToolBar -->
           <VBox spacing="10">
             <Label text="Tools" />
             <HBox spacing="10">
@@ -213,7 +213,7 @@
 
           <Separator orientation="VERTICAL" />
 
-          <!-- Vierte Spalte ToolBar -->
+          <!-- Fourth Col ToolBar -->
           <VBox spacing="10">
             <Label text="Background &amp; Effects" />
             <HBox spacing="10" alignment="CENTER_LEFT">
@@ -238,7 +238,7 @@
 
           <Separator orientation="VERTICAL" />
 
-          <!-- Fünfte Spalte ToolBar -->
+          <!-- Fifth Col ToolBar -->
           <VBox spacing="10">
             <Label text="Shapes &amp; Picture" />
             <SplitMenuButton fx:id="shapeButton" onAction="#lastShape">
