@@ -41,6 +41,7 @@ public class DrawtasticController {
     colorPicker.setValue(Color.BLACK);
     toolManager.changeTool(new RoundPen());
     initListeners();
+    updateSliderColor();
 
     canvasGroup.getTransforms().add(canvasScale);
 
