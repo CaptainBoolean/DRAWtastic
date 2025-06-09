@@ -4,6 +4,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import org.example.paint.core.FileService;
 import org.example.paint.tools.Tool;
 
 public class FlipPicture implements Tool {
@@ -24,7 +25,7 @@ public class FlipPicture implements Tool {
 
     public void flipVertical(GraphicsContext g) {
         Canvas canvas = g.getCanvas();
-        Image snapshot = canvas.snapshot(null, null);
+        Image snapshot = FileService.getTransparentSnapshot(g);
 
         g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
@@ -37,7 +38,7 @@ public class FlipPicture implements Tool {
 
     public void flipHorizontal(GraphicsContext g) {
         Canvas canvas = g.getCanvas();
-        Image snapshot = canvas.snapshot(null, null);
+        Image snapshot = FileService.getTransparentSnapshot(g);
 
         g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 

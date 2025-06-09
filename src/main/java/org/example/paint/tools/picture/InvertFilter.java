@@ -7,6 +7,7 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import org.example.paint.core.FileService;
 import org.example.paint.tools.Tool;
 
 public class InvertFilter implements Tool {
@@ -16,7 +17,7 @@ public class InvertFilter implements Tool {
         int width = (int) canvas.getWidth();
         int height = (int) canvas.getHeight();
 
-        WritableImage image = canvas.snapshot(null, null);
+        WritableImage image = FileService.getTransparentSnapshot(g);
         PixelReader reader = image.getPixelReader();
 
         WritableImage output = new WritableImage(width, height);

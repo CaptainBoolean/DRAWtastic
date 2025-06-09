@@ -57,6 +57,7 @@ public class DrawtasticController {
     opacitySlider.visibleProperty().bindBidirectional(ToolManager.opacitySliderProperty());
     colorPicker.valueProperty().bindBidirectional(ToolManager.colorProperty());
     backgroundColorPicker.valueProperty().bindBidirectional(ToolManager.backgroundColorProperty());
+    backgroundColorPicker.valueProperty().bindBidirectional(Background.backgroundColorProperty());
     penButton.graphicProperty().bindBidirectional(ToolManager.penButtonGraphicProperty());
     eraserButton.graphicProperty().bindBidirectional(ToolManager.eraserButtonGraphicProperty());
     shapeButton.graphicProperty().bindBidirectional(ToolManager.shapeButtonGraphicProperty());

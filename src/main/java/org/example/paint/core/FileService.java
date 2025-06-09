@@ -27,7 +27,7 @@ public class FileService {
       return;
     }
     try {
-      WritableImage image = getTranspSnapshot(canvas.getGraphicsContext2D());
+      WritableImage image = getTransparentSnapshot(canvas.getGraphicsContext2D());
       PixelReader reader = image.getPixelReader();
       int minX = (int) canvas.getWidth();
       int minY = (int) canvas.getHeight();
@@ -94,7 +94,7 @@ public class FileService {
    * Return a full Image of the provided canvas, displaying transparent pixels as transparent.
    * @return WritableImage
    */
-  public static WritableImage getTranspSnapshot(GraphicsContext g) {
+  public static WritableImage getTransparentSnapshot(GraphicsContext g) {
     Canvas canvas = g.getCanvas();
     WritableImage tempImage = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
     SnapshotParameters params = new SnapshotParameters();
@@ -104,7 +104,7 @@ public class FileService {
   }
 
   public static Color getColorAtPosition(GraphicsContext g, int x, int y) {
-    WritableImage image = getTranspSnapshot(g);
+    WritableImage image = getTransparentSnapshot(g);
     PixelReader reader = image.getPixelReader();
     return  reader.getColor(x, y);
   }

@@ -1,11 +1,10 @@
 package org.example.paint.tools.shapes;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 
 public class Triangle extends Shape {
     @Override
-    public void drawShape(GraphicsContext graphicsContext, double startX, double startY, double endX, double endY, Color color) {
+    public void drawShape(GraphicsContext graphicsContext, double startX, double startY, double endX, double endY) {
         double centerX = (startX + endX) / 2;
         double centerY = (startY + endY) / 2;
 

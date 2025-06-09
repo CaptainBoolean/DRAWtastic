@@ -1,6 +1,5 @@
 package org.example.paint.tools.picture;
 
-import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelReader;
@@ -8,6 +7,7 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import org.example.paint.core.FileService;
 import org.example.paint.tools.Tool;
 
 public class BlackAndWhiteFilter implements Tool {
@@ -17,7 +17,7 @@ public class BlackAndWhiteFilter implements Tool {
         Canvas canvas = g.getCanvas();
 
         // Snapshot des Canvas in ein Bild
-        WritableImage snapshot = canvas.snapshot(new SnapshotParameters(), null);
+        WritableImage snapshot = FileService.getTransparentSnapshot(g);
         PixelReader pr = snapshot.getPixelReader();
 
         // Neues Bild zum Schreiben

@@ -16,7 +16,7 @@ import java.util.Optional;
 
 public class Textfield implements Tool, Opaqueable {
     private String text = "write here";
-    private Color textColor = Color.BLACK;
+    private Color textColor;
     private int textSize = 12;
     private boolean bold = false;
     private boolean italic = false;
@@ -46,6 +46,10 @@ public class Textfield implements Tool, Opaqueable {
         return ""; //canceled: inserts empty string; no text visible
     }
 
+    @Override
+    public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
+        textColor = (Color) dg.getFill();
+    }
 
     @Override
     public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
@@ -153,6 +157,8 @@ public class Textfield implements Tool, Opaqueable {
                 return 12; //default size 12 is chosen if parsing fails
             }
         }
+
+
 
         public boolean getBold(){return toggleBold.isSelected();}
         public boolean getItalic(){return toggleItalic.isSelected();}

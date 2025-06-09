@@ -25,7 +25,7 @@ public abstract class DrawingTool implements Tool {
    * Draws the specific kind of shape when dragging over the canvas.
    * Between the registered points interpolation happens to allow pens to draw one continuos line.
    *
-   * @param g    The GraphicsContect to draw on.
+   * @param g    The GraphicsContext to draw on.
    * @param e    The MouseEvent necessary to grab the location of drawing.
    * @param size The size that the pen should use for its shape.
    */

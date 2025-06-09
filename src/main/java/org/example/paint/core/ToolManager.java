@@ -84,7 +84,7 @@ public class ToolManager {
    * Checks if any UI Icons need to be changed when changing the tool and does so if needed
    * @param newTool Tool to apply the check to
    */
-  private void checkIfIconChange(Tool newTool) throws NullPointerException {
+  private void checkIfIconChange(Tool newTool){
     ImageView imageView = null;
 
     try {
@@ -271,8 +271,9 @@ public class ToolManager {
    * Takes the drawing from the drawingCanvas and copies it to the main canvas with the specified opacity
    */
   private void copyToMainCanvas() {
-    g.drawImage(FileService.getTranspSnapshot(dg), 0, 0);
+    g.drawImage(FileService.getTransparentSnapshot(dg), 0, 0);
     dg.clearRect(0, 0, dg.getCanvas().getWidth(), dg.getCanvas().getHeight());
+    og.clearRect(0,0,dg.getCanvas().getWidth(),dg.getCanvas().getHeight());
   }
 
 

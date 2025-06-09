@@ -11,18 +11,15 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class SelectAreas {
-  static final int[][] directions = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+  static final int[][] directions = new int[][]{{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1},  {1, 0},  {1, 1}};
   /**
    * Returns an ArrayList of all connected pixels to the initially selected Pixel
-   * @param g
-   * @param x
-   * @param y
    * @return ArrayList<int[]>
    */
   private static ArrayList<int[]> floodFill(GraphicsContext g, int x, int y, PixelMatch condition) {
     int width = (int) g.getCanvas().getWidth();
     int height = (int) g.getCanvas().getHeight();
-    WritableImage image = FileService.getTranspSnapshot(g);
+    WritableImage image = FileService.getTransparentSnapshot(g);
     PixelReader pixelReader = image.getPixelReader();
     // PixelReader to pixel information
     boolean[][] read = new boolean[width][height];
@@ -64,9 +61,6 @@ public class SelectAreas {
   }
   /**
    * Returns an ArrayList of all connected pixels that are transparent but only if the clicked pixel is aswell
-   * @param g
-   * @param x
-   * @param y
    * @return ArrayList<int[]>
    */
   public static ArrayList<int[]> floodFillArea(GraphicsContext g, int x, int y) {

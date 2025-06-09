@@ -7,6 +7,7 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import org.example.paint.core.FileService;
 import org.example.paint.tools.Tool;
 
 public class SepiaFilter implements Tool {
@@ -15,7 +16,7 @@ public class SepiaFilter implements Tool {
     public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
         Canvas canvas = g.getCanvas();
 
-        WritableImage snapshot = canvas.snapshot(null, null);
+        WritableImage snapshot = FileService.getTransparentSnapshot(g);
         PixelReader reader = snapshot.getPixelReader();
         PixelWriter writer = g.getPixelWriter();
 
