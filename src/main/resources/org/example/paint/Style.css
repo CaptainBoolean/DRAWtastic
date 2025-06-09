@@ -41,7 +41,7 @@
 
 /* === Slider === */
 .slider .track {
-    -fx-background-color: #616161;
+    -fx-background-color: transparent;
     -fx-pref-height: 6;
 }
 
