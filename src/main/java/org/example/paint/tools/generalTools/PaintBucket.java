@@ -10,13 +10,13 @@ import java.util.ArrayList;
 public class PaintBucket implements Tool, Opaqueable {
 
   @Override
-  public void onRelease(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
-    ArrayList<int[]> toRecolor = SelectAreas.floodFillArea(g, (int) e.getX(), (int) e.getY());  // verwendet bestehende FloodFill
+  public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
+    ArrayList<int[]> toRecolor = SelectAreas.floodFillArea(g, (int) e.getX(), (int) e.getY());
 
     for (int[] pos : toRecolor) {
       int px = pos[0];
       int py = pos[1];
-      double margin = 1.1;
+      double margin = 3;
       dg.fillRect(px-margin/2, py-margin/2, margin, margin);
     }
 

@@ -29,7 +29,7 @@ public abstract class Shape implements Tool, Opaqueable {
     dg.setLineWidth(size);
     dg.setGlobalAlpha(currColor.getOpacity());
 
-    drawShape(dg, startX, startY, mouseEvent.getX(), mouseEvent.getY(), currColor);
+    drawShape(dg, startX, startY, mouseEvent.getX(), mouseEvent.getY());
   }
 
   @Override
@@ -38,13 +38,13 @@ public abstract class Shape implements Tool, Opaqueable {
 
     dg.setFill(currColor);
     dg.setGlobalAlpha(1);
-    drawShape(dg, startX, startY, mouseEvent.getX(), mouseEvent.getY(), currColor);
+    drawShape(dg, startX, startY, mouseEvent.getX(), mouseEvent.getY());
 
     drawing = false;
 
   }
 
 
-  public abstract void drawShape(GraphicsContext graphicsContext, double startX, double startY, double endX, double endY, Color color);
+  public abstract void drawShape(GraphicsContext graphicsContext, double startX, double startY, double endX, double endY);
 
 }

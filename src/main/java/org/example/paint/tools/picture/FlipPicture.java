@@ -25,7 +25,7 @@ public class FlipPicture implements Tool {
 
     public void flipVertical(GraphicsContext g) {
         Canvas canvas = g.getCanvas();
-        Image snapshot = FileService.getTranspSnapshot(g);
+        Image snapshot = FileService.getTransparentSnapshot(g);
 
         g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
@@ -38,7 +38,7 @@ public class FlipPicture implements Tool {
 
     public void flipHorizontal(GraphicsContext g) {
         Canvas canvas = g.getCanvas();
-        Image snapshot = FileService.getTranspSnapshot(g);
+        Image snapshot = FileService.getTransparentSnapshot(g);
 
         g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 

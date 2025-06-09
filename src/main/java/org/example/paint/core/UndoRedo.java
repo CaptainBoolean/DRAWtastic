@@ -4,7 +4,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.WritableImage;
 
-//TODO test if it works with all tools!!!
 public class UndoRedo {
   private final Canvas currCanvas;
   private static final int MAX_COUNT = 50; //change depending on canvas size and system performance
@@ -19,7 +18,7 @@ public class UndoRedo {
    */
   public UndoRedo(Canvas canvas) {
     this.currCanvas = canvas;
-    history[0] = FileService.getTranspSnapshot(canvas.getGraphicsContext2D());
+    history[0] = FileService.getTransparentSnapshot(canvas.getGraphicsContext2D());
   }
 
   /**
@@ -27,7 +26,7 @@ public class UndoRedo {
    * Saving ofter undoing operations sets this operation as the last one and discards all possible redo
    */
   public void saveState() {
-    WritableImage snap = FileService.getTranspSnapshot(currCanvas.getGraphicsContext2D());
+    WritableImage snap = FileService.getTransparentSnapshot(currCanvas.getGraphicsContext2D());
 
     if (historyIndex < topIndex) {
       topIndex = historyIndex;

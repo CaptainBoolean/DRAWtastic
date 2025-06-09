@@ -16,7 +16,7 @@ public class SepiaFilter implements Tool {
     public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
         Canvas canvas = g.getCanvas();
 
-        WritableImage snapshot = FileService.getTranspSnapshot(g);
+        WritableImage snapshot = FileService.getTransparentSnapshot(g);
         PixelReader reader = snapshot.getPixelReader();
         PixelWriter writer = g.getPixelWriter();
 

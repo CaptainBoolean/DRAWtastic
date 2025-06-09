@@ -10,7 +10,7 @@ import javafx.scene.paint.ImagePattern;
 
 
 public class Background {
-  private Canvas backgroundCanvas;
+  private final Canvas backgroundCanvas;
   private static ImagePattern checkerboard;
   private static final ObjectProperty<Color> backgroundColor = new SimpleObjectProperty<>();
   private static final int TILE_SIZE = 15;

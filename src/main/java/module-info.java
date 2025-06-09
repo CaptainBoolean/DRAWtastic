@@ -2,7 +2,6 @@ module org.example.multimediagroupproject {
     requires javafx.controls;
     requires javafx.fxml;
 
-    requires com.dlsc.formsfx;
   requires java.desktop;
   requires javafx.swing;
   requires javafx.graphics;

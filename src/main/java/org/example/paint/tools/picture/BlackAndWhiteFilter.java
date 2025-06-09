@@ -17,7 +17,7 @@ public class BlackAndWhiteFilter implements Tool {
         Canvas canvas = g.getCanvas();
 
         // Snapshot des Canvas in ein Bild
-        WritableImage snapshot = FileService.getTranspSnapshot(g);
+        WritableImage snapshot = FileService.getTransparentSnapshot(g);
         PixelReader pr = snapshot.getPixelReader();
 
         // Neues Bild zum Schreiben

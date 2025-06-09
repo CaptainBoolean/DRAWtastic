@@ -17,7 +17,7 @@ public class InvertFilter implements Tool {
         int width = (int) canvas.getWidth();
         int height = (int) canvas.getHeight();
 
-        WritableImage image = FileService.getTranspSnapshot(g);
+        WritableImage image = FileService.getTransparentSnapshot(g);
         PixelReader reader = image.getPixelReader();
 
         WritableImage output = new WritableImage(width, height);

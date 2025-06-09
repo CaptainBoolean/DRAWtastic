@@ -39,7 +39,7 @@ public class BoxSelectAndMove extends SelectAndMove {
       double cutWidth = Math.abs(startX - ex), cutHeight = Math.abs(startY - ey);
       if (cutWidth > 0 && cutHeight > 0) {
         double cutX = Math.min(startX, ex), cutY = Math.min(startY, ey);
-        WritableImage full = FileService.getTranspSnapshot(g);
+        WritableImage full = FileService.getTransparentSnapshot(g);
         movedImage = new WritableImage(full.getPixelReader(),
                 (int)cutX, (int)cutY,
                 (int)cutWidth, (int)cutHeight);

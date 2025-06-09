@@ -19,7 +19,7 @@ public class RemoveColorFromCanvas implements Tool {
   @Override
   public void onPress(GraphicsContext g, GraphicsContext dg, MouseEvent e, double size) {
 
-    tempImage = FileService.getTranspSnapshot(g);
+    tempImage = FileService.getTransparentSnapshot(g);
     pixelReader = tempImage.getPixelReader();
     pixelWriter = tempImage.getPixelWriter();
 
@@ -29,7 +29,7 @@ public class RemoveColorFromCanvas implements Tool {
       for (int y = 0; y < tempImage.getHeight(); y++) {
         if (checkColorMatch(pixelReader.getColor(x, y), 0.2)) {
           pixelWriter.setColor(x, y, Color.TRANSPARENT);
-          removeAdjacientPixels(x,y);
+          removeAdjacentPixels(x,y);
         }
       }
     }
@@ -47,7 +47,7 @@ public class RemoveColorFromCanvas implements Tool {
     return Math.sqrt(dr * dr + dg * dg + db * db + da * da) < tolerance;
   }
 
-  private void removeAdjacientPixels(int x, int y) {
+  private void removeAdjacentPixels(int x, int y) {
     int radius = 2;
 
     for (int dx = -radius; dx <= radius; dx++) {

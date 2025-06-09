@@ -16,7 +16,7 @@ public class BlurFilter implements Tool {
     public void onPress(GraphicsContext gr, GraphicsContext dg, MouseEvent e, double size) {
         Canvas canvas = gr.getCanvas();
         // Snapshot des Canvas
-        WritableImage snapshot = FileService.getTranspSnapshot(gr);
+        WritableImage snapshot = FileService.getTransparentSnapshot(gr);
         PixelReader pr = snapshot.getPixelReader();
 
         // Neues Bild zum Schreiben
