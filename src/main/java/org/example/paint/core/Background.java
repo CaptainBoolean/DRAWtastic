@@ -1,5 +1,7 @@
 package org.example.paint.core;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -10,6 +12,7 @@ import javafx.scene.paint.ImagePattern;
 public class Background {
   private Canvas backgroundCanvas;
   private static ImagePattern checkerboard;
+  private static final ObjectProperty<Color> backgroundColor = new SimpleObjectProperty<>();
   private static final int TILE_SIZE = 15;
 
   Background(Canvas backgroundCanvas) {
@@ -18,10 +21,7 @@ public class Background {
     changeBackground(Color.WHITE);
   }
 
-  /**
-   * @param newColor
-   * es gibt jetzt einen backgroundCanvas(hauptsächlich für Hintergrundfarbe) und einen canvas(auf dem wird gezeichnet etc)
-   */
+
   void changeBackground(Color newColor) {
     GraphicsContext gc = backgroundCanvas.getGraphicsContext2D();
     gc.clearRect(0,0,backgroundCanvas.getWidth(), backgroundCanvas.getHeight());
@@ -29,10 +29,12 @@ public class Background {
     if (newColor.equals(Color.TRANSPARENT)) {
       gc.setFill(checkerboard);
       gc.fillRect(0, 0, backgroundCanvas.getWidth(), backgroundCanvas.getHeight());
+
     } else {
       gc.setFill(newColor);
       gc.fillRect(0, 0, backgroundCanvas.getWidth(), backgroundCanvas.getHeight());
     }
+    backgroundColor.setValue(newColor);
   }
 
   void transparentBackground() {
@@ -54,5 +56,6 @@ public class Background {
     checkerboard = new ImagePattern(patternImage, 0, 0, TILE_SIZE * 2, TILE_SIZE * 2, false);
   }
 
+  static ObjectProperty<Color> backgroundColorProperty() {return backgroundColor;}
 
 }
