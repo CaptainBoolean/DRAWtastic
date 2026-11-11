@@ -19,7 +19,7 @@ DRAWtastic is a Java-based Paint application developed as part of a university g
 
 ## Drawtastic Preview
 
-![Drawtastic Preview]([https://github.com/CaptainBoolean/MacroPad/blob/master/src/main/resources/images/MacroPad_early_build.png](https://github.com/CaptainBoolean/DRAWtastic/blob/main/src/main/resources/org/example/paint/images/DRAWtastic-preview.png))
+![Drawtastic Preview]((https://github.com/CaptainBoolean/DRAWtastic/blob/main/src/main/resources/org/example/paint/images/DRAWtastic-preview.png))
 
 ## Git Setup Test
 
