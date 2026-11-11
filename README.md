@@ -17,9 +17,9 @@ DRAWtastic is a Java-based Paint application developed as part of a university g
 - **Undo & Redo:** Reverse or restore previous actions.
 - **Zoom:** Zoom in and out for more precise editing.
 
-## Drawtastic Preview
+## DTAWtastic Preview
 
-![Drawtastic Preview]((https://github.com/CaptainBoolean/DRAWtastic/blob/main/src/main/resources/org/example/paint/images/DRAWtastic-preview.png))
+![DRAWtastic Preview](https://raw.githubusercontent.com/CaptainBoolean/DRAWtastic/main/src/main/resources/org/example/paint/images/DRAWtastic-preview.png)
 
 ## Git Setup Test
 
