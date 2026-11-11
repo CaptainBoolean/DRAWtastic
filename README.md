@@ -1,4 +1,22 @@
 # DRAWtastic
+DRAWtastic is a Java-based Paint application developed as part of a university group project. It provides a graphical interface for creating drawings, editing shapes and manipulating images on a customizable canvas.
+
+
+## Features
+
+- **Freehand Drawing:** Draw freely using different pen tools and adjustable brush sizes.
+- **Color Selection:** Choose custom colors or sample colors directly from the canvas using the pipette tool.
+- **Eraser:** Remove unwanted parts of your drawings.
+- **Shape Tools:** Insert and customize geometric shapes.
+- **Text Tool:** Add text directly to the canvas.
+- **Image Import:** Insert external images into your drawing.
+- **Selection & Movement:** Select and move individual or connected elements.
+- **Paint Bucket:** Fill areas with the selected color.
+- **Color Editing:** Repaint elements, remove specific colors or delete individual lines.
+- **Background & Effects:** Customize the canvas background and apply visual effects.
+- **Undo & Redo:** Reverse or restore previous actions.
+- **Zoom:** Zoom in and out for more precise editing.
+
 ## Git Setup Test
 
 ### Repository clonen
